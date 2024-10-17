@@ -40,7 +40,7 @@ shape = SubResource("CircleShape2D_4je31")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = ExtResource("2_57lvr")
 animation = &"Jump"
-frame_progress = 0.293988
+frame_progress = 0.937984
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 root_node = NodePath("")
