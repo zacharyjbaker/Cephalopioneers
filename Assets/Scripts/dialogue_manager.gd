@@ -13,28 +13,19 @@ var dialogue_stage_int = 0
 var dialogue_text_color = "theme_override_colors/default_color"
 var dialogue_file_path = "res://Assets/Sound/Dialogue/" + dialogue_instance + "." + dialogue_stage + ".wav"
 
-
-var DialogueDict = {
-	"Level1" : {
-		"1": "/B/Nauto, have you reached the seafloor?.",
-		"2": "/N/Just landed.",
-		"3": "/B/Is there any sign of Lieutenant Anam?",
-		"4": "/N/Initial scans have come back negative.",
-		"5": "/N/His C.L.O.A.K. may be malfunctiong.",
-		"6": "/B/Hmm...",
-		"7": "/B/Very well. Conduct manual search routine.",
-		"8": "/B/Report back as soon as you learn anything.",
-		"9": "/END/"
-	}
-}
+# Import JSON file as Dictionary
+var file = FileAccess.open("res://Assets/Scripts/dialogue_dict.json", FileAccess.READ)
+var json = JSON.new()
+var parse = json.parse(file.get_as_text())
+var DialogueDict = json.get_data()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dialogue.visible_characters = 0
+	#print ("Dict:", DialogueDict)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-		
 	if Input.is_action_just_pressed("ui_accept") and dialogue_flag == true:
 		if (dialogue_in_process): #Skip text tick
 			dialogue.visible_characters = -1
@@ -52,13 +43,7 @@ func _physics_process(delta: float) -> void:
 			match dialogue_line.get_slice("/", 1):
 				"END":
 					print ("End Dialogue")
-					dialogue_flag = false
-					dialogueBG.visible = false
-					dialogueBG.set_process(false)
-					dialogueBG.color="ffffff00"
-					dialogue.visible = false
-					dialogue.set_process(false)
-					timer.stop()
+					_disable_dialogue()
 					return
 				"N":
 					speaker = "Nauto"
@@ -83,3 +68,12 @@ func _on_timer_timeout() -> void:
 	
 	if (dialogue.visible_characters >= dialogue_line.length()):
 		dialogue_in_process = false
+		
+func _disable_dialogue() -> void:
+	dialogue_flag = false
+	dialogueBG.visible = false
+	dialogueBG.set_process(false)
+	dialogueBG.color="ffffff00"
+	dialogue.visible = false
+	dialogue.set_process(false)
+	timer.stop()
