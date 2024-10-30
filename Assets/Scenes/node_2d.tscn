@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://cp3sx65lva0ck"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_knko8"]
+[ext_resource type="SpriteFrames" uid="uid://cvv6d8clqp3ox" path="res://Assets/Sprites/Nauto/NautoWalk.aseprite" id="2_ymg6q"]
+[ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="3_jnaet"]
+[ext_resource type="FontFile" uid="uid://suk7wgpsgwit" path="res://Assets/Font/Clarity.ttf" id="4_rx7rs"]
+[ext_resource type="AudioStream" uid="uid://dmgee1huemoxr" path="res://Assets/Sound/Dialogue/1-1.wav" id="4_yru17"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkv2x"]
+size = Vector2(255.926, 31.7037)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4je31"]
+
+[sub_resource type="Animation" id="Animation_iumci"]
+resource_name = "walk"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghlvv"]
+_data = {
+"walk": SubResource("Animation_iumci")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="StaticBody2D" parent="."]
+scale = Vector2(3.375, 3.375)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background"]
+position = Vector2(128.037, 177.333)
+shape = SubResource("RectangleShape2D_pkv2x")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(37, 487)
+scale = Vector2(3.88889, 3.88889)
+script = ExtResource("1_knko8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -0.257141)
+shape = SubResource("CircleShape2D_4je31")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = ExtResource("2_ymg6q")
+animation = &"Jump"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_ghlvv")
+}
+
+[node name="DialogueManager" type="Node2D" parent="."]
+script = ExtResource("3_jnaet")
+
+[node name="DialogueStream" type="AudioStreamPlayer2D" parent="DialogueManager"]
+stream = ExtResource("4_yru17")
+
+[node name="DialogueTimer" type="Timer" parent="DialogueManager"]
+wait_time = 0.025
+autostart = true
+
+[node name="DialogueCanvas" type="CanvasLayer" parent="DialogueManager"]
+
+[node name="DialogueBG" type="ColorRect" parent="DialogueManager/DialogueCanvas"]
+anchors_preset = -1
+anchor_left = -0.0798611
+anchor_top = -0.162037
+anchor_right = 0.181424
+anchor_bottom = -0.162037
+offset_left = 255.0
+offset_top = 157.0
+offset_right = 712.0
+offset_bottom = 566.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialogue" type="RichTextLabel" parent="DialogueManager/DialogueCanvas"]
+anchors_preset = -1
+anchor_left = -0.00434028
+anchor_top = -0.0493827
+anchor_right = 0.309896
+anchor_bottom = -0.0493827
+offset_left = 182.0
+offset_top = 140.0
+offset_right = 545.0
+offset_bottom = 487.0
+theme_override_fonts/normal_font = ExtResource("4_rx7rs")
+theme_override_font_sizes/normal_font_size = 30
+text = "testing"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
