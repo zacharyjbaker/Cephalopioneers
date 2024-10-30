@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var WALK_SPEED = 400
 @export var JUMP_IMPULSE = 400
 var current_anim = ""
+var jumped = false;
 const SCALE = 3.889
 const GRAVITY = 400.0
 
@@ -14,11 +15,18 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += delta * GRAVITY
 	move_and_slide()
-	if is_on_floor() and Input.is_action_just_pressed("ui_up") and current_anim != "Jump":
+	#if !(is_on_floor()):
+		#animated_sprite.play("Jump")
+	if (animated_sprite.animation_looped and jumped):
+		print ("EndJump")
+		jumped = false
+		animated_sprite.stop()
+	if is_on_floor() and Input.is_action_just_pressed("ui_up"):
 		print ("jump")
 		current_anim = "Jump"
-		animated_sprite.play("Jump")
-		animated_sprite.stop()
+		animated_sprite.play(current_anim)
+		jumped = true
+		#animated_sprite.stop()
 		velocity.y =  -JUMP_IMPULSE
 	elif Input.is_action_pressed("ui_right"):
 		print ("right")
@@ -34,9 +42,9 @@ func _physics_process(delta: float) -> void:
 			current_anim = "Walk"
 		velocity.x =  -WALK_SPEED
 		animated_sprite.flip_h = true
-	else:
-		print ("idle")
-		current_anim = "Idle"
+	elif is_on_floor():
+		#print ("idle")
+		#current_anim = "Idle"
 		animated_sprite.stop()
 		velocity.x = 0
 	
