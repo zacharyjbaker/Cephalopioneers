@@ -11,6 +11,7 @@
 size = Vector2(512.259, 31.7037)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4je31"]
+radius = 9.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("2_creav")
@@ -143,9 +144,9 @@ animations = [{
 "duration": 2.5,
 "texture": SubResource("AtlasTexture_vgetx")
 }],
-"loop": false,
+"loop": true,
 "name": &"Walk",
-"speed": 60.0
+"speed": 30.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2h41r"]
@@ -195,7 +196,7 @@ shape = SubResource("CircleShape2D_4je31")
 [node name="Nauto" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2l2c7")
-animation = &"BeginFall"
+animation = &"Walk"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": false,
@@ -214,6 +215,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "76396d90c615d55e3aaac7336f1441dc"
 
 [node name="Mech" type="AnimatedSprite2D" parent="CharacterBody2D"]
+visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_i1w84")
 metadata/_aseprite_wizard_interface_config_ = {
