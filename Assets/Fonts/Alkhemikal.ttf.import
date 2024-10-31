@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://77sv4wstn8f6"
-path="res://.godot/imported/Clarity.otf-63e13b70473e77aaf729601bde9a084c.fontdata"
+uid="uid://fguv5ogwsg6x"
+path="res://.godot/imported/Alkhemikal.ttf-be22ff8ac309d87001300aab7f56e172.fontdata"
 
 [deps]
 
-source_file="res://Assets/Font/Clarity.otf"
-dest_files=["res://.godot/imported/Clarity.otf-63e13b70473e77aaf729601bde9a084c.fontdata"]
+source_file="res://Assets/Fonts/Alkhemikal.ttf"
+dest_files=["res://.godot/imported/Alkhemikal.ttf-be22ff8ac309d87001300aab7f56e172.fontdata"]
 
 [params]
 

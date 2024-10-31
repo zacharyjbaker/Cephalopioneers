@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://suk7wgpsgwit"
-path="res://.godot/imported/Clarity.ttf-f2fafd28d0e9d53c5f129673498b6c53.fontdata"
+uid="uid://dcmchox6w3unk"
+path="res://.godot/imported/Moyko.ttf-2b22202b7af0487676355db2a88ad535.fontdata"
 
 [deps]
 
-source_file="res://Assets/Font/Clarity.ttf"
-dest_files=["res://.godot/imported/Clarity.ttf-f2fafd28d0e9d53c5f129673498b6c53.fontdata"]
+source_file="res://Assets/Fonts/Moyko.ttf"
+dest_files=["res://.godot/imported/Moyko.ttf-2b22202b7af0487676355db2a88ad535.fontdata"]
 
 [params]
 

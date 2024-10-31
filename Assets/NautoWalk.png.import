@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr7cssebcosw"
-path="res://.godot/imported/clarity.png-f16300cea370831030c32d811218c699.ctex"
+uid="uid://cr8uhn6t5du8n"
+path="res://.godot/imported/NautoWalk.png-bc22499b1a0ec9b55a1b65e4dd15868a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Font/Files for Editing/clarity.png"
-dest_files=["res://.godot/imported/clarity.png-f16300cea370831030c32d811218c699.ctex"]
+source_file="res://Assets/NautoWalk.png"
+dest_files=["res://.godot/imported/NautoWalk.png-bc22499b1a0ec9b55a1b65e4dd15868a.ctex"]
 
 [params]
 
