@@ -11,6 +11,7 @@ var dialogue_instance = "Level1"
 var dialogue_stage = "0"
 var dialogue_stage_int = 0
 var dialogue_text_color = "theme_override_colors/default_color"
+var dialogue_font_path = ""
 var dialogue_file_path = "res://Assets/Sound/Dialogue/" + dialogue_instance + "." + dialogue_stage + ".wav"
 
 # Import JSON file as Dictionary
@@ -38,23 +39,18 @@ func _physics_process(delta: float) -> void:
 			dialogue_stage_int = int(dialogue_stage)
 			dialogue_stage_int += 1
 			dialogue_stage = str(dialogue_stage_int)
-				
 			dialogue_line = DialogueDict[dialogue_instance][dialogue_stage]
+			
 			match dialogue_line.get_slice("/", 1):
 				"END":
 					print ("End Dialogue")
 					_disable_dialogue()
 					return
 				"N":
-					speaker = "Nauto"
-					dialogueBG.color="354a42"
-					dialogue.add_theme_color_override("default_color", Color("86b0ee"))
-					dialogue_file_path = "res://Assets/Sound/Dialogue/N" + dialogue_instance + "-" + dialogue_stage + ".wav"
+					_load_nauto()
 				"B":
-					speaker = "Bite"
-					dialogueBG.color="4b4051"
-					dialogue.add_theme_color_override("default_color", Color("c7a97c"))
-					dialogue_file_path = "res://Assets/Sound/Dialogue/B" + dialogue_instance + "-" + dialogue_stage + ".wav"
+					_load_bite()
+					
 			print (speaker)
 			if (load(dialogue_file_path) != null):
 				dialogue_stream.stream = load(dialogue_file_path)
@@ -79,3 +75,19 @@ func _disable_dialogue() -> void:
 	dialogue.visible = false
 	dialogue.set_process(false)
 	timer.stop()
+
+func _load_bite() -> void:
+	speaker = "Bite"
+	dialogueBG.color="4b4051"
+	dialogue.add_theme_color_override("default_color", Color("c7a97c"))
+	dialogue_font_path = load("res://Assets/Fonts/Bite.ttf")
+	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
+	dialogue_file_path = "res://Assets/Sound/Dialogue/B" + dialogue_instance + "-" + dialogue_stage + ".wav"
+
+func _load_nauto() -> void:
+	speaker = "Nauto"
+	dialogueBG.color="354a42"
+	dialogue.add_theme_color_override("default_color", Color("86b0ee"))
+	dialogue_font_path = load("res://Assets/Fonts/Nauto.ttf")
+	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
+	dialogue_file_path = "res://Assets/Sound/Dialogue/N" + dialogue_instance + "-" + dialogue_stage + ".wav"
