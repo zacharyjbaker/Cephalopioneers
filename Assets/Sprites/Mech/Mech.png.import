@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjkmw3u8qcvw2"
-path="res://.godot/imported/NoHorseBarred.png-ef427ef308ad89078142aa30532c30ef.ctex"
+uid="uid://cq2bbbwna27nw"
+path="res://.godot/imported/Mech.png-6d530c9502818a9a04a8a43f0ee8e858.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Nauto/NoHorseBarred.png"
-dest_files=["res://.godot/imported/NoHorseBarred.png-ef427ef308ad89078142aa30532c30ef.ctex"]
+source_file="res://Assets/Sprites/Mech/Mech.png"
+dest_files=["res://.godot/imported/Mech.png-6d530c9502818a9a04a8a43f0ee8e858.ctex"]
 
 [params]
 

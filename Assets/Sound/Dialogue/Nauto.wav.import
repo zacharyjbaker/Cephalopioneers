@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dmgee1huemoxr"
-path="res://.godot/imported/1-1.wav-bfebeea1f619dd10656f740a18978839.sample"
+path="res://.godot/imported/Nauto.wav-005127f9b0af38d024c326ce6c521eb5.sample"
 
 [deps]
 
-source_file="res://Assets/Sound/Dialogue/1-1.wav"
-dest_files=["res://.godot/imported/1-1.wav-bfebeea1f619dd10656f740a18978839.sample"]
+source_file="res://Assets/Sound/Dialogue/Nauto.wav"
+dest_files=["res://.godot/imported/Nauto.wav-005127f9b0af38d024c326ce6c521eb5.sample"]
 
 [params]
 
