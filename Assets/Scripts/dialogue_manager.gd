@@ -49,15 +49,17 @@ func _physics_process(delta: float) -> void:
 					speaker = "Nauto"
 					dialogueBG.color="354a42"
 					dialogue.add_theme_color_override("default_color", Color("86b0ee"))
-					#dialogue_stream.play()
+					dialogue_file_path = "res://Assets/Sound/Dialogue/N" + dialogue_instance + "-" + dialogue_stage + ".wav"
 				"B":
 					speaker = "Bite"
 					dialogueBG.color="4b4051"
 					dialogue.add_theme_color_override("default_color", Color("c7a97c"))
-					#dialogue_stream.play()
+					dialogue_file_path = "res://Assets/Sound/Dialogue/B" + dialogue_instance + "-" + dialogue_stage + ".wav"
 			print (speaker)
+			if (load(dialogue_file_path) != null):
+				dialogue_stream.stream = load(dialogue_file_path)
+				dialogue_stream.play()
 			dialogue_in_process = true
-			dialogue_file_path = "res://Assets/Sound/Dialogue/" + dialogue_instance + "." + dialogue_stage + ".wav"
 			print (dialogue_file_path)
 			dialogue_line = dialogue_line.get_slice("/", 2)
 			dialogue.text = dialogue_line

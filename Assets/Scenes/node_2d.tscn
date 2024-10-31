@@ -1,15 +1,167 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp3sx65lva0ck"]
+[gd_scene load_steps=27 format=3 uid="uid://cp3sx65lva0ck"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_knko8"]
-[ext_resource type="SpriteFrames" uid="uid://cvv6d8clqp3ox" path="res://Assets/Sprites/Nauto/NautoWalk.aseprite" id="2_ymg6q"]
+[ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Scenes/NautoWalk.png" id="2_creav"]
+[ext_resource type="Texture2D" uid="uid://b8cwgijjr0mkn" path="res://Assets/Scenes/Mech.png" id="3_3e3kk"]
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="3_jnaet"]
 [ext_resource type="FontFile" uid="uid://suk7wgpsgwit" path="res://Assets/Font/Clarity.ttf" id="4_rx7rs"]
-[ext_resource type="AudioStream" uid="uid://dmgee1huemoxr" path="res://Assets/Sound/Dialogue/1-1.wav" id="4_yru17"]
+[ext_resource type="AudioStream" uid="uid://dmgee1huemoxr" path="res://Assets/Sound/Dialogue/Nauto.wav" id="4_yru17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkv2x"]
-size = Vector2(255.926, 31.7037)
+size = Vector2(512.259, 31.7037)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4je31"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
+atlas = ExtResource("2_creav")
+region = Rect2(0, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2drs"]
+atlas = ExtResource("2_creav")
+region = Rect2(54, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgetx"]
+atlas = ExtResource("2_creav")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br1h2"]
+atlas = ExtResource("2_creav")
+region = Rect2(36, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ookl7"]
+atlas = ExtResource("2_creav")
+region = Rect2(18, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maukm"]
+atlas = ExtResource("2_creav")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpcqy"]
+atlas = ExtResource("2_creav")
+region = Rect2(36, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq45e"]
+atlas = ExtResource("2_creav")
+region = Rect2(54, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v6lx"]
+atlas = ExtResource("2_creav")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62a38"]
+atlas = ExtResource("2_creav")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8q65"]
+atlas = ExtResource("2_creav")
+region = Rect2(36, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yhkn"]
+atlas = ExtResource("2_creav")
+region = Rect2(54, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_508hp"]
+atlas = ExtResource("2_creav")
+region = Rect2(0, 36, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2l2c7"]
+animations = [{
+"frames": [{
+"duration": 7.5,
+"texture": SubResource("AtlasTexture_wx3hr")
+}],
+"loop": false,
+"name": &"Ascend",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_h2drs")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_vgetx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br1h2")
+}],
+"loop": false,
+"name": &"BeginFall",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_ookl7")
+}],
+"loop": false,
+"name": &"Charge",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br1h2")
+}],
+"loop": false,
+"name": &"Descend",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgetx")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgetx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maukm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpcqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq45e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v6lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62a38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8q65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yhkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_508hp")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_vgetx")
+}],
+"loop": false,
+"name": &"Walk",
+"speed": 60.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h41r"]
+atlas = ExtResource("3_3e3kk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i1w84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h41r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="Animation" id="Animation_iumci"]
 resource_name = "walk"
@@ -28,7 +180,7 @@ scale = Vector2(3.375, 3.375)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background"]
-position = Vector2(128.037, 177.333)
+position = Vector2(164.611, 177.185)
 shape = SubResource("RectangleShape2D_pkv2x")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -40,9 +192,43 @@ script = ExtResource("1_knko8")
 position = Vector2(0, -0.257141)
 shape = SubResource("CircleShape2D_4je31")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = ExtResource("2_ymg6q")
-animation = &"Jump"
+[node name="Nauto" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_2l2c7")
+animation = &"BeginFall"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": false,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Nauto/NautoWalk.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "76396d90c615d55e3aaac7336f1441dc"
+
+[node name="Mech" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_i1w84")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Mech/Mech.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "bf44e9de891e78d4b0cc91d798e8a8dc"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 root_node = NodePath("")
@@ -90,4 +276,5 @@ theme_override_font_sizes/normal_font_size = 30
 text = "testing"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="animation_finished" from="CharacterBody2D/Nauto" to="CharacterBody2D" method="_on_nauto_animation_finished"]
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
