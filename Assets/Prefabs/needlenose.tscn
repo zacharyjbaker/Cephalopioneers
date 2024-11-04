@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://btcwedkqhpfyj"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/enemy_fish.gd" id="1_5i2jh"]
+[ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Scenes/Needlenose.png" id="2_g2nsw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssyjn"]
+atlas = ExtResource("2_g2nsw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_penkd"]
+atlas = ExtResource("2_g2nsw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1cx1"]
+atlas = ExtResource("2_g2nsw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nga0o"]
+atlas = ExtResource("2_g2nsw")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adejb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssyjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_penkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1cx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nga0o")
+}],
+"loop": true,
+"name": &"Swim",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_686ph"]
+radius = 8.00391
+
+[node name="Needlenose" type="CharacterBody2D"]
+position = Vector2(-369, 855)
+scale = Vector2(4, 4)
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_5i2jh")
+MAX_SPEED = 20.0
+
+[node name="HurtBox" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-1, -4, -3.5, -3, -15, -3.25, -15.5, -5.25, -2.25, -5.75)
+
+[node name="Needlenose" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.25, -0.25)
+sprite_frames = SubResource("SpriteFrames_adejb")
+animation = &"Swim"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Needlenose.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d59966d0710275feee2b6696804b9b64"
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(6.25, -3.5)
+shape = SubResource("CircleShape2D_686ph")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ViewCone" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewCone"]
+position = Vector2(10, -3.25)
+polygon = PackedVector2Array(-13.5, -1.5, -180.75, -79.5, -180.25, 46.25)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="ViewCone" to="." method="_on_view_cone_body_entered"]
+[connection signal="body_shape_exited" from="ViewCone" to="." method="_on_view_cone_body_shape_exited"]

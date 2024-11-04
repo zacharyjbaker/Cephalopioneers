@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr8uhn6t5du8n"
-path="res://.godot/imported/NautoWalk.png-bc22499b1a0ec9b55a1b65e4dd15868a.ctex"
+uid="uid://c0qu5da26g00c"
+path="res://.godot/imported/CommanderBite.png-5a0b06aa83938db76f4c93d351df4544.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/NautoWalk.png"
-dest_files=["res://.godot/imported/NautoWalk.png-bc22499b1a0ec9b55a1b65e4dd15868a.ctex"]
+source_file="res://Assets/Sprites/CommanderBite.png"
+dest_files=["res://.godot/imported/CommanderBite.png-5a0b06aa83938db76f4c93d351df4544.ctex"]
 
 [params]
 

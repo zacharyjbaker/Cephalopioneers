@@ -6,6 +6,9 @@ extends CharacterBody2D
 @export var mode = ""
 @export var JUMP_IMPULSE = 350
 @export var GRAVITY = 400.0
+@export var env_node : Node
+
+var knockback = Vector2.ZERO
 
 var current_anim = ""
 var play_transition_anim = true
@@ -71,7 +74,7 @@ func fall_anim() -> void:
 		nauto_sprite.play(current_anim)
 
 func _physics_process(delta: float) -> void:
-	#print (current_anim)
+	#print (position)
 	velocity.y += delta * GRAVITY # gravity
 	move_and_slide()
 	
@@ -137,6 +140,8 @@ func _physics_process(delta: float) -> void:
 		elif is_on_floor():
 			if crouched == false:
 				current_anim = "Idle"
+			else:
+				current_anim = "Charge"
 			nauto_sprite.play(current_anim)
 			play_transition_anim = true
 			if (velocity.x > 50):
@@ -145,3 +150,14 @@ func _physics_process(delta: float) -> void:
 				velocity.x += delta * 2000
 			else:
 				velocity.x = 0
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if (body.get_node("HitBox").is_in_group("damage")):
+		print ("hit")
+		#velocity.x += body.velocity.x * 3
+		velocity.x += -(velocity.x * 2 + 50) + body.velocity.x / 2.0
+		#velocity.y += body.velocity.y * 3
+		velocity.y += -(velocity.y * 2 + 50) + body.velocity.x / 2.0
+		Global.HEALTH -= 1
+		#print (env_node.environment.glow_intensity)
+		env_node.set_glow(1)
