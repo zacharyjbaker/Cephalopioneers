@@ -38,7 +38,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#print (timer.time_left)
-	print (state)
+	#print (state)
 	#print (scale)
 	#print (velocity)
 	#print (rotation_charge) 
@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 				reached_target = false
 				if (cooldown_timer == false):
 					print ("Start Cooldown")
+					mode.visible = true
 					mode.play("Cooldown")
 					if (rotation_degrees >= 180):
 						mode.flip_h = true
@@ -94,6 +95,7 @@ func _physics_process(delta: float) -> void:
 				rotation_timer = true
 			look_at(target)
 			rotation_degrees += 180
+
 			
 			
 		elif (rotation_charge == true):
@@ -124,6 +126,7 @@ func _on_timer_timeout() -> void:
 	if state == "Attack" and rotation_charge == false:
 		print ("Rotated")
 		rotation_charge = true
+		mode.visible = false
 		timer.stop()
 		
 	elif cooldown_timer == true:

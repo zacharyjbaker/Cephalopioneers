@@ -1,10 +1,12 @@
-[gd_scene load_steps=64 format=3 uid="uid://cp3sx65lva0ck"]
+[gd_scene load_steps=67 format=3 uid="uid://cp3sx65lva0ck"]
 
 [ext_resource type="Shader" path="res://Assets/Scenes/water.gdshader" id="1_0d7an"]
 [ext_resource type="Texture2D" uid="uid://nl3b0yogvjc5" path="res://Assets/layers/sand.png" id="1_8ebob"]
 [ext_resource type="Texture2D" uid="uid://bgnaqsdmihmyb" path="res://Assets/Scenes/FishTank copy Copy.png" id="1_hhweg"]
+[ext_resource type="Script" path="res://Assets/Scenes/world_environment.gd" id="1_je0k0"]
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_knko8"]
 [ext_resource type="Texture2D" uid="uid://b078g3moorwje" path="res://Assets/layers/far.png" id="1_mmqsq"]
+[ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="1_t2yg7"]
 [ext_resource type="Texture2D" uid="uid://b8cwgijjr0mkn" path="res://Assets/Scenes/Mech.png" id="3_3e3kk"]
 [ext_resource type="Texture2D" uid="uid://bfmv5jyk1itqh" path="res://Assets/layers/foreground-2.png" id="3_d60nt"]
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="3_jnaet"]
@@ -18,6 +20,27 @@
 [ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Scenes/Needlenose.png" id="16_2q3mc"]
 [ext_resource type="Script" path="res://Assets/Scenes/enemy_fish.gd" id="16_cq4sq"]
 [ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Scenes/mode.png" id="18_dah1r"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
+gradient = ExtResource("1_t2yg7")
+
+[sub_resource type="Environment" id="Environment_n7rwt"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 0.07
+glow_levels/2 = 0.47
+glow_levels/3 = 1.55
+glow_levels/4 = 0.6
+glow_levels/5 = 1.75
+glow_intensity = 0.06
+glow_strength = 0.35
+glow_blend_mode = 0
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 0.56
+glow_hdr_luminance_cap = 6.85
+glow_map_strength = 0.72
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture2D_abg6r")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k8t7"]
 atlas = ExtResource("1_hhweg")
@@ -61,32 +84,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_djfoi"]
-colors = PackedColorArray(0, 0.152941, 0.431373, 1, 0.91086, 0.8836, 0.94, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
-gradient = SubResource("Gradient_djfoi")
-
-[sub_resource type="Environment" id="Environment_n7rwt"]
-background_mode = 3
-glow_enabled = true
-glow_levels/1 = 0.07
-glow_levels/2 = 0.47
-glow_levels/3 = 1.55
-glow_levels/4 = 0.6
-glow_levels/5 = 1.75
-glow_intensity = 0.06
-glow_strength = 0.35
-glow_blend_mode = 0
-glow_hdr_threshold = 0.0
-glow_hdr_scale = 0.56
-glow_hdr_luminance_cap = 6.85
-glow_map_strength = 0.72
-adjustment_enabled = true
-adjustment_color_correction = SubResource("GradientTexture2D_abg6r")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4je31"]
-radius = 9.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_voxna"]
+radius = 5.37489
+height = 17.2186
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("5_kpnd0")
@@ -235,7 +235,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_508hp")
 }, {
-"duration": 2.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vgetx")
 }],
 "loop": true,
@@ -288,6 +288,13 @@ shader_parameter/speed = Vector2(0.03, 0.07)
 shader_parameter/wave_strength = 0.4
 shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ylio2"]
+radius = 5.33728
+height = 16.9064
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qid5t"]
+size = Vector2(17, 9.5)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ssyjn"]
 atlas = ExtResource("16_2q3mc")
 region = Rect2(0, 0, 32, 32)
@@ -327,19 +334,19 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_686ph"]
 radius = 8.00391
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1q6gw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2abnr"]
 atlas = ExtResource("18_dah1r")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8hbs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_44kil"]
 atlas = ExtResource("18_dah1r")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hx22m"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n561"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1q6gw")
+"texture": SubResource("AtlasTexture_2abnr")
 }],
 "loop": true,
 "name": &"Cooldown",
@@ -347,7 +354,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a8hbs")
+"texture": SubResource("AtlasTexture_44kil")
 }],
 "loop": true,
 "name": &"Detected",
@@ -355,6 +362,12 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n7rwt")
+script = ExtResource("1_je0k0")
+
+[node name="Timer" type="Timer" parent="WorldEnvironment"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -389,6 +402,8 @@ centered = false
 
 [node name="Background" type="StaticBody2D" parent="."]
 scale = Vector2(5.72, 5.56)
+collision_layer = 32768
+collision_mask = 32768
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
 
@@ -411,7 +426,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "55e48d99fd85b40f1c61d6b8477b985d"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background"]
-position = Vector2(36.1451, 182.518)
+position = Vector2(36.1888, 182.554)
 shape = SubResource("RectangleShape2D_2471x")
 
 [node name="DialogueManager" type="Node2D" parent="."]
@@ -510,24 +525,23 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_n7rwt")
-
-[node name="Nauto" type="CharacterBody2D" parent="."]
-position = Vector2(-663, 861)
+[node name="Nauto" type="CharacterBody2D" parent="." node_paths=PackedStringArray("env_node")]
+position = Vector2(-663, 897)
 scale = Vector2(4, 4)
+collision_layer = 32896
+collision_mask = 32896
 script = ExtResource("1_knko8")
+env_node = NodePath("../WorldEnvironment")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Nauto"]
-position = Vector2(0, -0.257141)
-shape = SubResource("CircleShape2D_4je31")
+[node name="PhysicsCollider" type="CollisionShape2D" parent="Nauto"]
+position = Vector2(-2, 0.75)
+rotation = -0.655038
+shape = SubResource("CapsuleShape2D_voxna")
 
 [node name="Nauto" type="AnimatedSprite2D" parent="Nauto"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2l2c7")
-animation = &"CrouchWalk"
-frame = 1
-frame_progress = 0.421384
+animation = &"Walk"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": false,
@@ -584,17 +598,23 @@ material = SubResource("ShaderMaterial_dhksr")
 scale = Vector2(15.2545, 8.7835)
 texture = ExtResource("11_ghj7g")
 
-[node name="Needlenose" type="CharacterBody2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="Nauto"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nauto/HurtBox"]
+position = Vector2(-2, 0.75)
+rotation = -0.634701
+shape = SubResource("CapsuleShape2D_ylio2")
+
+[node name="Needlenose" type="CharacterBody2D" parent="." groups=["enemy"]]
 position = Vector2(-398, 893)
 scale = Vector2(4, 4)
-collision_layer = 0
 motion_mode = 1
 script = ExtResource("16_cq4sq")
 MAX_SPEED = 20.0
 
-[node name="HurtBox" type="CollisionPolygon2D" parent="Needlenose"]
-visible = false
-polygon = PackedVector2Array(-1, -4, -3.5, -3, -15, -3.25, -15.5, -5.25, -2.25, -5.75)
+[node name="HitBox" type="CollisionShape2D" parent="Needlenose" groups=["damage"]]
+position = Vector2(-7, -4.5)
+shape = SubResource("RectangleShape2D_qid5t")
 
 [node name="Needlenose" type="AnimatedSprite2D" parent="Needlenose"]
 texture_filter = 1
@@ -615,25 +635,29 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "d59966d0710275feee2b6696804b9b64"
 
-[node name="HitBox" type="CollisionShape2D" parent="Needlenose"]
-visible = false
+[node name="HurtBox" type="Area2D" parent="Needlenose"]
 position = Vector2(6.25, -3.5)
+
+[node name="ColliderShape2D" type="CollisionShape2D" parent="Needlenose/HurtBox"]
 shape = SubResource("CircleShape2D_686ph")
 
 [node name="Timer" type="Timer" parent="Needlenose"]
 
 [node name="ViewCone" type="Area2D" parent="Needlenose"]
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Needlenose/ViewCone"]
+visible = false
 position = Vector2(10, -3.25)
 scale = Vector2(0.675403, 1.45879)
 polygon = PackedVector2Array(-13.5, -1.5, -180.75, -79.5, -180.25, 46.25)
 
 [node name="Mode" type="AnimatedSprite2D" parent="Needlenose"]
 texture_filter = 1
-position = Vector2(4, -15.75)
-sprite_frames = SubResource("SpriteFrames_hx22m")
-animation = &"Detected"
+position = Vector2(3, -19.5)
+sprite_frames = SubResource("SpriteFrames_7n561")
+animation = &"Cooldown"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -646,10 +670,14 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/FX/mode.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "6c3530d00fa70f79abce538194e455dd"
+metadata/_aseprite_wizard_source_file_hash_ = "a0ba8643c03dea4a5c65a46e2b0ed919"
 
+[connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Nauto/Nauto" to="Nauto" method="_on_nauto_animation_finished"]
+[connection signal="area_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_body_entered"]
+[connection signal="body_shape_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_body_shape_entered"]
 [connection signal="timeout" from="Needlenose/Timer" to="Needlenose" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Needlenose/ViewCone" to="Needlenose" method="_on_view_cone_body_entered"]
 [connection signal="body_shape_exited" from="Needlenose/ViewCone" to="Needlenose" method="_on_view_cone_body_shape_exited"]
