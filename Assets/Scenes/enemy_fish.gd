@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var sprite = $Needlenose
 @onready var timer = $Timer
 @onready var view_collider = $ViewCone
+@onready var mode = $Mode
 
 @export var tag = "Needlenose"
 @export var SPEED = 100
@@ -19,7 +20,7 @@ var rotation_charge = false
 var dir_to_player = null
 var random_dir_x = false
 var random_dir_y = false
-var player_detected_bool = false
+var state = ""
 var rng = RandomNumberGenerator.new()
 
 var amplitude = 20.0
@@ -29,18 +30,20 @@ var harmonic_wave
 func _ready() -> void:
 	#original_scale = scale
 	#sprite.flip_h = false
+	mode.visible = false
+	state = "Swim"
 	timer.start(3)
 	player = get_node("/root/Node2D/Nauto")
 	
 
 func _physics_process(delta: float) -> void:
-	print (timer.time_left)
-	#print (player_detected_bool)
+	#print (timer.time_left)
+	print (state)
 	#print (scale)
 	#print (velocity)
 	#print (rotation_charge) 
 	sprite.play("Swim")
-	if (player_detected_bool == false):
+	if (state == "Swim"):
 		if velocity.x > 1:
 			scale.y = -1 * abs(scale.y)
 			rotation_degrees = 180
@@ -52,7 +55,7 @@ func _physics_process(delta: float) -> void:
 			#sprite.flip_h = false
 			#direction = -1
 			
-	if player_detected_bool == true:
+	if (state == "Attack"):
 		#print ("Enemy Pos:", position)
 		if (position.distance_to(target) < 50 or reached_target == true):
 			reached_target = true
@@ -70,11 +73,14 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 				reached_target = false
 				if (cooldown_timer == false):
-					print ("Stop")
+					print ("Start Cooldown")
+					mode.play("Cooldown")
+					if (rotation_degrees >= 180):
+						mode.flip_h = true
 					timer.start(5)
 					velocity.x = 0
 					velocity.y = 0
-					player_detected_bool = false
+					state = "Swim"
 					cooldown_timer = true
 			elif velocity.x != 0 and velocity.y != 0:
 				velocity.x = move_toward(velocity.x, 0, SPEED/3.5)
@@ -112,11 +118,10 @@ func _physics_process(delta: float) -> void:
 				velocity.y -= SPEED * delta
 	move_and_slide()
 	#velocity.x = move_toward(velocity.x, 0, SPEED)
-
 	
 func _on_timer_timeout() -> void:
 	
-	if player_detected_bool == true and rotation_charge == false:
+	if state == "Attack" and rotation_charge == false:
 		print ("Rotated")
 		rotation_charge = true
 		timer.stop()
@@ -127,6 +132,8 @@ func _on_timer_timeout() -> void:
 		rotation_timer = false
 		rotation_charge = false
 		search_cooldown = false
+		mode.visible = false
+		mode.flip_h = false
 		timer.start(3)
 
 	else:
@@ -143,12 +150,14 @@ func _on_timer_timeout() -> void:
 		timer.start(3)
 	
 func _on_view_cone_body_entered(body: Node2D) -> void:
-	if body == player and player_detected_bool == false and search_cooldown == false:
+	if body == player and state == "Swim" and search_cooldown == false:
 		target = body.global_position
 		direction = global_position.direction_to(target)
 		timer.stop()
 		print ("Player Detected")
-		player_detected_bool = true
+		state = "Attack"
+		mode.visible = true
+		mode.play("Detected")
 		search_cooldown = true
 		#rotation_degrees = 0
 		

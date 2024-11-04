@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btd2n78ij0eo3"
-path="res://.godot/imported/Needlenose.png-f899521b3be3054bcd7bae1279592d05.ctex"
+uid="uid://d0yhqh2b08ort"
+path="res://.godot/imported/mode.png-f5cb9d4515698f5a54d780a67b6f0ab0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Needlenose.png"
-dest_files=["res://.godot/imported/Needlenose.png-f899521b3be3054bcd7bae1279592d05.ctex"]
+source_file="res://Assets/Sprites/FX/mode.png"
+dest_files=["res://.godot/imported/mode.png-f5cb9d4515698f5a54d780a67b6f0ab0.ctex"]
 
 [params]
 

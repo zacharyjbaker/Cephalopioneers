@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cp3sx65lva0ck"]
+[gd_scene load_steps=64 format=3 uid="uid://cp3sx65lva0ck"]
 
 [ext_resource type="Shader" path="res://Assets/Scenes/water.gdshader" id="1_0d7an"]
 [ext_resource type="Texture2D" uid="uid://nl3b0yogvjc5" path="res://Assets/layers/sand.png" id="1_8ebob"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Assets/Scenes/camera_movement.gd" id="13_ts6wh"]
 [ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Scenes/Needlenose.png" id="16_2q3mc"]
 [ext_resource type="Script" path="res://Assets/Scenes/enemy_fish.gd" id="16_cq4sq"]
+[ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Scenes/mode.png" id="18_dah1r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k8t7"]
 atlas = ExtResource("1_hhweg")
@@ -326,6 +327,33 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_686ph"]
 radius = 8.00391
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q6gw"]
+atlas = ExtResource("18_dah1r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8hbs"]
+atlas = ExtResource("18_dah1r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hx22m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q6gw")
+}],
+"loop": true,
+"name": &"Cooldown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8hbs")
+}],
+"loop": true,
+"name": &"Detected",
+"speed": 10.0
+}]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -557,7 +585,7 @@ scale = Vector2(15.2545, 8.7835)
 texture = ExtResource("11_ghj7g")
 
 [node name="Needlenose" type="CharacterBody2D" parent="."]
-position = Vector2(-369, 855)
+position = Vector2(-398, 893)
 scale = Vector2(4, 4)
 collision_layer = 0
 motion_mode = 1
@@ -598,7 +626,27 @@ shape = SubResource("CircleShape2D_686ph")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Needlenose/ViewCone"]
 position = Vector2(10, -3.25)
+scale = Vector2(0.675403, 1.45879)
 polygon = PackedVector2Array(-13.5, -1.5, -180.75, -79.5, -180.25, 46.25)
+
+[node name="Mode" type="AnimatedSprite2D" parent="Needlenose"]
+texture_filter = 1
+position = Vector2(4, -15.75)
+sprite_frames = SubResource("SpriteFrames_hx22m")
+animation = &"Detected"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/FX/mode.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "6c3530d00fa70f79abce538194e455dd"
 
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Nauto/Nauto" to="Nauto" method="_on_nauto_animation_finished"]
