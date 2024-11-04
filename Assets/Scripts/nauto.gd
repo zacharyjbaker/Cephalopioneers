@@ -71,7 +71,7 @@ func fall_anim() -> void:
 		nauto_sprite.play(current_anim)
 
 func _physics_process(delta: float) -> void:
-	#print (current_anim)
+	#print (position)
 	velocity.y += delta * GRAVITY # gravity
 	move_and_slide()
 	
@@ -137,6 +137,8 @@ func _physics_process(delta: float) -> void:
 		elif is_on_floor():
 			if crouched == false:
 				current_anim = "Idle"
+			else:
+				current_anim = "Charge"
 			nauto_sprite.play(current_anim)
 			play_transition_anim = true
 			if (velocity.x > 50):

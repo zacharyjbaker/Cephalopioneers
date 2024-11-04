@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpty1e6mv8k62"
-path="res://.godot/imported/NautoWalk.png-f7d9ed355f4a49ba13eae36c63006d9c.ctex"
+uid="uid://b078g3moorwje"
+path="res://.godot/imported/far.png-bb9a4363597a4f129950f96df729d323.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/NautoWalk.png"
-dest_files=["res://.godot/imported/NautoWalk.png-f7d9ed355f4a49ba13eae36c63006d9c.ctex"]
+source_file="res://Assets/layers/far.png"
+dest_files=["res://.godot/imported/far.png-bb9a4363597a4f129950f96df729d323.ctex"]
 
 [params]
 
