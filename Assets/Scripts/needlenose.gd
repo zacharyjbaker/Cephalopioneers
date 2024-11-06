@@ -5,8 +5,14 @@ extends CharacterBody2D
 @onready var mode = $Mode
 
 @export var tag = "Needlenose"
-@export var SPEED = 100
-@export var MAX_SPEED = 40.0
+@export var speed = 100
+@export var charge_speed = 800
+@export var max_speed = 40.0
+@export var charge_max_speed = 1000
+@export var random_turn_timer_min = 1.0
+@export var random_turn_timer_max = 6.0
+@export var distance_threshold = 50
+@export var stop_threshold = 50
 
 # Vars for random enemy orientation
 var random_dir_x = false 
@@ -16,7 +22,7 @@ var rng = RandomNumberGenerator.new()
 # Targeting vars
 var player = null
 var target = null
-var targetBody = null
+var target_body = null
 var direction = null
 
 # State vars and bools
@@ -33,7 +39,8 @@ func _ready() -> void:
 	#sprite.flip_h = false
 	mode.visible = false
 	state = "Swim"
-	timer.start(3)
+	#timer.start(3)
+	random_direction_selection()
 	player = get_node("/root/Node2D/Nauto")
 	
 func _physics_process(delta: float) -> void:
@@ -65,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		#print ("Enemy Pos:", position)
 		
 		# If player positional target reached
-		if (position.distance_to(target) < 50 or isTargetReached == true):
+		if (position.distance_to(target) < distance_threshold or isTargetReached == true):
 			isTargetReached = true
 			print ("Player position reached")
 			
@@ -79,7 +86,7 @@ func _physics_process(delta: float) -> void:
 				rotation_degrees = 0
 			
 			# When slowed down enough, stop and start aggro cooldown
-			if (abs(velocity.x) < 50 and abs(velocity.y) < 50):
+			if (abs(velocity.x) < stop_threshold and abs(velocity.y) < stop_threshold):
 				velocity.x = 0
 				velocity.y = 0
 				isTargetReached = false
@@ -96,8 +103,8 @@ func _physics_process(delta: float) -> void:
 					isAttackCoolingDown = true
 			# Deccelerate 
 			elif velocity.x != 0 and velocity.y != 0:
-				velocity.x = move_toward(velocity.x, 0, SPEED/3.5)
-				velocity.y = move_toward(velocity.y, 0, SPEED/3.5)		
+				velocity.x = move_toward(velocity.x, 0, speed/3.5)
+				velocity.y = move_toward(velocity.y, 0, speed/3.5)		
 				
 		if (isActivelyRotating == false):
 			#print ("Rotate")
@@ -113,28 +120,28 @@ func _physics_process(delta: float) -> void:
 		# Charge target post-rotation
 		elif (isActivelyRotating == true):
 			#print ("Moving toward target:", target)
-			if (abs(velocity.x) < 1000):
-				velocity.x += direction.x * SPEED * 10 * delta
-			if (abs(velocity.y) < 1000):
-				velocity.y += direction.y * SPEED * 10 * delta
+			if (abs(velocity.x) < charge_max_speed):
+				velocity.x += direction.x * charge_speed * delta
+			if (abs(velocity.y) < charge_max_speed):
+				velocity.y += direction.y * charge_speed * delta
 				
 	# Random idle movement speed
 	elif (isAttackReady == false):
 		if (random_dir_x):
-			if (velocity.x < MAX_SPEED):
-				velocity.x += SPEED * delta
+			if (velocity.x < max_speed):
+				velocity.x += speed * delta
 		else:
-			if (velocity.x > -MAX_SPEED):
-				velocity.x -= SPEED * delta
+			if (velocity.x > -max_speed):
+				velocity.x -= speed * delta
 		
 		if (random_dir_y):
-			if (velocity.y < MAX_SPEED):
-				velocity.y += SPEED * delta
+			if (velocity.y < max_speed):
+				velocity.y += speed * delta
 		else:
-			if (velocity.y > -MAX_SPEED):
-				velocity.y -= SPEED * delta
+			if (velocity.y > -max_speed):
+				velocity.y -= speed * delta
 	move_and_slide()
-	#velocity.x = move_toward(velocity.x, 0, SPEED)
+	#velocity.x = move_toward(velocity.x, 0, speed)
 	
 func _on_timer_timeout() -> void:
 	# After pause and rotation
@@ -155,27 +162,32 @@ func _on_timer_timeout() -> void:
 		mode.flip_h = false
 		timer.start(3)
 		if isInViewCone == true:
-			enter_attack_state(targetBody)
+			enter_attack_state(target_body)
 
 	# Randomly switch direction of idle movement
 	else:
-		var random = rng.randf_range(-5.0, 5.0)
-		if random < 0:
-			random_dir_x = !random_dir_x
-		elif random > 0:
-			random_dir_x = random_dir_x
-		random = rng.randf_range(-5.0, 5.0)
-		if random < 0:
-			random_dir_y = !random_dir_y
-		elif random > 0:
-			random_dir_y = random_dir_y
-		timer.start(3)
+		random_direction_selection()
+		
+func random_direction_selection() -> void:
+	var random_num = rng.randf_range(-5.0, 5.0)
+	if random_num < 0:
+		random_dir_x = !random_dir_x
+	elif random_num > 0:
+		random_dir_x = random_dir_x
+	random_num = rng.randf_range(-5.0, 5.0)
+	if random_num < 0:
+		random_dir_y = !random_dir_y
+	elif random_num > 0:
+		random_dir_y = random_dir_y
+	var random_time = rng.randf_range(random_turn_timer_min, random_turn_timer_max)
+	timer.start(random_time)
+	print (name, ": ", random_dir_x, ": ", random_time)
 
 func _on_view_cone_body_entered(body: Node2D) -> void:
 	if body == player:
 		isInViewCone = true
 		if isAttackReady == false and state == "Swim":
-			targetBody = body
+			target_body = body
 			enter_attack_state(body)
 		
 func _on_view_cone_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:

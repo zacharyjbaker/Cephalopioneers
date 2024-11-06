@@ -1,9 +1,9 @@
-[gd_scene load_steps=67 format=3 uid="uid://cp3sx65lva0ck"]
+[gd_scene load_steps=55 format=3 uid="uid://cp3sx65lva0ck"]
 
 [ext_resource type="Shader" path="res://Assets/Scenes/water.gdshader" id="1_0d7an"]
 [ext_resource type="Texture2D" uid="uid://nl3b0yogvjc5" path="res://Assets/layers/sand.png" id="1_8ebob"]
 [ext_resource type="Texture2D" uid="uid://bgnaqsdmihmyb" path="res://Assets/Scenes/FishTank copy Copy.png" id="1_hhweg"]
-[ext_resource type="Script" path="res://Assets/Scenes/world_environment.gd" id="1_je0k0"]
+[ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="1_je0k0"]
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_knko8"]
 [ext_resource type="Texture2D" uid="uid://b078g3moorwje" path="res://Assets/layers/far.png" id="1_mmqsq"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="1_t2yg7"]
@@ -16,10 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://b3ydsnqf1ln5l" path="res://Assets/Sprites/LieutenantAno.png" id="8_ocml4"]
 [ext_resource type="Texture2D" uid="uid://d0w70hpm12841" path="res://Assets/Scenes/CommanderBite.png" id="8_ujr4i"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="11_ghj7g"]
-[ext_resource type="Script" path="res://Assets/Scenes/camera_movement.gd" id="13_ts6wh"]
-[ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Scenes/Needlenose.png" id="16_2q3mc"]
-[ext_resource type="Script" path="res://Assets/Scenes/enemy_fish.gd" id="16_cq4sq"]
-[ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Scenes/mode.png" id="18_dah1r"]
+[ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="13_ts6wh"]
+[ext_resource type="PackedScene" uid="uid://cbkjxe8o45c7v" path="res://Assets/Prefabs/needlenose.tscn" id="18_kfckq"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
 gradient = ExtResource("1_t2yg7")
@@ -292,75 +290,6 @@ shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 radius = 5.33728
 height = 16.9064
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qid5t"]
-size = Vector2(17, 9.5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ssyjn"]
-atlas = ExtResource("16_2q3mc")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_penkd"]
-atlas = ExtResource("16_2q3mc")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1cx1"]
-atlas = ExtResource("16_2q3mc")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nga0o"]
-atlas = ExtResource("16_2q3mc")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_adejb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ssyjn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_penkd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k1cx1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nga0o")
-}],
-"loop": true,
-"name": &"Swim",
-"speed": 6.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_686ph"]
-radius = 8.00391
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2abnr"]
-atlas = ExtResource("18_dah1r")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_44kil"]
-atlas = ExtResource("18_dah1r")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7n561"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2abnr")
-}],
-"loop": true,
-"name": &"Cooldown",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_44kil")
-}],
-"loop": true,
-"name": &"Detected",
-"speed": 10.0
-}]
-
 [node name="Node2D" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -526,7 +455,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 
 [node name="Nauto" type="CharacterBody2D" parent="." node_paths=PackedStringArray("env_node")]
-position = Vector2(-663, 897)
+position = Vector2(-228, 877)
 scale = Vector2(4, 4)
 collision_layer = 32896
 collision_mask = 32896
@@ -605,71 +534,12 @@ position = Vector2(-2, 0.75)
 rotation = -0.634701
 shape = SubResource("CapsuleShape2D_ylio2")
 
-[node name="Needlenose" type="CharacterBody2D" parent="." groups=["enemy"]]
-position = Vector2(-398, 893)
-scale = Vector2(4, 4)
-motion_mode = 1
-script = ExtResource("16_cq4sq")
-MAX_SPEED = 20.0
+[node name="Needlenose" parent="." instance=ExtResource("18_kfckq")]
 
-[node name="HitBox" type="CollisionShape2D" parent="Needlenose" groups=["damage"]]
-position = Vector2(-7, -4.5)
-shape = SubResource("RectangleShape2D_qid5t")
-
-[node name="Needlenose" type="AnimatedSprite2D" parent="Needlenose"]
-texture_filter = 1
-position = Vector2(0.25, -0.25)
-sprite_frames = SubResource("SpriteFrames_adejb")
-animation = &"Swim"
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/Needlenose.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "d59966d0710275feee2b6696804b9b64"
-
-[node name="HurtBox" type="Area2D" parent="Needlenose"]
-position = Vector2(6.25, -3.5)
-
-[node name="ColliderShape2D" type="CollisionShape2D" parent="Needlenose/HurtBox"]
-shape = SubResource("CircleShape2D_686ph")
-
-[node name="Timer" type="Timer" parent="Needlenose"]
-
-[node name="ViewCone" type="Area2D" parent="Needlenose"]
-collision_layer = 128
-collision_mask = 128
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Needlenose/ViewCone"]
-position = Vector2(15.25, -1.75)
-scale = Vector2(1.05856, 1.45879)
-polygon = PackedVector2Array(-13.5, -1.5, -182.038, -23.307, -182.51, 14.7382)
-
-[node name="Mode" type="AnimatedSprite2D" parent="Needlenose"]
-texture_filter = 1
-position = Vector2(3, -19.5)
-sprite_frames = SubResource("SpriteFrames_7n561")
-animation = &"Cooldown"
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/FX/mode.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "a0ba8643c03dea4a5c65a46e2b0ed919"
+[node name="Needlenose2" parent="." instance=ExtResource("18_kfckq")]
+position = Vector2(-813, 724)
+rotation = 3.14159
+scale = Vector2(4, -4)
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
@@ -677,6 +547,3 @@ metadata/_aseprite_wizard_source_file_hash_ = "a0ba8643c03dea4a5c65a46e2b0ed919"
 [connection signal="area_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_body_shape_entered"]
-[connection signal="timeout" from="Needlenose/Timer" to="Needlenose" method="_on_timer_timeout"]
-[connection signal="body_entered" from="Needlenose/ViewCone" to="Needlenose" method="_on_view_cone_body_entered"]
-[connection signal="body_shape_exited" from="Needlenose/ViewCone" to="Needlenose" method="_on_view_cone_body_shape_exited"]

@@ -1,22 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://btcwedkqhpfyj"]
+[gd_scene load_steps=14 format=3 uid="uid://cbkjxe8o45c7v"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/enemy_fish.gd" id="1_5i2jh"]
-[ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Scenes/Needlenose.png" id="2_g2nsw"]
+[ext_resource type="Script" path="res://Assets/Scripts/needlenose.gd" id="1_fgl5h"]
+[ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Scenes/Needlenose.png" id="2_tyvnu"]
+[ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Scenes/mode.png" id="3_t17bm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qid5t"]
+size = Vector2(17, 9.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ssyjn"]
-atlas = ExtResource("2_g2nsw")
+atlas = ExtResource("2_tyvnu")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_penkd"]
-atlas = ExtResource("2_g2nsw")
+atlas = ExtResource("2_tyvnu")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1cx1"]
-atlas = ExtResource("2_g2nsw")
+atlas = ExtResource("2_tyvnu")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nga0o"]
-atlas = ExtResource("2_g2nsw")
+atlas = ExtResource("2_tyvnu")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_adejb"]
@@ -42,17 +46,43 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_686ph"]
 radius = 8.00391
 
-[node name="Needlenose" type="CharacterBody2D"]
-position = Vector2(-369, 855)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2abnr"]
+atlas = ExtResource("3_t17bm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44kil"]
+atlas = ExtResource("3_t17bm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n561"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2abnr")
+}],
+"loop": true,
+"name": &"Cooldown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44kil")
+}],
+"loop": true,
+"name": &"Detected",
+"speed": 10.0
+}]
+
+[node name="Needlenose" type="CharacterBody2D" groups=["enemy"]]
+position = Vector2(-398, 893)
 scale = Vector2(4, 4)
-collision_layer = 0
 motion_mode = 1
-script = ExtResource("1_5i2jh")
+script = ExtResource("1_fgl5h")
 MAX_SPEED = 20.0
 
-[node name="HurtBox" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PackedVector2Array(-1, -4, -3.5, -3, -15, -3.25, -15.5, -5.25, -2.25, -5.75)
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["damage"]]
+position = Vector2(-7, -4.5)
+shape = SubResource("RectangleShape2D_qid5t")
 
 [node name="Needlenose" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -73,18 +103,41 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "d59966d0710275feee2b6696804b9b64"
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
-visible = false
+[node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(6.25, -3.5)
+
+[node name="ColliderShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_686ph")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ViewCone" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewCone"]
-position = Vector2(10, -3.25)
-polygon = PackedVector2Array(-13.5, -1.5, -180.75, -79.5, -180.25, 46.25)
+position = Vector2(15.25, -1.75)
+scale = Vector2(1.05856, 1.45879)
+polygon = PackedVector2Array(-13.5, -1.5, -182.038, -23.307, -182.51, 14.7382)
+
+[node name="Mode" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3, -19.5)
+sprite_frames = SubResource("SpriteFrames_7n561")
+animation = &"Cooldown"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/FX/mode.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a0ba8643c03dea4a5c65a46e2b0ed919"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="ViewCone" to="." method="_on_view_cone_body_entered"]
