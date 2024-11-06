@@ -8,24 +8,25 @@ extends CharacterBody2D
 @export var SPEED = 100
 @export var MAX_SPEED = 40.0
 
-var player = null
-var target = null
-var original_scale = null
-var direction = null
-var search_cooldown = false
-var cooldown_timer = false
-var reached_target = false
-var rotation_timer = false
-var rotation_charge = false
-var dir_to_player = null
-var random_dir_x = false
+# Vars for random enemy orientation
+var random_dir_x = false 
 var random_dir_y = false
-var state = ""
 var rng = RandomNumberGenerator.new()
 
-var amplitude = 20.0
-var frequency = 3.0
-var harmonic_wave
+# Targeting vars
+var player = null
+var target = null
+var targetBody = null
+var direction = null
+
+# State vars and bools
+var state = ""
+var isInViewCone = true
+var isAttackReady = false
+var isAttackCoolingDown = false
+var isTargetReached = false
+var isRotated = false
+var isActivelyRotating = false
 
 func _ready() -> void:
 	#original_scale = scale
@@ -35,15 +36,19 @@ func _ready() -> void:
 	timer.start(3)
 	player = get_node("/root/Node2D/Nauto")
 	
-
 func _physics_process(delta: float) -> void:
 	#print (timer.time_left)
 	#print (state)
 	#print (scale)
 	#print (velocity)
-	#print (rotation_charge) 
+	#print (isActivelyRotating) 
+	#print (isInViewCone)
 	sprite.play("Swim")
+	
+	# Idle state
 	if (state == "Swim"):
+		
+		# Sets orientation of body
 		if velocity.x > 1:
 			scale.y = -1 * abs(scale.y)
 			rotation_degrees = 180
@@ -54,12 +59,17 @@ func _physics_process(delta: float) -> void:
 			rotation_degrees = 0
 			#sprite.flip_h = false
 			#direction = -1
-			
+	
+	# Attack state
 	if (state == "Attack"):
 		#print ("Enemy Pos:", position)
-		if (position.distance_to(target) < 50 or reached_target == true):
-			reached_target = true
+		
+		# If player positional target reached
+		if (position.distance_to(target) < 50 or isTargetReached == true):
+			isTargetReached = true
 			print ("Player position reached")
+			
+			# Directonality of body
 			if velocity.x > 1:
 				scale.y = -1 * abs(scale.y)
 				rotation_degrees = 180
@@ -67,12 +77,13 @@ func _physics_process(delta: float) -> void:
 			elif velocity.x < -1:
 				scale.y = abs(scale.y)
 				rotation_degrees = 0
-
+			
+			# When slowed down enough, stop and start aggro cooldown
 			if (abs(velocity.x) < 50 and abs(velocity.y) < 50):
 				velocity.x = 0
 				velocity.y = 0
-				reached_target = false
-				if (cooldown_timer == false):
+				isTargetReached = false
+				if (isAttackCoolingDown == false):
 					print ("Start Cooldown")
 					mode.visible = true
 					mode.play("Cooldown")
@@ -82,29 +93,33 @@ func _physics_process(delta: float) -> void:
 					velocity.x = 0
 					velocity.y = 0
 					state = "Swim"
-					cooldown_timer = true
+					isAttackCoolingDown = true
+			# Deccelerate 
 			elif velocity.x != 0 and velocity.y != 0:
 				velocity.x = move_toward(velocity.x, 0, SPEED/3.5)
 				velocity.y = move_toward(velocity.y, 0, SPEED/3.5)		
 				
-		if (rotation_charge == false):
+		if (isActivelyRotating == false):
 			#print ("Rotate")
 			velocity = Vector2(0,0)
-			if (rotation_timer == false):
+			
+			# Pause and rotate toward player
+			if (isRotated == false):
 				timer.start(2)
-				rotation_timer = true
+				isRotated = true
 			look_at(target)
 			rotation_degrees += 180
-
 			
-			
-		elif (rotation_charge == true):
+		# Charge target post-rotation
+		elif (isActivelyRotating == true):
 			#print ("Moving toward target:", target)
 			if (abs(velocity.x) < 1000):
 				velocity.x += direction.x * SPEED * 10 * delta
 			if (abs(velocity.y) < 1000):
 				velocity.y += direction.y * SPEED * 10 * delta
-	elif (search_cooldown == false):
+				
+	# Random idle movement speed
+	elif (isAttackReady == false):
 		if (random_dir_x):
 			if (velocity.x < MAX_SPEED):
 				velocity.x += SPEED * delta
@@ -122,23 +137,27 @@ func _physics_process(delta: float) -> void:
 	#velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 func _on_timer_timeout() -> void:
-	
-	if state == "Attack" and rotation_charge == false:
+	# After pause and rotation
+	if state == "Attack" and isActivelyRotating == false:
 		print ("Rotated")
-		rotation_charge = true
+		isActivelyRotating = true
 		mode.visible = false
 		timer.stop()
-		
-	elif cooldown_timer == true:
+	
+	# Aggro recharge
+	elif isAttackCoolingDown == true:
 		print ("Aggro Recharged")
-		cooldown_timer = false
-		rotation_timer = false
-		rotation_charge = false
-		search_cooldown = false
+		isAttackCoolingDown = false
+		isRotated = false
+		isActivelyRotating = false
+		isAttackReady = false
 		mode.visible = false
 		mode.flip_h = false
 		timer.start(3)
+		if isInViewCone == true:
+			enter_attack_state(targetBody)
 
+	# Randomly switch direction of idle movement
 	else:
 		var random = rng.randf_range(-5.0, 5.0)
 		if random < 0:
@@ -151,18 +170,25 @@ func _on_timer_timeout() -> void:
 		elif random > 0:
 			random_dir_y = random_dir_y
 		timer.start(3)
-	
+
 func _on_view_cone_body_entered(body: Node2D) -> void:
-	if body == player and state == "Swim" and search_cooldown == false:
-		target = body.global_position
-		direction = global_position.direction_to(target)
-		timer.stop()
-		print ("Player Detected")
-		state = "Attack"
-		mode.visible = true
-		mode.play("Detected")
-		search_cooldown = true
-		#rotation_degrees = 0
+	if body == player:
+		isInViewCone = true
+		if isAttackReady == false and state == "Swim":
+			targetBody = body
+			enter_attack_state(body)
 		
-#func _on_view_cone_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	#timer.start(3)
+func _on_view_cone_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	isInViewCone = false
+	print ("Left Viewcone")
+	
+func enter_attack_state(body: Node2D) -> void:
+	target = body.global_position
+	direction = global_position.direction_to(target)
+	timer.stop()
+	print ("Player Detected")
+	state = "Attack"
+	mode.visible = true
+	mode.play("Detected")
+	isAttackReady = true
+	#rotation_degrees = 0

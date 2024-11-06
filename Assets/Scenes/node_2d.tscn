@@ -648,10 +648,9 @@ collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Needlenose/ViewCone"]
-visible = false
-position = Vector2(10, -3.25)
-scale = Vector2(0.675403, 1.45879)
-polygon = PackedVector2Array(-13.5, -1.5, -180.75, -79.5, -180.25, 46.25)
+position = Vector2(15.25, -1.75)
+scale = Vector2(1.05856, 1.45879)
+polygon = PackedVector2Array(-13.5, -1.5, -182.038, -23.307, -182.51, 14.7382)
 
 [node name="Mode" type="AnimatedSprite2D" parent="Needlenose"]
 texture_filter = 1
