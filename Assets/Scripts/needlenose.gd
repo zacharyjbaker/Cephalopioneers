@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 		# If player positional target reached
 		if (position.distance_to(target) < distance_threshold or isTargetReached == true):
 			isTargetReached = true
-			print ("Player position reached")
+			#print ("Player position reached")
 			
 			# Directonality of body
 			if velocity.x > 1:
@@ -91,7 +91,7 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 				isTargetReached = false
 				if (isAttackCoolingDown == false):
-					print ("Start Cooldown")
+					#print ("Start Cooldown")
 					mode.visible = true
 					mode.play("Cooldown")
 					if (rotation_degrees >= 180):
@@ -146,14 +146,14 @@ func _physics_process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	# After pause and rotation
 	if state == "Attack" and isActivelyRotating == false:
-		print ("Rotated")
+		#print ("Rotated")
 		isActivelyRotating = true
 		mode.visible = false
 		timer.stop()
 	
 	# Aggro recharge
 	elif isAttackCoolingDown == true:
-		print ("Aggro Recharged")
+		#print ("Aggro Recharged")
 		isAttackCoolingDown = false
 		isRotated = false
 		isActivelyRotating = false
@@ -181,7 +181,7 @@ func random_direction_selection() -> void:
 		random_dir_y = random_dir_y
 	var random_time = rng.randf_range(random_turn_timer_min, random_turn_timer_max)
 	timer.start(random_time)
-	print (name, ": ", random_dir_x, ": ", random_time)
+	#print (name, ": ", random_dir_x, ": ", random_time)
 
 func _on_view_cone_body_entered(body: Node2D) -> void:
 	if body == player:
@@ -192,13 +192,13 @@ func _on_view_cone_body_entered(body: Node2D) -> void:
 		
 func _on_view_cone_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	isInViewCone = false
-	print ("Left Viewcone")
+	#print ("Left Viewcone")
 	
 func enter_attack_state(body: Node2D) -> void:
 	target = body.global_position
 	direction = global_position.direction_to(target)
 	timer.stop()
-	print ("Player Detected")
+	#print ("Player Detected")
 	state = "Attack"
 	mode.visible = true
 	mode.play("Detected")

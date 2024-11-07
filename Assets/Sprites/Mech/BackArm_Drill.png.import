@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq2bbbwna27nw"
-path="res://.godot/imported/Mech.png-6d530c9502818a9a04a8a43f0ee8e858.ctex"
+uid="uid://u4qlig5pdqjr"
+path="res://.godot/imported/BackArm_Drill.png-2f89faef2f337939615c3e33a632ea25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Mech/Mech.png"
-dest_files=["res://.godot/imported/Mech.png-6d530c9502818a9a04a8a43f0ee8e858.ctex"]
+source_file="res://Assets/Sprites/Mech/BackArm_Drill.png"
+dest_files=["res://.godot/imported/BackArm_Drill.png-2f89faef2f337939615c3e33a632ea25.ctex"]
 
 [params]
 

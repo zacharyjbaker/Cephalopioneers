@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgnaqsdmihmyb"
-path="res://.godot/imported/FishTank copy Copy.png-c9ede2e59a0ab511d374d112ff4efa86.ctex"
+uid="uid://euoib3i6k67d"
+path="res://.godot/imported/MechNoArms.png-0b09bcf7d009ae1976a5c46af489f649.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/FishTank copy Copy.png"
-dest_files=["res://.godot/imported/FishTank copy Copy.png-c9ede2e59a0ab511d374d112ff4efa86.ctex"]
+source_file="res://Assets/Sprites/Mech/MechNoArms.png"
+dest_files=["res://.godot/imported/MechNoArms.png-0b09bcf7d009ae1976a5c46af489f649.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://cbkjxe8o45c7v"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/needlenose.gd" id="1_fgl5h"]
-[ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Scenes/Needlenose.png" id="2_tyvnu"]
-[ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Scenes/mode.png" id="3_t17bm"]
+[ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Sprites/Enemies/Needlenose.png" id="2_tyvnu"]
+[ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Sprites/mode.png" id="3_t17bm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qid5t"]
 size = Vector2(17, 9.5)
@@ -78,7 +78,6 @@ position = Vector2(-398, 893)
 scale = Vector2(4, 4)
 motion_mode = 1
 script = ExtResource("1_fgl5h")
-MAX_SPEED = 20.0
 
 [node name="HitBox" type="CollisionShape2D" parent="." groups=["damage"]]
 position = Vector2(-7, -4.5)
@@ -112,7 +111,7 @@ shape = SubResource("CircleShape2D_686ph")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ViewCone" type="Area2D" parent="."]
-collision_layer = 128
+collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewCone"]

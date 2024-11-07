@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
 @onready var nauto_sprite = $Nauto
-@onready var mech_sprite = $Mech
+#@onready var mech_sprite = $/Node2D/Mech
+
 @onready var anim_player = $AnimationPlayer
-@export var mode = ""
 @export var jump_impulse = 350
-@export var gravity = 400.0
 @export var env_node : Node
+@onready var mech = get_node("/root/Node2D/Mech")
+@onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 
 var knockback = Vector2.ZERO
-
 var current_anim = ""
 var play_transition_anim = true
 var boost = 0.0
@@ -17,27 +17,49 @@ var charge = false
 var crouched = false
 
 func _ready() -> void:
-	mech_sprite.set_process(false)
-	mech_sprite.visible = false
-	mode = "Nauto"
+	#mech_sprite.set_process(false)
+	#mech_sprite.visible = false
+
+	Global.MODE = "Nauto"
 	
 func _input(event)-> void:
 	# Jump
+	#print (global_position.distance_to(pilot_pos))
 	if event.is_action_pressed("ui_up") and is_on_floor():
 		charge_anim()
 	# Shift mode
-	elif event.is_action_pressed("ui_focus_next") and is_on_floor():
+	elif event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 150:
+		#print ("Shift")
 		shift_mode()
 	elif event.is_action_pressed("ui_down") and is_on_floor():
-		print ("crouched")
+		#print ("crouched")
 		crouched = !crouched
 		if crouched:
 			Global.WALK_SPEED = 150
 			charge_anim()
 		else:
 			Global.WALK_SPEED = 400
-	
+
+
 func shift_mode() -> void:
+	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
+	if (Global.MODE == "Nauto"):
+		Global.MODE = "Mech"
+		velocity = Vector2.ZERO
+		visible = false
+		get_node("PhysicsCollider").set_process(false)
+		get_node("HurtBox").set_process(false)
+		position = pilot_pos
+	elif (Global.MODE == "Mech"):
+		Global.MODE = "Nauto"
+		velocity = Vector2.ZERO
+		visible = true
+		get_node("PhysicsCollider").set_process(true)
+		get_node("HurtBox").set_process(true)
+		mech.velocity = Vector2.ZERO
+		position.x = pilot_pos.x
+		position.y = pilot_pos.y - 40
+	'''
 	if (mode == "Nauto"):
 		mech_sprite.set_process(true)
 		nauto_sprite.set_process(false)
@@ -50,6 +72,7 @@ func shift_mode() -> void:
 		mech_sprite.visible = false
 		nauto_sprite.visible = true
 		mode = "Nauto"
+	'''
 		
 func move_anim():
 	if crouched:
@@ -75,11 +98,14 @@ func fall_anim() -> void:
 
 func _physics_process(delta: float) -> void:
 	#print (position)
-	velocity.y += delta * gravity # gravity
+	velocity.y += delta * Global.GRAVITY 
 	move_and_slide()
 	
+	if (Global.MODE == "Mech"):
+		position = pilot_pos
+	
 	# Nauto movement
-	if (mode == "Nauto"):
+	elif (Global.MODE == "Nauto"):
 		if velocity.y > 0: # falling transition anim
 			if play_transition_anim == true:
 				fall_anim()
@@ -152,8 +178,8 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	if (body.get_node("HitBox").is_in_group("damage")):
-		print ("hit")
+	if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
+		#print ("hit")
 		#velocity.x += body.velocity.x * 3
 		velocity.x += -(velocity.x * 2 + 50) + body.velocity.x / 2.0
 		#velocity.y += body.velocity.y * 3

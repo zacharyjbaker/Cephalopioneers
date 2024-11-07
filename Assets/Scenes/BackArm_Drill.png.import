@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kyc17ymjpaax"
-path="res://.godot/imported/mode.png-91a738b93a246dc9cf048b48329adf57.ctex"
+uid="uid://13faifo8arx2"
+path="res://.godot/imported/BackArm_Drill.png-c82b273cdce5140d2669d6176698394e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/mode.png"
-dest_files=["res://.godot/imported/mode.png-91a738b93a246dc9cf048b48329adf57.ctex"]
+source_file="res://Assets/Scenes/BackArm_Drill.png"
+dest_files=["res://.godot/imported/BackArm_Drill.png-c82b273cdce5140d2669d6176698394e.ctex"]
 
 [params]
 
