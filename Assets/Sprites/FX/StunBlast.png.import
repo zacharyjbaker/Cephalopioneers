@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kyc17ymjpaax"
-path="res://.godot/imported/mode.png-cbeae6ff49a30561d910c00c800b8dfc.ctex"
+uid="uid://d2tyyv82mjysa"
+path="res://.godot/imported/StunBlast.png-aea0551820b1df3cace0b2a4bd45a297.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/mode.png"
-dest_files=["res://.godot/imported/mode.png-cbeae6ff49a30561d910c00c800b8dfc.ctex"]
+source_file="res://Assets/Sprites/FX/StunBlast.png"
+dest_files=["res://.godot/imported/StunBlast.png-aea0551820b1df3cace0b2a4bd45a297.ctex"]
 
 [params]
 

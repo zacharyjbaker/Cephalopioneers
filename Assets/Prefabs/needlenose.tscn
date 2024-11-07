@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scripts/needlenose.gd" id="1_fgl5h"]
 [ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Sprites/Enemies/Needlenose.png" id="2_tyvnu"]
-[ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Sprites/mode.png" id="3_t17bm"]
+[ext_resource type="Texture2D" uid="uid://d0yhqh2b08ort" path="res://Assets/Sprites/FX/mode.png" id="3_t17bm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qid5t"]
 size = Vector2(17, 9.5)
