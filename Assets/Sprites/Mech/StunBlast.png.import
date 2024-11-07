@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8ahi7123ulhs"
-path="res://.godot/imported/FrontArm_Laser.png-8108fc31e21ef80e82e570206b0a4ba3.ctex"
+uid="uid://d2tyyv82mjysa"
+path="res://.godot/imported/StunBlast.png-d91170963ca82039a6fa63e46a9ff4eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Mech/FrontArm_Laser.png"
-dest_files=["res://.godot/imported/FrontArm_Laser.png-8108fc31e21ef80e82e570206b0a4ba3.ctex"]
+source_file="res://Assets/Sprites/Mech/StunBlast.png"
+dest_files=["res://.godot/imported/StunBlast.png-d91170963ca82039a6fa63e46a9ff4eb.ctex"]
 
 [params]
 

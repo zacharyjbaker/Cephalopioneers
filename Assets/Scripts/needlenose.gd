@@ -184,7 +184,7 @@ func random_direction_selection() -> void:
 	#print (name, ": ", random_dir_x, ": ", random_time)
 
 func _on_view_cone_body_entered(body: Node2D) -> void:
-	if body == player:
+	if body == player and Global.MODE == "Nauto":
 		isInViewCone = true
 		if isAttackReady == false and state == "Swim":
 			target_body = body
