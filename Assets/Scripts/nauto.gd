@@ -4,8 +4,8 @@ extends CharacterBody2D
 @onready var mech_sprite = $Mech
 @onready var anim_player = $AnimationPlayer
 @export var mode = ""
-@export var JUMP_IMPULSE = 350
-@export var GRAVITY = 400.0
+@export var jump_impulse = 350
+@export var gravity = 400.0
 @export var env_node : Node
 
 var knockback = Vector2.ZERO
@@ -64,7 +64,7 @@ func charge_anim():
 	nauto_sprite.play(current_anim)
 		
 func finish_jump() -> void:
-	velocity.y = -(JUMP_IMPULSE + boost * 300)
+	velocity.y = -(jump_impulse + boost * 300)
 	#nauto_sprite.self_modulate = original_modulate
 	boost = 0.0
 
@@ -75,7 +75,7 @@ func fall_anim() -> void:
 
 func _physics_process(delta: float) -> void:
 	#print (position)
-	velocity.y += delta * GRAVITY # gravity
+	velocity.y += delta * gravity # gravity
 	move_and_slide()
 	
 	# Nauto movement

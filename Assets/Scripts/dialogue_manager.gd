@@ -15,7 +15,7 @@ var dialogue_font_path = ""
 var dialogue_file_path = "res://Assets/Sound/Dialogue/" + dialogue_instance + "." + dialogue_stage + ".wav"
 
 # Import JSON file as Dictionary
-var file = FileAccess.open("res://Assets/Scripts/dialogue_dict.json", FileAccess.READ)
+var file = FileAccess.open("res://Assets/Scripts/Data/dialogue_dict.json", FileAccess.READ)
 var json = JSON.new()
 var parse = json.parse(file.get_as_text())
 var DialogueDict = json.get_data()
