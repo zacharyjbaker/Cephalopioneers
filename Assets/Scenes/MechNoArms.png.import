@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0w70hpm12841"
-path="res://.godot/imported/CommanderBite.png-17d4e1a146e15c9acd4b0eb1aa4d36ac.ctex"
+uid="uid://cm6xj4v8nlf34"
+path="res://.godot/imported/MechNoArms.png-af89ad1a31ccebbd68343f65a3027b93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/CommanderBite.png"
-dest_files=["res://.godot/imported/CommanderBite.png-17d4e1a146e15c9acd4b0eb1aa4d36ac.ctex"]
+source_file="res://Assets/Scenes/MechNoArms.png"
+dest_files=["res://.godot/imported/MechNoArms.png-af89ad1a31ccebbd68343f65a3027b93.ctex"]
 
 [params]
 

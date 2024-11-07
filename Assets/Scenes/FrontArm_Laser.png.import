@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwdhlu3xbydlh"
-path="res://.godot/imported/NautoWalk.png-051361eae40a9a6a02b48e37002c311b.ctex"
+uid="uid://dhhcmm0r0ugoi"
+path="res://.godot/imported/FrontArm_Laser.png-db6cbdbc8d5adbfa25ae6eaf5093b7ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/NautoWalk.png"
-dest_files=["res://.godot/imported/NautoWalk.png-051361eae40a9a6a02b48e37002c311b.ctex"]
+source_file="res://Assets/Scenes/FrontArm_Laser.png"
+dest_files=["res://.godot/imported/FrontArm_Laser.png-db6cbdbc8d5adbfa25ae6eaf5093b7ce.ctex"]
 
 [params]
 

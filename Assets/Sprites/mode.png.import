@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be74h2o8hklu0"
-path="res://.godot/imported/LieutenantAno.png-6b992f96b48a5f342d3b8346bdd9f177.ctex"
+uid="uid://kyc17ymjpaax"
+path="res://.godot/imported/mode.png-cbeae6ff49a30561d910c00c800b8dfc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/LieutenantAno.png"
-dest_files=["res://.godot/imported/LieutenantAno.png-6b992f96b48a5f342d3b8346bdd9f177.ctex"]
+source_file="res://Assets/Sprites/mode.png"
+dest_files=["res://.godot/imported/mode.png-cbeae6ff49a30561d910c00c800b8dfc.ctex"]
 
 [params]
 

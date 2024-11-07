@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6x7smyy24y52"
-path="res://.godot/imported/Needlenose.png-ed766817d07901d386b88624a9e4da07.ctex"
+uid="uid://nw11u6eoo47d"
+path="res://.godot/imported/FrontArm_Laser.png-8108fc31e21ef80e82e570206b0a4ba3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/Needlenose.png"
-dest_files=["res://.godot/imported/Needlenose.png-ed766817d07901d386b88624a9e4da07.ctex"]
+source_file="res://Assets/Sprites/Mech/FrontArm_Laser.png"
+dest_files=["res://.godot/imported/FrontArm_Laser.png-8108fc31e21ef80e82e570206b0a4ba3.ctex"]
 
 [params]
 

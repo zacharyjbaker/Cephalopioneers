@@ -1,22 +1,25 @@
-[gd_scene load_steps=55 format=3 uid="uid://cp3sx65lva0ck"]
+[gd_scene load_steps=74 format=3 uid="uid://cp3sx65lva0ck"]
 
 [ext_resource type="Shader" path="res://Assets/Scenes/water.gdshader" id="1_0d7an"]
 [ext_resource type="Texture2D" uid="uid://nl3b0yogvjc5" path="res://Assets/layers/sand.png" id="1_8ebob"]
-[ext_resource type="Texture2D" uid="uid://bgnaqsdmihmyb" path="res://Assets/Scenes/FishTank copy Copy.png" id="1_hhweg"]
+[ext_resource type="Texture2D" uid="uid://bgnaqsdmihmyb" path="res://Assets/Sprites/FishTank copy Copy.png" id="1_hhweg"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="1_je0k0"]
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_knko8"]
 [ext_resource type="Texture2D" uid="uid://b078g3moorwje" path="res://Assets/layers/far.png" id="1_mmqsq"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="1_t2yg7"]
-[ext_resource type="Texture2D" uid="uid://b8cwgijjr0mkn" path="res://Assets/Scenes/Mech.png" id="3_3e3kk"]
 [ext_resource type="Texture2D" uid="uid://bfmv5jyk1itqh" path="res://Assets/layers/foreground-2.png" id="3_d60nt"]
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="3_jnaet"]
 [ext_resource type="AudioStream" uid="uid://dmgee1huemoxr" path="res://Assets/Sound/Dialogue/Nauto.wav" id="4_yru17"]
-[ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Scenes/NautoWalk.png" id="5_kpnd0"]
+[ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="5_kpnd0"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="6_ls5o1"]
-[ext_resource type="Texture2D" uid="uid://b3ydsnqf1ln5l" path="res://Assets/Sprites/LieutenantAno.png" id="8_ocml4"]
-[ext_resource type="Texture2D" uid="uid://d0w70hpm12841" path="res://Assets/Scenes/CommanderBite.png" id="8_ujr4i"]
+[ext_resource type="Texture2D" uid="uid://be74h2o8hklu0" path="res://Assets/Sprites/LieutenantAno.png" id="8_ocml4"]
+[ext_resource type="Texture2D" uid="uid://d0w70hpm12841" path="res://Assets/Sprites/CommanderBite.png" id="8_ujr4i"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="11_ghj7g"]
+[ext_resource type="Script" path="res://Assets/Scenes/mech.gd" id="12_7hfco"]
 [ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="13_ts6wh"]
+[ext_resource type="Texture2D" uid="uid://cm6xj4v8nlf34" path="res://Assets/Scenes/MechNoArms.png" id="14_fu636"]
+[ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Scenes/BackArm_Drill.png" id="15_2bssb"]
+[ext_resource type="Texture2D" uid="uid://dhhcmm0r0ugoi" path="res://Assets/Scenes/FrontArm_Laser.png" id="15_yyybf"]
 [ext_resource type="PackedScene" uid="uid://cbkjxe8o45c7v" path="res://Assets/Prefabs/needlenose.tscn" id="18_kfckq"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
@@ -79,6 +82,152 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l45wj"]
+size = Vector2(145, 190.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grebk"]
+atlas = ExtResource("15_2bssb")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7atkd"]
+atlas = ExtResource("15_2bssb")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vm0l"]
+atlas = ExtResource("15_2bssb")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xcrw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grebk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7atkd")
+}],
+"loop": true,
+"name": &"Drill",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vm0l")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 13.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcwj4"]
+atlas = ExtResource("14_fu636")
+region = Rect2(64, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erpk"]
+atlas = ExtResource("14_fu636")
+region = Rect2(0, 72, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpixi"]
+atlas = ExtResource("14_fu636")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h176h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcwj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erpk")
+}],
+"loop": true,
+"name": &"Boost",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpixi")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iabg"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpo38"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n18eu"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x5i7"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f40oc"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(48, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lunql"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(96, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsgg2"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dilr"]
+atlas = ExtResource("15_yyybf")
+region = Rect2(48, 64, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rm1lg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iabg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.9,
+"texture": SubResource("AtlasTexture_3iabg")
+}, {
+"duration": 1.9,
+"texture": SubResource("AtlasTexture_kpo38")
+}, {
+"duration": 1.9,
+"texture": SubResource("AtlasTexture_n18eu")
+}, {
+"duration": 1.9,
+"texture": SubResource("AtlasTexture_7x5i7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f40oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lunql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsgg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dilr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iabg")
+}],
+"loop": false,
+"name": &"Shoot",
 "speed": 10.0
 }]
 
@@ -239,21 +388,6 @@ animations = [{
 "loop": true,
 "name": &"Walk",
 "speed": 30.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2h41r"]
-atlas = ExtResource("3_3e3kk")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_i1w84"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2h41r")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_fbjjs"]
@@ -454,11 +588,88 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 
+[node name="Mech" type="CharacterBody2D" parent="."]
+position = Vector2(-103, 730)
+collision_layer = 16384
+collision_mask = 32768
+script = ExtResource("12_7hfco")
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="Mech"]
+position = Vector2(10.5, 41.125)
+shape = SubResource("RectangleShape2D_l45wj")
+
+[node name="BackArm" type="AnimatedSprite2D" parent="Mech"]
+texture_filter = 1
+position = Vector2(62, 44)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_4xcrw")
+animation = &"Drill"
+frame = 1
+frame_progress = 0.651313
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Mech/BackArm_Drill.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "340b802b75c3061c87c033f24e27c8c0"
+
+[node name="MechBody" type="AnimatedSprite2D" parent="Mech"]
+texture_filter = 1
+position = Vector2(54, 58)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_h176h")
+animation = &"Idle"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Mech/MechNoArms.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c6502c82cd5c1f86bcb6ae24d18c30d1"
+
+[node name="FrontArm" type="AnimatedSprite2D" parent="Mech"]
+texture_filter = 1
+position = Vector2(74, 57)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_rm1lg")
+animation = &"Shoot"
+frame = 7
+frame_progress = 1.0
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Mech/FrontArm_Laser.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "be16967c54d4ee30ccb06f391759367d"
+
+[node name="Pilot" type="Node2D" parent="Mech"]
+position = Vector2(40, -11)
+
 [node name="Nauto" type="CharacterBody2D" parent="." node_paths=PackedStringArray("env_node")]
 position = Vector2(-228, 877)
 scale = Vector2(4, 4)
-collision_layer = 32896
-collision_mask = 32896
+collision_layer = 128
+collision_mask = 49152
 script = ExtResource("1_knko8")
 env_node = NodePath("../WorldEnvironment")
 
@@ -487,24 +698,6 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Assets/Sprites/Nauto/NautoWalk.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "76396d90c615d55e3aaac7336f1441dc"
-
-[node name="Mech" type="AnimatedSprite2D" parent="Nauto"]
-visible = false
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_i1w84")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/Mech/Mech.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "bf44e9de891e78d4b0cc91d798e8a8dc"
 
 [node name="PointLight2D" type="PointLight2D" parent="Nauto"]
 position = Vector2(32.5, -0.499996)
