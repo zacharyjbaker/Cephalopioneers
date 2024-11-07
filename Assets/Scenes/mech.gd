@@ -20,6 +20,8 @@ var original_shader_rotation = 0
 var isHovering = false
 var isShooting = false
 var isDrilling = false
+var isOpening = false
+var isClosing = false
 
 func _ready() -> void:
 	mech_front_arm.play("Idle")
@@ -50,33 +52,32 @@ func shoot_anim():
 	mech_front_arm.play(current_anim)
 	#print (position)	
 	
+func open_anim():
+	isOpening = true
+	current_anim = "Open"
+	mech_body_sprite.play(current_anim)
+	
+func close_anim():
+	isClosing = true
+	current_anim = "Close"
+	mech_body_sprite.play(current_anim)
+	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 	#print (pilot.global_position)
 	#print (isDrilling)
 	print (current_anim)
+	print ("close", isClosing)
+	print ("open", isOpening)
 	
 	# Sets orientation of body
 	if velocity.x > 1:
 		scale.y = abs(scale.y)
 		rotation_degrees = 0
-		#sprite.flip_h = true
-		#direction = 1
-		camera.scale.y = original_scale.y
-		#shader.scale.y = original_shader_scale.y
-		camera.rotation_degrees = original_rotation
-		#shader.rotation_degrees = original_shader_rotation
-		#shader.flip_h = !shader.flip_h
+
 	elif velocity.x < -1:
 		scale.y = -1 * abs(scale.y)
 		rotation_degrees = 180
-		#sprite.flip_h = false
-		#direction = -1
-		camera.scale.y = original_scale.y
-		#shader.scale.y = original_shader_scale.y
-		camera.rotation_degrees = original_rotation
-		#shader.rotation_degrees = original_shader_rotation
-		#shader.flip_h = !shader.flip_h
 
 	#print (Global.MODE)
 	#print (floor_height)
@@ -84,7 +85,12 @@ func _physics_process(delta: float) -> void:
 		velocity.y += delta * (Global.GRAVITY - gravity_offset)
 	
 	if !is_on_floor() and !(Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
-		mech_body_sprite.play("Boost")
+		if Global.MODE == "Mech":
+			mech_body_sprite.play("Boost")
+		else:
+			mech_body_sprite.play("BoostOpen")
+			mech_back_arm.stop()	
+			mech_front_arm.stop()	
 	
 	if is_on_floor():
 		floor_height = global_position.y
@@ -95,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	elif isDrilling == false:
 		mech_back_arm.play("Idle")
 	
-	if (Global.MODE == "Mech"):
+	if (Global.MODE == "Mech" and isClosing == false):
 		# charge jump anim
 		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
 			#print ("Hover Right")
@@ -146,7 +152,7 @@ func _physics_process(delta: float) -> void:
 				velocity.x = -(Global.WALK_SPEED - 250)
 			#mech_body_sprite.flip_h = true
 			
-		elif is_on_floor() and !Input.is_action_pressed("ui_up"):
+		elif is_on_floor() and !Input.is_action_pressed("ui_up") and isClosing == false and isOpening == false:
 			#gravity_offset = 0
 			if (velocity.x > 50):
 				velocity.x -= delta * 2000
@@ -159,21 +165,30 @@ func _physics_process(delta: float) -> void:
 		
 		if Input.is_action_just_pressed("front_arm"):
 			shoot_anim()
+			#print ("Shoot")
 			if isHovering == false:
-				mech_body_sprite.stop
+				mech_body_sprite.stop()
 			if isDrilling == false:
-				mech_back_arm.stop
+				mech_back_arm.stop()
 			isShooting = true
 		if Input.is_action_just_pressed("back_arm"):
 			isDrilling = true
 		if Input.is_action_just_released("back_arm"):
 			isDrilling = false
 	else:
-		if is_on_floor():
-			mech_body_sprite.play("Idle")	
+		if is_on_floor() and isClosing == false and isOpening == false:
+			mech_body_sprite.play("IdleOpen")	
+			mech_back_arm.stop()	
+			mech_front_arm.stop()	
 
 func _on_front_arm_animation_finished() -> void:
 	if isShooting == true:
 		mech_front_arm.play("Idle")
 		mech_back_arm.play("Idle")
 		mech_body_sprite.play("Idle")
+
+func _on_mech_body_animation_finished() -> void:
+	if isClosing == true:
+		isClosing = false
+	if isOpening == true:
+		isOpening = false

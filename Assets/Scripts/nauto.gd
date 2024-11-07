@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var nauto_sprite = $Nauto
+@onready var timer = $Timer
 #@onready var mech_sprite = $/Node2D/Mech
 @onready var nauto_camera = $NautoCamera
 @onready var anim_player = $AnimationPlayer
@@ -18,6 +19,7 @@ var play_transition_anim = true
 var boost = 0.0
 var charge = false
 var crouched = false
+var isShiftingNauto = false
 
 func _ready() -> void:
 	#mech_sprite.set_process(false)
@@ -31,7 +33,7 @@ func _input(event)-> void:
 	if event.is_action_pressed("ui_up") and is_on_floor():
 		charge_anim()
 	# Shift mode
-	elif event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250:
+	elif mech.is_on_floor() and event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250:
 		print ("Shift")
 		shift_mode()
 	elif event.is_action_pressed("ui_down") and is_on_floor():
@@ -47,6 +49,7 @@ func _input(event)-> void:
 func shift_mode() -> void:
 	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 	if (Global.MODE == "Nauto"):
+		mech.close_anim()
 		mech_camera.make_current()
 		#mech_camera.get_child(0).visible = true
 		#nauto_camera.get_child(0).visible = false
@@ -57,17 +60,13 @@ func shift_mode() -> void:
 		get_node("HurtBox").set_process(false)
 		position = mech.position
 	elif (Global.MODE == "Mech"):
-		nauto_camera.make_current()
+		mech.open_anim()
 		#mech_camera.get_child(0).visible = false
 		#nauto_camera.get_child(0).visible = true
 		Global.MODE = "Nauto"
 		velocity = Vector2.ZERO
-		visible = true
-		get_node("PhysicsCollider").set_process(true)
-		get_node("HurtBox").set_process(true)
-		mech.velocity = Vector2.ZERO
-		position.x = pilot_pos.x
-		position.y = pilot_pos.y - 40
+		isShiftingNauto = true
+		timer.start(0.5)
 	'''
 	if (mode == "Nauto"):
 		mech_sprite.set_process(true)
@@ -109,6 +108,13 @@ func _physics_process(delta: float) -> void:
 	#print (position)
 	velocity.y += delta * Global.GRAVITY 
 	move_and_slide()
+	
+	if velocity.x > 1:
+		scale.y = abs(scale.y)
+		rotation_degrees = 0
+	elif velocity.x < -1:
+		scale.y = -1 * abs(scale.y)
+		rotation_degrees = 180
 	
 	if (Global.MODE == "Mech"):
 		position = pilot_pos
@@ -159,7 +165,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				if velocity.x < Global.WALK_SPEED - 150:
 					velocity.x +=  Global.WALK_SPEED * delta * 3
-			nauto_sprite.flip_h = false
+			#nauto_sprite.flip_h = false
 			
 		elif Input.is_action_pressed("ui_left"):
 			if is_on_floor():
@@ -170,7 +176,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				if velocity.x > -Global.WALK_SPEED + 150:
 					velocity.x +=  -Global.WALK_SPEED * delta * 3
-			nauto_sprite.flip_h = true
+			#nauto_sprite.flip_h = true
 			
 		elif is_on_floor():
 			if crouched == false:
@@ -196,3 +202,16 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		Global.HEALTH -= 1
 		#print (env_node.environment.glow_intensity)
 		env_node.set_glow(1)
+
+func _on_timer_timeout() -> void:
+	if isShiftingNauto == true:
+		isShiftingNauto = false
+		mech.velocity = Vector2.ZERO
+		position.x = pilot_pos.x
+		position.y = pilot_pos.y - 40
+		scale = mech.scale * 4
+		rotation_degrees = mech.rotation_degrees
+		get_node("PhysicsCollider").set_process(true)
+		get_node("HurtBox").set_process(true)
+		visible = true
+		nauto_camera.make_current()
