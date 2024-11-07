@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var mech_front_arm = $FrontArm
 @onready var mech_back_arm = $BackArm
 @onready var pilot = $Pilot
+@onready var camera = $MechCamera
+#@onready var shader = $MechCamera/WaterShader
 
 @export var jump_impulse = 200
 
@@ -10,6 +12,10 @@ var current_anim = ""
 var gravity_offset = 0
 @export var hover_height = 140
 var floor_height = 0
+var original_scale = Vector2.ZERO
+var original_rotation = 0
+var original_shader_scale = Vector2.ZERO
+var original_shader_rotation = 0
 
 var isHovering = false
 var isShooting = false
@@ -19,6 +25,12 @@ func _ready() -> void:
 	mech_front_arm.play("Idle")
 	mech_back_arm.play("Idle")
 	mech_body_sprite.play("Idle")
+	original_scale.x = camera.scale.x
+	original_scale.y = camera.scale.y
+	original_rotation = camera.rotation_degrees
+	#original_shader_scale.x = shader.scale.x
+	#original_shader_scale.y = shader.scale.y
+	#original_shader_rotation = shader.rotation_degrees
 	
 func _input(event)-> void:
 	pass
@@ -50,12 +62,22 @@ func _physics_process(delta: float) -> void:
 		rotation_degrees = 0
 		#sprite.flip_h = true
 		#direction = 1
+		camera.scale.y = original_scale.y
+		#shader.scale.y = original_shader_scale.y
+		camera.rotation_degrees = original_rotation
+		#shader.rotation_degrees = original_shader_rotation
+		#shader.flip_h = !shader.flip_h
 	elif velocity.x < -1:
 		scale.y = -1 * abs(scale.y)
 		rotation_degrees = 180
 		#sprite.flip_h = false
 		#direction = -1
-			
+		camera.scale.y = original_scale.y
+		#shader.scale.y = original_shader_scale.y
+		camera.rotation_degrees = original_rotation
+		#shader.rotation_degrees = original_shader_rotation
+		#shader.flip_h = !shader.flip_h
+
 	#print (Global.MODE)
 	#print (floor_height)
 	if (!isHovering):
@@ -112,12 +134,16 @@ func _physics_process(delta: float) -> void:
 			move_anim()
 			if velocity.x < (Global.WALK_SPEED - 250):
 				velocity.x +=  Global.WALK_SPEED * delta * 1
+			if velocity.x > (Global.WALK_SPEED - 250):
+				velocity.x = (Global.WALK_SPEED - 250)
 			#mech_body_sprite.flip_h = false
 			
 		elif Input.is_action_pressed("ui_left") and is_on_floor() and !Input.is_action_pressed("ui_up"):
 			move_anim()
 			if velocity.x > -(Global.WALK_SPEED - 250):
 				velocity.x +=  -Global.WALK_SPEED * delta * 1
+			if velocity.x < -(Global.WALK_SPEED - 250):
+				velocity.x = -(Global.WALK_SPEED - 250)
 			#mech_body_sprite.flip_h = true
 			
 		elif is_on_floor() and !Input.is_action_pressed("ui_up"):
@@ -133,6 +159,10 @@ func _physics_process(delta: float) -> void:
 		
 		if Input.is_action_just_pressed("front_arm"):
 			shoot_anim()
+			if isHovering == false:
+				mech_body_sprite.stop
+			if isDrilling == false:
+				mech_back_arm.stop
 			isShooting = true
 		if Input.is_action_just_pressed("back_arm"):
 			isDrilling = true
@@ -145,3 +175,5 @@ func _physics_process(delta: float) -> void:
 func _on_front_arm_animation_finished() -> void:
 	if isShooting == true:
 		mech_front_arm.play("Idle")
+		mech_back_arm.play("Idle")
+		mech_body_sprite.play("Idle")

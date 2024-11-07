@@ -4,7 +4,7 @@ extends CharacterBody2D
 #@onready var mech_sprite = $/Node2D/Mech
 @onready var nauto_camera = $NautoCamera
 @onready var anim_player = $AnimationPlayer
-@onready var mech_camera = get_node("/root/Node2D/Mech/Pilot/MechCamera")
+@onready var mech_camera = get_node("/root/Node2D/Mech/MechCamera")
 @onready var mech = get_node("/root/Node2D/Mech")
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 
@@ -48,14 +48,18 @@ func shift_mode() -> void:
 	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 	if (Global.MODE == "Nauto"):
 		mech_camera.make_current()
+		#mech_camera.get_child(0).visible = true
+		#nauto_camera.get_child(0).visible = false
 		Global.MODE = "Mech"
 		velocity = Vector2.ZERO
 		visible = false
 		get_node("PhysicsCollider").set_process(false)
 		get_node("HurtBox").set_process(false)
-		position = pilot_pos
+		position = mech.position
 	elif (Global.MODE == "Mech"):
 		nauto_camera.make_current()
+		#mech_camera.get_child(0).visible = false
+		#nauto_camera.get_child(0).visible = true
 		Global.MODE = "Nauto"
 		velocity = Vector2.ZERO
 		visible = true
