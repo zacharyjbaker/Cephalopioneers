@@ -2,13 +2,16 @@ extends CharacterBody2D
 
 @onready var nauto_sprite = $Nauto
 #@onready var mech_sprite = $/Node2D/Mech
-
+@onready var nauto_camera = $NautoCamera
 @onready var anim_player = $AnimationPlayer
-@export var jump_impulse = 350
-@export var env_node : Node
+@onready var mech_camera = get_node("/root/Node2D/Mech/Pilot/MechCamera")
 @onready var mech = get_node("/root/Node2D/Mech")
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 
+@export var jump_impulse = 350
+@export var env_node : Node
+
+var camera = null
 var knockback = Vector2.ZERO
 var current_anim = ""
 var play_transition_anim = true
@@ -19,7 +22,7 @@ var crouched = false
 func _ready() -> void:
 	#mech_sprite.set_process(false)
 	#mech_sprite.visible = false
-
+	nauto_camera.make_current()
 	Global.MODE = "Nauto"
 	
 func _input(event)-> void:
@@ -28,8 +31,8 @@ func _input(event)-> void:
 	if event.is_action_pressed("ui_up") and is_on_floor():
 		charge_anim()
 	# Shift mode
-	elif event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 150:
-		#print ("Shift")
+	elif event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250:
+		print ("Shift")
 		shift_mode()
 	elif event.is_action_pressed("ui_down") and is_on_floor():
 		#print ("crouched")
@@ -44,6 +47,7 @@ func _input(event)-> void:
 func shift_mode() -> void:
 	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 	if (Global.MODE == "Nauto"):
+		mech_camera.make_current()
 		Global.MODE = "Mech"
 		velocity = Vector2.ZERO
 		visible = false
@@ -51,6 +55,7 @@ func shift_mode() -> void:
 		get_node("HurtBox").set_process(false)
 		position = pilot_pos
 	elif (Global.MODE == "Mech"):
+		nauto_camera.make_current()
 		Global.MODE = "Nauto"
 		velocity = Vector2.ZERO
 		visible = true
