@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 			rotation_degrees = 0
 			#sprite.flip_h = false
 			#direction = -1
-	
+			
 	# Attack state
 	if (state == "Attack" and isStun == false):
 		#print ("Enemy Pos:", position)
@@ -152,10 +152,19 @@ func _physics_process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	if isStun == true:
 		isStun = false
-		mode.visible = false
+		#mode.visible = false
 		stun.visible = false
 		stun.stop()
 		sprite.play("Swim")
+		mode.visible = true
+		mode.play("Cooldown")
+		if (rotation_degrees >= 180):
+			mode.flip_h = true
+		timer.start(2.5)
+		velocity.x = 0
+		velocity.y = 0
+		state = "Swim"
+		isAttackCoolingDown = true
 		
 	# After pause and rotation
 	if state == "Attack" and isActivelyRotating == false:
