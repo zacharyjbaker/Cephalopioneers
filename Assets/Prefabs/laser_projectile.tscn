@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://tjeknmxnmg7n"]
+
+[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/glow.gdshader" id="1_plqvb"]
+[ext_resource type="Script" path="res://Assets/Scripts/projectile.gd" id="2_3d15k"]
+[ext_resource type="Texture2D" uid="uid://c4lbfljl2i38j" path="res://Assets/Sprites/FX/StunBlast.png" id="3_apt6s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfg26"]
+shader = ExtResource("1_plqvb")
+shader_parameter/fireball_scale_y = 1.0
+shader_parameter/glow_scale_y = 1.0
+shader_parameter/glow_strength = 1.0
+shader_parameter/glow_intensity = 0.0
+shader_parameter/pixel_size = 1
+shader_parameter/glow_position = Vector2(0.5, 0.5)
+shader_parameter/glow_size = Vector2(0.2, 0.2)
+shader_parameter/pulsate = false
+shader_parameter/pulsation_speed = 1.0
+shader_parameter/glow_intensity_start = 0.75
+shader_parameter/glow_intensity_stop = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxnrc"]
+atlas = ExtResource("3_apt6s")
+region = Rect2(0, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02sfi"]
+atlas = ExtResource("3_apt6s")
+region = Rect2(32, 0, 32, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ibm7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxnrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02sfi")
+}],
+"loop": true,
+"name": &"Flicker",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4uej"]
+radius = 4.49924
+height = 23.4999
+
+[node name="LaserProjectile" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_jfg26")
+position = Vector2(-305, 582)
+scale = Vector2(4, 4)
+collision_layer = 8192
+collision_mask = 8192
+motion_mode = 1
+script = ExtResource("2_3d15k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6ibm7")
+animation = &"Flicker"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/FX/StunBlast.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "4e0095010e79eb598646339c26d5cad0"
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["laser"]]
+visible = false
+position = Vector2(4.75, -0.25)
+rotation = 1.57376
+shape = SubResource("CapsuleShape2D_n4uej")

@@ -3,7 +3,9 @@ extends Node2D
 @onready var timer = $DialogueTimer
 @onready var dialogueBG = $DialogueCanvas/DialogueBG
 @onready var dialogue_stream = $DialogueStream
-@export var dialogue_flag = true;
+@onready var nauto_talk = $DialogueCanvas/NautoTalk
+@onready var other_talk = $DialogueCanvas/OtherTalk
+@export var dialogue_flag = false;
 var dialogue_in_process = false;
 var speaker = ""
 var dialogue_line = ""
@@ -27,10 +29,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept") and dialogue_flag == false:
+		nauto_talk.visible = true
+		other_talk.visible = true
+		dialogue_flag = true
 	if Input.is_action_just_pressed("ui_accept") and dialogue_flag == true:
 		if (dialogue_in_process): #Skip text tick
 			dialogue.visible_characters = -1
 			timer.stop()
+			other_talk.stop()
+			nauto_talk.stop()
 			dialogue_in_process = false
 		else: #Text tick
 			timer.start()
@@ -66,6 +74,8 @@ func _on_timer_timeout() -> void:
 	
 	if (dialogue.visible_characters >= dialogue_line.length()):
 		dialogue_in_process = false
+		other_talk.stop()
+		nauto_talk.stop()
 		
 func _disable_dialogue() -> void:
 	dialogue_flag = false
@@ -75,8 +85,13 @@ func _disable_dialogue() -> void:
 	dialogue.visible = false
 	dialogue.set_process(false)
 	timer.stop()
+	nauto_talk.visible = false
+	other_talk.visible = false
 
 func _load_bite() -> void:
+	
+	nauto_talk.stop()
+	other_talk.play("Talk")
 	speaker = "Bite"
 	dialogueBG.color="4b4051"
 	dialogue.add_theme_color_override("default_color", Color("c7a97c"))
@@ -85,6 +100,8 @@ func _load_bite() -> void:
 	dialogue_file_path = "res://Assets/Sound/Dialogue/B" + dialogue_instance + "-" + dialogue_stage + ".wav"
 
 func _load_nauto() -> void:
+	nauto_talk.play("Talk")
+	other_talk.stop()
 	speaker = "Nauto"
 	dialogueBG.color="354a42"
 	dialogue.add_theme_color_override("default_color", Color("86b0ee"))
