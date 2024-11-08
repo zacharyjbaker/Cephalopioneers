@@ -7,6 +7,7 @@ extends CharacterBody2D
 #@onready var shader = $MechCamera/WaterShader
 
 @export var jump_impulse = 200
+var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
 
 var current_anim = ""
 var gravity_offset = 0
@@ -64,11 +65,12 @@ func close_anim():
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	#print ("Mech:", position)
 	#print (pilot.global_position)
 	#print (isDrilling)
-	print (current_anim)
-	print ("close", isClosing)
-	print ("open", isOpening)
+	#print (current_anim)
+	#print ("close", isClosing)
+	#print ("open", isOpening)
 	
 	# Sets orientation of body
 	if velocity.x > 1:
@@ -181,13 +183,31 @@ func _physics_process(delta: float) -> void:
 			mech_back_arm.stop()	
 			mech_front_arm.stop()	
 
+func shoot() -> void:
+	var laser_proj_instance = laser_projectile.instantiate()
+	
+	if rotation_degrees == 0:
+		laser_proj_instance.velocity.x = 1
+		laser_proj_instance.position = position + Vector2(100, 50)
+	else:
+		laser_proj_instance.velocity.x = -1
+		laser_proj_instance.position = position + Vector2(-100, 50)
+	#print (velocity.norma	lized().x)
+	get_tree().root.add_child(laser_proj_instance)
+
+func _on_front_arm_frame_changed() -> void:
+	print ("Shoot")
+	if isShooting == true and mech_front_arm.frame == 5:
+		shoot()
+
 func _on_front_arm_animation_finished() -> void:
 	if isShooting == true:
+		#shoot()
 		mech_front_arm.play("Idle")
 		mech_back_arm.play("Idle")
 		mech_body_sprite.play("Idle")
 
-func _on_mech_body_animation_finished() -> void:
+func _on_mech_body_animation_finished() -> void:	
 	if isClosing == true:
 		isClosing = false
 	if isOpening == true:

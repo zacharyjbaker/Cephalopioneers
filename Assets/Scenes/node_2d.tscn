@@ -662,7 +662,7 @@ noise = SubResource("FastNoiseLite_kbyii")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhksr"]
 shader = ExtResource("1_0d7an")
-shader_parameter/color = Color(0.3713, 0.79, 0.727195, 1)
+shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
 shader_parameter/speed = Vector2(0.03, 0.07)
 shader_parameter/wave_strength = 0.75
 shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
@@ -918,6 +918,7 @@ drag_left_margin = 0.05
 drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
+script = ExtResource("13_ts6wh")
 
 [node name="Nauto" type="CharacterBody2D" parent="." node_paths=PackedStringArray("env_node")]
 position = Vector2(-228, 877)
@@ -1006,6 +1007,8 @@ flip_h = true
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Mech/MechBody" to="Mech" method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="Mech/FrontArm" to="Mech" method="_on_front_arm_animation_finished"]
+[connection signal="frame_changed" from="Mech/FrontArm" to="Mech" method="_on_front_arm_frame_changed"]
+[connection signal="sprite_frames_changed" from="Mech/FrontArm" to="Mech" method="_on_front_arm_sprite_frames_changed"]
 [connection signal="animation_finished" from="Nauto/Nauto" to="Nauto" method="_on_nauto_animation_finished"]
 [connection signal="area_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="Nauto/HurtBox" to="Nauto" method="_on_hurt_box_body_entered"]
