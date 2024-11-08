@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var timer = $Timer
 @onready var view_collider = $ViewCone
 @onready var mode = $Mode
+@onready var stun = $Stun
 
 @export var tag = "Needlenose"
 @export var speed = 100
@@ -13,6 +14,7 @@ extends CharacterBody2D
 @export var random_turn_timer_max = 6.0
 @export var distance_threshold = 50
 @export var stop_threshold = 50
+@export var degrees_per_second = 90
 
 # Vars for random enemy orientation
 var random_dir_x = false 
@@ -33,12 +35,14 @@ var isAttackCoolingDown = false
 var isTargetReached = false
 var isRotated = false
 var isActivelyRotating = false
+var isStun = false
 
 func _ready() -> void:
 	#original_scale = scale
 	#sprite.flip_h = false
 	mode.visible = false
 	state = "Swim"
+	sprite.play("Swim")
 	#timer.start(3)
 	random_direction_selection()
 	player = get_node("/root/Node2D/Nauto")
@@ -50,10 +54,12 @@ func _physics_process(delta: float) -> void:
 	#print (velocity)
 	#print (isActivelyRotating) 
 	#print (isInViewCone)
-	sprite.play("Swim")
+	
+	if isStun == true:
+		rotation_degrees += delta * degrees_per_second
 	
 	# Idle state
-	if (state == "Swim"):
+	if (state == "Swim" and isStun == false):
 		
 		# Sets orientation of body
 		if velocity.x > 1:
@@ -68,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			#direction = -1
 	
 	# Attack state
-	if (state == "Attack"):
+	if (state == "Attack" and isStun == false):
 		#print ("Enemy Pos:", position)
 		
 		# If player positional target reached
@@ -144,6 +150,13 @@ func _physics_process(delta: float) -> void:
 	#velocity.x = move_toward(velocity.x, 0, speed)
 	
 func _on_timer_timeout() -> void:
+	if isStun == true:
+		isStun = false
+		mode.visible = false
+		stun.visible = false
+		stun.stop()
+		sprite.play("Swim")
+		
 	# After pause and rotation
 	if state == "Attack" and isActivelyRotating == false:
 		#print ("Rotated")
@@ -186,13 +199,36 @@ func random_direction_selection() -> void:
 func _on_view_cone_body_entered(body: Node2D) -> void:
 	if body == player and Global.MODE == "Nauto":
 		isInViewCone = true
-		if isAttackReady == false and state == "Swim":
+		if isAttackReady == false and state == "Swim" and isStun == false:
 			target_body = body
 			enter_attack_state(body)
 		
 func _on_view_cone_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	isInViewCone = false
 	#print ("Left Viewcone")
+	
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if !body.get_node("HitBox"):
+		return
+	if body.get_node("HitBox").is_in_group("laser"):
+		print ("hit")
+		body.queue_free()
+		if isStun == false:
+			#velocity.x += body.velocity.x * 3
+			velocity.x = 0
+			velocity.x += body.velocity.x / 8
+			var random_num = rng.randf_range(-1.0, 1.0)
+			velocity.y = 0
+			velocity.y += body.velocity.x / 4 * random_num
+			#print (env_node.environment.glow_intensity)
+			isStun = true
+			mode.visible = false
+			stun.visible = true
+			stun.play("Stunned")
+			#mode.play("Cooldown")
+			sprite.stop()
+			timer.start(8.0)
+		
 	
 func enter_attack_state(body: Node2D) -> void:
 	target = body.global_position
