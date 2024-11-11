@@ -824,7 +824,7 @@ script = ExtResource("3_jnaet")
 
 [node name="DialogueStream" type="AudioStreamPlayer2D" parent="DialogueManager"]
 stream = ExtResource("4_yru17")
-volume_db = -80.0
+volume_db = 9.779
 
 [node name="DialogueTimer" type="Timer" parent="DialogueManager"]
 wait_time = 0.025
@@ -1174,7 +1174,6 @@ script = ExtResource("22_qioby")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("22_pjfeu")
-volume_db = -80.0
 
 [node name="BGMusicCanvas" type="CanvasLayer" parent="BackgroundMusicManager"]
 
