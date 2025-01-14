@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
-@onready var invert_sprite = $AnimationPlayer
+#@onready var invert_sprite = $AnimationPlayer
 @onready var direction = 0
 @export var speed = 600
 
