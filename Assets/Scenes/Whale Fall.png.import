@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhe1ys2huxmqv"
-path="res://.godot/imported/NautoTalk.png-cc135bcd8e9b6bf7a9d2119426e1d42d.ctex"
+uid="uid://cwa0k54ckt6ol"
+path="res://.godot/imported/Whale Fall.png-a51d8dd68349370e4f7ad0b5a98c3849.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/NautoTalk.png"
-dest_files=["res://.godot/imported/NautoTalk.png-cc135bcd8e9b6bf7a9d2119426e1d42d.ctex"]
+source_file="res://Assets/Scenes/Whale Fall.png"
+dest_files=["res://.godot/imported/Whale Fall.png-a51d8dd68349370e4f7ad0b5a98c3849.ctex"]
 
 [params]
 

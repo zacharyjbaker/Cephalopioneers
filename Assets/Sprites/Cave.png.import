@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4b3x0so1qsc"
-path="res://.godot/imported/CommanderBiteTalk.png-2956cc9d1db55793032bf45d8fabe609.ctex"
+uid="uid://bf38bgkesnsfb"
+path="res://.godot/imported/Cave.png-944baf904dec2ddc359d76cd1b55f3a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scenes/CommanderBiteTalk.png"
-dest_files=["res://.godot/imported/CommanderBiteTalk.png-2956cc9d1db55793032bf45d8fabe609.ctex"]
+source_file="res://Assets/Sprites/Cave.png"
+dest_files=["res://.godot/imported/Cave.png-944baf904dec2ddc359d76cd1b55f3a9.ctex"]
 
 [params]
 
