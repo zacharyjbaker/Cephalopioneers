@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cep45148qy5gc"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/eel.gd" id="1_o3qdc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eiawt"]
+radius = 48.0
+height = 192.0
+
+[node name="EelHead" type="CharacterBody2D"]
+rotation = 1.5708
+scale = Vector2(1.31628, 2.17999)
+motion_mode = 1
+script = ExtResource("1_o3qdc")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="HurtBox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.000294268, -49.0828)
+scale = Vector2(1, 0.633026)
+shape = SubResource("CapsuleShape2D_eiawt")
+disabled = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -40.0
+offset_top = -87.0
+offset_right = 39.0
+offset_bottom = 75.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -40.0
+offset_top = 80.0
+offset_right = 39.0
+offset_bottom = 242.0
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = -40.0
+offset_top = 247.0
+offset_right = 39.0
+offset_bottom = 409.0
