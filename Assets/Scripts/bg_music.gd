@@ -4,14 +4,15 @@ extends Node2D
 @onready var timer = $Timer
 
 var color = Color("FFFFFF")
-var music_credit_text = "NOW PLAYING\n\"Shallows\" by Josh Thies"
+var song_list = ["res://Assets/Sound/Music/Shallow.wav", "res://Assets/Sound/Music/TheEelChase.wav"]
+var credit_list = ["NOW PLAYING\n\"Shallows\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker"]
 
 var isFading = false
 
 func _ready() -> void:
-	background_music.play()
-	music_credit.text = music_credit_text
-	timer.start(4)
+	change_music(0)
+	var eel_script = get_node("/root/Node2D/LeviathanEel")
+	eel_script.bgmusic_chase.connect(change_music.bind(1))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,3 +24,14 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	isFading = true
+	
+func change_music(song_index: int) -> void:
+	isFading = false
+	color.a = 1
+	timer.start(4)
+	var song = load(song_list[song_index])
+	background_music.stream = song
+	background_music.play()
+	music_credit.text = credit_list[song_index]
+	
+	

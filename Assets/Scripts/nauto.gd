@@ -118,9 +118,12 @@ func _physics_process(delta: float) -> void:
 	
 	if (Global.MODE == "Mech"):
 		position = pilot_pos
+		
+	if (Global.FREEZE == true):
+		velocity = Vector2(0,0)
 	
 	# Nauto movement
-	elif (Global.MODE == "Nauto"):
+	elif (Global.MODE == "Nauto") and Global.FREEZE == false:
 		if velocity.y > 0: # falling transition anim
 			if play_transition_anim == true:
 				fall_anim()

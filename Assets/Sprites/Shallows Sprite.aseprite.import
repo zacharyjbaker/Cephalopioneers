@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://nuafqofsdjho"
-path="res://.godot/imported/Shallows Sprite.aseprite-60ea0df72552070e301c37161367f84b.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/Shallows Sprite.aseprite"
-dest_files=["res://.godot/imported/Shallows Sprite.aseprite-60ea0df72552070e301c37161367f84b.res"]
 
 [params]
 
