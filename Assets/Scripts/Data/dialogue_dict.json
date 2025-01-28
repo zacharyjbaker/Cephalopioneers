@@ -1,5 +1,5 @@
 { 
-	"Level1" : {
+	"1" : {
 		"1": "/B/Nauto, have you reached the seafloor?",
 		"2": "/N/Just landed.",
 		"3": "/B/Is there any sign of Lieutenant Anam?",
@@ -15,7 +15,7 @@
 		"2": "/N/Yes",
 		"3": "/END/",
 	},
-	"Level1_NautoAndMalo" : {
+	"2" : {
 		"1": "/N/Lieutenant!",
 		"2": "/M/Nauto... ya' got the signal. Excellent work rookie.",
 		"3": "/N/You're hurt lieutenant. What happened to your S.H.E.L.L.?",

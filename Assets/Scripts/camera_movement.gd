@@ -31,7 +31,7 @@ func add_trauma(amount : float):
 func _process(delta):
 	if Global.SHAKE == true and shaking == false:
 		decay = 0
-		add_trauma(1)
+		add_trauma(2)
 	elif Global.SHAKE == false and shaking == true:
 		decay = 0.9
 		shaking = false
