@@ -22,6 +22,9 @@ var json = JSON.new()
 var parse = json.parse(file.get_as_text())
 var DialogueDict = json.get_data()
 
+# Custom signals
+signal cs_eel
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dialogue.visible_characters = 0
@@ -57,9 +60,17 @@ func _physics_process(delta: float) -> void:
 					print ("End Dialogue")
 					_disable_dialogue()
 					Global.FREEZE = false
+					
+					# Trigger eel cutscene
+					if speaker == "Malo":
+						cs_eel.emit()
 					return
 				"N":
 					_load_nauto()
+				"S":
+					_load_nauto()
+					print ("begin shaking")
+					Global.SHAKE = true
 				"B":
 					_load_bite()
 				"M":

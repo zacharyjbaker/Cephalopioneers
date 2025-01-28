@@ -1,9 +1,6 @@
 extends CharacterBody2D
 @onready var sprite = $Needlenose
 @onready var timer = $Timer
-@onready var view_collider = $ViewCone
-@onready var mode = $Mode
-@onready var stun = $Stun
 
 @export var tag = "Needlenose"
 @export var speed = 100
@@ -23,18 +20,46 @@ var random_dir_y = false
 var rng = RandomNumberGenerator.new()
 
 # Targeting vars
-var player = null
 var target = null
+var player = null
+
+enum States {IDLE, CHASE, CS_SHAKE, CS_DEVOUR, CS_ROAR}
+
+var state: States = States.IDLE
 
 func _ready() -> void:
+	var dg_manager = get_node("/root/Node2D/DialogueManager")
+	dg_manager.cs_eel.connect(cutscene)
 	player = get_node("/root/Node2D/Nauto")
+
+func cutscene():
+	print ("advancing cutscene")
+	if state == States.IDLE:
+		state = States.CS_DEVOUR
+		timer.start(2)
+	elif state == States.CS_DEVOUR:
+		Global.SHAKE = false
+		state = States.CS_ROAR
+		timer.start(2)
+	else:
+		state = States.CHASE
+		
+func _on_timer_timeout() -> void:
+	cutscene()
 	
 func _physics_process(delta: float) -> void:
-	# Sets orientation of body
-	var vector = player.global_position - self.global_position
-	#look_at(player.global_position)
-	if velocity.x < max_speed:
-		velocity.x += speed * delta
-	position.y = player.global_position.y
+	if state == States.CS_DEVOUR:
+		velocity.y -= speed * 10 * delta
+	
+	elif state == States.CS_ROAR:
+		velocity.y += speed * delta
+		
+	elif state == States.CHASE:
+		# Sets orientation of body
+		var vector = player.global_position - self.global_position
+		#look_at(player.global_position)
+		if velocity.x < max_speed:
+			velocity.x += speed * delta
+		position.y = player.global_position.y
 	#velocity.y += speed * delta
 	move_and_slide()
