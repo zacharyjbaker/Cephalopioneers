@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bbv1ghspptw00"
-valid=false
+path="res://.godot/imported/Cave.aseprite-3e9ae204663b9fc57c41110e98a9fc16.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Cave.aseprite"
+dest_files=["res://.godot/imported/Cave.aseprite-3e9ae204663b9fc57c41110e98a9fc16.res"]
 
 [params]
 

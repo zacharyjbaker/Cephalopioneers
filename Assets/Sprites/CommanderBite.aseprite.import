@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dvnrdo7sb1tos"
-valid=false
+path="res://.godot/imported/CommanderBite.aseprite-5c8deb343e5483c685ab4f2b2ac1cb36.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/CommanderBite.aseprite"
+dest_files=["res://.godot/imported/CommanderBite.aseprite-5c8deb343e5483c685ab4f2b2ac1cb36.res"]
 
 [params]
 

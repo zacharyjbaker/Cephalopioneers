@@ -30,6 +30,8 @@ var mech = null
 
 # Signals
 signal bgmusic_chase
+signal bgmusic_stop
+signal bgmusic_rumble
 
 enum States {IDLE, CHASE, CS_SHAKE, CS_DEVOUR, CS_MOVE, CS_ROAR}
 
@@ -49,6 +51,7 @@ func cutscene():
 		state = States.CS_DEVOUR
 		timer.start(4)
 		print ("devour")
+		#bgmusic_stop.emit()
 	elif state == States.CS_DEVOUR:
 		Global.SHAKE = false
 		state = States.CS_MOVE
@@ -56,6 +59,7 @@ func cutscene():
 		#position.y = player.y
 		timer.start(3)
 		print ("moving")
+		bgmusic_stop.emit()
 	elif state == States.CS_MOVE:
 		state = States.CS_ROAR
 		timer.start(2)
@@ -66,6 +70,7 @@ func cutscene():
 		smashed = true
 		Global.SHAKE = true
 		audio.play()
+		anim.play("Roar")
 	else:
 		timer.start(2)
 		#print ("chase")
@@ -117,11 +122,13 @@ func _physics_process(delta: float) -> void:
 		#look_at(player.global_position)
 		if velocity.x < max_speed:
 			velocity.x += speed * delta
-		if (position.y >= player.global_position.y - 140):
+		if (position.y >= player.global_position.y - 50):
 			position.lerp(Vector2(position.x, player.global_position.y), 1)
 	#velocity.y += speed * delta
 	move_and_slide()
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.name == "Malo":
+		body.queue_free()
+	if body.name == "Nauto":
 		body.queue_free()

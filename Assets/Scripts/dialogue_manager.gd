@@ -27,6 +27,8 @@ var DialogueDict = json.get_data()
 
 # Custom signals
 signal cs_eel
+signal bgmusic_stop
+signal bgmusic_rumble
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -99,6 +101,7 @@ func _physics_process(delta: float) -> void:
 					_load_nauto()
 					print ("begin shaking")
 					Global.SHAKE = true
+					bgmusic_rumble.emit()
 				"B":
 					_load_bite()
 				"M":
