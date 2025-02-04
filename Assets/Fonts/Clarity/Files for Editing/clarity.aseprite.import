@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://5222avrl788k"
-valid=false
+path="res://.godot/imported/clarity.aseprite-f1dd889138b3581013b12c32efdf67f0.res"
 
 [deps]
 
 source_file="res://Assets/Fonts/Clarity/Files for Editing/clarity.aseprite"
+dest_files=["res://.godot/imported/clarity.aseprite-f1dd889138b3581013b12c32efdf67f0.res"]
 
 [params]
 

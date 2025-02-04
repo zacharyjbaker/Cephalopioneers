@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://8tomq6ko3ewh"
-valid=false
+path="res://.godot/imported/CommanderBiteTalk.aseprite-6ff3a974922bdc47e30837f652e358af.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Portraits/CommanderBiteTalk.aseprite"
+dest_files=["res://.godot/imported/CommanderBiteTalk.aseprite-6ff3a974922bdc47e30837f652e358af.res"]
 
 [params]
 

@@ -42,9 +42,9 @@ func _ready() -> void:
 	
 func _input(event)-> void:
 	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
-	print (global_position.distance_to(pilot_pos))
-	print (mech.is_on_floor())
-	# Jump
+	#print (global_position.distance_to(pilot_pos))
+	#print (mech.is_on_floor())
+	# Jump 
 	#print (global_position.distance_to(pilot_pos))
 	if state == States.IDLE:
 		if event.is_action_pressed("ui_up") and is_on_floor():

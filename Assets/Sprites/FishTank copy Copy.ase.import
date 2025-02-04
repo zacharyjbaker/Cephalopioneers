@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://qm58uyrnjoyl"
-valid=false
+path="res://.godot/imported/FishTank copy Copy.ase-3607ce0811043a70920ee0a1cbff45ce.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/FishTank copy Copy.ase"
+dest_files=["res://.godot/imported/FishTank copy Copy.ase-3607ce0811043a70920ee0a1cbff45ce.res"]
 
 [params]
 
