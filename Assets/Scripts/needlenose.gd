@@ -15,6 +15,8 @@ extends CharacterBody2D
 @export var distance_threshold = 50
 @export var stop_threshold = 50
 @export var degrees_per_second = 90
+@export var y_knockback = 50
+@export var x_knockback = 50
 
 # Vars for random enemy orientation
 var random_dir_x = false 
@@ -206,7 +208,7 @@ func random_direction_selection() -> void:
 	#print (name, ": ", random_dir_x, ": ", random_time)
 
 func _on_view_cone_body_entered(body: Node2D) -> void:
-	if body == player and Global.MODE == "Nauto":
+	if body == player and Global.MODE == "Nauto" and Global.FREEZE == false:
 		isInViewCone = true
 		if isAttackReady == false and state == "Swim" and isStun == false:
 			target_body = body
