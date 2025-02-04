@@ -66,6 +66,7 @@ _data = {
 size = Vector2(47, 58)
 
 [node name="EelPit" type="CharacterBody2D" node_paths=PackedStringArray("anim_player", "anim_player2", "anim_player3", "anim_player4", "anim_player5", "anim_player6", "anim_player7", "anim_player8", "anim_player9")]
+z_index = -2
 script = ExtResource("1_7s1cc")
 anim_player = NodePath("Sprite2D/AnimationPlayer")
 anim_player2 = NodePath("Sprite2D2/AnimationPlayer")

@@ -5,6 +5,8 @@ extends CharacterBody2D
 #@onready var mech_sprite = $/Node2D/Mech
 @onready var nauto_camera = $NautoCamera
 @onready var anim_player = $AnimationPlayer
+@onready var physics_collider = $PhysicsCollider
+@onready var crouch_collider = $PhysicsColliderCrouch
 @onready var mech_camera = get_node("/root/Node2D/Mech/MechCamera")
 @onready var mech = get_node("/root/Node2D/Mech")
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
@@ -40,10 +42,15 @@ func _input(event)-> void:
 		#print ("crouched")
 		crouched = !crouched
 		if crouched:
-			Global.WALK_SPEED = 150
+			Global.WALK_SPEED = 250
+			velocity.x = velocity.normalized().x * Global.WALK_SPEED
+			physics_collider.disabled = true
+			crouch_collider.disabled = false
 			charge_anim()
 		else:
 			Global.WALK_SPEED = 400
+			physics_collider.disabled = false
+			crouch_collider.disabled = true
 
 
 func shift_mode() -> void:
@@ -135,6 +142,8 @@ func _physics_process(delta: float) -> void:
 		# charge jump anim
 		if Input.is_action_pressed("ui_up") and is_on_floor():
 			charge = true;
+			physics_collider.disabled = true
+			crouch_collider.disabled = false
 			if crouched:
 				crouched = false
 				Global.WALK_SPEED = 400
@@ -150,6 +159,8 @@ func _physics_process(delta: float) -> void:
 				
 		elif Input.is_action_just_released("ui_up") and charge == true and is_on_floor():
 			charge = false
+			physics_collider.disabled = false
+			crouch_collider.disabled = true
 			finish_jump()
 			
 		elif Input.is_action_just_released("ui_down") and is_on_floor():
@@ -166,8 +177,8 @@ func _physics_process(delta: float) -> void:
 				if velocity.x < Global.WALK_SPEED:
 					velocity.x +=  Global.WALK_SPEED * delta * 4
 			else:
-				if velocity.x < Global.WALK_SPEED - 150:
-					velocity.x +=  Global.WALK_SPEED * delta * 3
+				if velocity.x < Global.WALK_SPEED - 75:
+					velocity.x +=  Global.WALK_SPEED * delta * 4
 			#nauto_sprite.flip_h = false
 			
 		elif Input.is_action_pressed("ui_left"):
@@ -177,8 +188,8 @@ func _physics_process(delta: float) -> void:
 				if velocity.x > -Global.WALK_SPEED:
 					velocity.x +=  -Global.WALK_SPEED * delta * 4
 			else:
-				if velocity.x > -Global.WALK_SPEED + 150:
-					velocity.x +=  -Global.WALK_SPEED * delta * 3
+				if velocity.x > -Global.WALK_SPEED + 75:
+					velocity.x +=  -Global.WALK_SPEED * delta * 4
 			#nauto_sprite.flip_h = true
 			
 		elif is_on_floor():

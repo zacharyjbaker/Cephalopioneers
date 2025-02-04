@@ -5,9 +5,9 @@ extends CharacterBody2D
 @onready var audio = $AudioStreamPlayer2D
 
 @export var tag = "Needlenose"
-@export var speed = 100
+@export var speed = 170
 @export var charge_speed = 800
-@export var max_speed = 300
+@export var max_speed = 370
 @export var charge_max_speed = 1000
 @export var random_turn_timer_min = 1.0
 @export var random_turn_timer_max = 6.0
@@ -76,7 +76,7 @@ func cutscene():
 		#print ("chase")
 		state = States.CHASE
 		Global.SHAKE = false
-		mech.position.x = 15244
+		mech.position.x = 40000
 		mech.position.y = 907
 		mech.velocity.x = 0
 		mech.velocity.y = 0
@@ -111,7 +111,7 @@ func _physics_process(delta: float) -> void:
 		var vector = player.global_position - self.global_position
 		#look_at(player.global_position)
 		print (position.distance_to(player.global_position))
-		if position.distance_to(player.global_position) < 750:
+		if position.distance_to(player.global_position) < 500:
 			velocity.x = 0
 		else:
 			velocity.x += speed * 3 * delta
@@ -122,8 +122,20 @@ func _physics_process(delta: float) -> void:
 		#look_at(player.global_position)
 		if velocity.x < max_speed:
 			velocity.x += speed * delta
-		if (position.y >= player.global_position.y - 50):
-			position.lerp(Vector2(position.x, player.global_position.y), 1)
+		if (position.y == player.global_position.y - 120):
+			velocity.y = 0
+		elif (position.y > player.global_position.y - 120):
+			if velocity.y > 0:
+				velocity.y -= 5
+			if velocity.y > -400:
+				velocity.y -= speed/2 * delta
+		elif (position.y < player.global_position.y - 120):
+			if velocity.y < 0:
+				velocity.y += 5
+			if velocity.y < 400:
+				velocity.y += speed/2 * delta
+		#if position.y >= player.global_position.y - 50:
+			#position.move_toward(Vector2(position.x, player.global_position.y), 100)
 	#velocity.y += speed * delta
 	move_and_slide()
 
@@ -131,4 +143,6 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 	if body.name == "Malo":
 		body.queue_free()
 	if body.name == "Nauto":
+		body.queue_free()
+	if body.is_in_group("Enemy"):
 		body.queue_free()
