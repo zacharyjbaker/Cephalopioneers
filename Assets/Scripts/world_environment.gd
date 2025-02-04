@@ -3,6 +3,7 @@ extends WorldEnvironment
 var default_intensity = 0.06
 var default_color = load("res://Assets/Prefabs/default_glow.tres")
 var damage_color =  load("res://Assets/Prefabs/damage_glow.tres")
+var fade_to_black_bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,9 @@ func _process(delta: float) -> void:
 		environment.glow_intensity -= 0.01
 	if environment.adjustment_saturation > 1:
 		environment.adjustment_saturation -= 0.25
+	if fade_to_black_bool == true:
+		if environment.adjustment_brightness > 0.01:
+			environment.adjustment_brightness -= 0.01
 	
 func set_glow(intensity: float) -> void:
 	environment.glow_intensity = intensity
@@ -24,6 +28,9 @@ func set_glow(intensity: float) -> void:
 	environment.adjustment_saturation = 3
 	timer.start(.3)
 	#print (environment.adjustment_color_correction.gradient)
+	
+func fade_to_black() -> void:
+	fade_to_black_bool = true
 
 func _on_timer_timeout() -> void:
 	environment.adjustment_color_correction.gradient = default_color

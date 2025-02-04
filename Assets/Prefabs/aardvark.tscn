@@ -1,0 +1,186 @@
+[gd_scene load_steps=19 format=3 uid="uid://cqf0gnysb5fvx"]
+
+[ext_resource type="Script" path="res://Assets/Prefabs/aardvark.gd" id="1_6c45j"]
+[ext_resource type="Texture2D" uid="uid://rk8fn2glmay0" path="res://Assets/Scenes/Aardvark.png" id="1_cys1t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_re3q7"]
+size = Vector2(32.25, 9.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3rp4"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p3n5"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36ai5"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6gcm"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85hf5"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(0, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d73vt"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(96, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tfv4"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(192, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7c7y"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(288, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4gh6"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(0, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpneg"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(96, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sym2"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(192, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj3uw"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(288, 128, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlvhy"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(0, 192, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk0v0"]
+atlas = ExtResource("1_cys1t")
+region = Rect2(96, 192, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_47586"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3rp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3rp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3rp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3rp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p3n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36ai5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36ai5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6gcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6gcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85hf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d73vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d73vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tfv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7c7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4gh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpneg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sym2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj3uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlvhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p3n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3rp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3rp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3rp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk0v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk0v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk0v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk0v0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[node name="Aardvark" type="CharacterBody2D" groups=["NPC", "aardvark"]]
+z_index = -2
+position = Vector2(-331, 899)
+scale = Vector2(4, 4)
+collision_layer = 6144
+collision_mask = 33792
+script = ExtResource("1_6c45j")
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["knockback"]]
+position = Vector2(2.25, 10)
+shape = SubResource("RectangleShape2D_re3q7")
+
+[node name="Aardvark" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_47586")
+animation = &"Idle"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Aardvark.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5ea7edb3e500fb0e85111f29a2545a1c"
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.125, 3.125)
+polygon = PackedVector2Array(-17.125, -0.375, -30.125, -7.625, -44.625, -7.125, -39.375, -12.875, 35.125, -12.875, 45.875, -1.875, 32.875, -3.625, 23.625, -3.125, 15.125, 7.625, -12.875, 7.625)

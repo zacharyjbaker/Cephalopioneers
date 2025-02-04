@@ -8,3 +8,4 @@ var INTERACTABLE = false
 var FREEZE = false
 var SHAKE = false
 var SHAKE_AMT = 0
+var EEL_CUTSCENE = false

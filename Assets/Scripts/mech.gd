@@ -65,6 +65,8 @@ func close_anim():
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	
+	pilot.global_position = Vector2(global_position.x - 4, global_position.y - 21)
 	#print ("Mech:", position)
 	#print (pilot.global_position)
 	#print (isDrilling)
