@@ -107,6 +107,7 @@ func cutscene():
 			mech.global_position.y = 1000
 			pilot.global_position.x = 25496 - 4
 			pilot.global_position.y = 1000 - 21
+			Global.DAMAGED = true
 			#pilot.velocity.x = 0
 			#pilot.velocity.y = 0
 			#mech.scale.x = -1
@@ -167,7 +168,7 @@ func _physics_process(delta: float) -> void:
 		#look_at(player.global_position)
 		if end < 3500:
 			if velocity.x > 0:
-				velocity.x -= 2
+				velocity.x -= 4
 		else:
 			if velocity.x < max_speed:
 				velocity.x += speed * delta

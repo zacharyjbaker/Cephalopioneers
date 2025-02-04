@@ -55,7 +55,7 @@ func load_next_dialogue():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	#print (Global.INTERACTABLE)
-	if Input.is_action_just_pressed("ui_accept") and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
+	if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
 		nauto_talk.visible = true
 		other_talk.visible = true
 		dialogue_flag = true
@@ -67,7 +67,8 @@ func _physics_process(delta: float) -> void:
 		dialogue.visible = true
 		dialogue.set_process(true)
 
-	if Input.is_action_just_pressed("ui_accept") and dialogue_flag == true:
+	if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true:
+		Global.START = false
 		print (other_talk)
 		if (dialogue_in_process): #Skip text tick
 			dialogue.visible_characters = -1

@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		if upside_down == true:
 			scale.x = -1 * abs(scale.x)
 		else:
-			scale.x = abs(scale.x)
+			scale.x = -1 * abs(scale.x)
 		#rotation_degrees = 180
 		#sprite.flip_h = true
 		#direction = 1
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		if upside_down == true:
 			scale.x = abs(scale.x)
 		else:
-			scale.x = -1 * abs(scale.x)
+			scale.x = abs(scale.x)
 		
 		#rotation_degrees = 0
 		#sprite.flip_h = false

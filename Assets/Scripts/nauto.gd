@@ -10,11 +10,11 @@ extends CharacterBody2D
 @onready var mech_camera = get_node("/root/Node2D/Mech/MechCamera")
 @onready var mech = get_node("/root/Node2D/Mech")
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
-
+@onready var env_node = get_node("/root/Node2D/WorldEnvironment")
 @onready var breakable_floor = get_node("/root/Node2D/BreakableFloor")
 
 @export var jump_impulse = 350
-@export var env_node : Node
+
 
 var camera = null
 var knockback = Vector2.ZERO
@@ -27,6 +27,8 @@ var isShiftingNauto = false
 
 enum States {IDLE, MOVE, STOP, SHOOT, FALL, FADE}
 signal cs_break
+signal bgmusic_stop
+signal bgmusic_rumble
 
 var state: States = States.IDLE
 
@@ -35,6 +37,8 @@ func _ready() -> void:
 	#mech_sprite.visible = false
 	nauto_camera.make_current()
 	Global.MODE = "Nauto"
+	
+	
 	
 func _input(event)-> void:
 	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
@@ -46,7 +50,8 @@ func _input(event)-> void:
 		if event.is_action_pressed("ui_up") and is_on_floor():
 			charge_anim()
 		# Shift mode
-		elif mech.is_on_floor() and event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250:
+		elif (mech.is_on_floor() and event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250):
+			#Global.START = false
 			print ("Shift")
 			shift_mode()
 		elif event.is_action_pressed("ui_down") and is_on_floor():
@@ -128,7 +133,6 @@ func fall_anim() -> void:
 		nauto_sprite.play(current_anim)
 
 func _physics_process(delta: float) -> void:
-	
 	if state == States.MOVE:
 		mech.velocity.x = -100
 		mech.move_anim()
@@ -264,6 +268,8 @@ func _on_timer_timeout() -> void:
 		mech.shoot_anim()
 		cutscene()
 	elif state == States.SHOOT:
+		#bgmusic_stop.emit()
+		bgmusic_rumble.emit()
 		state = States.FALL
 		cutscene()
 	elif state == States.FALL:
