@@ -557,7 +557,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_voxna"]
 radius = 5.37489
-height = 17.2186
+height = 13.5337
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("5_kpnd0")
@@ -1110,7 +1110,7 @@ script = ExtResource("1_knko8")
 env_node = NodePath("../WorldEnvironment")
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="Nauto"]
-position = Vector2(-2, 0.75)
+position = Vector2(-3.25, -0.75)
 rotation = -0.655038
 shape = SubResource("CapsuleShape2D_voxna")
 
@@ -1148,6 +1148,7 @@ texture_scale = 0.81
 root_node = NodePath("../..")
 
 [node name="HurtBox" type="Area2D" parent="Nauto"]
+visible = false
 collision_layer = 2048
 collision_mask = 2048
 
@@ -1181,7 +1182,7 @@ scale = Vector2(4, -4)
 
 [node name="WaterShader" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_dhksr")
-position = Vector2(-970, 582)
+position = Vector2(-976, 552)
 rotation = 3.14159
 scale = Vector2(17.1483, 9.87392)
 texture = ExtResource("11_ghj7g")

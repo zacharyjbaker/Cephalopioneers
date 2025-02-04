@@ -1,13 +1,10 @@
-[gd_scene load_steps=52 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=51 format=3 uid="uid://by0icvlejbtja"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="2_rk7o7"]
 [ext_resource type="Texture2D" uid="uid://cm6xj4v8nlf34" path="res://Assets/Sprites/MechNoArms.png" id="3_dmxc7"]
 [ext_resource type="Texture2D" uid="uid://dhhcmm0r0ugoi" path="res://Assets/Sprites/FrontArm_Laser.png" id="4_a011g"]
 [ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="5_lgde3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l45wj"]
-size = Vector2(145, 190.25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrob5"]
 atlas = ExtResource("2_rk7o7")
@@ -394,9 +391,9 @@ collision_layer = 16384
 collision_mask = 32768
 script = ExtResource("1_uj2yd")
 
-[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-position = Vector2(-9, 42)
-shape = SubResource("RectangleShape2D_l45wj")
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2(4, 40)
+polygon = PackedVector2Array(-40, 96, -24, 96, 48, 24, 48, -88, -88, -96, -88, -24, -80, 16)
 
 [node name="BackArm" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

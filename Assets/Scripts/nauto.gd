@@ -196,12 +196,13 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
+	print ("Hurt by ", body.name)
 	if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
 		#print ("hit")
 		#velocity.x += body.velocity.x * 3
-		velocity.x += -(velocity.x * 2 + 50) + body.velocity.x / 2.0
+		velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
 		#velocity.y += body.velocity.y * 3
-		velocity.y += -(velocity.y * 2 + 50) + body.velocity.x / 2.0
+		velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
 		Global.HEALTH -= 1
 		#print (env_node.environment.glow_intensity)
 		env_node.set_glow(1)

@@ -15,6 +15,8 @@ extends CharacterBody2D
 @export var distance_threshold = 50
 @export var stop_threshold = 50
 @export var degrees_per_second = 90
+@export var y_knockback = 50
+@export var x_knockback = 50
 
 # Vars for random enemy orientation
 var random_dir_x = false 
