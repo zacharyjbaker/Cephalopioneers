@@ -293,8 +293,8 @@ script = ExtResource("24_hg4gf")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("25_wd3f4")
-volume_db = -0.3
-max_distance = 2e+07
+volume_db = -0.455
+max_distance = 137586.0
 panning_strength = 0.0
 
 [node name="BGMusicCanvas" type="CanvasLayer" parent="BackgroundMusicManager"]
@@ -555,7 +555,7 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("17_gb23v")]
-position = Vector2(11771, 955)
+position = Vector2(-1923, 955)
 
 [node name="Mech" parent="." instance=ExtResource("18_btc8n")]
 position = Vector2(-1939, 1044)

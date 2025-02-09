@@ -4,8 +4,8 @@ extends Node2D
 @onready var timer = $Timer
 
 var color = Color("FFFFFF")
-var song_list = ["res://Assets/Sound/Music/Shallow.wav", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3"]
-var credit_list = ["NOW PLAYING\n\"Shallows\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", ""]
+var song_list = ["res://Assets/Sound/Music/Cargo.mp3", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3"]
+var credit_list = ["NOW PLAYING\n\"Cargo\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", ""]
 
 var isFading = false
 

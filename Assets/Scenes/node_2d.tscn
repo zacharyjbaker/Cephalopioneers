@@ -1101,13 +1101,12 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 script = ExtResource("13_ts6wh")
 
-[node name="Nauto" type="CharacterBody2D" parent="." node_paths=PackedStringArray("env_node")]
+[node name="Nauto" type="CharacterBody2D" parent="."]
 position = Vector2(-228, 877)
 scale = Vector2(4, 4)
 collision_layer = 128
 collision_mask = 49152
 script = ExtResource("1_knko8")
-env_node = NodePath("../WorldEnvironment")
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="Nauto"]
 position = Vector2(-3.25, -0.75)
