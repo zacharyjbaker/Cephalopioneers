@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://btjc6mtpd7uj"]
+[gd_scene load_steps=84 format=4 uid="uid://btjc6mtpd7uj"]
 
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="1_bjfs7"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="2_6a742"]
@@ -9,11 +9,11 @@
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="7_fxvce"]
 [ext_resource type="Texture2D" uid="uid://cwa0k54ckt6ol" path="res://Assets/Scenes/Whale Fall.png" id="7_moja0"]
 [ext_resource type="AudioStream" uid="uid://dmgee1huemoxr" path="res://Assets/Sound/Dialogue/Nauto.wav" id="8_rl7ti"]
+[ext_resource type="PackedScene" uid="uid://b5jsaknolmc2r" path="res://Assets/Prefabs/drillable_wall.tscn" id="9_rewea"]
 [ext_resource type="Texture2D" uid="uid://dhe1ys2huxmqv" path="res://Assets/Sprites/NautoTalk.png" id="9_wm48f"]
 [ext_resource type="Texture2D" uid="uid://c4b3x0so1qsc" path="res://Assets/Sprites/CommanderBiteTalk.png" id="10_yn1yv"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="11_2wif0"]
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="12_goh1t"]
-[ext_resource type="Texture2D" uid="uid://be74h2o8hklu0" path="res://Assets/Sprites/LieutenantAno.png" id="12_vf24u"]
 [ext_resource type="Texture2D" uid="uid://d0w70hpm12841" path="res://Assets/Sprites/CommanderBite.png" id="13_2vs7g"]
 [ext_resource type="Script" path="res://Assets/Scenes/malo.gd" id="14_6w0ds"]
 [ext_resource type="Texture2D" uid="uid://q7nyw2ymwqsp" path="res://Assets/Scenes/F.png" id="15_j7mhn"]
@@ -22,11 +22,37 @@
 [ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="20_prv8g"]
 [ext_resource type="PackedScene" uid="uid://cbkjxe8o45c7v" path="res://Assets/Prefabs/needlenose.tscn" id="21_7x4qx"]
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="21_vrn4k"]
+[ext_resource type="Texture2D" uid="uid://fdaexkv0xswh" path="res://Assets/Scenes/LieutenantAno.png" id="24_17ib1"]
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="24_hg4gf"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="25_wd3f4"]
 [ext_resource type="PackedScene" uid="uid://cep45148qy5gc" path="res://Assets/Prefabs/eel.tscn" id="27_ijg8w"]
+[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="29_no01t"]
+[ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="30_1clgc"]
+[ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="30_6xo6n"]
+[ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="32_eb70p"]
+[ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="32_wtgsh"]
 [ext_resource type="PackedScene" uid="uid://cqf0gnysb5fvx" path="res://Assets/Prefabs/aardvark.tscn" id="34_e6ud2"]
 [ext_resource type="PackedScene" uid="uid://bss4600ghnvh8" path="res://Assets/Prefabs/chase_needlenose.tscn" id="36_m372q"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
+noise_type = 2
+frequency = 0.0143
+fractal_type = 2
+fractal_gain = 1.0
+fractal_weighted_strength = 0.85
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4hwls"]
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = ExtResource("30_6xo6n")
+noise = SubResource("FastNoiseLite_x3a23")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_toho5"]
+shader = ExtResource("29_no01t")
+shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
+shader_parameter/speed = Vector2(0.01, 0.01)
+shader_parameter/wave_strength = 2.0
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_4hwls")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
 gradient = ExtResource("1_bjfs7")
@@ -221,6 +247,28 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0wds"]
+atlas = ExtResource("24_17ib1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfwne"]
+atlas = ExtResource("24_17ib1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cr1vn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0wds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfwne")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s0u0u"]
 polygon = PackedVector2Array(-12.2, -16, -15.1, -11.2, -16, -11.2, -16, 16, 16, 16, 16, 11.4, 14.9, 7.6, 16, 6.3, 16, -13.6, 14.2, -15.8)
 
@@ -242,7 +290,132 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcpi8"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(64, 128, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiwjo"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(192, 128, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn3lu"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0e86"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0t44"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tl12"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(0, 128, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmwsc"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(128, 128, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkmmq"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(0, 256, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8abm"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(64, 256, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ebjf"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(128, 256, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62oxf"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(192, 256, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw16r"]
+atlas = ExtResource("32_wtgsh")
+region = Rect2(0, 384, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qsi2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcpi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiwjo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn3lu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0e86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0t44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tl12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcpi8")
+}],
+"loop": false,
+"name": &"Mimic",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcpi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmwsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiwjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkmmq")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8abm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ebjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62oxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw16r")
+}],
+"loop": true,
+"name": &"WalkDrill",
+"speed": 17.0
+}]
+
 [node name="Node2D" type="Node2D"]
+
+[node name="WaterShader" type="Sprite2D" parent="."]
+visible = false
+z_index = 99
+material = SubResource("ShaderMaterial_toho5")
+position = Vector2(10603, 396)
+rotation = 3.14159
+scale = Vector2(366.061, 31.7569)
+texture = ExtResource("30_1clgc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n7rwt")
@@ -279,6 +452,10 @@ position = Vector2(-102, 1181)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAADAgAAAQACAAAAAAAEAgAAAQACAAAAAAAFAgAAAQACAAAAAAAGAgAAAQACAAAAAAAHAgAAAQACAAAAAAAIAgAAAQACAAAAAAAJAgAAAQACAAAAAAAKAgAAAQACAAAAAAALAgAAAQACAAAAAAAMAgAAAQACAAAAAAANAgAAAQACAAAAAAAOAgAAAQACAAAAAAAPAgAAAQACAAAAAAAQAgAAAQACAAAAAAARAgAAAQACAAAAAAASAgAAAQACAAAAAAASAgEAAQACAAEAAAARAgEAAQACAAEAAAAQAgEAAQACAAEAAAAPAgEAAQACAAEAAAAOAgEAAQACAAEAAAANAgEAAQACAAEAAAAMAgEAAQACAAEAAAALAgEAAQACAAEAAAAKAgEAAQACAAEAAAAJAgEAAQACAAEAAAAIAgEAAQACAAEAAAAHAgEAAQACAAEAAAAGAgEAAQACAAEAAAAFAgEAAQACAAEAAAAEAgEAAQACAAEAAAADAgEAAQACAAEAAAADAgIAAQACAAIAAAAEAgIAAQACAAIAAAAFAgIAAQACAAIAAAAGAgIAAQACAAIAAAAHAgIAAQACAAIAAAAIAgIAAQACAAIAAAAJAgIAAQACAAIAAAAKAgIAAQACAAIAAAALAgIAAQACAAIAAAAMAgIAAQACAAIAAAANAgIAAQACAAIAAAAOAgIAAQACAAIAAAAPAgIAAQACAAIAAAAQAgIAAQACAAIAAAARAgIAAQACAAIAAAASAgIAAQACAAIAAAASAgMAAQACAAIAAAARAgMAAQACAAIAAAAQAgMAAQACAAIAAAAPAgMAAQACAAIAAAAOAgMAAQACAAIAAAANAgMAAQACAAIAAAAMAgMAAQACAAIAAAALAgMAAQACAAIAAAAKAgMAAQACAAIAAAAJAgMAAQACAAIAAAAIAgMAAQACAAIAAAAHAgMAAQACAAIAAAAGAgMAAQACAAIAAAAFAgMAAQACAAIAAAAEAgMAAQACAAIAAAADAgMAAQACAAIAAAADAgQAAQACAAIAAAAEAgQAAQACAAIAAAAFAgQAAQACAAIAAAAGAgQAAQACAAIAAAAHAgQAAQACAAIAAAAIAgQAAQACAAIAAAAJAgQAAQACAAIAAAAKAgQAAQACAAIAAAALAgQAAQACAAIAAAAMAgQAAQACAAIAAAANAgQAAQACAAIAAAAOAgQAAQACAAIAAAAPAgQAAQACAAIAAAAQAgQAAQACAAIAAAARAgQAAQACAAIAAAASAgQAAQACAAIAAAASAgUAAQACAAIAAAARAgUAAQACAAIAAAAQAgUAAQACAAIAAAAPAgUAAQACAAIAAAAOAgUAAQACAAIAAAANAgUAAQACAAIAAAAMAgUAAQACAAIAAAALAgUAAQACAAIAAAAKAgUAAQACAAIAAAAJAgUAAQACAAIAAAAIAgUAAQACAAIAAAAHAgUAAQACAAIAAAAGAgUAAQACAAIAAAAFAgUAAQACAAIAAAAEAgUAAQACAAIAAAADAgUAAQACAAIAAAADAgYAAQACAAIAAAAEAgYAAQACAAIAAAAFAgYAAQACAAIAAAAGAgYAAQACAAIAAAAHAgYAAQACAAIAAAAIAgYAAQACAAIAAAAJAgYAAQACAAIAAAAKAgYAAQACAAIAAAALAgYAAQACAAIAAAAMAgYAAQACAAIAAAANAgYAAQACAAIAAAAOAgYAAQACAAIAAAAPAgYAAQACAAIAAAAQAgYAAQACAAIAAAARAgYAAQACAAIAAAASAgYAAQACAAIAAAA=")
 tile_set = ExtResource("7_6un02")
+
+[node name="DrillableWall" parent="." instance=ExtResource("9_rewea")]
+
+[node name="DrillableWall2" parent="." instance=ExtResource("9_rewea")]
 
 [node name="BackgroundWall" type="TileMapLayer" parent="."]
 z_index = -3
@@ -555,10 +732,10 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("17_gb23v")]
-position = Vector2(-1923, 955)
+position = Vector2(4962, 1061)
 
 [node name="Mech" parent="." instance=ExtResource("18_btc8n")]
-position = Vector2(-1939, 1044)
+position = Vector2(12182, 1001)
 
 [node name="Malo" type="CharacterBody2D" parent="."]
 z_index = -3
@@ -568,24 +745,25 @@ collision_layer = 4096
 collision_mask = 0
 script = ExtResource("14_6w0ds")
 
-[node name="Sprite2D" type="Sprite2D" parent="Malo"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Malo"]
+texture_filter = 1
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("12_vf24u")
+sprite_frames = SubResource("SpriteFrames_cr1vn")
+animation = &"Idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
-"pending_changes": {
-"i_mode": -1,
-"keep_anim_length": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "",
 "slice": "",
 "source": "res://Assets/Sprites/LieutenantAno.aseprite"
 }
-}
+metadata/_aseprite_wizard_source_file_hash_ = "c2e792d06c4e44c6f5b58ba1a75ed5f1"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Malo"]
 visible = false
@@ -1337,6 +1515,33 @@ rotation = -0.650526
 scale = Vector2(3, 3)
 texture = ExtResource("21_vrn4k")
 
+[node name="LilCrab" type="CharacterBody2D" parent="."]
+position = Vector2(12643, 889)
+scale = Vector2(4, 4)
+script = ExtResource("32_eb70p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LilCrab"]
+texture_filter = 1
+position = Vector2(-1.33333, 9)
+sprite_frames = SubResource("SpriteFrames_1qsi2")
+animation = &"Mimic"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/SpiderCrab.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d033356c267ab18f49b61b6b6d3dbbe9"
+
+[node name="Timer" type="Timer" parent="LilCrab"]
+
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="LilCrab/Timer" to="LilCrab" method="_on_timer_timeout"]

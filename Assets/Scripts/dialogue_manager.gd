@@ -55,6 +55,8 @@ func load_next_dialogue():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	#print (Global.INTERACTABLE)
+	if (Input.is_action_just_pressed("ui_cancel")):
+		_disable_dialogue()
 	if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
 		nauto_talk.visible = true
 		other_talk.visible = true
@@ -89,7 +91,6 @@ func _physics_process(delta: float) -> void:
 				"END":
 					print ("End Dialogue")
 					_disable_dialogue()
-					Global.FREEZE = false
 					
 					# Trigger eel cutscene
 					if speaker == "Malo":
@@ -135,6 +136,7 @@ func _disable_dialogue() -> void:
 	timer.stop()
 	nauto_talk.visible = false
 	other_talk.visible = false
+	Global.FREEZE = false
 
 func _load_bite() -> void:
 	other_talk = bite_talk

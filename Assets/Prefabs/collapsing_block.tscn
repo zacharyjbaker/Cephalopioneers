@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dnoqb8wl0vq6q"]
+
+[node name="CollapsingBlock" type="CPUParticles2D"]
+position = Vector2(559, -9)
+rotation = -3.12409
+emitting = false
+amount = 400
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.7
+explosiveness = 0.07
+randomness = 0.53
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(100, 100)
+direction = Vector2(1, 1)
+gravity = Vector2(0, 70)
+initial_velocity_min = 4.6
+initial_velocity_max = 24.25
+linear_accel_min = -35.28
+linear_accel_max = 19.18
+angle_min = 94.5
+angle_max = 94.5
+scale_amount_max = 6.0
+color = Color(0.893471, 0.732073, 0.528114, 1)

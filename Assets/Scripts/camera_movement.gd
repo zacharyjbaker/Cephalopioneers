@@ -8,6 +8,8 @@ const CAMERA_MOVEMENT_SPEED : int = 4
 @export var max_roll := 0.1 #Maximum rotation in radians (use sparingly).
 @export var noise : FastNoiseLite #The source of random values.
 
+
+
 const CAMERA_LEFT_LIMIT : int = -1400
 const CAMERA_RIGHT_LIMIT : int = 1920
 
@@ -39,14 +41,11 @@ func _process(delta):
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		shake()
-  #optional
+
 	elif offset.x != 0 or offset.y != 0 or rotation != 0:
 		lerp(offset.x,0.0,1)
 		lerp(offset.y,0.0,1)
 		lerp(rotation,0.0,1)
-		
-	#shader.global_position.x = global_position.x
-	#shader.global_position.y = global_position.y
 
 func shake(): 
 	var amt = pow(trauma, trauma_pwr)

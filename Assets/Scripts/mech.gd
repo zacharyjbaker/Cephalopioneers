@@ -2,6 +2,9 @@ extends CharacterBody2D
 @onready var mech_body_sprite = $MechBody
 @onready var mech_front_arm = $FrontArm
 @onready var mech_back_arm = $BackArm
+@onready var drill_area = $DrillArea
+@onready var drill_particles = $DrillArea/DrillParticles
+@onready var laser_explosion_particles = $LaserExplosion
 @onready var pilot = $Pilot
 @onready var camera = $MechCamera
 #@onready var shader = $MechCamera/WaterShader
@@ -31,6 +34,7 @@ func _ready() -> void:
 	original_scale.x = camera.scale.x
 	original_scale.y = camera.scale.y
 	original_rotation = camera.rotation_degrees
+	#drill_area.get_child(0).disabled = false
 	#original_shader_scale.x = shader.scale.x
 	#original_shader_scale.y = shader.scale.y
 	#original_shader_rotation = shader.rotation_degrees
@@ -62,6 +66,10 @@ func close_anim():
 	isClosing = true
 	current_anim = "Close"
 	mech_body_sprite.play(current_anim)
+	
+func laser_explosion():
+	pass
+	#laser_explosion_particles.emitting = true
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -102,9 +110,11 @@ func _physics_process(delta: float) -> void:
 		
 	if isDrilling == true:
 		mech_back_arm.play("Drill")
+		drill_particles.emitting = true
 		
 	elif isDrilling == false:
 		mech_back_arm.play("Idle")
+		drill_particles.emitting = false
 	
 	if (Global.MODE == "Mech" and isClosing == false):
 		# charge jump anim
@@ -174,12 +184,17 @@ func _physics_process(delta: float) -> void:
 			if isHovering == false:
 				mech_body_sprite.stop()
 			if isDrilling == false:
+				drill_area.monitorable = false
 				mech_back_arm.stop()
 			isShooting = true
 		if Input.is_action_just_pressed("back_arm"):
 			isDrilling = true
+			#drill_area.get_child(0).disabled = true
+			print ("Is Drilling")
 		if Input.is_action_just_released("back_arm"):
 			isDrilling = false
+			#drill_area.get_child(0).disabled = false
+			print ("Stop Drilling")
 	else:
 		if is_on_floor() and isClosing == false and isOpening == false:
 			mech_body_sprite.play("IdleOpen")	
@@ -199,7 +214,7 @@ func shoot() -> void:
 	get_tree().root.add_child(laser_proj_instance)
 
 func _on_front_arm_frame_changed() -> void:
-	print ("Shoot")
+	#print ("Shoot")
 	if isShooting == true and mech_front_arm.frame == 6:
 		shoot()
 

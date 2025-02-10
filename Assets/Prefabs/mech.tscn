@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=60 format=3 uid="uid://by0icvlejbtja"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="2_rk7o7"]
@@ -413,6 +413,19 @@ shader_parameter/speed = Vector2(0.03, 0.07)
 shader_parameter/wave_strength = 0.75
 shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_885of"]
+size = Vector2(69, 44)
+
+[sub_resource type="Curve" id="Curve_utgam"]
+max_value = 100.0
+_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(0.103448, 10.1974), 0.0, 22.8948, 0, 0, Vector2(0.3867, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_phdej"]
+min_value = -15.75
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.832512, 1), 0.0, 0.0, 0, 0, Vector2(0.990148, -15.6792), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Mech" type="CharacterBody2D"]
 position = Vector2(-452, 768)
 collision_layer = 16384
@@ -471,8 +484,6 @@ position = Vector2(44, 29)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_obdne")
 animation = &"Shoot"
-frame = 7
-frame_progress = 1.0
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {}
@@ -507,12 +518,68 @@ script = ExtResource("5_lgde3")
 noise = SubResource("FastNoiseLite_0bm8j")
 
 [node name="WaterShader" type="Sprite2D" parent="MechCamera"]
+visible = false
 z_index = 99
 material = SubResource("ShaderMaterial_wvi16")
 rotation = 3.14159
 scale = Vector2(17.1483, 9.87392)
 texture = ExtResource("7_e24ys")
 flip_h = true
+
+[node name="DrillArea" type="Area2D" parent="."]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrillArea"]
+position = Vector2(85.5, 61)
+shape = SubResource("RectangleShape2D_885of")
+
+[node name="DrillParticles" type="CPUParticles2D" parent="DrillArea"]
+position = Vector2(120, 61)
+rotation = -3.12409
+emitting = false
+amount = 150
+speed_scale = 1.9
+explosiveness = 0.07
+randomness = 0.53
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(12, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 216.76
+linear_accel_min = 5.1
+linear_accel_max = 5.1
+radial_accel_max = 51.63
+angle_min = 94.5
+angle_max = 94.5
+scale_amount_max = 6.0
+color = Color(0.893471, 0.732073, 0.528114, 1)
+
+[node name="LaserExposion" type="CPUParticles2D" parent="."]
+position = Vector2(41, 50)
+rotation = -5.31873
+emitting = false
+amount = 300
+lifetime = 10.0
+one_shot = true
+speed_scale = 6.14
+explosiveness = 0.75
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 13.23
+gravity = Vector2(0, 0)
+linear_accel_min = 4.1
+linear_accel_max = 4.1
+radial_accel_min = 10.0
+radial_accel_max = 51.63
+damping_curve = SubResource("Curve_utgam")
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_phdej")
+color = Color(0.443137, 0.780392, 0.741176, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]

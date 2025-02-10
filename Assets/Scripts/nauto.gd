@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var timer = $Timer
 #@onready var mech_sprite = $/Node2D/Mech
 @onready var nauto_camera = $NautoCamera
+#@onready var shader = $WaterShader
 @onready var anim_player = $AnimationPlayer
 @onready var physics_collider = $PhysicsCollider
 @onready var crouch_collider = $PhysicsColliderCrouch
@@ -151,9 +152,11 @@ func _physics_process(delta: float) -> void:
 	if velocity.x > 1:
 		scale.y = abs(scale.y)
 		rotation_degrees = 0
+		#shader.flip_h = false
 	elif velocity.x < -1:
 		scale.y = -1 * abs(scale.y)
 		rotation_degrees = 180
+		#shader.flip_h = true
 	
 	if (Global.MODE == "Mech"):
 		position = pilot_pos
@@ -266,6 +269,7 @@ func _on_timer_timeout() -> void:
 	elif state == States.STOP:
 		state = States.SHOOT
 		mech.shoot_anim()
+		mech.laser_explosion()
 		cutscene()
 	elif state == States.SHOOT:
 		#bgmusic_stop.emit()
