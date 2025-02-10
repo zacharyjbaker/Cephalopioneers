@@ -34,6 +34,8 @@ func _ready() -> void:
 	original_scale.x = camera.scale.x
 	original_scale.y = camera.scale.y
 	original_rotation = camera.rotation_degrees
+	$Flashlight.enabled = false
+	$CockpitLight.enabled = false
 	#drill_area.get_child(0).disabled = false
 	#original_shader_scale.x = shader.scale.x
 	#original_shader_scale.y = shader.scale.y
@@ -61,11 +63,14 @@ func open_anim():
 	isOpening = true
 	current_anim = "Open"
 	mech_body_sprite.play(current_anim)
+	$CockpitLight.enabled = false
+	$AmbientLight.enabled = true
 	
 func close_anim():
 	isClosing = true
 	current_anim = "Close"
 	mech_body_sprite.play(current_anim)
+
 	
 func laser_explosion():
 	pass
@@ -118,6 +123,8 @@ func _physics_process(delta: float) -> void:
 	
 	if (Global.MODE == "Mech" and isClosing == false):
 		# charge jump anim
+		$CockpitLight.enabled = true
+		$AmbientLight.enabled = false
 		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
 			#print ("Hover Right")
 			hover_move_anim()
@@ -195,11 +202,19 @@ func _physics_process(delta: float) -> void:
 			isDrilling = false
 			#drill_area.get_child(0).disabled = false
 			print ("Stop Drilling")
+			
+		if Input.is_action_just_pressed("flashlight"):
+			if $Flashlight.enabled == true:
+				$Flashlight.enabled = false
+			else:
+				$Flashlight.enabled = true
+			
 	else:
 		if is_on_floor() and isClosing == false and isOpening == false:
 			mech_body_sprite.play("IdleOpen")	
 			mech_back_arm.stop()	
 			mech_front_arm.stop()	
+			
 
 func shoot() -> void:
 	var laser_proj_instance = laser_projectile.instantiate()

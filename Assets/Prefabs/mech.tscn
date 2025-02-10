@@ -434,6 +434,14 @@ collision_layer = 16384
 collision_mask = 32768
 script = ExtResource("1_uj2yd")
 
+[node name="Flashlight" type="PointLight2D" parent="."]
+z_index = -1
+position = Vector2(501, 32)
+rotation = -1.5708
+shadow_enabled = true
+texture = ExtResource("8_sxyis")
+texture_scale = 1.5
+
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 40)
 polygon = PackedVector2Array(-40, 96, -24, 96, 48, 24, 48, -88, -88, -96, -88, -24, -80, 16)
@@ -481,6 +489,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "0682abe18e165eaef985ef28bb9bd81c"
 
 [node name="FrontArm" type="AnimatedSprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(44, 29)
 scale = Vector2(4, 4)
@@ -583,18 +592,17 @@ color = Color(0.443137, 0.780392, 0.741176, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="PointLightSource" parent="." instance=ExtResource("8_xxlqe")]
-position = Vector2(13, 8)
+[node name="CockpitLight" parent="." instance=ExtResource("8_xxlqe")]
+position = Vector2(30, -14)
+rotation = -1.5708
+energy = 1.1
+texture_scale = 3.8
+
+[node name="AmbientLight" parent="." instance=ExtResource("8_xxlqe")]
+position = Vector2(0, 0)
 rotation = -1.5708
 energy = 0.9
-
-[node name="Flashlight" type="PointLight2D" parent="."]
-position = Vector2(493, 29)
-rotation = -1.5708
-energy = 1.5
-shadow_enabled = true
-texture = ExtResource("8_sxyis")
-texture_scale = 1.5
+texture_scale = 2.4
 
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]
