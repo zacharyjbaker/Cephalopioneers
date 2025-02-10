@@ -10,9 +10,11 @@ extends CharacterBody2D
 @onready var mech_camera = get_node("/root/Node2D/Mech/MechCamera")
 @onready var mech = get_node("/root/Node2D/Mech")
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
+@onready var env_node = get_node("/root/Node2D/WorldEnvironment")
+@onready var breakable_floor = get_node("/root/Node2D/BreakableFloor")
 
 @export var jump_impulse = 350
-@export var env_node : Node
+
 
 var camera = null
 var knockback = Vector2.ZERO
@@ -23,34 +25,48 @@ var charge = false
 var crouched = false
 var isShiftingNauto = false
 
+enum States {IDLE, MOVE, STOP, SHOOT, FALL, FADE}
+signal cs_break
+signal bgmusic_stop
+signal bgmusic_rumble
+
+var state: States = States.IDLE
+
 func _ready() -> void:
 	#mech_sprite.set_process(false)
 	#mech_sprite.visible = false
 	nauto_camera.make_current()
 	Global.MODE = "Nauto"
 	
+	
+	
 func _input(event)-> void:
-	# Jump
+	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 	#print (global_position.distance_to(pilot_pos))
-	if event.is_action_pressed("ui_up") and is_on_floor():
-		charge_anim()
-	# Shift mode
-	elif mech.is_on_floor() and event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250:
-		print ("Shift")
-		shift_mode()
-	elif event.is_action_pressed("ui_down") and is_on_floor():
-		#print ("crouched")
-		crouched = !crouched
-		if crouched:
-			Global.WALK_SPEED = 250
-			velocity.x = velocity.normalized().x * Global.WALK_SPEED
-			physics_collider.disabled = true
-			crouch_collider.disabled = false
+	#print (mech.is_on_floor())
+	# Jump 
+	#print (global_position.distance_to(pilot_pos))
+	if state == States.IDLE:
+		if event.is_action_pressed("ui_up") and is_on_floor():
 			charge_anim()
-		else:
-			Global.WALK_SPEED = 400
-			physics_collider.disabled = false
-			crouch_collider.disabled = true
+		# Shift mode
+		elif (mech.is_on_floor() and event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250):
+			#Global.START = false
+			print ("Shift")
+			shift_mode()
+		elif event.is_action_pressed("ui_down") and is_on_floor():
+			#print ("crouched")
+			crouched = !crouched
+			if crouched:
+				Global.WALK_SPEED = 250
+				velocity.x = velocity.normalized().x * Global.WALK_SPEED
+				physics_collider.disabled = true
+				crouch_collider.disabled = false
+				charge_anim()
+			else:
+				Global.WALK_SPEED = 400
+				physics_collider.disabled = false
+				crouch_collider.disabled = true
 
 
 func shift_mode() -> void:
@@ -74,21 +90,26 @@ func shift_mode() -> void:
 		velocity = Vector2.ZERO
 		isShiftingNauto = true
 		timer.start(0.5)
-	'''
-	if (mode == "Nauto"):
-		mech_sprite.set_process(true)
-		nauto_sprite.set_process(false)
-		nauto_sprite.visible = false
-		mech_sprite.visible = true
-		mode = "Mech"
-	elif (mode == "Mech"):
-		mech_sprite.set_process(false)
-		nauto_sprite.set_process(true)
-		mech_sprite.visible = false
-		nauto_sprite.visible = true
-		mode = "Nauto"
-	'''
+	if Global.EEL_CUTSCENE == true:
+		print ("Start floor cutscene")
+		state = States.MOVE
+		cutscene()
 		
+func cutscene():
+	if state == States.MOVE:
+		Global.FREEZE = true
+		timer.start(3)
+	elif state == States.STOP:
+		timer.start(4)
+		cs_break.emit()
+	elif state == States.SHOOT:
+		timer.start(1.5)
+	elif state == States.FALL:
+		timer.start(4)
+		Global.SHAKE = true
+	elif state == States.FADE:
+		timer.start(4)
+
 func move_anim():
 	if crouched:
 		current_anim = "CrouchWalk"
@@ -112,6 +133,17 @@ func fall_anim() -> void:
 		nauto_sprite.play(current_anim)
 
 func _physics_process(delta: float) -> void:
+	if state == States.MOVE:
+		mech.velocity.x = -100
+		mech.move_anim()
+	
+	elif state == States.STOP:
+		mech.velocity.x = 0
+		mech.mech_body_sprite.play("Idle")
+		
+	elif state == States.SHOOT:
+		mech.velocity.x = 0	
+	
 	#print (position)
 	velocity.y += delta * Global.GRAVITY 
 	move_and_slide()
@@ -131,6 +163,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Nauto movement
 	elif (Global.MODE == "Nauto") and Global.FREEZE == false:
+		if Input.is_action_just_pressed("debug_teleport"):
+			position = Vector2(25400, 1040)
 		if velocity.y > 0: # falling transition anim
 			if play_transition_anim == true:
 				fall_anim()
@@ -217,16 +251,43 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		Global.HEALTH -= 1
 		#print (env_node.environment.glow_intensity)
 		env_node.set_glow(1)
+	if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
+		#print ("hit")
+		#velocity.x += body.velocity.x * 3
+		#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+		#velocity.y += body.velocity.y * 3
+		if body.is_in_group("aardvark") and body.upside_down == true:
+			velocity.y += -(velocity.y * 2 + body.y_knockback)
 
 func _on_timer_timeout() -> void:
-	if isShiftingNauto == true:
-		isShiftingNauto = false
-		mech.velocity = Vector2.ZERO
-		position.x = pilot_pos.x
-		position.y = pilot_pos.y - 40
-		scale = mech.scale * 4
-		rotation_degrees = mech.rotation_degrees
-		get_node("PhysicsCollider").set_process(true)
-		get_node("HurtBox").set_process(true)
-		visible = true
-		nauto_camera.make_current()
+	if state == States.MOVE:
+		state = States.STOP
+		cutscene()
+	elif state == States.STOP:
+		state = States.SHOOT
+		mech.shoot_anim()
+		cutscene()
+	elif state == States.SHOOT:
+		#bgmusic_stop.emit()
+		bgmusic_rumble.emit()
+		state = States.FALL
+		cutscene()
+	elif state == States.FALL:
+		breakable_floor.enabled = false
+		state = States.FADE
+		cutscene()
+	elif state == States.FADE:
+		env_node.fade_to_black()
+		print ("fade to black")
+	elif state == States.IDLE:
+		if isShiftingNauto == true:
+			isShiftingNauto = false
+			mech.velocity = Vector2.ZERO
+			position.x = pilot_pos.x
+			position.y = pilot_pos.y - 40
+			scale = mech.scale * 4
+			rotation_degrees = mech.rotation_degrees
+			get_node("PhysicsCollider").set_process(true)
+			get_node("HurtBox").set_process(true)
+			visible = true
+			nauto_camera.make_current()

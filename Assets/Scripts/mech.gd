@@ -65,6 +65,8 @@ func close_anim():
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	
+	pilot.global_position = Vector2(global_position.x - 4, global_position.y - 21)
 	#print ("Mech:", position)
 	#print (pilot.global_position)
 	#print (isDrilling)
@@ -87,12 +89,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y += delta * (Global.GRAVITY - gravity_offset)
 	
 	if !is_on_floor() and !(Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
-		if Global.MODE == "Mech":
-			mech_body_sprite.play("Boost")
-		else:
-			mech_body_sprite.play("BoostOpen")
-			mech_back_arm.stop()	
-			mech_front_arm.stop()	
+		if Global.DAMAGED == false:
+			if Global.MODE == "Mech":
+				mech_body_sprite.play("Boost")
+			else:
+				mech_body_sprite.play("BoostOpen")
+				mech_back_arm.stop()	
+				mech_front_arm.stop()	
 	
 	if is_on_floor():
 		floor_height = global_position.y

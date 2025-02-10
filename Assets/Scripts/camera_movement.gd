@@ -1,7 +1,7 @@
 extends Camera2D
 
 const CAMERA_MOVEMENT_SPEED : int = 4
-@onready var shader = get_node("/root/Node2D/WaterShader")
+#@onready var shader = get_node("/root/Node2D/WaterShader")
 
 @export var decay := 0.8 #How quickly shaking will stop [0,1].
 @export var max_offset := Vector2(100,75) #Maximum displacement in pixels.
@@ -45,8 +45,8 @@ func _process(delta):
 		lerp(offset.y,0.0,1)
 		lerp(rotation,0.0,1)
 		
-	shader.global_position.x = global_position.x
-	shader.global_position.y = global_position.y
+	#shader.global_position.x = global_position.x
+	#shader.global_position.y = global_position.y
 
 func shake(): 
 	var amt = pow(trauma, trauma_pwr)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=51 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=57 format=3 uid="uid://by0icvlejbtja"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="2_rk7o7"]
 [ext_resource type="Texture2D" uid="uid://cm6xj4v8nlf34" path="res://Assets/Sprites/MechNoArms.png" id="3_dmxc7"]
 [ext_resource type="Texture2D" uid="uid://dhhcmm0r0ugoi" path="res://Assets/Sprites/FrontArm_Laser.png" id="4_a011g"]
 [ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="5_lgde3"]
+[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="6_4f4cx"]
+[ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="7_e24ys"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrob5"]
 atlas = ExtResource("2_rk7o7")
@@ -385,6 +387,32 @@ animations = [{
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0bm8j"]
 
+[sub_resource type="Gradient" id="Gradient_8213n"]
+offsets = PackedFloat32Array(0.00831025, 1)
+colors = PackedColorArray(0.263519, 0.606987, 0.587369, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ynus1"]
+noise_type = 2
+frequency = 0.0143
+fractal_type = 2
+fractal_gain = 1.0
+fractal_weighted_strength = 0.85
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_itsn2"]
+width = 256
+height = 256
+seamless = true
+seamless_blend_skirt = 0.63
+color_ramp = SubResource("Gradient_8213n")
+noise = SubResource("FastNoiseLite_ynus1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvi16"]
+shader = ExtResource("6_4f4cx")
+shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
+shader_parameter/speed = Vector2(0.03, 0.07)
+shader_parameter/wave_strength = 0.75
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
+
 [node name="Mech" type="CharacterBody2D"]
 position = Vector2(-452, 768)
 collision_layer = 16384
@@ -421,7 +449,7 @@ texture_filter = 1
 position = Vector2(19, 58)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_igd6j")
-animation = &"Close"
+animation = &"Idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {}
@@ -477,6 +505,14 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 script = ExtResource("5_lgde3")
 noise = SubResource("FastNoiseLite_0bm8j")
+
+[node name="WaterShader" type="Sprite2D" parent="MechCamera"]
+z_index = 99
+material = SubResource("ShaderMaterial_wvi16")
+rotation = 3.14159
+scale = Vector2(17.1483, 9.87392)
+texture = ExtResource("7_e24ys")
+flip_h = true
 
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]

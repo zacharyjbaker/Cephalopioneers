@@ -132,7 +132,6 @@ position = Vector2(0.000776487, 214.5)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ip4lg")
 animation = &"Roar"
-frame_progress = 0.48778
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

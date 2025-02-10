@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://crjpk01soglqj"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/boulder.gd" id="1_itcnh"]
-[ext_resource type="Texture2D" uid="uid://bkbeh7614fnm3" path="res://Assets/Sprites/Boulder.png" id="1_t0mnw"]
+[ext_resource type="Texture2D" uid="uid://bnviq87ju0rg" path="res://Assets/Prefabs/Boulder.png" id="1_t0mnw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ft6lw"]
 friction = 0.0

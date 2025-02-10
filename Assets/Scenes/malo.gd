@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 func _physics_process(delta: float) -> void:
 	#print(position.distance_to(player.position))
-	if position.distance_to(player.position) < 130 and Global.FREEZE == false:
+	if position.distance_to(player.position) < 130 and Global.MODE == "Nauto" and Global.FREEZE == false:
 		interact.visible = true
 		Global.INTERACTABLE = true
 	if Global.INTERACTABLE == false:

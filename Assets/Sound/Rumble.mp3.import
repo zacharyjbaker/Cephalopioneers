@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Rumble.mp3-b8e05998155df61372bd942c9d42be5c.m
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0
