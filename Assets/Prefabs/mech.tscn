@@ -8,7 +8,7 @@
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="6_4f4cx"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="7_e24ys"]
 [ext_resource type="Texture2D" uid="uid://bdgyx31pb88l2" path="res://Assets/lightcone.png" id="8_sxyis"]
-[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="8_xxlqe"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="8_xxlqe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrob5"]
 atlas = ExtResource("2_rk7o7")
@@ -434,14 +434,6 @@ collision_layer = 16384
 collision_mask = 32768
 script = ExtResource("1_uj2yd")
 
-[node name="Flashlight" type="PointLight2D" parent="."]
-z_index = -1
-position = Vector2(501, 32)
-rotation = -1.5708
-shadow_enabled = true
-texture = ExtResource("8_sxyis")
-texture_scale = 1.5
-
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 40)
 polygon = PackedVector2Array(-40, 96, -24, 96, 48, 24, 48, -88, -88, -96, -88, -24, -80, 16)
@@ -489,9 +481,8 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "0682abe18e165eaef985ef28bb9bd81c"
 
 [node name="FrontArm" type="AnimatedSprite2D" parent="."]
-z_index = 1
 texture_filter = 1
-position = Vector2(44, 29)
+position = Vector2(43, 29)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_obdne")
 animation = &"Shoot"
@@ -514,6 +505,13 @@ metadata/_aseprite_wizard_source_file_hash_ = "3f0f9415cbdb609ea5d07b1a8aff56aa"
 
 [node name="Pilot" type="Node2D" parent="."]
 position = Vector2(-4, -21)
+
+[node name="CockpitLight" parent="Pilot" instance=ExtResource("8_xxlqe")]
+visible = false
+position = Vector2(34, 7)
+rotation = -1.5708
+energy = 0.9
+texture_scale = 2.2
 
 [node name="MechCamera" type="Camera2D" parent="."]
 position = Vector2(0, -134)
@@ -540,6 +538,7 @@ flip_h = true
 [node name="DrillArea" type="Area2D" parent="."]
 collision_layer = 32768
 collision_mask = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrillArea"]
 position = Vector2(85.5, 61)
@@ -567,6 +566,14 @@ angle_max = 94.5
 scale_amount_max = 6.0
 color = Color(0.893471, 0.732073, 0.528114, 1)
 
+[node name="Flashlight" type="PointLight2D" parent="."]
+z_index = 1
+position = Vector2(603, 62)
+rotation = -1.5708
+energy = 1.28
+texture = ExtResource("8_sxyis")
+texture_scale = 1.8
+
 [node name="LaserExposion" type="CPUParticles2D" parent="."]
 position = Vector2(41, 50)
 rotation = -5.31873
@@ -592,13 +599,8 @@ color = Color(0.443137, 0.780392, 0.741176, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="CockpitLight" parent="." instance=ExtResource("8_xxlqe")]
-position = Vector2(30, -14)
-rotation = -1.5708
-energy = 1.1
-texture_scale = 3.8
-
 [node name="AmbientLight" parent="." instance=ExtResource("8_xxlqe")]
+visible = false
 position = Vector2(0, 0)
 rotation = -1.5708
 energy = 0.9

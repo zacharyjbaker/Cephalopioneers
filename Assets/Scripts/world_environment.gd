@@ -1,6 +1,6 @@
 extends WorldEnvironment
 @onready var timer = $Timer
-var default_intensity = 0.06
+@export var default_intensity = 0.06
 var default_color = load("res://Assets/Prefabs/default_glow.tres")
 var damage_color =  load("res://Assets/Prefabs/damage_glow.tres")
 var fade_to_black_bool = false

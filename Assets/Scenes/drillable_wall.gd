@@ -1,6 +1,7 @@
 extends TileMapLayer
 @export var durability = 100
 var drillable = false
+@onready var mech = get_node("/root/Node2D/Mech")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,12 +11,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if drillable == true and Input.is_action_pressed("back_arm"):
 		print ("Durability:", durability)
+		mech.drill_particles.emitting = true
 		if durability > 0:
 			durability -= 1
 		else:
 			var all_tile_zero_cells = self.get_used_cells()
 			for i in all_tile_zero_cells:
 				clear()
+			queue_free()
+			drillable = false
+			mech.drill_particles.emitting = false
+	elif drillable == true and mech.drill_particles.emitting == true:
+		mech.drill_particles.emitting = false
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "DrillArea":

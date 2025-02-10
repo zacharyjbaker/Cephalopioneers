@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var laser_explosion_particles = $LaserExplosion
 @onready var pilot = $Pilot
 @onready var camera = $MechCamera
+@onready var flashlight = $Flashlight
+@onready var cockpit_light = $Pilot/CockpitLight
 #@onready var shader = $MechCamera/WaterShader
 
 @export var jump_impulse = 200
@@ -34,8 +36,8 @@ func _ready() -> void:
 	original_scale.x = camera.scale.x
 	original_scale.y = camera.scale.y
 	original_rotation = camera.rotation_degrees
-	$Flashlight.enabled = false
-	$CockpitLight.enabled = false
+	flashlight.enabled = false
+	#cockpit_light.enabled = false
 	#drill_area.get_child(0).disabled = false
 	#original_shader_scale.x = shader.scale.x
 	#original_shader_scale.y = shader.scale.y
@@ -63,8 +65,8 @@ func open_anim():
 	isOpening = true
 	current_anim = "Open"
 	mech_body_sprite.play(current_anim)
-	$CockpitLight.enabled = false
-	$AmbientLight.enabled = true
+	#cockpit_light.enabled = false
+	#$AmbientLight.enabled = true
 	
 func close_anim():
 	isClosing = true
@@ -115,7 +117,7 @@ func _physics_process(delta: float) -> void:
 		
 	if isDrilling == true:
 		mech_back_arm.play("Drill")
-		drill_particles.emitting = true
+		#drill_particles.emitting = true
 		
 	elif isDrilling == false:
 		mech_back_arm.play("Idle")
@@ -123,8 +125,16 @@ func _physics_process(delta: float) -> void:
 	
 	if (Global.MODE == "Mech" and isClosing == false):
 		# charge jump anim
-		$CockpitLight.enabled = true
-		$AmbientLight.enabled = false
+		
+		#cockpit_light.texture_scale = lerp(3.8, 2.4, 0.03)
+		#cockpit_light.energy = lerp(1.1, 0.0, 0.01)
+		
+		#cockpit_light.enabled = true
+		#$AmbientLight.enabled = false
+		cockpit_light.energy = lerp(cockpit_light.energy, 1.1, 0.3 * delta)
+		#print (cockpit_light.energy)
+		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 3.8, 0.9 * delta)
+		#print (cockpit_light.texture_scale)
 		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
 			#print ("Hover Right")
 			hover_move_anim()
@@ -204,16 +214,19 @@ func _physics_process(delta: float) -> void:
 			print ("Stop Drilling")
 			
 		if Input.is_action_just_pressed("flashlight"):
-			if $Flashlight.enabled == true:
-				$Flashlight.enabled = false
+			if flashlight.enabled == true:
+				flashlight.enabled = false
 			else:
-				$Flashlight.enabled = true
+				flashlight.enabled = true
 			
 	else:
 		if is_on_floor() and isClosing == false and isOpening == false:
 			mech_body_sprite.play("IdleOpen")	
 			mech_back_arm.stop()	
-			mech_front_arm.stop()	
+			mech_front_arm.stop()
+		cockpit_light.energy = lerp(cockpit_light.energy, 0.9, 0.5 * delta)
+		#print (cockpit_light.energy)
+		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 2.2, 1.4 * delta)
 			
 
 func shoot() -> void:
