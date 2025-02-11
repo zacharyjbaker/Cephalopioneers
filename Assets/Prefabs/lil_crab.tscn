@@ -1,93 +1,94 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhgx6o3rdua0q"]
+[gd_scene load_steps=18 format=3 uid="uid://dhgx6o3rdua0q"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="1_btat5"]
-[ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="2_fgryh"]
+[ext_resource type="Texture2D" uid="uid://bf8ytlxhgdfxc" path="res://Assets/Prefabs/SpiderCrab.png" id="2_xymsj"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="3_mmvsu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pn3lu"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn2n5"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(64, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hcpi8"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0nrr"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(64, 128, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iiwjo"]
-atlas = ExtResource("2_fgryh")
-region = Rect2(192, 128, 64, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_frscq"]
+atlas = ExtResource("2_xymsj")
+region = Rect2(64, 384, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0e86"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_22oc4"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(128, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0t44"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6bfj"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(192, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tl12"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii5dp"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(0, 128, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmwsc"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8h06"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(128, 128, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkmmq"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v8s1"]
+atlas = ExtResource("2_xymsj")
+region = Rect2(192, 128, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6qdd"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(0, 256, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c8abm"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi4q5"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(64, 256, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ebjf"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6gq3"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(128, 256, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_62oxf"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jve51"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(192, 256, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vw16r"]
-atlas = ExtResource("2_fgryh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2odj"]
+atlas = ExtResource("2_xymsj")
 region = Rect2(0, 384, 64, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1qsi2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxknp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pn3lu")
+"texture": SubResource("AtlasTexture_gn2n5")
 }],
 "loop": true,
 "name": &"Ambush",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
+"texture": SubResource("AtlasTexture_s0nrr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iiwjo")
+"texture": SubResource("AtlasTexture_frscq")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pn3lu")
+"texture": SubResource("AtlasTexture_gn2n5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j0e86")
+"texture": SubResource("AtlasTexture_22oc4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p0t44")
+"texture": SubResource("AtlasTexture_k6bfj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0tl12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
+"texture": SubResource("AtlasTexture_ii5dp")
 }],
 "loop": false,
 "name": &"Mimic",
@@ -95,16 +96,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
+"texture": SubResource("AtlasTexture_s0nrr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rmwsc")
+"texture": SubResource("AtlasTexture_b8h06")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iiwjo")
+"texture": SubResource("AtlasTexture_7v8s1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dkmmq")
+"texture": SubResource("AtlasTexture_y6qdd")
 }],
 "loop": true,
 "name": &"Walk",
@@ -112,16 +113,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c8abm")
+"texture": SubResource("AtlasTexture_vi4q5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ebjf")
+"texture": SubResource("AtlasTexture_k6gq3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_62oxf")
+"texture": SubResource("AtlasTexture_jve51")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vw16r")
+"texture": SubResource("AtlasTexture_g2odj")
 }],
 "loop": true,
 "name": &"WalkDrill",
@@ -141,7 +142,7 @@ polygon = PackedVector2Array(-10.75, -1.08992, -16.25, -4.22343, -14, -5.99455, 
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_1qsi2")
+sprite_frames = SubResource("SpriteFrames_lxknp")
 animation = &"Ambush"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
@@ -155,7 +156,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/SpiderCrab.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "d033356c267ab18f49b61b6b6d3dbbe9"
+metadata/_aseprite_wizard_source_file_hash_ = "6fc1f5c634715c19fea44932e0fe998f"
 
 [node name="Timer" type="Timer" parent="."]
 
