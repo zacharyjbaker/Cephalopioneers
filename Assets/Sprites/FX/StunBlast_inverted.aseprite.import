@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://c1sbtpwald35n"
-valid=false
+path="res://.godot/imported/StunBlast_inverted.aseprite-5a81a82f76a010805b159b671e2d94ce.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/FX/StunBlast_inverted.aseprite"
+dest_files=["res://.godot/imported/StunBlast_inverted.aseprite-5a81a82f76a010805b159b671e2d94ce.res"]
 
 [params]
 

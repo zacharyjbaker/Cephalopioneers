@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://d4lvdmyaf4ksr"
-valid=false
+path="res://.godot/imported/Needlenose.aseprite-cde22f8cc94f7d9b044ee758ba2358a7.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Enemies/Needlenose.aseprite"
+dest_files=["res://.godot/imported/Needlenose.aseprite-cde22f8cc94f7d9b044ee758ba2358a7.res"]
 
 [params]
 
