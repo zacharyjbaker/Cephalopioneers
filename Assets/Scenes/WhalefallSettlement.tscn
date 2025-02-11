@@ -1,7 +1,7 @@
 [gd_scene load_steps=85 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
-[ext_resource type="Gradient" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
+[ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_doonm"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_e1pi3"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="5_gcgym"]
@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="31_74oin"]
 [ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="32_m2ym8"]
 [ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="33_nxf6a"]
-[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
 noise_type = 2
@@ -1532,7 +1532,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("31_74oin")
 
 [node name="LilCrab" type="CharacterBody2D" parent="."]
-position = Vector2(11629, 889)
+position = Vector2(12001, 944)
 scale = Vector2(4, 4)
 script = ExtResource("32_m2ym8")
 

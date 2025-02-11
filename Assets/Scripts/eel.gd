@@ -166,7 +166,7 @@ func _physics_process(delta: float) -> void:
 		var vector = player.global_position - self.global_position
 		var end = abs(global_position.x - mech.global_position.x)
 		#look_at(player.global_position)
-		if end < 3500:
+		if end < 2700:
 			if velocity.x > 0:
 				velocity.x -= 4
 		else:

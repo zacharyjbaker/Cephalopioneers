@@ -16,7 +16,7 @@ var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
 
 var current_anim = ""
 var gravity_offset = 0
-@export var hover_height = 140
+@export var hover_height = 180
 var floor_height = 0
 var original_scale = Vector2.ZERO
 var original_rotation = 0
