@@ -223,9 +223,9 @@ func _physics_process(delta: float) -> void:
 			#print ("Shoot")
 			if isHovering == false:
 				mech_body_sprite.stop()
-			if isDrilling == false:
-				drill_area.monitorable = false
-				mech_back_arm.stop()
+			#if isDrilling == false:
+				#drill_area.monitorable = false
+				#mech_back_arm.stop()
 			isShooting = true
 		elif isShooting == false:
 			mech_front_arm.play("Idle")
