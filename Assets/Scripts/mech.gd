@@ -11,7 +11,9 @@ extends CharacterBody2D
 @onready var flashlight_cone = $FlashlightCone
 @onready var cockpit_light = $Pilot/CockpitLight
 @onready var boost_light = $BoostLight
+@onready var boost_particles = $BoostParticles
 @onready var back_boost_light = $BackBoostLight
+@onready var back_boost_particles = $BackBoostParticles
 #@onready var shader = $MechCamera/WaterShader
 
 @export var jump_impulse = 200
@@ -125,12 +127,16 @@ func _physics_process(delta: float) -> void:
 				mech_back_arm.stop()	
 				mech_front_arm.stop()	
 		boost_light.enabled = true
+		boost_particles.emitting = true
 		back_boost_light.enabled = false
+		back_boost_particles.emitting = false
 	
 	if is_on_floor():
 		floor_height = global_position.y
 		boost_light.enabled = false
+		boost_particles.emitting = false
 		back_boost_light.enabled = false
+		back_boost_particles.emitting = false
 		
 	if isDrilling == true:
 		mech_back_arm.play("Drill")
@@ -156,7 +162,9 @@ func _physics_process(delta: float) -> void:
 			#print ("Hover Right")
 			hover_move_anim()
 			boost_light.enabled = true
+			boost_particles.emitting = true
 			back_boost_light.enabled = true
+			back_boost_particles.emitting = true
 			if velocity.x < (Global.WALK_SPEED - 150):
 				velocity.x +=  Global.WALK_SPEED * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
@@ -169,7 +177,9 @@ func _physics_process(delta: float) -> void:
 			#print ("Hover Right")
 			hover_move_anim()
 			boost_light.enabled = true
+			boost_particles.emitting = true
 			back_boost_light.enabled = true
+			back_boost_particles.emitting = true
 			if velocity.x > -(Global.WALK_SPEED - 150):
 				velocity.x +=  -Global.WALK_SPEED * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
@@ -183,7 +193,9 @@ func _physics_process(delta: float) -> void:
 				position.y += -(jump_impulse) * delta
 				isHovering = true
 				boost_light.enabled = true
+				boost_particles.emitting = true
 				back_boost_light.enabled = false
+				back_boost_particles.emitting = false
 				velocity.x = 0
 				if global_position.y - (floor_height - hover_height) <= 5:
 					position.y = (floor_height - hover_height)
@@ -227,6 +239,7 @@ func _physics_process(delta: float) -> void:
 				#drill_area.monitorable = false
 				#mech_back_arm.stop()
 			isShooting = true
+			#mech_front_arm.stop()
 		elif isShooting == false:
 			mech_front_arm.play("Idle")
 		
@@ -265,10 +278,10 @@ func shoot() -> void:
 	
 	if rotation_degrees == 0:
 		laser_proj_instance.velocity.x = 1
-		laser_proj_instance.position = position + Vector2(90, 45)
+		laser_proj_instance.position = position + Vector2(90, 60)
 	else:
 		laser_proj_instance.velocity.x = -1
-		laser_proj_instance.position = position + Vector2(-90, 45)
+		laser_proj_instance.position = position + Vector2(-90, 60)
 	#print (velocity.norma	lized().x)
 	get_tree().root.add_child(laser_proj_instance)
 

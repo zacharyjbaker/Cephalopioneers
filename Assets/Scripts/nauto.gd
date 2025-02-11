@@ -48,7 +48,7 @@ func _input(event)-> void:
 	#print (mech.is_on_floor())
 	# Jump 
 	#print (global_position.distance_to(pilot_pos))
-	if state == States.IDLE:
+	if state == States.IDLE and Global.MODE == "Nauto":
 		if event.is_action_pressed("ui_up") and is_on_floor():
 			charge_anim()
 		# Shift mode

@@ -63,12 +63,12 @@ func _physics_process(delta: float) -> void:
 					if abs(velocity.x) > max_speed:
 						velocity.x = sign(distance) * max_speed 
 			'''
-			print (is_in_flashlight)
+			#print (is_in_flashlight)
 			if abs(distance) < aggro_range:
 				if is_in_flashlight == true:
-						velocity.x += delta * run_speed * sign(distance)
-						if abs(velocity.x) > run_max_speed:
-							velocity.x = sign(distance) * run_max_speed 
+					velocity.x += delta * run_speed * sign(distance)
+					if abs(velocity.x) > run_max_speed:
+						velocity.x = sign(distance) * run_max_speed 
 				else:
 					velocity.x += delta * charge_speed * -sign(distance)
 					if abs(velocity.x) > charge_max_speed:

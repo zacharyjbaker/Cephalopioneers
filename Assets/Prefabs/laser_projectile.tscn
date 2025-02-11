@@ -84,9 +84,19 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "4e0095010e79eb598646339c26d5cad0"
 
 [node name="HitBox" type="CollisionShape2D" parent="." groups=["laser"]]
-visible = false
 position = Vector2(4.75, -0.25)
 rotation = 1.57376
+shape = SubResource("CapsuleShape2D_n4uej")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(4.75, -0.25)
+rotation = 1.57376
+scale = Vector2(0.67092, 0.830001)
+collision_layer = 0
+collision_mask = 32768
+
+[node name="HurtBox" type="CollisionShape2D" parent="Area2D" groups=["laser"]]
+scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_n4uej")
 
 [node name="PointLightSource" parent="." instance=ExtResource("4_e8xaf")]
@@ -120,3 +130,5 @@ scale_amount_min = 3.0
 scale_amount_max = 6.0
 scale_amount_curve = SubResource("Curve_ttica")
 color = Color(0.823529, 0.976471, 0.882353, 1)
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

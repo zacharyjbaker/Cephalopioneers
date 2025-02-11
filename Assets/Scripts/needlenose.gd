@@ -210,7 +210,7 @@ func random_direction_selection() -> void:
 func _on_view_cone_body_entered(body: Node2D) -> void:
 	if body == player and Global.MODE == "Nauto" and Global.FREEZE == false:
 		isInViewCone = true
-		if isAttackReady == false and state == "Swim" and isStun == false:
+		if isAttackReady == false and state == "Swim" and isStun == false and body == player:
 			target_body = body
 			enter_attack_state(body)
 		

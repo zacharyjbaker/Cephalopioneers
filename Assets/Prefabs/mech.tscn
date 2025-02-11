@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=68 format=3 uid="uid://by0icvlejbtja"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="2_rk7o7"]
@@ -434,6 +434,12 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.0308989, 0.0702247, 0.682584, 0.780899, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.433743, 0.433743, 0.433743, 1, 0.581901, 0.581901, 0.581901, 1, 0.202247, 0.202247, 0.202247, 1, 0.119219, 0.119219, 0.119219, 1, 0, 0, 0, 1)
 
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sd7kk"]
+gradient = SubResource("Gradient_wadjw")
+fill = 1
+fill_from = Vector2(0.551282, 0.508547)
+fill_to = Vector2(0.141026, 0.482906)
+
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8tgxl"]
 gradient = SubResource("Gradient_wadjw")
 width = 128
@@ -442,11 +448,15 @@ fill = 2
 fill_from = Vector2(0.495726, 0.508547)
 fill_to = Vector2(0.0512821, 0.978632)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sd7kk"]
-gradient = SubResource("Gradient_wadjw")
-fill = 1
-fill_from = Vector2(0.551282, 0.508547)
-fill_to = Vector2(0.141026, 0.482906)
+[sub_resource type="Curve" id="Curve_j5n6u"]
+max_value = 190.35
+_data = [Vector2(0, 2.29922), 0.0, 0.0, 0, 0, Vector2(0.992, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_cxxgs"]
+max_value = 3.0
+_data = [Vector2(0, 0.898765), 0.0, 0.0, 0, 0, Vector2(0.676, 0.831846), 0.0, 0.0, 0, 0, Vector2(0.992, 0.363418), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Mech" type="CharacterBody2D"]
 light_mask = 3
@@ -640,6 +650,7 @@ texture_scale = 1.8
 
 [node name="BoostLight" parent="." instance=ExtResource("8_xxlqe")]
 light_mask = 0
+z_index = 1
 position = Vector2(-2.00001, 151.347)
 rotation = -1.5708
 scale = Vector2(4.09753, 5.38576)
@@ -648,6 +659,18 @@ range_item_cull_mask = 24
 shadow_item_cull_mask = 0
 texture = ExtResource("10_1tqin")
 texture_scale = 0.36
+
+[node name="BackBoostLight" parent="." instance=ExtResource("8_xxlqe")]
+light_mask = 0
+z_index = 1
+position = Vector2(-95, 22)
+rotation = 2.15681
+scale = Vector2(4.27078, -3.82958)
+energy = 13.0
+range_item_cull_mask = 24
+shadow_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_sd7kk")
+texture_scale = 0.52
 
 [node name="GaugeLight" parent="." instance=ExtResource("8_xxlqe")]
 visible = false
@@ -661,16 +684,63 @@ shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_8tgxl")
 texture_scale = 0.76
 
-[node name="BackBoostLight" parent="." instance=ExtResource("8_xxlqe")]
+[node name="BoostParticles" type="CPUParticles2D" parent="."]
+light_mask = 32
+z_index = -1
+position = Vector2(-1, 193)
+rotation = 1.5708
+amount = 150
+emission_shape = 2
+emission_sphere_radius = 51.1
+direction = Vector2(0, 1)
+spread = 3.0
+gravity = Vector2(0, 900)
+damping_curve = SubResource("Curve_j5n6u")
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_cxxgs")
+
+[node name="BoostParticleLight" parent="BoostParticles" instance=ExtResource("8_xxlqe")]
 light_mask = 0
-position = Vector2(-95, 22)
-rotation = -0.984782
-scale = Vector2(-4.27078, 3.82958)
+z_index = 1
+position = Vector2(163.464, -46.7501)
+rotation = 3.14159
+scale = Vector2(4.09753, 5.38576)
+energy = 16.45
+range_item_cull_mask = 32
+shadow_item_cull_mask = 0
+texture = ExtResource("10_1tqin")
+texture_scale = 3.06
+
+[node name="BackBoostParticles" type="CPUParticles2D" parent="."]
+light_mask = 32
+z_index = -1
+position = Vector2(-82, 30)
+rotation = 0.843969
+amount = 70
+emission_shape = 2
+emission_sphere_radius = 13.0
+direction = Vector2(0, 1)
+spread = 3.0
+gravity = Vector2(0, 900)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+damping_curve = SubResource("Curve_j5n6u")
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_cxxgs")
+
+[node name="BackBoostParticleLight" parent="BackBoostParticles" instance=ExtResource("8_xxlqe")]
+light_mask = 0
+z_index = 1
+position = Vector2(189.117, -39.7501)
+rotation = 0.586014
+scale = Vector2(4.27078, -3.82958)
 energy = 13.0
-range_item_cull_mask = 24
+range_item_cull_mask = 32
 shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_sd7kk")
-texture_scale = 0.52
+texture_scale = 3.06
 
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]

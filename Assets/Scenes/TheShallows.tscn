@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=66 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
@@ -31,8 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://bss4600ghnvh8" path="res://Assets/Prefabs/chase_needlenose.tscn" id="29_xbdbo"]
 [ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="30_ny3i0"]
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="31_vmlcy"]
-[ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="32_pt0sa"]
-[ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="33_g8pmf"]
 [ext_resource type="PackedScene" uid="uid://cio233345wwf8" path="res://Assets/Prefabs/boulder_wall.tscn" id="34_empbd"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
 [ext_resource type="PackedScene" uid="uid://clgn2bcvfayy" path="res://Assets/Prefabs/Boulder.tscn" id="37_rha8h"]
@@ -260,122 +258,6 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hcpi8"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(64, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iiwjo"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(192, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pn3lu"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(64, 0, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0e86"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(128, 0, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0t44"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(192, 0, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tl12"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(0, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmwsc"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(128, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkmmq"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(0, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c8abm"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(64, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ebjf"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(128, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_62oxf"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(192, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vw16r"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(0, 384, 64, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1qsi2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iiwjo")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pn3lu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j0e86")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p0t44")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0tl12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
-}],
-"loop": false,
-"name": &"Mimic",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rmwsc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iiwjo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dkmmq")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 17.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c8abm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ebjf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_62oxf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vw16r")
-}],
-"loop": true,
-"name": &"WalkDrill",
-"speed": 17.0
 }]
 
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
@@ -668,10 +550,10 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(-1947, 833)
+position = Vector2(850, 808)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(-2390, 902)
+position = Vector2(407, 877)
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]
@@ -736,33 +618,6 @@ metadata/_aseprite_wizard_source_file_hash_ = "63d319f3b7d96c43098a9c21cc2b1a1c"
 z_index = -1
 position = Vector2(17157, 1999)
 rotation = 0.000544786
-
-[node name="LilCrab" type="CharacterBody2D" parent="."]
-visible = false
-position = Vector2(11629, 889)
-scale = Vector2(4, 4)
-script = ExtResource("32_pt0sa")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LilCrab"]
-texture_filter = 1
-position = Vector2(-1.33333, 9)
-sprite_frames = SubResource("SpriteFrames_1qsi2")
-animation = &"Mimic"
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/SpiderCrab.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "d033356c267ab18f49b61b6b6d3dbbe9"
-
-[node name="Timer" type="Timer" parent="LilCrab"]
 
 [node name="NPCs" type="Node" parent="."]
 
@@ -1690,4 +1545,3 @@ texture_scale = 6.85
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
-[connection signal="timeout" from="LilCrab/Timer" to="LilCrab" method="_on_timer_timeout"]
