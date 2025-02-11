@@ -4,18 +4,27 @@ extends Node2D
 @onready var timer = $Timer
 
 var color = Color("FFFFFF")
-var song_list = ["res://Assets/Sound/Music/Cargo.mp3", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3"]
-var credit_list = ["NOW PLAYING\n\"Cargo\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", ""]
+var song_list = ["res://Assets/Sound/Music/Cargo.mp3", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3", "res://Assets/Sound/Music/Whale.mp3"]
+var credit_list = ["NOW PLAYING\n\"The Shallows\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", "", "NOW PLAYING\n\"The Whalefall\" by Josh Thies"]
 
 var isFading = false
 
 func _ready() -> void:
-	change_music(0)
-	var eel_script = get_node("/root/Node2D/LeviathanEel")
+	match Global.SCENE:
+		"TheShallows":
+			change_music(0)
+			var eel_script = get_node("/root/Node2D/LeviathanEel")
+			eel_script.bgmusic_chase.connect(change_music.bind(1))
+			eel_script.bgmusic_stop.connect(change_music.bind(-1))
+		"WhalefallSettlement":
+			change_music(3)
+		_:
+			pass
+		
+	
 	var dialogue_script = get_node("/root/Node2D/DialogueManager")
 	var nauto_script = get_node("/root/Node2D/Nauto")
-	eel_script.bgmusic_chase.connect(change_music.bind(1))
-	eel_script.bgmusic_stop.connect(change_music.bind(-1))
+	
 	dialogue_script.bgmusic_stop.connect(change_music.bind(-1))
 	dialogue_script.bgmusic_rumble.connect(change_music.bind(2))
 	nauto_script.bgmusic_rumble.connect(change_music.bind(2))

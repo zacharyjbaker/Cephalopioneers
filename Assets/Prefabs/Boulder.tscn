@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://crjpk01soglqj"]
+[gd_scene load_steps=6 format=3 uid="uid://clgn2bcvfayy"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/boulder.gd" id="1_itcnh"]
-[ext_resource type="Texture2D" uid="uid://bnviq87ju0rg" path="res://Assets/Prefabs/Boulder.png" id="1_t0mnw"]
+[ext_resource type="Texture2D" uid="uid://bslvmoibm6qwx" path="res://Assets/Prefabs/Boulder.png" id="1_t0mnw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ft6lw"]
 friction = 0.0
@@ -10,7 +10,10 @@ bounce = 0.2
 [sub_resource type="CircleShape2D" id="CircleShape2D_qw8v6"]
 radius = 29.5572
 
-[node name="RigidBody2D" type="RigidBody2D" node_paths=PackedStringArray("FallTimer")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jaudt"]
+radius = 8.6677
+
+[node name="Boulder" type="RigidBody2D" node_paths=PackedStringArray("FallTimer")]
 collision_layer = 32768
 collision_mask = 32768
 physics_material_override = SubResource("PhysicsMaterial_ft6lw")
@@ -31,5 +34,13 @@ shape = SubResource("CircleShape2D_qw8v6")
 [node name="FallTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Boulder" type="Area2D" parent="."]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boulder"]
+scale = Vector2(14.7679, 14.5936)
+shape = SubResource("CircleShape2D_jaudt")
 
 [connection signal="timeout" from="FallTimer" to="." method="_on_timer_timeout"]

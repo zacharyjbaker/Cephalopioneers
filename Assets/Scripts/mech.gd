@@ -2,8 +2,15 @@ extends CharacterBody2D
 @onready var mech_body_sprite = $MechBody
 @onready var mech_front_arm = $FrontArm
 @onready var mech_back_arm = $BackArm
+@onready var drill_area = $DrillArea
+@onready var drill_particles = $DrillArea/DrillParticles
+@onready var laser_explosion_particles = $LaserExplosion
 @onready var pilot = $Pilot
 @onready var camera = $MechCamera
+@onready var flashlight = $Flashlight
+@onready var cockpit_light = $Pilot/CockpitLight
+@onready var boost_light = $BoostLight
+@onready var back_boost_light = $BackBoostLight
 #@onready var shader = $MechCamera/WaterShader
 
 @export var jump_impulse = 200
@@ -11,7 +18,7 @@ var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
 
 var current_anim = ""
 var gravity_offset = 0
-@export var hover_height = 140
+@export var hover_height = 180
 var floor_height = 0
 var original_scale = Vector2.ZERO
 var original_rotation = 0
@@ -31,6 +38,18 @@ func _ready() -> void:
 	original_scale.x = camera.scale.x
 	original_scale.y = camera.scale.y
 	original_rotation = camera.rotation_degrees
+	flashlight.enabled = false
+	
+	match Global.SCENE:
+		"TheShallows":
+			cockpit_light.enabled = false
+		"WhalefallSettlement":
+			cockpit_light.enabled = true
+		_:
+			pass
+		
+	#cockpit_light.enabled = false
+	#drill_area.get_child(0).disabled = false
 	#original_shader_scale.x = shader.scale.x
 	#original_shader_scale.y = shader.scale.y
 	#original_shader_rotation = shader.rotation_degrees
@@ -57,11 +76,18 @@ func open_anim():
 	isOpening = true
 	current_anim = "Open"
 	mech_body_sprite.play(current_anim)
+	#cockpit_light.enabled = false
+	#$AmbientLight.enabled = true
 	
 func close_anim():
 	isClosing = true
 	current_anim = "Close"
 	mech_body_sprite.play(current_anim)
+
+	
+func laser_explosion():
+	pass
+	#laser_explosion_particles.emitting = true
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -96,21 +122,39 @@ func _physics_process(delta: float) -> void:
 				mech_body_sprite.play("BoostOpen")
 				mech_back_arm.stop()	
 				mech_front_arm.stop()	
+		boost_light.enabled = true
+		back_boost_light.enabled = false
 	
 	if is_on_floor():
 		floor_height = global_position.y
+		boost_light.enabled = false
+		back_boost_light.enabled = false
 		
 	if isDrilling == true:
 		mech_back_arm.play("Drill")
+		#drill_particles.emitting = true
 		
 	elif isDrilling == false:
 		mech_back_arm.play("Idle")
+		drill_particles.emitting = false
 	
 	if (Global.MODE == "Mech" and isClosing == false):
 		# charge jump anim
+		
+		#cockpit_light.texture_scale = lerp(3.8, 2.4, 0.03)
+		#cockpit_light.energy = lerp(1.1, 0.0, 0.01)
+		
+		#cockpit_light.enabled = true
+		#$AmbientLight.enabled = false
+		cockpit_light.energy = lerp(cockpit_light.energy, 1.1, 0.3 * delta)
+		#print (cockpit_light.energy)
+		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 3.8, 0.9 * delta)
+		#print (cockpit_light.texture_scale)
 		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
 			#print ("Hover Right")
 			hover_move_anim()
+			boost_light.enabled = true
+			back_boost_light.enabled = true
 			if velocity.x < (Global.WALK_SPEED - 150):
 				velocity.x +=  Global.WALK_SPEED * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
@@ -122,6 +166,8 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
 			#print ("Hover Right")
 			hover_move_anim()
+			boost_light.enabled = true
+			back_boost_light.enabled = true
 			if velocity.x > -(Global.WALK_SPEED - 150):
 				velocity.x +=  -Global.WALK_SPEED * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
@@ -134,6 +180,8 @@ func _physics_process(delta: float) -> void:
 			if (global_position.y > floor_height - hover_height):
 				position.y += -(jump_impulse) * delta
 				isHovering = true
+				boost_light.enabled = true
+				back_boost_light.enabled = false
 				velocity.x = 0
 				if global_position.y - (floor_height - hover_height) <= 5:
 					position.y = (floor_height - hover_height)
@@ -174,17 +222,39 @@ func _physics_process(delta: float) -> void:
 			if isHovering == false:
 				mech_body_sprite.stop()
 			if isDrilling == false:
+				drill_area.monitorable = false
 				mech_back_arm.stop()
 			isShooting = true
+		elif isShooting == false:
+			mech_front_arm.play("Idle")
+		
 		if Input.is_action_just_pressed("back_arm"):
 			isDrilling = true
+			#drill_area.get_child(0).disabled = true
+			print ("Is Drilling")
+		elif isDrilling == false:
+			mech_back_arm.play("Idle")
+
 		if Input.is_action_just_released("back_arm"):
 			isDrilling = false
+			#drill_area.get_child(0).disabled = false
+			print ("Stop Drilling")
+			
+		if Input.is_action_just_pressed("flashlight"):
+			if flashlight.enabled == true:
+				flashlight.enabled = false
+			else:
+				flashlight.enabled = true
+			
 	else:
 		if is_on_floor() and isClosing == false and isOpening == false:
 			mech_body_sprite.play("IdleOpen")	
 			mech_back_arm.stop()	
-			mech_front_arm.stop()	
+			mech_front_arm.stop()
+		cockpit_light.energy = lerp(cockpit_light.energy, 0.9, 0.5 * delta)
+		#print (cockpit_light.energy)
+		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 2.2, 1.4 * delta)
+			
 
 func shoot() -> void:
 	var laser_proj_instance = laser_projectile.instantiate()
@@ -199,7 +269,7 @@ func shoot() -> void:
 	get_tree().root.add_child(laser_proj_instance)
 
 func _on_front_arm_frame_changed() -> void:
-	print ("Shoot")
+	#print ("Shoot")
 	if isShooting == true and mech_front_arm.frame == 6:
 		shoot()
 

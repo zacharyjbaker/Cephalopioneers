@@ -1,10 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bxa0nwx5uicwr"]
+[gd_scene load_steps=24 format=3 uid="uid://bxa0nwx5uicwr"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_djhdu"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_cwmej"]
 [ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_kx56x"]
-[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="4_scgb5"]
-[ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="5_qog4o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("2_cwmej")
@@ -173,32 +171,6 @@ height = 20.6982
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qjqus"]
 
-[sub_resource type="Gradient" id="Gradient_k4t7l"]
-offsets = PackedFloat32Array(0.00831025, 1)
-colors = PackedColorArray(0.263519, 0.606987, 0.587369, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_kbyii"]
-noise_type = 2
-frequency = 0.0143
-fractal_type = 2
-fractal_gain = 1.0
-fractal_weighted_strength = 0.85
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4hwls"]
-width = 256
-height = 256
-seamless = true
-seamless_blend_skirt = 0.63
-color_ramp = SubResource("Gradient_k4t7l")
-noise = SubResource("FastNoiseLite_kbyii")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhksr"]
-shader = ExtResource("4_scgb5")
-shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
-shader_parameter/speed = Vector2(0.03, 0.07)
-shader_parameter/wave_strength = 0.75
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_4hwls")
-
 [node name="Nauto" type="CharacterBody2D"]
 position = Vector2(-1609, 1143)
 scale = Vector2(4, 4)
@@ -208,7 +180,7 @@ script = ExtResource("1_djhdu")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 0.75)
-polygon = PackedVector2Array(-11.5, 8, 9.25, -7.5, -6.75, -10, -9.25, -5)
+polygon = PackedVector2Array(-11.5, 7.75, 12.75, -9.5, -6.75, -10, -9.25, -5)
 
 [node name="PhysicsColliderCrouch" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 0.75)
@@ -258,7 +230,7 @@ rotation = -0.634701
 shape = SubResource("CapsuleShape2D_ylio2")
 
 [node name="NautoCamera" type="Camera2D" parent="."]
-position = Vector2(-0.25, -59.25)
+position = Vector2(-0.25, -21.5)
 scale = Vector2(0.25, 0.25)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -272,14 +244,6 @@ script = ExtResource("3_kx56x")
 decay = 0.0
 max_offset = Vector2(40, 30)
 noise = SubResource("FastNoiseLite_qjqus")
-
-[node name="WaterShader" type="Sprite2D" parent="NautoCamera"]
-z_index = 99
-material = SubResource("ShaderMaterial_dhksr")
-rotation = 3.14159
-scale = Vector2(17.1483, 9.87392)
-texture = ExtResource("5_qog4o")
-flip_h = true
 
 [node name="Timer" type="Timer" parent="."]
 

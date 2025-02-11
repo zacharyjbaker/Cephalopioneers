@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3jgfc12ggl4v"]
+
+[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/bone_gate_animation.gd" id="1_amb5p"]
+[ext_resource type="Texture2D" uid="uid://dipr0iptygkh4" path="res://Assets/Sprites/Whale Fall Environment/Bone Gate.png" id="1_qwrns"]
+[ext_resource type="Texture2D" uid="uid://smuxxopy02mu" path="res://Assets/Sprites/Whale Fall Environment/Bone Gate Back.png" id="2_181wk"]
+
+[sub_resource type="Animation" id="Animation_nbbvj"]
+resource_name = "Gate_algae"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3h0ej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytvl1"]
+_data = {
+"Gate_algae": SubResource("Animation_nbbvj"),
+"RESET": SubResource("Animation_3h0ej")
+}
+
+[node name="BoneGate" type="Node2D"]
+script = ExtResource("1_amb5p")
+
+[node name="Front" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("1_qwrns")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Front"]
+libraries = {
+"": SubResource("AnimationLibrary_ytvl1")
+}
+speed_scale = 1.2
+
+[node name="Back" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_181wk")
