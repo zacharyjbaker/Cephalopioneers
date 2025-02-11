@@ -507,6 +507,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "3f0f9415cbdb609ea5d07b1a8aff56aa"
 position = Vector2(-4, -21)
 
 [node name="CockpitLight" parent="Pilot" instance=ExtResource("8_xxlqe")]
+visible = false
 position = Vector2(34, 7)
 rotation = -1.5708
 energy = 0.9
