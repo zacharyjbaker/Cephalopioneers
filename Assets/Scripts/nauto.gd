@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 @onready var env_node = get_node("/root/Node2D/WorldEnvironment")
 @onready var breakable_floor = get_node("/root/Node2D/MiscEnv/BreakableFloor")
+@onready var HP = get_node("/root/Node2D/UI/HP").get_children()
 
 @export var jump_impulse = 350
 
@@ -251,7 +252,7 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
 		#velocity.y += body.velocity.y * 3
 		velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
-		Global.HEALTH -= 1
+		health_loss()
 		#print (env_node.environment.glow_intensity)
 		env_node.set_glow(1)
 	if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
@@ -261,6 +262,10 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		#velocity.y += body.velocity.y * 3
 		if body.is_in_group("aardvark") and body.upside_down == true:
 			velocity.y += -(velocity.y * 2 + body.y_knockback)
+
+func health_loss() -> void:
+	Global.HEALTH -= 1
+	HP[Global.HEALTH].visible = false
 
 func _on_timer_timeout() -> void:
 	if state == States.MOVE:

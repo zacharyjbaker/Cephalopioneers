@@ -8,7 +8,7 @@
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="6_4f4cx"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="7_e24ys"]
 [ext_resource type="Texture2D" uid="uid://bdgyx31pb88l2" path="res://Assets/lightcone.png" id="8_sxyis"]
-[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="8_xxlqe"]
+[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="8_xxlqe"]
 [ext_resource type="Texture2D" uid="uid://hwa51d66j4j8" path="res://Assets/Prefabs/gauge.tres" id="10_1tqin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrob5"]
@@ -625,7 +625,7 @@ monitoring = false
 position = Vector2(12.002, -547)
 rotation = -1.56964
 scale = Vector2(1.05856, 1.45879)
-polygon = PackedVector2Array(-13.5, -1.5, -854.24, -156.951, -851.848, 159.748)
+polygon = PackedVector2Array(-13.5, -1.5, -877.864, -161.044, -876.403, 163.882)
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 light_mask = 0
