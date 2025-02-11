@@ -1,5 +1,6 @@
-[gd_scene load_steps=80 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=81 format=4 uid="uid://d0sd375ae8jx2"]
 
+[ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_qfhot"]
@@ -378,6 +379,9 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
+
+[node name="SceneManager" type="Node2D" parent="."]
+script = ExtResource("1_b8dk6")
 
 [node name="WaterShader" type="Sprite2D" parent="."]
 z_index = 99

@@ -1,6 +1,7 @@
-[gd_scene load_steps=56 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=57 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
+[ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_x41q6"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_doonm"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_e1pi3"]
@@ -304,6 +305,9 @@ animations = [{
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
 
+[node name="SceneManager" type="Node2D" parent="."]
+script = ExtResource("1_x41q6")
+
 [node name="WaterShader" type="Sprite2D" parent="."]
 z_index = 99
 material = SubResource("ShaderMaterial_toho5")
@@ -315,7 +319,7 @@ texture = ExtResource("3_doonm")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
-color = Color(0.04, 0.04, 0.04, 1)
+color = Color(0.08, 0.08, 0.08, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n7rwt")
