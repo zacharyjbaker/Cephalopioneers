@@ -32,6 +32,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var all_tile_zero_cells = self.get_used_cells()
 		for i in all_tile_zero_cells:
 			clear()
+		area.get_parent().queue_free()
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.name == "DrillArea":

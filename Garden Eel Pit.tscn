@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://emok1m4t1a3s"]
+[gd_scene load_steps=8 format=3 uid="uid://emok1m4t1a3s"]
 
 [ext_resource type="Script" path="res://garden_eel_pit.gd" id="1_7s1cc"]
 [ext_resource type="Texture2D" uid="uid://dbb06wg6x6vrw" path="res://Assets/MapDraft/Garden Eel Draft 1.png" id="1_kk5rs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmpie"]
-size = Vector2(65, 111)
+size = Vector2(46, 83)
 
 [sub_resource type="Animation" id="Animation_1xcmb"]
 resource_name = "Eel"
@@ -62,9 +62,6 @@ _data = {
 "RESET": SubResource("Animation_hj0un")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8iljp"]
-size = Vector2(47, 58)
-
 [node name="EelPit" type="CharacterBody2D" node_paths=PackedStringArray("anim_player", "anim_player2", "anim_player3", "anim_player4", "anim_player5", "anim_player6", "anim_player7", "anim_player8", "anim_player9")]
 z_index = -2
 script = ExtResource("1_7s1cc")
@@ -79,7 +76,7 @@ anim_player8 = NodePath("Sprite2D8/AnimationPlayer")
 anim_player9 = NodePath("Sprite2D9/AnimationPlayer")
 
 [node name="HitBox" type="CollisionShape2D" parent="." groups=["damage"]]
-position = Vector2(-16.5, -34.5)
+position = Vector2(-8, -34.5)
 shape = SubResource("RectangleShape2D_bmpie")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -92,12 +89,6 @@ libraries = {
 }
 speed_scale = 2.5
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, -9)
-rotation = -0.359538
-shape = SubResource("RectangleShape2D_8iljp")
-
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(0, -10)
 rotation = -0.359538
@@ -109,13 +100,6 @@ libraries = {
 "": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 2.0
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-4.21984, -28.0673)
-rotation = -0.23911
-scale = Vector2(1.2, 1.2)
-shape = SubResource("RectangleShape2D_8iljp")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(-3.71984, -29.0673)
@@ -131,12 +115,6 @@ libraries = {
 }
 speed_scale = 3.0
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-7.28812, -43.5435)
-rotation = -0.23911
-shape = SubResource("RectangleShape2D_8iljp")
-
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 position = Vector2(-6.78812, -44.5435)
 rotation = -0.23911
@@ -148,12 +126,6 @@ libraries = {
 "": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 1.5
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-9.21984, -65.0673)
-scale = Vector2(1.25, 1.25)
-shape = SubResource("RectangleShape2D_8iljp")
 
 [node name="Sprite2D5" type="Sprite2D" parent="."]
 position = Vector2(-8.71984, -66.0673)
@@ -167,12 +139,6 @@ libraries = {
 }
 speed_scale = 2.75
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-9.21984, -75.0673)
-rotation = -0.359538
-shape = SubResource("RectangleShape2D_8iljp")
-
 [node name="Sprite2D6" type="Sprite2D" parent="."]
 position = Vector2(-8.71984, -76.0673)
 rotation = -0.359538
@@ -184,12 +150,6 @@ libraries = {
 "": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 2.25
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-22.7, -55.4)
-scale = Vector2(1.2, 1.2)
-shape = SubResource("RectangleShape2D_8iljp")
 
 [node name="Sprite2D7" type="Sprite2D" parent="."]
 position = Vector2(-22.2, -56.4)
@@ -204,12 +164,6 @@ libraries = {
 }
 speed_scale = 3.5
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-20.7, -15.4)
-scale = Vector2(1.2, 1.2)
-shape = SubResource("RectangleShape2D_8iljp")
-
 [node name="Sprite2D8" type="Sprite2D" parent="."]
 position = Vector2(-20.2, -16.4)
 scale = Vector2(1.2, 1.2)
@@ -222,12 +176,6 @@ libraries = {
 "": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 3.2
-
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-6.5, 10)
-rotation = 0.359538
-shape = SubResource("RectangleShape2D_8iljp")
 
 [node name="Sprite2D9" type="Sprite2D" parent="."]
 position = Vector2(-6, 9)

@@ -570,6 +570,7 @@ color = Color(0.893471, 0.732073, 0.528114, 1)
 z_index = 1
 position = Vector2(603, 62)
 rotation = -1.5708
+enabled = false
 energy = 1.28
 texture = ExtResource("8_sxyis")
 texture_scale = 1.8

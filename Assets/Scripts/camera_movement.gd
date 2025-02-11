@@ -31,6 +31,11 @@ func add_trauma(amount : float):
 	trauma = min(trauma + amount, 1.0)
 
 func _process(delta):
+	#if (Input.is_action_pressed("ui_left") and position.x > CAMERA_LEFT_LIMIT):
+		#position.x -= CAMERA_MOVEMENT_SPEED
+	#if (Input.is_action_pressed("ui_right") and position.x < CAMERA_RIGHT_LIMIT):
+		#position.x += CAMERA_MOVEMENT_SPEED
+	
 	if Global.SHAKE == true and shaking == false:
 		decay = 0
 		add_trauma(2)
@@ -54,9 +59,4 @@ func shake():
 	offset.x = max_offset.x * amt * noise.get_noise_2d(1000, noise_y)
 	offset.y = max_offset.y * amt * noise.get_noise_2d(2000, noise_y)
 	
-'''
-	if (Input.is_action_pressed("ui_left") and position.x > CAMERA_LEFT_LIMIT):
-		position.x -= CAMERA_MOVEMENT_SPEED
-	if (Input.is_action_pressed("ui_right") and position.x < CAMERA_RIGHT_LIMIT):
-		position.x += CAMERA_MOVEMENT_SPEED
-'''
+	

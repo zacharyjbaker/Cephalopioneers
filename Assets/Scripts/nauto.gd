@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var mech = get_node("/root/Node2D/Mech")
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 @onready var env_node = get_node("/root/Node2D/WorldEnvironment")
-@onready var breakable_floor = get_node("/root/Node2D/BreakableFloor")
+@onready var breakable_floor = get_node("/root/Node2D/MiscEnv/BreakableFloor")
 
 @export var jump_impulse = 350
 

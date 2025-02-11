@@ -103,10 +103,10 @@ func cutscene():
 			mech_moved = true
 			mech.velocity.x = 0
 			mech.velocity.y = 0
-			mech.global_position.x = 25496
-			mech.global_position.y = 1000
-			pilot.global_position.x = 25496 - 4
-			pilot.global_position.y = 1000 - 21
+			mech.global_position.x = 32542
+			mech.global_position.y = 1043
+			pilot.global_position.x = 32542 - 4
+			pilot.global_position.y = 1043 - 21
 			Global.DAMAGED = true
 			#pilot.velocity.x = 0
 			#pilot.velocity.y = 0

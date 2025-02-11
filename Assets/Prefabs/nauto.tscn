@@ -180,7 +180,7 @@ script = ExtResource("1_djhdu")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 0.75)
-polygon = PackedVector2Array(-11.5, 8, 9.25, -7.5, -6.75, -10, -9.25, -5)
+polygon = PackedVector2Array(-11.5, 7.75, 12.75, -9.5, -6.75, -10, -9.25, -5)
 
 [node name="PhysicsColliderCrouch" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 0.75)
@@ -230,7 +230,7 @@ rotation = -0.634701
 shape = SubResource("CapsuleShape2D_ylio2")
 
 [node name="NautoCamera" type="Camera2D" parent="."]
-position = Vector2(-0.25, -59.25)
+position = Vector2(-0.25, -21.5)
 scale = Vector2(0.25, 0.25)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
