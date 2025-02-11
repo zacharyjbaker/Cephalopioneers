@@ -15,7 +15,7 @@ func _ready() -> void:
 # Called every frame. 'delta'a is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if environment.glow_intensity > default_intensity:
-		environment.glow_intensity -= 0.01
+		environment.glow_intensity -= 0.04
 	if environment.adjustment_saturation > 1:
 		environment.adjustment_saturation -= 0.25
 	if fade_to_black_bool == true:
@@ -26,7 +26,7 @@ func set_glow(intensity: float) -> void:
 	environment.glow_intensity = intensity
 	environment.adjustment_color_correction.gradient = damage_color
 	environment.adjustment_saturation = 3
-	timer.start(.3)
+	timer.start(.5)
 	#print (environment.adjustment_color_correction.gradient)
 	
 func fade_to_black() -> void:

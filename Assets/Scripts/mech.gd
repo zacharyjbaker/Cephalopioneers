@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var pilot = $Pilot
 @onready var camera = $MechCamera
 @onready var flashlight = $Flashlight
+@onready var flashlight_cone = $FlashlightCone
 @onready var cockpit_light = $Pilot/CockpitLight
 @onready var boost_light = $BoostLight
 @onready var back_boost_light = $BackBoostLight
@@ -39,6 +40,7 @@ func _ready() -> void:
 	original_scale.y = camera.scale.y
 	original_rotation = camera.rotation_degrees
 	flashlight.enabled = false
+	flashlight_cone.monitoring = false
 	
 	match Global.SCENE:
 		"TheShallows":
@@ -243,8 +245,10 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("flashlight"):
 			if flashlight.enabled == true:
 				flashlight.enabled = false
+				flashlight_cone.monitoring = false
 			else:
 				flashlight.enabled = true
+				flashlight_cone.monitoring = true
 			
 	else:
 		if is_on_floor() and isClosing == false and isOpening == false:
@@ -285,3 +289,13 @@ func _on_mech_body_animation_finished() -> void:
 		isClosing = false
 	if isOpening == true:
 		isOpening = false
+
+func _on_flashlight_cone_body_entered(body: Node2D) -> void:
+	print ("Crab entered flashlight")
+	if body.is_in_group("crab"):
+		body.is_in_flashlight = true
+
+func _on_flashlight_cone_body_exited(body: Node2D) -> void:
+	print ("Crab exited flashlight")
+	if body.is_in_group("crab"):
+		body.is_in_flashlight = false

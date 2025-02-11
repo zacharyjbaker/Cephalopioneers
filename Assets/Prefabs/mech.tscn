@@ -614,6 +614,19 @@ color = Color(0.443137, 0.780392, 0.741176, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
+[node name="FlashlightCone" type="Area2D" parent="."]
+position = Vector2(603, 62)
+rotation = -1.5708
+collision_layer = 0
+collision_mask = 128
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlashlightCone"]
+position = Vector2(12.002, -547)
+rotation = -1.56964
+scale = Vector2(1.05856, 1.45879)
+polygon = PackedVector2Array(-13.5, -1.5, -854.24, -156.951, -851.848, 159.748)
+
 [node name="Flashlight" type="PointLight2D" parent="."]
 light_mask = 0
 z_index = 1
@@ -663,3 +676,5 @@ texture_scale = 0.52
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]
 [connection signal="frame_changed" from="FrontArm" to="." method="_on_front_arm_frame_changed"]
 [connection signal="sprite_frames_changed" from="FrontArm" to="." method="_on_front_arm_sprite_frames_changed"]
+[connection signal="body_entered" from="FlashlightCone" to="." method="_on_flashlight_cone_body_entered"]
+[connection signal="body_exited" from="FlashlightCone" to="." method="_on_flashlight_cone_body_exited"]

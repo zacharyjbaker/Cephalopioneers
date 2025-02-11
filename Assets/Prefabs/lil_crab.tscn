@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="2_fgryh"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="3_mmvsu"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn3lu"]
+atlas = ExtResource("2_fgryh")
+region = Rect2(64, 0, 64, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcpi8"]
 atlas = ExtResource("2_fgryh")
 region = Rect2(64, 128, 64, 128)
@@ -11,10 +15,6 @@ region = Rect2(64, 128, 64, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_iiwjo"]
 atlas = ExtResource("2_fgryh")
 region = Rect2(192, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pn3lu"]
-atlas = ExtResource("2_fgryh")
-region = Rect2(64, 0, 64, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0e86"]
 atlas = ExtResource("2_fgryh")
@@ -54,6 +54,14 @@ region = Rect2(0, 384, 64, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qsi2"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn3lu")
+}],
+"loop": true,
+"name": &"Ambush",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hcpi8")
@@ -120,10 +128,10 @@ animations = [{
 "speed": 17.0
 }]
 
-[node name="LilCrab" type="CharacterBody2D"]
+[node name="LilCrab" type="CharacterBody2D" groups=["crab", "enemy"]]
 scale = Vector2(4, 4)
-collision_layer = 4224
-collision_mask = 49152
+collision_layer = 6272
+collision_mask = 50176
 script = ExtResource("1_btat5")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
@@ -134,7 +142,7 @@ polygon = PackedVector2Array(-10.75, -1.08992, -16.25, -4.22343, -14, -5.99455, 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1qsi2")
-animation = &"Mimic"
+animation = &"Ambush"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -164,5 +172,22 @@ position = Vector2(-7.6, 54.65)
 color = Color(0.14902, 0, 0.176471, 1)
 energy = 10.45
 texture_scale = 0.05
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(6.75, -4.25)
+scale = Vector2(0.980001, 1.31)
+collision_layer = 40960
+collision_mask = 40960
+
+[node name="ColliderShape2D" type="CollisionPolygon2D" parent="HurtBox"]
+position = Vector2(-3.59694, 42.1756)
+polygon = PackedVector2Array(-5.07652, -20.4198, -11.4541, -4.96183, -18.5969, -3.62595, -20.8928, 0.954197, -15.2806, 9.73283, 12.5255, 9.73283, 16.6071, 0, 12.5255, -4.77099, 5.63776, -5.15267, 1.04592, -20.6107)
+
+[node name="HitBox" type="CollisionPolygon2D" parent="." groups=["damage"]]
+position = Vector2(3.5, 50.8146)
+scale = Vector2(1, 1.28946)
+polygon = PackedVector2Array(-5.07652, -20.4198, -11.4541, -4.96183, -18.5969, -3.62595, -20.8928, 0.954197, -15.2806, 9.73283, 12.5255, 9.73283, 16.6071, 0, 12.5255, -4.77099, 5.63776, -5.15267, 1.04592, -20.6107)
+
+[node name="AmbushTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
