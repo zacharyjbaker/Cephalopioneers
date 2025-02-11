@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/eel.gd" id="1_o3qdc"]
 [ext_resource type="Texture2D" uid="uid://d082w5a0nagbh" path="res://Assets/Prefabs/Eel.png" id="2_rpxuy"]
 [ext_resource type="AudioStream" uid="uid://c4yl4ux836lxh" path="res://Assets/Sound/Monster.mp3" id="3_xh035"]
-[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="4_m6f3o"]
+[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="4_m6f3o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eiawt"]
 radius = 48.0

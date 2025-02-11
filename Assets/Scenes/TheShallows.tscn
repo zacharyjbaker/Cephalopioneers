@@ -1,7 +1,7 @@
-[gd_scene load_steps=86 format=4 uid="uid://btjc6mtpd7uj"]
+[gd_scene load_steps=86 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
-[ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
+[ext_resource type="Gradient" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_qfhot"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_3ifyq"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="5_6u7nn"]
@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="31_vmlcy"]
 [ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="32_pt0sa"]
 [ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="33_g8pmf"]
-[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="34_s0cmf"]
+[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="34_s0cmf"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -749,10 +749,10 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(11534, 895)
+position = Vector2(11722, 1119)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(11855, 877)
+position = Vector2(12061, 1029)
 
 [node name="Malo" type="CharacterBody2D" parent="."]
 z_index = -3
@@ -814,7 +814,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "63d319f3b7d96c43098a9c21cc2b1a1c"
 
 [node name="LeviathanEel" parent="." instance=ExtResource("26_pku6s")]
 z_index = -1
-position = Vector2(12454, 1999)
+position = Vector2(12446, 1999)
 rotation = 0.000544786
 
 [node name="NPCs" type="Node" parent="."]
@@ -1572,7 +1572,7 @@ shadow_color = Color(0, 0, 0, 1)
 
 [node name="Godrays" type="PointLight2D" parent="GodrayLighting"]
 z_index = 1
-position = Vector2(12039.8, 1053.62)
+position = Vector2(12040, 1047)
 scale = Vector2(1.5, 1)
 skew = 0.408407
 energy = 1.6
@@ -1590,12 +1590,11 @@ texture_scale = 9.59
 
 [node name="Godrays3" type="PointLight2D" parent="GodrayLighting"]
 z_index = 1
-position = Vector2(15310.8, 459.619)
-scale = Vector2(1.5, 1)
-skew = 0.408407
-energy = 1.6
+position = Vector2(14008, 759)
+scale = Vector2(-2, 1)
+energy = 0.78
 texture = ExtResource("35_fdgge")
-texture_scale = 9.59
+texture_scale = 7.49
 
 [node name="Godrays4" type="PointLight2D" parent="GodrayLighting"]
 z_index = 1
