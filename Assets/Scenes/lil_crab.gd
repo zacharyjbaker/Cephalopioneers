@@ -10,6 +10,8 @@ func _ready() -> void:
 	timer.start(2)
 
 func _physics_process(delta: float) -> void:
+	velocity.y += delta * Global.GRAVITY 
+	move_and_slide()
 	pass
 	
 func _on_timer_timeout() -> void:

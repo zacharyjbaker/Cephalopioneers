@@ -480,7 +480,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "228bdb90248203cb6ab7fa9d3ba2b4c3"
 
 [node name="MechBody" type="AnimatedSprite2D" parent="."]
-light_mask = 3
+light_mask = 27
 texture_filter = 1
 position = Vector2(19, 58)
 scale = Vector2(4, 4)
@@ -502,7 +502,8 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "0682abe18e165eaef985ef28bb9bd81c"
 
 [node name="FrontArm" type="AnimatedSprite2D" parent="."]
-light_mask = 7
+light_mask = 25
+z_index = 1000
 texture_filter = 1
 position = Vector2(43, 29)
 scale = Vector2(4, 4)
@@ -529,6 +530,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "3f0f9415cbdb609ea5d07b1a8aff56aa"
 position = Vector2(-4, -21)
 
 [node name="CockpitLight" parent="Pilot" instance=ExtResource("8_xxlqe")]
+light_mask = 0
 position = Vector2(34, 7)
 rotation = -1.5708
 energy = 0.9
@@ -557,7 +559,6 @@ texture = ExtResource("7_e24ys")
 flip_h = true
 
 [node name="DrillArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 32768
 collision_mask = 0
 monitoring = false
@@ -588,15 +589,6 @@ angle_max = 94.5
 scale_amount_max = 6.0
 color = Color(0.893471, 0.732073, 0.528114, 1)
 
-[node name="Flashlight" type="PointLight2D" parent="."]
-z_index = 1
-position = Vector2(603, 62)
-rotation = -1.5708
-enabled = false
-energy = 1.28
-texture = ExtResource("8_sxyis")
-texture_scale = 1.8
-
 [node name="LaserExposion" type="CPUParticles2D" parent="."]
 position = Vector2(41, 50)
 rotation = -5.31873
@@ -622,12 +614,24 @@ color = Color(0.443137, 0.780392, 0.741176, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
+[node name="Flashlight" type="PointLight2D" parent="."]
+light_mask = 0
+z_index = 1
+position = Vector2(603, 62)
+rotation = -1.5708
+energy = 1.28
+range_z_max = 999
+range_item_cull_mask = 7
+texture = ExtResource("8_sxyis")
+texture_scale = 1.8
+
 [node name="BoostLight" parent="." instance=ExtResource("8_xxlqe")]
+light_mask = 0
 position = Vector2(-2.00001, 151.347)
 rotation = -1.5708
 scale = Vector2(4.09753, 5.38576)
 energy = 16.45
-range_item_cull_mask = 2
+range_item_cull_mask = 24
 shadow_item_cull_mask = 0
 texture = ExtResource("10_1tqin")
 texture_scale = 0.36
@@ -645,11 +649,12 @@ texture = SubResource("GradientTexture2D_8tgxl")
 texture_scale = 0.76
 
 [node name="BackBoostLight" parent="." instance=ExtResource("8_xxlqe")]
+light_mask = 0
 position = Vector2(-95, 22)
 rotation = -0.984782
 scale = Vector2(-4.27078, 3.82958)
 energy = 13.0
-range_item_cull_mask = 2
+range_item_cull_mask = 24
 shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_sd7kk")
 texture_scale = 0.52

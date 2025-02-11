@@ -629,10 +629,10 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(1369, 812)
+position = Vector2(800, 879)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(926, 881)
+position = Vector2(357, 948)
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]
