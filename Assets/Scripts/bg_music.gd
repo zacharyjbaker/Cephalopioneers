@@ -42,7 +42,7 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print (background_music.volume_db)
+	#print (background_music.volume_db)
 	if isFading == true:
 		color.a -= 0.002
 		music_credit.add_theme_color_override("default_color", color)

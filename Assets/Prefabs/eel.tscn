@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cep45148qy5gc"]
+[gd_scene load_steps=19 format=3 uid="uid://cep45148qy5gc"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/eel.gd" id="1_o3qdc"]
 [ext_resource type="Texture2D" uid="uid://d082w5a0nagbh" path="res://Assets/Prefabs/Eel.png" id="2_rpxuy"]
@@ -9,52 +9,64 @@
 radius = 48.0
 height = 192.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1syjt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlvsv"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(0, 0, 80, 384)
+region = Rect2(768, 0, 384, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8lscp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0ifc"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(80, 0, 80, 384)
+region = Rect2(1152, 0, 384, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m4j6g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcvhh"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(160, 0, 80, 384)
+region = Rect2(0, 80, 384, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tecec"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_27no4"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(0, 384, 80, 384)
+region = Rect2(384, 80, 384, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7u7dg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivm25"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(0, 768, 80, 384)
+region = Rect2(768, 80, 384, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c8t5p"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aur83"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(80, 768, 80, 384)
+region = Rect2(1152, 80, 384, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m73y2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8heof"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(80, 384, 80, 384)
+region = Rect2(0, 160, 384, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eo88e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_24vtv"]
 atlas = ExtResource("2_rpxuy")
-region = Rect2(160, 384, 80, 384)
+region = Rect2(384, 160, 384, 80)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ip4lg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w2bi"]
+atlas = ExtResource("2_rpxuy")
+region = Rect2(768, 160, 384, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egg0h"]
+atlas = ExtResource("2_rpxuy")
+region = Rect2(0, 0, 384, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeiix"]
+atlas = ExtResource("2_rpxuy")
+region = Rect2(384, 0, 384, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogna3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1syjt")
+"texture": SubResource("AtlasTexture_nlvsv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8lscp")
+"texture": SubResource("AtlasTexture_g0ifc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m4j6g")
+"texture": SubResource("AtlasTexture_qcvhh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tecec")
+"texture": SubResource("AtlasTexture_27no4")
 }],
 "loop": true,
 "name": &"Idle",
@@ -62,13 +74,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1syjt")
+"texture": SubResource("AtlasTexture_ivm25")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7u7dg")
+"texture": SubResource("AtlasTexture_aur83")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c8t5p")
+"texture": SubResource("AtlasTexture_8heof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlvsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24vtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w2bi")
 }],
 "loop": true,
 "name": &"Nom",
@@ -76,10 +97,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m73y2")
+"texture": SubResource("AtlasTexture_egg0h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eo88e")
+"texture": SubResource("AtlasTexture_eeiix")
 }],
 "loop": true,
 "name": &"Roar",
@@ -132,9 +153,11 @@ offset_bottom = 409.0
 light_mask = 257
 texture_filter = 1
 position = Vector2(0.000776487, 214.5)
+rotation = 1.5708
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_ip4lg")
+sprite_frames = SubResource("SpriteFrames_ogna3")
 animation = &"Roar"
+frame_progress = 0.732084
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -147,7 +170,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/Eel.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "950e5936dedc8b2a58dda15236d3c6e7"
+metadata/_aseprite_wizard_source_file_hash_ = "1fec7ff1bbecea28d4a143f49cf67c8b"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_xh035")

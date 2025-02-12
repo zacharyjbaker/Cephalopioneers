@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=78 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
@@ -21,8 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="20_xwyig"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_ye3to"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_2m0jb"]
+[ext_resource type="Texture2D" uid="uid://dwe5uc4temb7d" path="res://Assets/Scenes/Malo.png" id="22_hkcqy"]
 [ext_resource type="Script" path="res://Assets/Scenes/malo.gd" id="23_kjnq7"]
-[ext_resource type="Texture2D" uid="uid://fdaexkv0xswh" path="res://Assets/Scenes/LieutenantAno.png" id="24_wpk6u"]
 [ext_resource type="Texture2D" uid="uid://q7nyw2ymwqsp" path="res://Assets/Scenes/F.png" id="25_7uqmw"]
 [ext_resource type="PackedScene" uid="uid://cep45148qy5gc" path="res://Assets/Prefabs/eel.tscn" id="26_pku6s"]
 [ext_resource type="PackedScene" uid="uid://cqf0gnysb5fvx" path="res://Assets/Prefabs/aardvark.tscn" id="27_jbyfm"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="30_ny3i0"]
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="31_vmlcy"]
 [ext_resource type="PackedScene" uid="uid://cio233345wwf8" path="res://Assets/Prefabs/boulder_wall.tscn" id="34_empbd"]
+[ext_resource type="Texture2D" uid="uid://dlqnrxb6u0o6p" path="res://Assets/Scenes/KingCrab.png" id="34_n767i"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
 [ext_resource type="PackedScene" uid="uid://clgn2bcvfayy" path="res://Assets/Prefabs/Boulder.tscn" id="37_rha8h"]
 
@@ -56,6 +57,9 @@ shader_parameter/fast_noise = SubResource("NoiseTexture2D_4hwls")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
 gradient = ExtResource("4_3ifyq")
+width = 128
+height = 128
+fill_to = Vector2(1, 0.0384615)
 
 [sub_resource type="Environment" id="Environment_n7rwt"]
 background_mode = 3
@@ -65,19 +69,19 @@ glow_levels/2 = 0.47
 glow_levels/3 = 1.55
 glow_levels/4 = 0.6
 glow_levels/5 = 1.75
-glow_intensity = 0.39
+glow_intensity = 3.6
 glow_strength = 0.35
 glow_bloom = 0.2
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
-glow_hdr_scale = 0.83
-glow_hdr_luminance_cap = 0.38
+glow_hdr_scale = 2.99
+glow_hdr_luminance_cap = 44.18
 glow_map_strength = 0.72
 volumetric_fog_density = 0.0
 adjustment_enabled = true
-adjustment_brightness = 1.44
-adjustment_contrast = 0.91
-adjustment_saturation = 1.34
+adjustment_brightness = 1.1
+adjustment_contrast = 0.7
+adjustment_saturation = 1.7
 adjustment_color_correction = SubResource("GradientTexture2D_abg6r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5rbm"]
@@ -216,22 +220,22 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0wds"]
-atlas = ExtResource("24_wpk6u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj8jg"]
+atlas = ExtResource("22_hkcqy")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfwne"]
-atlas = ExtResource("24_wpk6u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf714"]
+atlas = ExtResource("22_hkcqy")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cr1vn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5oco"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j0wds")
+"texture": SubResource("AtlasTexture_sj8jg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wfwne")
+"texture": SubResource("AtlasTexture_bf714")
 }],
 "loop": true,
 "name": &"Idle",
@@ -257,6 +261,123 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opyjq"]
+atlas = ExtResource("34_n767i")
+region = Rect2(256, 170, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2wuo"]
+atlas = ExtResource("34_n767i")
+region = Rect2(384, 340, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li0sn"]
+atlas = ExtResource("34_n767i")
+region = Rect2(128, 0, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypx4g"]
+atlas = ExtResource("34_n767i")
+region = Rect2(256, 0, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al5s5"]
+atlas = ExtResource("34_n767i")
+region = Rect2(384, 170, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32x4a"]
+atlas = ExtResource("34_n767i")
+region = Rect2(0, 340, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2xof"]
+atlas = ExtResource("34_n767i")
+region = Rect2(128, 340, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwfw0"]
+atlas = ExtResource("34_n767i")
+region = Rect2(256, 340, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d36nr"]
+atlas = ExtResource("34_n767i")
+region = Rect2(384, 0, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poq0t"]
+atlas = ExtResource("34_n767i")
+region = Rect2(0, 170, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oul6"]
+atlas = ExtResource("34_n767i")
+region = Rect2(128, 170, 128, 170)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqjpd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opyjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2wuo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li0sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypx4g")
+}],
+"loop": true,
+"name": &"King",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opyjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al5s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32x4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2xof")
+}],
+"loop": true,
+"name": &"LilCrab",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opyjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwfw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32x4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2xof")
+}],
+"loop": true,
+"name": &"LilCrabDrill",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d36nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poq0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8oul6")
+}],
+"loop": true,
+"name": &"Mimic",
+"speed": 7.0
 }]
 
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
@@ -319,7 +440,7 @@ color = Color(0.28, 0.28, 0.28, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n7rwt")
 script = ExtResource("5_6u7nn")
-default_intensity = 0.37
+default_intensity = 3.6
 
 [node name="Timer" type="Timer" parent="WorldEnvironment"]
 
@@ -549,10 +670,10 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(16868, 874)
+position = Vector2(7224, 816)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(16425, 943)
+position = Vector2(6781, 885)
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]
@@ -566,7 +687,7 @@ script = ExtResource("23_kjnq7")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Malo"]
 texture_filter = 1
 scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_cr1vn")
+sprite_frames = SubResource("SpriteFrames_v5oco")
 animation = &"Idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
@@ -579,9 +700,9 @@ metadata/_aseprite_wizard_config_ = {
 "o_name": "",
 "only_visible": false,
 "slice": "",
-"source": "res://Assets/Sprites/LieutenantAno.aseprite"
+"source": "res://Assets/Sprites/Malo.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "c2e792d06c4e44c6f5b58ba1a75ed5f1"
+metadata/_aseprite_wizard_source_file_hash_ = "86de0311e4a5494f53ce93e02bf15ce9"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Malo"]
 visible = false
@@ -1540,6 +1661,26 @@ skew = 0.832522
 energy = 0.72
 texture = ExtResource("35_fdgge")
 texture_scale = 6.85
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(17921, 841)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_qqjpd")
+animation = &"King"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/KingCrab.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "ced33c32863c848499fc8cd8bd525419"
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
