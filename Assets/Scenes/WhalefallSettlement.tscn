@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_x41q6"]
-[ext_resource type="Gradient" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
+[ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_doonm"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_e1pi3"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="5_gcgym"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
 [ext_resource type="Texture2D" uid="uid://dlqnrxb6u0o6p" path="res://Assets/Scenes/KingCrab.png" id="22_oeb04"]
-[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
 noise_type = 2

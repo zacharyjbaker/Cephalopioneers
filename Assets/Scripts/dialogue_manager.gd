@@ -17,7 +17,7 @@ var dialogue_stage = "0"
 var dialogue_stage_int = 0
 var dialogue_text_color = "theme_override_colors/default_color"
 var dialogue_font_path = ""
-var dialogue_file_path = "res://Assets/Sound/Dialogue/" + dialogue_instance + "." + dialogue_stage + ".wav"
+var dialogue_file_path = "res://Assets/Sound/Dialogue/" + dialogue_instance + "-" + dialogue_stage + ".wav"
 
 # Import JSON file as Dictionary
 var file = FileAccess.open("res://Assets/Scripts/Data/dialogue_dict.json", FileAccess.READ)
@@ -29,6 +29,8 @@ var DialogueDict = json.get_data()
 signal cs_eel
 signal bgmusic_stop
 signal bgmusic_rumble
+signal bg_music_lower_volume
+signal bg_music_raise_volume
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +40,7 @@ func _ready() -> void:
 	#print ("Dict:", DialogueDict)
 	
 func load_next_dialogue():
+	print (dialogue_instance + "." + dialogue_stage)
 	dialogue_instance = str(dialogue_instance.to_int() + 1)
 	dialogue_in_process = false
 	speaker = ""
@@ -68,6 +71,8 @@ func _physics_process(delta: float) -> void:
 		dialogueBG.set_process(true)
 		dialogue.visible = true
 		dialogue.set_process(true)
+		bg_music_lower_volume.emit()
+		bg_music_lower_volume.emit()
 
 	if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true:
 		Global.START = false
@@ -79,7 +84,7 @@ func _physics_process(delta: float) -> void:
 			nauto_talk.stop()
 			dialogue_in_process = false
 		else: #Text tick
-			timer.start()
+			timer.start(0.01)
 			dialogue.text = ""
 			dialogue.visible_characters = 0
 			dialogue_stage_int = int(dialogue_stage)
@@ -109,6 +114,7 @@ func _physics_process(delta: float) -> void:
 				"M":
 					_load_malo()
 			print (speaker)
+			print (load(dialogue_file_path))
 			if (load(dialogue_file_path) != null):
 				dialogue_stream.stream = load(dialogue_file_path)
 				dialogue_stream.play()
@@ -119,7 +125,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	dialogue.visible_characters += 1
-	timer.start()
+	timer.start(0.01)
 	
 	if (dialogue.visible_characters >= dialogue_line.length()):
 		dialogue_in_process = false
@@ -137,6 +143,8 @@ func _disable_dialogue() -> void:
 	nauto_talk.visible = false
 	other_talk.visible = false
 	Global.FREEZE = false
+	bg_music_raise_volume.emit()
+	bg_music_raise_volume.emit()
 
 func _load_bite() -> void:
 	other_talk = bite_talk

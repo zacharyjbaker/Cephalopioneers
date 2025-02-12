@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="1_btat5"]
 [ext_resource type="Texture2D" uid="uid://bf8ytlxhgdfxc" path="res://Assets/Prefabs/SpiderCrab.png" id="2_xymsj"]
-[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="3_mmvsu"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="3_mmvsu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwr0f"]
 atlas = ExtResource("2_xymsj")

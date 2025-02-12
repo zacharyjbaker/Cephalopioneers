@@ -1,22 +1,21 @@
-[gd_scene load_steps=66 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=65 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
-[ext_resource type="Gradient" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
+[ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_qfhot"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_3ifyq"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="5_6u7nn"]
 [ext_resource type="Texture2D" uid="uid://ddc63b22fsubo" path="res://Assets/MapDraft/Layer 2 Resized.png" id="6_d27y2"]
 [ext_resource type="Texture2D" uid="uid://cn781vdj4dvcx" path="res://Assets/MapDraft/Layer 1 Resized.png" id="7_crehr"]
 [ext_resource type="TileSet" uid="uid://8fuoflysuhrr" path="res://Assets/Prefabs/tile.tres" id="8_nnxgj"]
-[ext_resource type="PackedScene" path="res://Assets/Prefabs/Shallows_Tile_map_layer.tscn" id="9_n0xr4"]
+[ext_resource type="PackedScene" uid="uid://bfe6oxodnb5nu" path="res://Assets/Prefabs/Shallows_Tile_map_layer.tscn" id="9_n0xr4"]
 [ext_resource type="PackedScene" uid="uid://tbxkugnbp6o8" path="res://Assets/Prefabs/drillable_wall.tscn" id="9_so8s1"]
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="10_0gom4"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="11_2qxj4"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="12_th2xk"]
 [ext_resource type="Texture2D" uid="uid://d0w70hpm12841" path="res://Assets/Sprites/CommanderBite.png" id="15_7otye"]
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="16_wi22b"]
-[ext_resource type="AudioStream" uid="uid://dmgee1huemoxr" path="res://Assets/Sound/Dialogue/Nauto.wav" id="17_vfjwi"]
 [ext_resource type="Texture2D" uid="uid://dhe1ys2huxmqv" path="res://Assets/Sprites/NautoTalk.png" id="18_nt3kv"]
 [ext_resource type="Texture2D" uid="uid://c4b3x0so1qsc" path="res://Assets/Sprites/CommanderBiteTalk.png" id="19_6et00"]
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="20_xwyig"]
@@ -359,7 +358,7 @@ script = ExtResource("10_0gom4")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("11_2qxj4")
-volume_db = -0.455
+volume_db = -0.5
 max_distance = 137586.0
 panning_strength = 0.0
 
@@ -414,8 +413,8 @@ metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 script = ExtResource("16_wi22b")
 
 [node name="DialogueStream" type="AudioStreamPlayer2D" parent="DialogueManager"]
-stream = ExtResource("17_vfjwi")
-volume_db = 9.779
+volume_db = 5.887
+max_distance = 5e+10
 
 [node name="DialogueTimer" type="Timer" parent="DialogueManager"]
 wait_time = 0.025
@@ -550,10 +549,10 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(850, 808)
+position = Vector2(16868, 874)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(407, 877)
+position = Vector2(16425, 943)
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]

@@ -1,14 +1,17 @@
 { 
 	"1" : {
 		"1": "/B/Nauto, have you reached the seafloor?",
-		"2": "/N/Just landed.",
-		"3": "/B/Is there any sign of Lieutenant Anam?",
+		"2": "/N/Just landed, Admiral.",
+		"3": "/B/Is there any sign of Lieutenant Malo?",
 		"4": "/N/Initial scans have come back negative.",
-		"5": "/N/His C.A.R.A.P.A.C.E. may be malfunctioning and cloaking his beacon.",
+		"5": "/N/Is it possible his C.A.R.A.P4-CE may be malfunctioning and cloaking his beacon?",
 		"6": "/B/Hmm...",
-		"7": "/B/Very well. Conduct manual search routine.",
-		"8": "/B/Report back as soon as you learn anything.",
-		"9": "/END/"
+		"7": "/B/I suspect that strange radiation has something to do with this. Very well. Perform manual search routine.",
+		"8": "/B/Be sure to report back as soon as you learn of anything...",
+		"9": "/B/And one more thing: As always, review the training docs prior to mission initialization.",
+		"10": "/N/Will do, Sir.",
+		"11": "/B/Excellent. Bite out.",
+		"12": "/END/"
 	},
 	"Level2" : {
 		"1": "/B/Hello, this is level 2 dialogue.",
@@ -17,13 +20,14 @@
 	},
 	"2" : {
 		"1": "/N/Lieutenant!",
-		"2": "/M/Nauto... ya' got the signal. Excellent work rookie.",
-		"3": "/N/You're hurt lieutenant. What happened to your S.H.E.L.L.?",
-		"4": "/M/THE BEAST took it. I was careless, I thought myself invincible in that suit.",
-		"5": "/M/Listen to me Nauto. Ya' have to get out of 'ere. Back to the Orbital. It'll be back, it's got the scent of my blood.",
-		"6": "/N/No way. Not without you lieutenant. I'll hail Bite and get him to send a med-bot. Just hold o-",
-		"7": "/S/What is that?!",
-		"8": "/M/THE BEAST. THE LEVIATHAN IS HERE. RUUUUUUUUUUUU-",
-		"9": "/END/"
+		"2": "/M/Nauto... ya' found me. Excellent work rookie.",
+		"3": "/N/You're hurt lieutenant. What happened to your EXO-SHELL?",
+		"4": "/M/THE BEAST obliterated it! I was careless. I thought I was invincible in that suit...",
+		"5": "/M/Listen to me Nauto. Ya' have to get out of 'ere! Back to the Orbital. That fish will be back. No organism can resist the taste of shrimp.",
+		"6": "/M/I knew it would end this way. I'm going to be eaten! Just like my father and his father and my thirty-seven uncles and-",
+		"7": "/N/Snap out of it, you're delirious! I'm not leaving without you lieutenant. I'll hail Bite and get him to send a medic. Just hold o-",
+		"8": "/S/What is that?!",
+		"9": "/M/THE RECKONING! THE LEVIATHAN IS HERE! RUUUUUUUUUUUU-",
+		"10": "/END/"
 	},
 }

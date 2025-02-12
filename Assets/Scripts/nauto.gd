@@ -48,7 +48,7 @@ func _input(event)-> void:
 	#print (mech.is_on_floor())
 	# Jump 
 	#print (global_position.distance_to(pilot_pos))
-	if state == States.IDLE and Global.MODE == "Nauto":
+	if state == States.IDLE:
 		if event.is_action_pressed("ui_up") and is_on_floor():
 			charge_anim()
 		# Shift mode
@@ -56,7 +56,7 @@ func _input(event)-> void:
 			#Global.START = false
 			print ("Shift")
 			shift_mode()
-		elif event.is_action_pressed("ui_down") and is_on_floor():
+		elif event.is_action_pressed("ui_down") and is_on_floor() and Global.MODE == "Nauto":
 			#print ("crouched")
 			crouched = !crouched
 			if crouched:

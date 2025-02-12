@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/eel.gd" id="1_o3qdc"]
 [ext_resource type="Texture2D" uid="uid://d082w5a0nagbh" path="res://Assets/Prefabs/Eel.png" id="2_rpxuy"]
 [ext_resource type="AudioStream" uid="uid://c4yl4ux836lxh" path="res://Assets/Sound/Monster.mp3" id="3_xh035"]
-[ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="4_m6f3o"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="4_m6f3o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eiawt"]
 radius = 48.0
@@ -89,6 +89,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wh5w2"]
 
 [node name="LeviathanEel" type="CharacterBody2D"]
+light_mask = 257
 rotation = 1.5708
 scale = Vector2(2, 2)
 motion_mode = 1
@@ -128,6 +129,7 @@ offset_bottom = 409.0
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 257
 texture_filter = 1
 position = Vector2(0.000776487, 214.5)
 scale = Vector2(2, 2)
@@ -156,20 +158,23 @@ shape = SubResource("CapsuleShape2D_wh5w2")
 disabled = true
 
 [node name="PointLightSource" parent="." instance=ExtResource("4_m6f3o")]
-z_index = -1
+z_index = 2
 position = Vector2(8.30004, -3.30008)
 energy = 1.65
+range_item_cull_mask = 256
 texture_scale = 0.15
 
 [node name="PointLightSource2" parent="." instance=ExtResource("4_m6f3o")]
-z_index = -1
+z_index = 2
 position = Vector2(22.7999, -38.3001)
+range_item_cull_mask = 256
 texture_scale = 0.13
 
 [node name="PointLightSource3" parent="." instance=ExtResource("4_m6f3o")]
-z_index = -1
+z_index = 2
 position = Vector2(31.9997, -71.0001)
 energy = 0.8
+range_item_cull_mask = 256
 texture_scale = 0.14
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
