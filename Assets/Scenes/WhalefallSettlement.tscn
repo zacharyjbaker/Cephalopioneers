@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=56 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_x41q6"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="20_xxguo"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
+[ext_resource type="Texture2D" uid="uid://dlqnrxb6u0o6p" path="res://Assets/Scenes/KingCrab.png" id="22_oeb04"]
 [ext_resource type="PackedScene" uid="uid://dbx3bhcjyxprc" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -184,6 +185,123 @@ animations = [{
 "loop": true,
 "name": &"Talk",
 "speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlvpg"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(128, 170, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pwkd"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(256, 340, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oci14"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(0, 0, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5fpj"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(128, 0, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejxqt"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(256, 170, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q04jo"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(384, 170, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfgl4"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(0, 340, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohovb"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(128, 340, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyhrg"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(256, 0, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82aai"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(384, 0, 128, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bin71"]
+atlas = ExtResource("22_oeb04")
+region = Rect2(0, 170, 128, 170)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1lbku"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlvpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pwkd")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oci14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5fpj")
+}],
+"loop": true,
+"name": &"King",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlvpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejxqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q04jo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfgl4")
+}],
+"loop": true,
+"name": &"LilCrab",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlvpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohovb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q04jo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfgl4")
+}],
+"loop": true,
+"name": &"LilCrabDrill",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyhrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82aai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bin71")
+}],
+"loop": true,
+"name": &"Mimic",
+"speed": 7.0
 }]
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
@@ -490,6 +608,28 @@ position = Vector2(10669, 828)
 energy = 0.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1698, 905)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_1lbku")
+animation = &"King"
+frame = 1
+frame_progress = 0.0648693
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/KingCrab.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0ac32adc7280b0e6ab781532426d7ed6"
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
