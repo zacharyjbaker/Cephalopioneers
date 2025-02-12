@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=77 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
@@ -263,58 +263,54 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_opyjq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8sjs"]
 atlas = ExtResource("34_n767i")
-region = Rect2(256, 170, 128, 170)
+region = Rect2(0, 262, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b2wuo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxn6o"]
 atlas = ExtResource("34_n767i")
-region = Rect2(384, 340, 128, 170)
+region = Rect2(128, 393, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_li0sn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s3lp"]
 atlas = ExtResource("34_n767i")
-region = Rect2(128, 0, 128, 170)
+region = Rect2(0, 0, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ypx4g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqo4i"]
 atlas = ExtResource("34_n767i")
-region = Rect2(256, 0, 128, 170)
+region = Rect2(128, 262, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_al5s5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fc0t"]
 atlas = ExtResource("34_n767i")
-region = Rect2(384, 170, 128, 170)
+region = Rect2(256, 262, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_32x4a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j4pm"]
 atlas = ExtResource("34_n767i")
-region = Rect2(0, 340, 128, 170)
+region = Rect2(384, 262, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k2xof"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_28vc5"]
 atlas = ExtResource("34_n767i")
-region = Rect2(128, 340, 128, 170)
+region = Rect2(0, 393, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qwfw0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_46xrl"]
 atlas = ExtResource("34_n767i")
-region = Rect2(256, 340, 128, 170)
+region = Rect2(128, 131, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d36nr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4ysn"]
 atlas = ExtResource("34_n767i")
-region = Rect2(384, 0, 128, 170)
+region = Rect2(256, 131, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_poq0t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3b8s"]
 atlas = ExtResource("34_n767i")
-region = Rect2(0, 170, 128, 170)
+region = Rect2(384, 131, 128, 131)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8oul6"]
-atlas = ExtResource("34_n767i")
-region = Rect2(128, 170, 128, 170)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qqjpd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fgjq2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opyjq")
+"texture": SubResource("AtlasTexture_o8sjs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b2wuo")
+"texture": SubResource("AtlasTexture_dxn6o")
 }],
 "loop": true,
 "name": &"Idle",
@@ -322,10 +318,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_li0sn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ypx4g")
+"texture": SubResource("AtlasTexture_3s3lp")
 }],
 "loop": true,
 "name": &"King",
@@ -333,16 +326,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opyjq")
+"texture": SubResource("AtlasTexture_o8sjs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_al5s5")
+"texture": SubResource("AtlasTexture_uqo4i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_32x4a")
+"texture": SubResource("AtlasTexture_5fc0t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k2xof")
+"texture": SubResource("AtlasTexture_5j4pm")
 }],
 "loop": true,
 "name": &"LilCrab",
@@ -350,16 +343,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opyjq")
+"texture": SubResource("AtlasTexture_o8sjs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qwfw0")
+"texture": SubResource("AtlasTexture_28vc5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_32x4a")
+"texture": SubResource("AtlasTexture_5fc0t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k2xof")
+"texture": SubResource("AtlasTexture_5j4pm")
 }],
 "loop": true,
 "name": &"LilCrabDrill",
@@ -367,13 +360,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d36nr")
+"texture": SubResource("AtlasTexture_46xrl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_poq0t")
+"texture": SubResource("AtlasTexture_x4ysn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8oul6")
+"texture": SubResource("AtlasTexture_c3b8s")
 }],
 "loop": true,
 "name": &"Mimic",
@@ -670,10 +663,10 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(7224, 816)
+position = Vector2(16792, 1007)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(6781, 885)
+position = Vector2(16418, 873)
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]
@@ -1664,9 +1657,9 @@ texture_scale = 6.85
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(17921, 841)
+position = Vector2(17921, 919)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_qqjpd")
+sprite_frames = SubResource("SpriteFrames_fgjq2")
 animation = &"King"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
@@ -1680,7 +1673,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/KingCrab.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ced33c32863c848499fc8cd8bd525419"
+metadata/_aseprite_wizard_source_file_hash_ = "b7abceb60fcbad75d0aec81b259e519e"
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
