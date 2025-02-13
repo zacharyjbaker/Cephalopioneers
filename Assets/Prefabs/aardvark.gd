@@ -29,17 +29,17 @@ func _physics_process(delta: float) -> void:
 	# Sets orientation of body
 	if position.x > waypoints.get_child(current_waypoint).position.x:
 		if upside_down == true:
-			scale.x = -1 * abs(scale.x)
+			sprite.scale.x = -1 * abs(sprite.scale.x)
 		else:
-			scale.x = -1 * abs(scale.x)
+			sprite.scale.x = -1 * abs(sprite.scale.x)
 		#rotation_degrees = 180
 		#sprite.flip_h = true
 		#direction = 1
 	elif position.x < waypoints.get_child(current_waypoint).position.x:
 		if upside_down == true:
-			scale.x = abs(scale.x)
+			sprite.scale.x = abs(sprite.scale.x)
 		else:
-			scale.x = abs(scale.x)
+			sprite.scale.x = abs(sprite.scale.x)
 		
 		#rotation_degrees = 0
 		#sprite.flip_h = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=44 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_x41q6"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="20_xxguo"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
-[ext_resource type="Texture2D" uid="uid://dlqnrxb6u0o6p" path="res://Assets/Scenes/KingCrab.png" id="22_oeb04"]
+[ext_resource type="PackedScene" uid="uid://0b3xea72rab" path="res://Assets/Prefabs/crab_pope.tscn" id="22_k5li7"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -185,123 +185,6 @@ animations = [{
 "loop": true,
 "name": &"Talk",
 "speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ev0p8"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(256, 170, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfaom"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(384, 340, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dwfy4"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(128, 0, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jdiip"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(256, 0, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1siud"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(384, 170, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1vdjb"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(0, 340, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_orn5k"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(128, 340, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yapvb"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(256, 340, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_as2m1"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(384, 0, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o6o20"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(0, 170, 128, 170)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7tw1v"]
-atlas = ExtResource("22_oeb04")
-region = Rect2(128, 170, 128, 170)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7b762"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ev0p8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tfaom")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dwfy4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jdiip")
-}],
-"loop": true,
-"name": &"King",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ev0p8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1siud")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1vdjb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_orn5k")
-}],
-"loop": true,
-"name": &"LilCrab",
-"speed": 17.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ev0p8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yapvb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1vdjb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_orn5k")
-}],
-"loop": true,
-"name": &"LilCrabDrill",
-"speed": 17.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_as2m1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o6o20")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7tw1v")
-}],
-"loop": true,
-"name": &"Mimic",
-"speed": 7.0
 }]
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
@@ -578,25 +461,15 @@ position = Vector2(739, 1098)
 
 [node name="ChaseHazards" type="Node" parent="."]
 
-[node name="LilCrab" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(1177, 989)
-
-[node name="LilCrab3" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(-875, 993)
-
-[node name="LilCrab4" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(2310, 990)
-
-[node name="LilCrab2" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(254, 989)
-
 [node name="PointLightSource" parent="." instance=ExtResource("34_c8sjs")]
+visible = false
 position = Vector2(1153, 1095)
 color = Color(0.200259, 0.61072, 0.426722, 1)
 energy = 2.1
 texture_scale = 2.43
 
 [node name="PointLightSource2" parent="." instance=ExtResource("34_c8sjs")]
+visible = false
 position = Vector2(191, 1101)
 color = Color(0.200259, 0.61072, 0.426722, 1)
 energy = 2.1
@@ -609,25 +482,15 @@ energy = 0.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1675, 905)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_7b762")
-animation = &"King"
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/KingCrab.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "ced33c32863c848499fc8cd8bd525419"
+[node name="LilCrab" parent="." instance=ExtResource("20_c8c68")]
+position = Vector2(999, 1157)
+
+[node name="LilCrab2" parent="." instance=ExtResource("20_c8c68")]
+position = Vector2(1167, 1157)
+crab_type = 2
+
+[node name="CrabPope" parent="." instance=ExtResource("22_k5li7")]
+position = Vector2(1789, 983)
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]

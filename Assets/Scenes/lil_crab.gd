@@ -1,5 +1,7 @@
 extends CharacterBody2D
-@onready var anim_player = $AnimatedSprite2D
+@onready var anim_player = null
+@onready var crab_sprite = $Crab
+@onready var altcrab_sprite = $AltCrab
 @onready var timer = $Timer
 @onready var ambush_timer = $AmbushTimer
 
@@ -11,6 +13,7 @@ extends CharacterBody2D
 @export var detection_range: float = 800.0
 @export var y_knockback = 25
 @export var x_knockback = 40
+@export var crab_type = 1
 
 enum States {AMBUSH, READY, MIMIC, IDLE, WALK, WALKDRILL}
 
@@ -19,13 +22,24 @@ var player: Node2D = null
 var flashlight: Node2D = null
 var is_in_flashlight = false
 var ambush_triggered = false
+
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	#timer.start(2)
 	find_player()
+	if crab_type == 1:
+		altcrab_sprite.visible = false
+		crab_sprite.visible = true
+		anim_player = crab_sprite
+	elif crab_type == 2:
+		crab_sprite.visible = false
+		altcrab_sprite.visible = true
+		anim_player = altcrab_sprite
+	print ("anim:", anim_player)
 
 func _physics_process(delta: float) -> void:
+	print (position)
 	velocity.y += delta * Global.GRAVITY 
 	move_and_slide()
 	

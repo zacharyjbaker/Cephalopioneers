@@ -1,0 +1,127 @@
+[gd_scene load_steps=15 format=3 uid="uid://0b3xea72rab"]
+
+[ext_resource type="Script" path="res://Assets/Prefabs/crab_pope.gd" id="1_dquel"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="2_wo4fu"]
+[ext_resource type="Texture2D" uid="uid://d3kiot6u44p3n" path="res://Assets/Prefabs/KingCrab.png" id="2_yfrp0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7ece"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(0, 0, 128, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reffm"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(128, 0, 128, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufdbq"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(256, 0, 128, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkm00"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(0, 131, 128, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvcxj"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(128, 131, 128, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utvgf"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(256, 131, 128, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjy6y"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(0, 262, 128, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51yqa"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(128, 262, 128, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_me335"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_k7ece")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_k7ece")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_reffm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufdbq")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_ufdbq")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_wkm00")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_dvcxj")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_dvcxj")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_utvgf")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_utvgf")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_sjy6y")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_sjy6y")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_51yqa")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 20.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vep38"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.0589888, 0.247191, 0.367978, 0.52809, 0.651685, 0.761236)
+colors = PackedColorArray(0.94, 1, 0.993, 1, 0.661146, 0.661146, 0.661146, 1, 0.45437, 0.45437, 0.45437, 1, 0.202247, 0.202247, 0.202247, 1, 0.0959692, 0.0959692, 0.0959692, 1, 0.00486528, 0.00486528, 0.00486528, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0yxxh"]
+gradient = SubResource("Gradient_vep38")
+width = 600
+height = 600
+fill = 1
+fill_from = Vector2(0.495726, 0.491453)
+fill_to = Vector2(1, 0.0384615)
+
+[node name="CrabPope" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_dquel")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_me335")
+animation = &"Idle"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/KingCrab.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "1ee3db293ab5de48a69a4121bc563e43"
+
+[node name="StaffLight" parent="." instance=ExtResource("2_wo4fu")]
+position = Vector2(-41.5, -9.5)
+scale = Vector2(3.10376, 2.89719)
+color = Color(0.819608, 1, 0.901961, 1)
+energy = 1.0
+texture = SubResource("GradientTexture2D_0yxxh")
+texture_scale = 0.1
