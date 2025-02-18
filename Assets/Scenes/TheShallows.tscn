@@ -1,13 +1,10 @@
-[gd_scene load_steps=85 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=68 format=4 uid="uid://d0sd375ae8jx2"]
 
-[ext_resource type="Texture2D" uid="uid://uqkt648dhkov" path="res://Assets/Scenes/Shealth.png" id="1_0ydr1"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
-[ext_resource type="Script" path="res://Assets/Scenes/ui.gd" id="1_i7phf"]
+[ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_kl6pr"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
-[ext_resource type="Texture2D" uid="uid://dj0uexi41meep" path="res://Assets/Scenes/UI_Bar.png" id="2_hmerc"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_qfhot"]
-[ext_resource type="Texture2D" uid="uid://bcr2w4063kf5y" path="res://Assets/Scenes/HealthBar.png" id="3_yxub3"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_3ifyq"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="5_6u7nn"]
 [ext_resource type="Texture2D" uid="uid://ddc63b22fsubo" path="res://Assets/MapDraft/Layer 2 Resized.png" id="6_d27y2"]
@@ -39,111 +36,6 @@
 [ext_resource type="PackedScene" uid="uid://ccn1jktgtdjs1" path="res://current.tscn" id="34_vfhag"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
 [ext_resource type="PackedScene" uid="uid://clgn2bcvfayy" path="res://Assets/Prefabs/Boulder.tscn" id="37_rha8h"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0t13h"]
-atlas = ExtResource("1_0ydr1")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_d7763"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0t13h")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ricq"]
-atlas = ExtResource("1_0ydr1")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cblh7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ricq")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7e2t3"]
-atlas = ExtResource("1_0ydr1")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wwukd"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7e2t3")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmb0o"]
-atlas = ExtResource("1_0ydr1")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ny1bs"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lmb0o")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w37fc"]
-atlas = ExtResource("1_0ydr1")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_33sui"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w37fc")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u7iyu"]
-atlas = ExtResource("2_hmerc")
-region = Rect2(0, 0, 480, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c3fix"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u7iyu")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b8ceh"]
-atlas = ExtResource("3_yxub3")
-region = Rect2(0, 0, 480, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yp6jm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b8ceh")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
 noise_type = 2
@@ -179,7 +71,7 @@ glow_levels/2 = 0.47
 glow_levels/3 = 1.55
 glow_levels/4 = 0.6
 glow_levels/5 = 1.75
-glow_intensity = 3.6
+glow_intensity = 3.0
 glow_strength = 0.35
 glow_bloom = 0.2
 glow_blend_mode = 0
@@ -189,7 +81,7 @@ glow_hdr_luminance_cap = 44.18
 glow_map_strength = 0.72
 volumetric_fog_density = 0.0
 adjustment_enabled = true
-adjustment_brightness = 1.1
+adjustment_brightness = 1.05
 adjustment_contrast = 0.7
 adjustment_saturation = 1.7
 adjustment_color_correction = SubResource("GradientTexture2D_abg6r")
@@ -375,148 +267,7 @@ animations = [{
 
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
 
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("1_i7phf")
-
-[node name="HP" type="Node" parent="UI"]
-
-[node name="HP4" type="AnimatedSprite2D" parent="UI/HP"]
-z_index = 1
-texture_filter = 1
-position = Vector2(71, 71)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_d7763")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/Shealth.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "2cdc23b86feca0e262840904afe105ca"
-
-[node name="HP3" type="AnimatedSprite2D" parent="UI/HP"]
-z_index = 1
-texture_filter = 1
-position = Vector2(211, 71)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_cblh7")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/Shealth.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "2cdc23b86feca0e262840904afe105ca"
-
-[node name="HP2" type="AnimatedSprite2D" parent="UI/HP"]
-z_index = 1
-texture_filter = 1
-position = Vector2(351, 71)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_wwukd")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/Shealth.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "2cdc23b86feca0e262840904afe105ca"
-
-[node name="HP1" type="AnimatedSprite2D" parent="UI/HP"]
-z_index = 1
-texture_filter = 1
-position = Vector2(491, 71)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_ny1bs")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/Shealth.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "2cdc23b86feca0e262840904afe105ca"
-
-[node name="HP0" type="AnimatedSprite2D" parent="UI/HP"]
-z_index = 1
-texture_filter = 1
-position = Vector2(631, 71)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_33sui")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/Shealth.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "2cdc23b86feca0e262840904afe105ca"
-
-[node name="BottomBar" type="AnimatedSprite2D" parent="UI"]
-texture_filter = 1
-position = Vector2(960, 1016)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_c3fix")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/UI_Bar.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "3d58cb47fa627e385ea13383baa41092"
-
-[node name="TopBar" type="AnimatedSprite2D" parent="UI"]
-texture_filter = 1
-position = Vector2(960, -96)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_yp6jm")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/HealthBar.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "d9b15dfcdacdd272eb79283b73e59b57"
+[node name="UI" parent="." instance=ExtResource("1_kl6pr")]
 
 [node name="SceneManager" type="Node2D" parent="."]
 script = ExtResource("1_b8dk6")
@@ -595,7 +346,6 @@ offset_bottom = 1355.33
 scale = Vector2(1.28, 1)
 theme_override_fonts/normal_font = ExtResource("12_th2xk")
 theme_override_font_sizes/normal_font_size = 50
-text = "testing"
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]

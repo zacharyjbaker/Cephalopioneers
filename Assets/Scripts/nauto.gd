@@ -121,8 +121,9 @@ func move_anim():
 func charge_anim():
 	current_anim = "Charge"
 	nauto_sprite.play(current_anim)
-	charge_bar.visible = true
-	charge_bar.play("Charge")
+	if crouched == false:
+		charge_bar.visible = true
+		charge_bar.play("Charge")
 		
 func finish_jump() -> void:
 	velocity.y = -(jump_impulse + boost * 300)
