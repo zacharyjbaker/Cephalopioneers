@@ -189,6 +189,8 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "a0ba8643c03dea4a5c65a46e2b0ed919"
 
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="ViewCone" to="." method="_on_view_cone_body_entered"]

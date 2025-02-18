@@ -1,6 +1,7 @@
-[gd_scene load_steps=73 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=74 format=3 uid="uid://by0icvlejbtja"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
+[ext_resource type="AudioStream" uid="uid://dcdxp1ox4iyhg" path="res://Assets/Sound/Sfx/Blaster.wav" id="2_brsws"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="2_rk7o7"]
 [ext_resource type="Texture2D" uid="uid://bf5totkq46lws" path="res://Assets/Prefabs/MechNoArms.png" id="3_fya3w"]
 [ext_resource type="Texture2D" uid="uid://dhhcmm0r0ugoi" path="res://Assets/Sprites/FrontArm_Laser.png" id="4_a011g"]
@@ -487,6 +488,7 @@ light_mask = 3
 collision_layer = 16384
 collision_mask = 32768
 script = ExtResource("1_uj2yd")
+blaster_sfx = ExtResource("2_brsws")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 40)
@@ -786,6 +788,12 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Assets/Sprites/Tab.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "fd61466691b0dfe847676365b941504b"
+
+[node name="BlasterSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ThrusterSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="DrillSFX" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]

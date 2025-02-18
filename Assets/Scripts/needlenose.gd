@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var view_collider = $ViewCone
 @onready var mode = $Mode
 @onready var stun = $Stun
+@onready var audio_player = $SFX
 
 @export var tag = "Needlenose"
 @export var speed = 100
@@ -22,6 +23,8 @@ extends CharacterBody2D
 var random_dir_x = false 
 var random_dir_y = false
 var rng = RandomNumberGenerator.new()
+
+var attack_sfx = null
 
 # Targeting vars
 var player = null
@@ -48,6 +51,7 @@ func _ready() -> void:
 	#timer.start(3)
 	random_direction_selection()
 	player = get_node("/root/Node2D/Nauto")
+	attack_sfx = load("res://Assets/Sound/Sfx/Attack.wav")
 	
 func _physics_process(delta: float) -> void:
 	#print (timer.time_left)
@@ -173,6 +177,8 @@ func _on_timer_timeout() -> void:
 		#print ("Rotated")
 		isActivelyRotating = true
 		mode.visible = false
+		audio_player.stream = attack_sfx
+		audio_player.play()
 		timer.stop()
 	
 	# Aggro recharge

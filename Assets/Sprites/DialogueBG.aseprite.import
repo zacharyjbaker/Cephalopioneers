@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://brqv5lo1t573n"
-path="res://.godot/imported/DialogueBG.aseprite-06ff4f3d4dcf6e745264bd15ce0c3b36.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/DialogueBG.aseprite"
-dest_files=["res://.godot/imported/DialogueBG.aseprite-06ff4f3d4dcf6e745264bd15ce0c3b36.res"]
 
 [params]
 

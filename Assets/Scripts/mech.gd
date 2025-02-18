@@ -16,7 +16,14 @@ extends CharacterBody2D
 @onready var back_boost_particles = $BackBoostParticles
 @onready var player = get_node("/root/Node2D/Nauto")
 @onready var interact = $InteractPrompt
+@onready var blaster_player = $BlasterSFX
+@onready var thruster_player = $ThrusterSFX
+@onready var drill_player = $DrillSFX
 #@onready var shader = $MechCamera/WaterShader
+
+@export var blaster_sfx : Resource
+@export var thruster_sfx : Resource
+@export var drill_sfx : Resource
 
 @export var jump_impulse = 200
 var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
@@ -35,6 +42,8 @@ var isShooting = false
 var isDrilling = false
 var isOpening = false
 var isClosing = false
+var isThrusting = false
+var isBuzzing = false
 
 func _ready() -> void:
 	mech_front_arm.play("Idle")
@@ -135,6 +144,10 @@ func _physics_process(delta: float) -> void:
 		if Global.DAMAGED == false:
 			if Global.MODE == "Mech":
 				mech_body_sprite.play("Boost")
+				if isThrusting == false:
+					thruster_player.stream = thruster_sfx
+					thruster_player.play()
+					isThrusting = true
 			else:
 				mech_body_sprite.play("BoostOpen")
 				mech_back_arm.stop()	
@@ -150,13 +163,21 @@ func _physics_process(delta: float) -> void:
 		boost_particles.emitting = false
 		back_boost_light.enabled = false
 		back_boost_particles.emitting = false
+		isThrusting = false
+		thruster_player.stop()
 		
 	if isDrilling == true:
 		mech_back_arm.play("Drill")
+		if isBuzzing == false :
+			drill_player.stream = drill_sfx
+			drill_player.play()
+			isBuzzing = true
 		#drill_particles.emitting = true
 		
 	elif isDrilling == false:
 		mech_back_arm.play("Idle")
+		isBuzzing = false
+		drill_player.stop()
 		drill_particles.emitting = false
 	
 	if (Global.MODE == "Mech" and isClosing == false):
@@ -185,6 +206,10 @@ func _physics_process(delta: float) -> void:
 				if global_position.y - (floor_height - hover_height) <= 5:
 					position.y = (floor_height - hover_height)
 				isHovering = true
+			if isThrusting == false:
+				thruster_player.stream = thruster_sfx
+				thruster_player.play()
+				isThrusting = true
 		
 		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
 			print ("Hover Right")
@@ -200,6 +225,10 @@ func _physics_process(delta: float) -> void:
 				if global_position.y - (floor_height - hover_height) <= 5:
 					position.y = (floor_height - hover_height)
 				isHovering = true
+			if isThrusting == false:
+				thruster_player.stream = thruster_sfx
+				thruster_player.play()
+				isThrusting = true
 				
 		elif Input.is_action_pressed("ui_up"):
 			if (global_position.y > floor_height - hover_height):
@@ -290,6 +319,8 @@ func _physics_process(delta: float) -> void:
 
 func shoot() -> void:
 	var laser_proj_instance = laser_projectile.instantiate()
+	blaster_player.stream = blaster_sfx
+	blaster_player.play()
 	
 	if rotation_degrees == 0:
 		laser_proj_instance.velocity.x = 1

@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://c3r2ymbrp2dxy"
-path="res://.godot/imported/OldCrab.aseprite-bc5bcdd1606e0758784918452b1f0e3c.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/OldCrab.aseprite"
-dest_files=["res://.godot/imported/OldCrab.aseprite-bc5bcdd1606e0758784918452b1f0e3c.res"]
 
 [params]
 

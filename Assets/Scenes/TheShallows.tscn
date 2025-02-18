@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=51 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_kl6pr"]
@@ -17,6 +17,8 @@
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="12_th2xk"]
 [ext_resource type="Texture2D" uid="uid://d0w70hpm12841" path="res://Assets/Sprites/CommanderBite.png" id="15_7otye"]
 [ext_resource type="PackedScene" uid="uid://bpyouqxbxr7f5" path="res://Assets/Prefabs/dialogue_manager.tscn" id="16_o6bk4"]
+[ext_resource type="AudioStream" uid="uid://ds6v4fb0mu4ll" path="res://Assets/Sound/Sfx/Thrusters.wav" id="19_68cnb"]
+[ext_resource type="AudioStream" uid="uid://ceirfiplhhbgh" path="res://Assets/Sound/Sfx/Drill.wav" id="20_4000h"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_ye3to"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_2m0jb"]
 [ext_resource type="Texture2D" uid="uid://dwe5uc4temb7d" path="res://Assets/Scenes/Malo.png" id="22_hkcqy"]
@@ -31,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://cio233345wwf8" path="res://Assets/Prefabs/boulder_wall.tscn" id="34_empbd"]
 [ext_resource type="PackedScene" uid="uid://ccn1jktgtdjs1" path="res://current.tscn" id="34_vfhag"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
+[ext_resource type="AudioStream" uid="uid://cjlfstlvpq4kl" path="res://Assets/Sound/Sfx/RockBreak.wav" id="35_wlm0q"]
 [ext_resource type="PackedScene" uid="uid://clgn2bcvfayy" path="res://Assets/Prefabs/Boulder.tscn" id="37_rha8h"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -258,10 +261,12 @@ metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 [node name="DialogueManager" parent="." instance=ExtResource("16_o6bk4")]
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(16384, 768)
+position = Vector2(17268, 471)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(16394, 948)
+position = Vector2(17269, 955)
+thruster_sfx = ExtResource("19_68cnb")
+drill_sfx = ExtResource("20_4000h")
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]
@@ -1262,6 +1267,10 @@ body = NodePath("../Nauto")
 [node name="Vent3" parent="." node_paths=PackedStringArray("body") instance=ExtResource("34_vfhag")]
 position = Vector2(15458, 919)
 body = NodePath("../Nauto")
+
+[node name="DrillableWall" parent="." instance=ExtResource("9_so8s1")]
+position = Vector2(17544, 1059)
+break_sfx = ExtResource("35_wlm0q")
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
