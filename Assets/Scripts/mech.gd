@@ -104,6 +104,7 @@ func _physics_process(delta: float) -> void:
 			interact.visible = true
 		if position.distance_to(player.position) >= 250 :
 			interact.visible = false
+		
 	
 	pilot.global_position = Vector2(global_position.x - 4, global_position.y - 21)
 	#print ("Mech:", position)
@@ -117,10 +118,13 @@ func _physics_process(delta: float) -> void:
 	if velocity.x > 1:
 		scale.y = abs(scale.y)
 		rotation_degrees = 0
+		interact.scale.x = 4
+		
 
 	elif velocity.x < -1:
 		scale.y = -1 * abs(scale.y)
 		rotation_degrees = 180
+		interact.scale.x = -4
 
 	#print (Global.MODE)
 	#print (floor_height)

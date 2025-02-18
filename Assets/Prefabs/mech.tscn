@@ -679,7 +679,7 @@ z_index = 1
 position = Vector2(-2.00001, 151.347)
 rotation = -1.5708
 scale = Vector2(4.09753, 5.38576)
-energy = 16.45
+energy = 14.0
 range_item_cull_mask = 24
 shadow_item_cull_mask = 0
 texture = ExtResource("10_1tqin")
@@ -768,7 +768,7 @@ texture = SubResource("GradientTexture2D_sd7kk")
 texture_scale = 3.06
 
 [node name="InteractPrompt" type="AnimatedSprite2D" parent="."]
-visible = false
+z_index = -1
 texture_filter = 1
 position = Vector2(0.125, -110)
 scale = Vector2(4, 4)
