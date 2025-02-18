@@ -1,8 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://bxa0nwx5uicwr"]
+[gd_scene load_steps=33 format=3 uid="uid://bxa0nwx5uicwr"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_djhdu"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_cwmej"]
 [ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_kx56x"]
+[ext_resource type="Texture2D" uid="uid://dlrfbadv04ie1" path="res://Assets/Prefabs/ChargeJumpBar.png" id="4_nudv3"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="5_e1fd8"]
+[ext_resource type="Texture2D" uid="uid://hwa51d66j4j8" path="res://Assets/Prefabs/gauge.tres" id="6_e77tp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("2_cwmej")
@@ -171,6 +174,62 @@ height = 20.6982
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qjqus"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj3bo"]
+atlas = ExtResource("4_nudv3")
+region = Rect2(5, 0, 5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37sag"]
+atlas = ExtResource("4_nudv3")
+region = Rect2(10, 0, 5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ojx2"]
+atlas = ExtResource("4_nudv3")
+region = Rect2(0, 16, 5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p437"]
+atlas = ExtResource("4_nudv3")
+region = Rect2(5, 16, 5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix0hp"]
+atlas = ExtResource("4_nudv3")
+region = Rect2(0, 0, 5, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vuvcp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj3bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37sag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ojx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p437")
+}],
+"loop": false,
+"name": &"Charge",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p437")
+}],
+"loop": false,
+"name": &"Full",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix0hp")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 10.0
+}]
+
 [node name="Nauto" type="CharacterBody2D"]
 position = Vector2(-1609, 1143)
 scale = Vector2(4, 4)
@@ -250,8 +309,44 @@ noise = SubResource("FastNoiseLite_qjqus")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="ChargeJumpBar" type="AnimatedSprite2D" parent="."]
+visible = false
+light_mask = 16384
+texture_filter = 1
+position = Vector2(11, 0)
+sprite_frames = SubResource("SpriteFrames_vuvcp")
+animation = &"Charge"
+frame = 3
+frame_progress = 1.0
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/ChargeJumpBar.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "9152cec7c3677fc0b8628fcc41e26c16"
+
+[node name="BoostParticleLight" parent="ChargeJumpBar" instance=ExtResource("5_e1fd8")]
+light_mask = 0
+z_index = 1
+position = Vector2(0, 0.499992)
+rotation = 3.14159
+scale = Vector2(25.1291, 30.1595)
+energy = 2.1
+range_item_cull_mask = 16384
+shadow_item_cull_mask = 0
+texture = ExtResource("6_e77tp")
+texture_scale = 0.01
+
 [connection signal="animation_finished" from="Nauto" to="." method="_on_nauto_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="HurtBox" to="." method="_on_hurt_box_body_shape_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="ChargeJumpBar" to="." method="_on_charge_jump_bar_animation_finished"]

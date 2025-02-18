@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var nauto_camera = $NautoCamera
 #@onready var shader = $WaterShader
 @onready var anim_player = $AnimationPlayer
+@onready var charge_bar = $ChargeJumpBar
 @onready var physics_collider = $PhysicsCollider
 @onready var crouch_collider = $PhysicsColliderCrouch
 @onready var mech_camera = get_node("/root/Node2D/Mech/MechCamera")
@@ -16,7 +17,6 @@ extends CharacterBody2D
 @onready var HP = get_node("/root/Node2D/UI/HP").get_children()
 
 @export var jump_impulse = 350
-
 
 var camera = null
 var knockback = Vector2.ZERO
@@ -39,8 +39,6 @@ func _ready() -> void:
 	#mech_sprite.visible = false
 	nauto_camera.make_current()
 	Global.MODE = "Nauto"
-	
-	
 	
 func _input(event)-> void:
 	pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
@@ -123,9 +121,13 @@ func move_anim():
 func charge_anim():
 	current_anim = "Charge"
 	nauto_sprite.play(current_anim)
+	charge_bar.visible = true
+	charge_bar.play("Charge")
 		
 func finish_jump() -> void:
 	velocity.y = -(jump_impulse + boost * 300)
+	charge_bar.visible = false
+	charge_bar.play("Idle")
 	#nauto_sprite.self_modulate = original_modulate
 	boost = 0.0
 
@@ -179,13 +181,14 @@ func _physics_process(delta: float) -> void:
 			
 		# charge jump anim
 		if Input.is_action_pressed("ui_up") and is_on_floor():
+			print("Boost:", boost)
 			charge = true;
 			physics_collider.disabled = true
 			crouch_collider.disabled = false
 			if crouched:
 				crouched = false
 				Global.WALK_SPEED = 400
-			if (boost < 1):
+			if (boost < 0.70):
 				boost+=delta
 				#nauto_sprite.self_modulate = Color(0,0,boost*2, 100)
 			if (velocity.x > 50):
@@ -264,8 +267,9 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 			velocity.y += -(velocity.y * 2 + body.y_knockback)
 
 func health_loss() -> void:
-	Global.HEALTH -= 1
-	HP[Global.HEALTH].visible = false
+	if Global.HEALTH > 0:
+		Global.HEALTH -= 1
+		HP[Global.HEALTH].visible = false
 
 func _on_timer_timeout() -> void:
 	if state == States.MOVE:
