@@ -36,10 +36,10 @@ func _ready() -> void:
 		crab_sprite.visible = false
 		altcrab_sprite.visible = true
 		anim_player = altcrab_sprite
-	print ("anim:", anim_player)
+	#print ("anim:", anim_player)
 
 func _physics_process(delta: float) -> void:
-	print (position)
+	#print (position)
 	velocity.y += delta * Global.GRAVITY 
 	move_and_slide()
 	

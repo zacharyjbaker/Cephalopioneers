@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=67 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="31_vmlcy"]
 [ext_resource type="PackedScene" uid="uid://dhgx6o3rdua0q" path="res://Assets/Prefabs/lil_crab.tscn" id="34_b6vo5"]
 [ext_resource type="PackedScene" uid="uid://cio233345wwf8" path="res://Assets/Prefabs/boulder_wall.tscn" id="34_empbd"]
+[ext_resource type="PackedScene" uid="uid://ccn1jktgtdjs1" path="res://current.tscn" id="34_vfhag"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
 [ext_resource type="PackedScene" uid="uid://clgn2bcvfayy" path="res://Assets/Prefabs/Boulder.tscn" id="37_rha8h"]
 
@@ -553,7 +554,7 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(22177, 717)
+position = Vector2(15381, 1095)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
 position = Vector2(16394, 948)
@@ -1544,6 +1545,20 @@ skew = 0.832522
 energy = 0.72
 texture = ExtResource("35_fdgge")
 texture_scale = 6.85
+
+[node name="Vent" parent="." node_paths=PackedStringArray("body") instance=ExtResource("34_vfhag")]
+position = Vector2(15777, 1176)
+rotation = 1.5708
+body = NodePath("../Nauto")
+
+[node name="Vent2" parent="." node_paths=PackedStringArray("body") instance=ExtResource("34_vfhag")]
+position = Vector2(16085, 943)
+rotation = 0.785398
+body = NodePath("../Nauto")
+
+[node name="Vent3" parent="." node_paths=PackedStringArray("body") instance=ExtResource("34_vfhag")]
+position = Vector2(15458, 919)
+body = NodePath("../Nauto")
 
 [node name="LilCrab" parent="." instance=ExtResource("34_b6vo5")]
 position = Vector2(22008, 702)
