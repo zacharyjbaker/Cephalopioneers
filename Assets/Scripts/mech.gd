@@ -14,6 +14,8 @@ extends CharacterBody2D
 @onready var boost_particles = $BoostParticles
 @onready var back_boost_light = $BackBoostLight
 @onready var back_boost_particles = $BackBoostParticles
+@onready var player = get_node("/root/Node2D/Nauto")
+@onready var interact = $InteractPrompt
 #@onready var shader = $MechCamera/WaterShader
 
 @export var jump_impulse = 200
@@ -87,6 +89,7 @@ func close_anim():
 	isClosing = true
 	current_anim = "Close"
 	mech_body_sprite.play(current_anim)
+	interact.visible = false
 
 	
 func laser_explosion():
@@ -95,6 +98,12 @@ func laser_explosion():
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	
+	if Global.MODE == "Nauto":
+		if position.distance_to(player.position) < 250 and Global.FREEZE == false:
+			interact.visible = true
+		if position.distance_to(player.position) >= 250 :
+			interact.visible = false
 	
 	pilot.global_position = Vector2(global_position.x - 4, global_position.y - 21)
 	#print ("Mech:", position)

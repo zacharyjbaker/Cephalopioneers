@@ -236,6 +236,7 @@ func _physics_process(delta: float) -> void:
 		elif is_on_floor():
 			if crouched == false:
 				current_anim = "Idle"
+				charge_bar.visible = false
 			else:
 				current_anim = "Charge"
 			nauto_sprite.play(current_anim)
