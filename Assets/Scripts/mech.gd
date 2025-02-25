@@ -193,7 +193,7 @@ func _physics_process(delta: float) -> void:
 		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 3.8, 0.9 * delta)
 		#print (cockpit_light.texture_scale)
 		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
-			print ("Hover Right")
+			#print ("Hover Right")
 			hover_move_anim()
 			boost_light.enabled = true
 			boost_particles.emitting = true
@@ -212,7 +212,7 @@ func _physics_process(delta: float) -> void:
 				isThrusting = true
 		
 		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
-			print ("Hover Right")
+			#print ("Hover Right")
 			hover_move_anim()
 			boost_light.enabled = true
 			boost_particles.emitting = true
@@ -246,7 +246,7 @@ func _physics_process(delta: float) -> void:
 			
 		# move anims
 		if Input.is_action_pressed("ui_right") and is_on_floor() and !Input.is_action_pressed("ui_up"):
-			print ("move_right")
+			#print ("move_right")
 			move_anim()
 			if velocity.x < (Global.WALK_SPEED - 250):
 				velocity.x +=  Global.WALK_SPEED * delta * 1
@@ -255,7 +255,7 @@ func _physics_process(delta: float) -> void:
 			#mech_body_sprite.flip_h = false
 			
 		elif Input.is_action_pressed("ui_left") and is_on_floor() and !Input.is_action_pressed("ui_up"):
-			print ("move_left")
+			#print ("move_left")
 			move_anim()
 			if velocity.x > -(Global.WALK_SPEED - 250):
 				velocity.x +=  -Global.WALK_SPEED * delta * 1

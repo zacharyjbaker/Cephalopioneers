@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=50 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_kl6pr"]
@@ -33,7 +33,6 @@
 [ext_resource type="PackedScene" uid="uid://cio233345wwf8" path="res://Assets/Prefabs/boulder_wall.tscn" id="34_empbd"]
 [ext_resource type="PackedScene" uid="uid://ccn1jktgtdjs1" path="res://current.tscn" id="34_vfhag"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
-[ext_resource type="AudioStream" uid="uid://cjlfstlvpq4kl" path="res://Assets/Sound/Sfx/RockBreak.wav" id="35_wlm0q"]
 [ext_resource type="PackedScene" uid="uid://clgn2bcvfayy" path="res://Assets/Prefabs/Boulder.tscn" id="37_rha8h"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -261,10 +260,10 @@ metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 [node name="DialogueManager" parent="." instance=ExtResource("16_o6bk4")]
 
 [node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
-position = Vector2(17268, 471)
+position = Vector2(-2260, 691)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
-position = Vector2(17269, 955)
+position = Vector2(-2271, 860)
 thruster_sfx = ExtResource("19_68cnb")
 drill_sfx = ExtResource("20_4000h")
 hover_height = 300
@@ -1255,22 +1254,20 @@ texture = ExtResource("35_fdgge")
 texture_scale = 6.85
 
 [node name="Vent" parent="." node_paths=PackedStringArray("body") instance=ExtResource("34_vfhag")]
-position = Vector2(15777, 1176)
+visible = false
+position = Vector2(10373, -401)
 rotation = 1.5708
 body = NodePath("../Nauto")
 
 [node name="Vent2" parent="." node_paths=PackedStringArray("body") instance=ExtResource("34_vfhag")]
-position = Vector2(16085, 943)
+visible = false
+position = Vector2(10681, -634)
 rotation = 0.785398
 body = NodePath("../Nauto")
 
 [node name="Vent3" parent="." node_paths=PackedStringArray("body") instance=ExtResource("34_vfhag")]
-position = Vector2(15458, 919)
+position = Vector2(30335, 1155)
 body = NodePath("../Nauto")
-
-[node name="DrillableWall" parent="." instance=ExtResource("9_so8s1")]
-position = Vector2(17544, 1059)
-break_sfx = ExtResource("35_wlm0q")
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]

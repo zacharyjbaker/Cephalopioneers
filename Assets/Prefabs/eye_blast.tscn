@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=3 uid="uid://bebhepwqjerot"]
+
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="1_s65cq"]
+[ext_resource type="Texture2D" uid="uid://dnq0inl3de5au" path="res://Assets/Prefabs/EyeBlast.png" id="1_tqeif"]
+[ext_resource type="Script" path="res://Assets/Prefabs/eye_blast.gd" id="1_v667b"]
+
+[sub_resource type="Curve" id="Curve_xgx8j"]
+max_value = 190.35
+_data = [Vector2(0, 2.29922), 0.0, 0.0, 0, 0, Vector2(0.992, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pwi54"]
+max_value = 3.0
+_data = [Vector2(0, 0.979067), 0.0, 0.0, 0, 0, Vector2(1, 0.442347), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcggm"]
+atlas = ExtResource("1_tqeif")
+region = Rect2(0, 0, 120, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtk0u"]
+atlas = ExtResource("1_tqeif")
+region = Rect2(120, 0, 120, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjlif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcggm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtk0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_27tbv"]
+radius = 23.9321
+height = 139.974
+
+[node name="EyeBlast" type="CharacterBody2D"]
+script = ExtResource("1_v667b")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(11, 0)
+rotation = 1.5708
+amount = 150
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 5.82
+direction = Vector2(0, 1)
+spread = 3.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 34.71
+initial_velocity_max = 245.64
+damping_curve = SubResource("Curve_xgx8j")
+scale_amount_min = 0.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_pwi54")
+color = Color(0.823529, 0.976471, 0.882353, 1)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(-29, 1)
+sprite_frames = SubResource("SpriteFrames_xjlif")
+autoplay = "default"
+frame_progress = 0.00247774
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/EyeBlast.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "4bc51b50a665f2db40792cbec5e7f7c6"
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["laser"]]
+visible = false
+position = Vector2(4.75, -0.25)
+rotation = 1.57376
+scale = Vector2(0.593627, -0.320031)
+shape = SubResource("CapsuleShape2D_27tbv")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-13, -1)
+rotation = 1.57376
+scale = Vector2(0.610314, 0.592805)
+collision_layer = 0
+collision_mask = 32768
+
+[node name="HurtBox" type="CollisionShape2D" parent="Area2D" groups=["laser"]]
+shape = SubResource("CapsuleShape2D_27tbv")
+
+[node name="PointLightSource" parent="." instance=ExtResource("1_s65cq")]
+z_index = 5
+position = Vector2(-16, 0)
+scale = Vector2(-3.34508, -1.0984)
+color = Color(0.819608, 1, 0.901961, 1)
+energy = 0.97
+texture_scale = 0.2

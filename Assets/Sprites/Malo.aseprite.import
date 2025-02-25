@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dyihqeavfw7a4"
-valid=false
+path="res://.godot/imported/Malo.aseprite-6047e5452fe3f956a638ab7070e8d7f0.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Malo.aseprite"
+dest_files=["res://.godot/imported/Malo.aseprite-6047e5452fe3f956a638ab7070e8d7f0.res"]
 
 [params]
 
