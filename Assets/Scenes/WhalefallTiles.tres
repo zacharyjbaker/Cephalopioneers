@@ -1,0 +1,66 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dnawyujiub3da"]
+
+[ext_resource type="Texture2D" uid="uid://bp3vkhp0joom8" path="res://Assets/MapDraft/Test Tile.png" id="1_12yqe"]
+[ext_resource type="Texture2D" uid="uid://3irytp0k3tnh" path="res://Assets/Sprites/Whale Fall Environment/Bone Lamps Whale Fall.png" id="2_s5m2t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3mlo"]
+texture = ExtResource("1_12yqe")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ul3tp"]
+texture = ExtResource("2_s5m2t")
+6:1/0 = 0
+6:2/0 = 0
+8:2/0 = 0
+0:0/animation_columns = 18
+0:0/animation_separation = Vector2i(8, 0)
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:1/animation_columns = 18
+0:1/animation_separation = Vector2i(8, 0)
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/0 = 0
+0:2/animation_columns = 18
+0:2/animation_separation = Vector2i(8, 0)
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/0 = 0
+2:0/animation_columns = 18
+2:0/animation_separation = Vector2i(8, 0)
+2:0/animation_frame_0/duration = 1.0
+2:0/animation_frame_1/duration = 1.0
+2:0/0 = 0
+2:1/animation_columns = 18
+2:1/animation_separation = Vector2i(8, 0)
+2:1/animation_frame_0/duration = 1.0
+2:1/animation_frame_1/duration = 1.0
+2:1/0 = 0
+2:2/animation_columns = 18
+2:2/animation_separation = Vector2i(8, 0)
+2:2/animation_frame_0/duration = 1.0
+2:2/animation_frame_1/duration = 1.0
+2:2/0 = 0
+4:0/animation_columns = 18
+4:0/animation_separation = Vector2i(8, 0)
+4:0/animation_frame_0/duration = 1.0
+4:0/animation_frame_1/duration = 1.0
+4:0/0 = 0
+4:1/animation_columns = 18
+4:1/animation_separation = Vector2i(8, 0)
+4:1/animation_frame_0/duration = 1.0
+4:1/animation_frame_1/duration = 1.0
+4:1/0 = 0
+4:2/animation_columns = 18
+4:2/animation_separation = Vector2i(8, 0)
+4:2/animation_frame_0/duration = 1.0
+4:2/animation_frame_1/duration = 1.0
+4:2/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 32768
+physics_layer_0/collision_mask = 32768
+sources/0 = SubResource("TileSetAtlasSource_f3mlo")
+sources/1 = SubResource("TileSetAtlasSource_ul3tp")
