@@ -1,8 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://0b3xea72rab"]
+[gd_scene load_steps=26 format=3 uid="uid://0b3xea72rab"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/crab_pope.gd" id="1_dquel"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="2_wo4fu"]
 [ext_resource type="Texture2D" uid="uid://d3kiot6u44p3n" path="res://Assets/Prefabs/KingCrab.png" id="2_yfrp0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1dq2w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ww7os"]
 atlas = ExtResource("2_yfrp0")
@@ -202,10 +204,15 @@ collision_layer = 6272
 collision_mask = 50176
 script = ExtResource("1_dquel")
 
-[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2(-2.60723, 78.75)
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 6.75)
 scale = Vector2(1, 3.67)
-polygon = PackedVector2Array(-49.3928, -1.08992, -49.1428, -37.2616, 64.3572, -37.1253, 64.6072, -1.08992)
+shape = SubResource("CircleShape2D_1dq2w")
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2(-2.60723, 77.5)
+scale = Vector2(1, 3.67)
+polygon = PackedVector2Array(-49.3928, -1.0218, -49.1428, -37.2616, 64.3572, -37.1253, 64.6072, -1.0218)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 light_mask = 129
@@ -227,6 +234,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "85a47e8b6b893afd8165cac85792d7b6"
 
 [node name="StaffLight2" parent="." instance=ExtResource("2_wo4fu")]
+visible = false
 position = Vector2(51.25, 19)
 scale = Vector2(-1.07551, 1.18598)
 color = Color(0.819608, 1, 0.901961, 1)
@@ -236,6 +244,7 @@ texture = SubResource("GradientTexture2D_0yxxh")
 texture_scale = 0.1
 
 [node name="StaffLight" parent="." instance=ExtResource("2_wo4fu")]
+visible = false
 position = Vector2(-41.5, -9.5)
 scale = Vector2(3.10376, 2.89719)
 color = Color(0.819608, 1, 0.901961, 1)
