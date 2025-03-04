@@ -8,6 +8,9 @@ const CAMERA_MOVEMENT_SPEED : int = 4
 @export var max_roll := 0.1 #Maximum rotation in radians (use sparingly).
 @export var noise : FastNoiseLite #The source of random values.
 
+@onready var CityDoor = get_node("/root/Node2D/CityGate")
+@onready var cam_timer = $CamTimer
+
 
 
 const CAMERA_LEFT_LIMIT : int = -1400
@@ -15,6 +18,10 @@ const CAMERA_RIGHT_LIMIT : int = 1920
 
 var noise_y = 0
 var shaking = false
+var panCamera = false
+var reversePanCamera = false
+var starting_position
+#var panBack = false
 
 var trauma := 0.0 #Current shake strength
 var trauma_pwr := 3 #Trauma exponent. Use [2,3]
@@ -51,6 +58,23 @@ func _process(delta):
 		lerp(offset.x,0.0,1)
 		lerp(offset.y,0.0,1)
 		lerp(rotation,0.0,1)
+		
+	if panCamera:
+		starting_position = global_position
+		#print(starting_position)
+		global_position = lerp(global_position, CityDoor.global_position, 5 * delta)
+		#if (abs(global_position.x - CityDoor.global_position.x), abs(global_position.y - CityDoor.global_position.y)) < (100, 100):
+			#print ("reached door")
+			#panCamera = false
+			#global_position = starting_position
+			#cam_timer.start(3)
+	#if reversePanCamera:
+		#global_position = lerp(global_position, starting_position, 5 * delta)
+		#if global_position == starting_position:
+			#print ("reached back")
+			#reversePanCamera = false
+			#global_position = starting_position
+			#cam_timer.start(3)
 
 func shake(): 
 	var amt = pow(trauma, trauma_pwr)
@@ -58,5 +82,10 @@ func shake():
 	rotation = max_roll * amt * noise.get_noise_2d(0, noise_y)
 	offset.x = max_offset.x * amt * noise.get_noise_2d(1000, noise_y)
 	offset.y = max_offset.y * amt * noise.get_noise_2d(2000, noise_y)
-	
-	
+
+func dooropenlerp():
+	panCamera = true
+
+func _on_cam_timer_timeout() -> void:
+	print("Timeout")
+	reversePanCamera = true

@@ -171,7 +171,7 @@ height = 20.6982
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qjqus"]
 
-[node name="Nauto" type="CharacterBody2D"]
+[node name="Nauto" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-1609, 1143)
 scale = Vector2(4, 4)
 collision_layer = 4224
@@ -224,7 +224,7 @@ root_node = NodePath("../..")
 collision_layer = 2048
 collision_mask = 2048
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" groups=["player"]]
 position = Vector2(-2, 0.75)
 rotation = -0.634701
 shape = SubResource("CapsuleShape2D_ylio2")
@@ -243,12 +243,31 @@ drag_bottom_margin = 0.05
 script = ExtResource("3_kx56x")
 decay = 0.0
 max_offset = Vector2(40, 30)
+max_roll = null
 noise = SubResource("FastNoiseLite_qjqus")
 
+[node name="CamTimer" type="Timer" parent="NautoCamera"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Timer" type="Timer" parent="."]
+
+[node name="InteractionBox" type="Area2D" parent="." groups=["player"]]
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox" groups=["player"]]
+position = Vector2(-2, 0.75)
+rotation = -0.634701
+shape = SubResource("CapsuleShape2D_ylio2")
 
 [connection signal="animation_finished" from="Nauto" to="." method="_on_nauto_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="HurtBox" to="." method="_on_hurt_box_body_shape_entered"]
+[connection signal="timeout" from="NautoCamera/CamTimer" to="NautoCamera" method="_on_cam_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="InteractionBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="InteractionBox" to="." method="_on_interaction_box_area_entered"]
+[connection signal="body_entered" from="InteractionBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_shape_entered" from="InteractionBox" to="." method="_on_hurt_box_body_shape_entered"]

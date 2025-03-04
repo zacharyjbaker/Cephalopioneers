@@ -1100,6 +1100,9 @@ drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 script = ExtResource("13_ts6wh")
+decay = null
+max_offset = null
+max_roll = null
 
 [node name="Nauto" type="CharacterBody2D" parent="."]
 position = Vector2(-228, 877)
@@ -1168,6 +1171,9 @@ drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 script = ExtResource("13_ts6wh")
+decay = null
+max_offset = null
+max_roll = null
 
 [node name="Timer" type="Timer" parent="Nauto"]
 

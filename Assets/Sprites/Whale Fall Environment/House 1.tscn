@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch0ynyqh0mxxu"]
+
+[ext_resource type="Texture2D" uid="uid://ksxrofo8g7b5" path="res://Assets/Sprites/Whale Fall Environment/House 1 Front.png" id="1_6lf50"]
+[ext_resource type="Texture2D" uid="uid://cyhrokwms5p67" path="res://Assets/Sprites/Whale Fall Environment/House 1 Back.png" id="2_5a4ru"]
+
+[node name="House1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+texture = ExtResource("1_6lf50")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -10
+texture_filter = 1
+texture = ExtResource("2_5a4ru")

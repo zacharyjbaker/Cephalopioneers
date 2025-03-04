@@ -1,0 +1,17 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://d3trem61os41g"
+valid=false
+
+[deps]
+
+source_file="res://Assets/Sprites/Shealth.aseprite"
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

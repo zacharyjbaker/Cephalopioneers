@@ -1,0 +1,256 @@
+[gd_scene load_steps=19 format=3 uid="uid://rwbda23lhjk5"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/ui.gd" id="1_ph2h1"]
+[ext_resource type="Texture2D" uid="uid://dj0uexi41meep" path="res://Assets/Scenes/UI_Bar.png" id="3_auo3r"]
+[ext_resource type="Texture2D" uid="uid://7rptxa1pol5a" path="res://Assets/Prefabs/Shealth_small.png" id="3_e4k8v"]
+[ext_resource type="Texture2D" uid="uid://7sqpcpv2ceo4" path="res://Assets/Prefabs/HealthBar.png" id="4_1hhhc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o20ut"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(0, 0, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2viox"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o20ut")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qdo2"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(0, 0, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yhxb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qdo2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2o7y"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(0, 0, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xud6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2o7y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5aht"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(0, 0, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwyfh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5aht")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1mh2"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(0, 0, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bash8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1mh2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7iyu"]
+atlas = ExtResource("3_auo3r")
+region = Rect2(0, 0, 480, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3fix"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7iyu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw0pm"]
+atlas = ExtResource("4_1hhhc")
+region = Rect2(0, 0, 480, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_42u3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw0pm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_ph2h1")
+
+[node name="HP" type="Node" parent="."]
+
+[node name="HP4" type="AnimatedSprite2D" parent="HP"]
+z_index = 1
+texture_filter = 1
+position = Vector2(64, 58)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_2viox")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Shealth_small.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+
+[node name="HP3" type="AnimatedSprite2D" parent="HP"]
+z_index = 1
+texture_filter = 1
+position = Vector2(176, 58)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_yhxb6")
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Shealth_small.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+
+[node name="HP2" type="AnimatedSprite2D" parent="HP"]
+z_index = 1
+texture_filter = 1
+position = Vector2(287, 58)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_2xud6")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Shealth_small.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+
+[node name="HP1" type="AnimatedSprite2D" parent="HP"]
+z_index = 1
+texture_filter = 1
+position = Vector2(399, 58)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_qwyfh")
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Shealth_small.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+
+[node name="HP0" type="AnimatedSprite2D" parent="HP"]
+z_index = 1
+texture_filter = 1
+position = Vector2(511, 58)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_bash8")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Shealth_small.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+
+[node name="BottomBar" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 1016)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_c3fix")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/UI_Bar.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3d58cb47fa627e385ea13383baa41092"
+
+[node name="TopBar" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, -96)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_42u3p")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/HealthBar.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "6aafbd7e401c8261589cee112bfed751"

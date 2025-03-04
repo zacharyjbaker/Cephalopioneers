@@ -545,6 +545,9 @@ drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 script = ExtResource("5_lgde3")
+decay = null
+max_offset = null
+max_roll = null
 noise = SubResource("FastNoiseLite_0bm8j")
 
 [node name="WaterShader" type="Sprite2D" parent="MechCamera"]

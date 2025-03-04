@@ -38,6 +38,8 @@ func _ready() -> void:
 	#mech_sprite.visible = false
 	nauto_camera.make_current()
 	Global.MODE = "Nauto"
+	if is_in_group("player"):
+		print("Nauto is in the player group!")
 	
 	
 	
@@ -295,3 +297,7 @@ func _on_timer_timeout() -> void:
 			get_node("HurtBox").set_process(true)
 			visible = true
 			nauto_camera.make_current()
+
+
+func _on_interaction_box_area_entered(area: Area2D) -> void:
+	print("Nauto Collided")
