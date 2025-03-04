@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b458xmokgku8r"]
+
+[ext_resource type="Texture2D" uid="uid://ddd35saugtbxg" path="res://Assets/Sprites/Whale Fall Environment/Sword Fish Bridge Front.png" id="1_8pmc2"]
+[ext_resource type="Texture2D" uid="uid://dj7brd3e73sam" path="res://Assets/Sprites/Whale Fall Environment/Sword Fish Bridge Back.png" id="2_wnsw4"]
+
+[node name="Bridge" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_8pmc2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_wnsw4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 49152
+collision_mask = 49152
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-367, 20, -520, 20, -534, 12, -555, 8, -578, 4, -601, 0, -629, -28, -653, -41, -662, -48, -679, -61, -694, -73, -717, -87, -759, -117, -780, -126, -801, -133, -837, -142, -852, -144, -1024, -144, -1037, -136, -1036, -119, -1059, -91, -1074, -67, -1095, -52, -1126, -39, -1144, -18, -1149, -1, -1152, 39, 1153, 40, 1152, 21, 1148, 17, 1147, -4, 1143, -15, 1130, -32, 1120, -41, 1111, -44, 1099, -50, 1086, -58, 1072, -70, 1057, -93, 1045, -108, 1038, -118, 1036, -135, 1020, -145, 844, -144, 824, -140, 810, -135, 793, -128, 764, -117, 743, -106, 718, -90, 698, -75, 682, -63, 666, -54, 642, -35, 625, -23, 610, -9, 597, 2, 577, 3, 576, 8, 548, 9, 548, 13, 532, 12, 532, 15, 520, 16, 520, 21, 184, 20, 184, 24, -184, 24, -184, 20)
