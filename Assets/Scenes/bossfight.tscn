@@ -471,7 +471,7 @@ curve = SubResource("Curve2D_cs00x")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path1"]
 position = Vector2(122.555, 34.75)
-rotation = -2.35379
+rotation = -2.3538
 
 [node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "crab_spawnpoints", "blast_spawnpoints", "player") instance=ExtResource("23_07pr1")]
 position = Vector2(-5.54512, 108.349)

@@ -30,6 +30,7 @@ var distance
 var offset
 var path_end
 var current_path
+var prev_pos = 0
 
 var inAir = false
 var startOnFloor = false
@@ -103,11 +104,16 @@ func _physics_process(delta: float) -> void:
 			
 		if !is_on_floor() and inAir:
 			#print ("Offset:", path_follow.h_offset)
+			
 			velocity.y += delta * Global.GRAVITY 
-			anim_player.play("InAir")
+			if prev_pos > position.y: # falling transition anim
+				anim_player.play("Descend")
+			elif prev_pos < position.y:  # ascending transition anim
+				anim_player.play("InAir")
+			
 
 			path_follow.h_offset += 190 * delta
-			
+			var prev_pos = position.y
 			
 func _fight():
 	print ("Load next moveset")

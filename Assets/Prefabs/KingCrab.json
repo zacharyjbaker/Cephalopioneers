@@ -1,0 +1,264 @@
+{ "frames": [
+   {
+    "filename": "KingCrab 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 100
+   },
+   {
+    "filename": "KingCrab 1.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 300
+   },
+   {
+    "filename": "KingCrab 2.aseprite",
+    "frame": { "x": 128, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 3.aseprite",
+    "frame": { "x": 256, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 50
+   },
+   {
+    "filename": "KingCrab 4.aseprite",
+    "frame": { "x": 256, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 300
+   },
+   {
+    "filename": "KingCrab 5.aseprite",
+    "frame": { "x": 384, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 300
+   },
+   {
+    "filename": "KingCrab 6.aseprite",
+    "frame": { "x": 512, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 300
+   },
+   {
+    "filename": "KingCrab 7.aseprite",
+    "frame": { "x": 512, "y": 0, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 150
+   },
+   {
+    "filename": "KingCrab 8.aseprite",
+    "frame": { "x": 0, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 100
+   },
+   {
+    "filename": "KingCrab 9.aseprite",
+    "frame": { "x": 0, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 300
+   },
+   {
+    "filename": "KingCrab 10.aseprite",
+    "frame": { "x": 128, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 100
+   },
+   {
+    "filename": "KingCrab 11.aseprite",
+    "frame": { "x": 128, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 300
+   },
+   {
+    "filename": "KingCrab 12.aseprite",
+    "frame": { "x": 256, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 300
+   },
+   {
+    "filename": "KingCrab 13.aseprite",
+    "frame": { "x": 256, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 14.aseprite",
+    "frame": { "x": 384, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 15.aseprite",
+    "frame": { "x": 512, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 400
+   },
+   {
+    "filename": "KingCrab 16.aseprite",
+    "frame": { "x": 512, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 400
+   },
+   {
+    "filename": "KingCrab 17.aseprite",
+    "frame": { "x": 0, "y": 300, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 18.aseprite",
+    "frame": { "x": 0, "y": 300, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 19.aseprite",
+    "frame": { "x": 256, "y": 150, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 20.aseprite",
+    "frame": { "x": 128, "y": 300, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 21.aseprite",
+    "frame": { "x": 256, "y": 300, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 22.aseprite",
+    "frame": { "x": 384, "y": 300, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 23.aseprite",
+    "frame": { "x": 512, "y": 300, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 24.aseprite",
+    "frame": { "x": 0, "y": 450, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 25.aseprite",
+    "frame": { "x": 128, "y": 450, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   },
+   {
+    "filename": "KingCrab 26.aseprite",
+    "frame": { "x": 256, "y": 450, "w": 128, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 150 },
+    "sourceSize": { "w": 128, "h": 150 },
+    "duration": 200
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.9.2-arm64",
+  "image": "KingCrab.png",
+  "format": "RGBA8888",
+  "size": { "w": 640, "h": 600 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Idle", "from": 0, "to": 12, "direction": "forward", "color": "#000000ff" },
+   { "name": "Slam", "from": 13, "to": 15, "direction": "forward", "color": "#000000ff" },
+   { "name": "Descend", "from": 16, "to": 16, "direction": "forward", "color": "#000000ff" },
+   { "name": "InAir", "from": 17, "to": 17, "direction": "forward", "color": "#000000ff" },
+   { "name": "SkullSmash", "from": 18, "to": 18, "direction": "forward", "color": "#000000ff" },
+   { "name": "Blast", "from": 19, "to": 26, "direction": "forward", "color": "#000000ff" }
+  ],
+  "slices": [
+  ]
+ }
+}

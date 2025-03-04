@@ -38,6 +38,10 @@ region = Rect2(128, 450, 128, 150)
 atlas = ExtResource("2_yfrp0")
 region = Rect2(256, 450, 128, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_282fi"]
+atlas = ExtResource("2_yfrp0")
+region = Rect2(384, 150, 128, 150)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5j7t"]
 atlas = ExtResource("2_yfrp0")
 region = Rect2(0, 0, 128, 150)
@@ -69,10 +73,6 @@ region = Rect2(128, 150, 128, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3x4bl"]
 atlas = ExtResource("2_yfrp0")
 region = Rect2(0, 300, 128, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_282fi"]
-atlas = ExtResource("2_yfrp0")
-region = Rect2(384, 150, 128, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r6e52"]
 atlas = ExtResource("2_yfrp0")
@@ -107,6 +107,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"Blast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_282fi")
+}],
+"loop": true,
+"name": &"Descend",
 "speed": 5.0
 }, {
 "frames": [{
@@ -221,7 +229,7 @@ polygon = PackedVector2Array(-49.3928, -1.0218, -49.1428, -37.2616, 64.3572, -37
 light_mask = 129
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hm0vo")
-animation = &"Slam"
+animation = &"Descend"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

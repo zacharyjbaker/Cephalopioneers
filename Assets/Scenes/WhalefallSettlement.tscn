@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="20_xxguo"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
-[ext_resource type="PackedScene" uid="uid://0b3xea72rab" path="res://Assets/Prefabs/crab_pope.tscn" id="22_k5li7"]
+[ext_resource type="PackedScene" uid="uid://gm6hpf1l6li7" path="res://Assets/Prefabs/guard_crab.tscn" id="25_616cb"]
 [ext_resource type="PackedScene" uid="uid://tbxkugnbp6o8" path="res://Assets/Prefabs/drillable_wall.tscn" id="25_i25eq"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
 
@@ -449,17 +449,17 @@ shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="LilCrab" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(999, 1157)
+position = Vector2(902, 1148)
 
 [node name="LilCrab2" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(1167, 1157)
+position = Vector2(1408, 866)
 crab_type = 2
-
-[node name="CrabPope" parent="." instance=ExtResource("22_k5li7")]
-position = Vector2(1789, 983)
 
 [node name="DrillableWall" parent="." instance=ExtResource("25_i25eq")]
 position = Vector2(1357, 1117)
+
+[node name="GuardCrab" parent="." instance=ExtResource("25_616cb")]
+position = Vector2(1041, 1144)
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
