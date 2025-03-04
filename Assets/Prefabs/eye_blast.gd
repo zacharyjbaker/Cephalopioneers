@@ -9,8 +9,9 @@ func _ready() -> void:
 	print ("Proj Instantiated")
 	sprite.play("Flicker") # Replace with function body.
 	#invert_sprite.play("default")
-	velocity.x = velocity.x * speed
-	print (velocity.x)
+	#velocity.x = velocity.x * speed
+	#print (velocity.x)
+	velocity.y = velocity.y * speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

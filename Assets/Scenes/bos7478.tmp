@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://d0la6ayh7nyw8"]
+[gd_scene load_steps=46 format=4 uid="uid://d0la6ayh7nyw8"]
 
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="2_qbk6u"]
@@ -191,12 +191,6 @@ animations = [{
 [sub_resource type="Curve2D" id="Curve2D_cs00x"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 122.555, 34.75, 77.6788, -0.167332, -77.6788, 0.167332, 43.1865, -45, 0, 0, 0, 0, -46.6414, 42.5)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_jqy61"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -47.5051, 40.5, -78.4885, 0.148483, 78.4885, -0.148483, 43.1865, -40.5, 0, 0, 0, 0, 121.21, 39.75)
 }
 point_count = 3
 
@@ -464,30 +458,24 @@ energy = 0.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Path1" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="."]
 position = Vector2(1339, 1075)
 scale = Vector2(3.47331, 4)
 curve = SubResource("Curve2D_cs00x")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path1"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(122.555, 34.75)
 rotation = -2.35379
 
-[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "crab_spawnpoints", "blast_spawnpoints", "player") instance=ExtResource("23_07pr1")]
+[node name="CrabPope" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path", "crab_spawnpoints", "blast_spawnpoints", "player") instance=ExtResource("23_07pr1")]
 position = Vector2(-5.54512, 108.349)
 rotation = 2.35379
 scale = Vector2(1.15164, 1)
 floor_snap_length = 3.0
-path1 = NodePath("../..")
-path2 = NodePath("../../../Path2")
+path = NodePath("../..")
 crab_spawnpoints = NodePath("../../../CrabSpawnNode")
 blast_spawnpoints = NodePath("../../../BlastSpawnNode")
 player = NodePath("../../../Mech")
-
-[node name="Path2" type="Path2D" parent="."]
-position = Vector2(1339, 1057)
-scale = Vector2(3.47331, 4)
-curve = SubResource("Curve2D_jqy61")
 
 [node name="CrabSpawnNode" type="Node" parent="."]
 
