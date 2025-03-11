@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bebhepwqjerot"]
+[gd_scene load_steps=12 format=3 uid="uid://dw41rsmdh1pu0"]
 
-[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="1_s65cq"]
-[ext_resource type="Texture2D" uid="uid://dnq0inl3de5au" path="res://Assets/Prefabs/EyeBlast.png" id="1_tqeif"]
-[ext_resource type="Script" path="res://Assets/Prefabs/eye_blast.gd" id="1_v667b"]
+[ext_resource type="Script" path="res://Assets/Prefabs/eel_blast.gd" id="1_lp671"]
+[ext_resource type="Texture2D" uid="uid://daohygp34fkwy" path="res://Assets/Prefabs/EelBlast.png" id="2_7y3et"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="3_51764"]
 
 [sub_resource type="Curve" id="Curve_xgx8j"]
 max_value = 190.35
@@ -14,50 +14,63 @@ max_value = 3.0
 _data = [Vector2(0, 0.979067), 0.0, 0.0, 0, 0, Vector2(1, 0.442347), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mcggm"]
-atlas = ExtResource("1_tqeif")
-region = Rect2(0, 0, 120, 31)
+[sub_resource type="AtlasTexture" id="AtlasTexture_336ru"]
+atlas = ExtResource("2_7y3et")
+region = Rect2(0, 0, 137, 97)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rtk0u"]
-atlas = ExtResource("1_tqeif")
-region = Rect2(120, 0, 120, 31)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oo4e"]
+atlas = ExtResource("2_7y3et")
+region = Rect2(137, 0, 137, 97)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xjlif"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_afcrd"]
+atlas = ExtResource("2_7y3et")
+region = Rect2(0, 97, 137, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyt5c"]
+atlas = ExtResource("2_7y3et")
+region = Rect2(137, 97, 137, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlrrg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mcggm")
+"texture": SubResource("AtlasTexture_336ru")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rtk0u")
+"texture": SubResource("AtlasTexture_4oo4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afcrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyt5c")
 }],
 "loop": true,
-"name": &"Flicker",
-"speed": 9.0
+"name": &"Nom",
+"speed": 6.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_27tbv"]
 radius = 23.9321
 height = 139.974
 
-[node name="EyeBlast" type="CharacterBody2D"]
-z_index = 1001
+[node name="EelBlast" type="CharacterBody2D"]
 scale = Vector2(4, 4)
-script = ExtResource("1_v667b")
+script = ExtResource("1_lp671")
+speed = 180
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
-position = Vector2(-6.75, 0)
+position = Vector2(-34.25, 3.25)
 rotation = 1.5708
 amount = 150
-lifetime = 0.5
 emission_shape = 1
-emission_sphere_radius = 8.0
+emission_sphere_radius = 23.56
 direction = Vector2(0, 1)
 spread = 3.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 34.71
-initial_velocity_max = 245.64
+initial_velocity_max = 101.0
 damping_curve = SubResource("Curve_xgx8j")
 scale_amount_min = 6.76
 scale_amount_max = 6.76
@@ -67,11 +80,11 @@ color = Color(0.823529, 0.976471, 0.882353, 1)
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
 texture_filter = 1
-position = Vector2(-29, 1)
-sprite_frames = SubResource("SpriteFrames_xjlif")
-animation = &"Flicker"
-autoplay = "Flicker"
-frame_progress = 0.03228
+position = Vector2(-20.75, -15.25)
+sprite_frames = SubResource("SpriteFrames_hlrrg")
+animation = &"Nom"
+frame_progress = 0.329054
+flip_h = true
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -83,9 +96,9 @@ metadata/_aseprite_wizard_config_ = {
 "o_name": "",
 "only_visible": false,
 "slice": "",
-"source": "res://Assets/Sprites/EyeBlast.aseprite"
+"source": "res://Assets/Sprites/EelBlast.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "4bc51b50a665f2db40792cbec5e7f7c6"
+metadata/_aseprite_wizard_source_file_hash_ = "c76aa5cfe0b11f1e6e953f7b60ac6f28"
 
 [node name="HitBox" type="CollisionShape2D" parent="." groups=["laser"]]
 visible = false
@@ -104,10 +117,10 @@ collision_mask = 32768
 [node name="HurtBox" type="CollisionShape2D" parent="Area2D" groups=["laser"]]
 shape = SubResource("CapsuleShape2D_27tbv")
 
-[node name="PointLightSource" parent="." instance=ExtResource("1_s65cq")]
-z_index = 5
+[node name="PointLightSource" parent="." instance=ExtResource("3_51764")]
+z_index = 1001
 position = Vector2(-16, 0)
 scale = Vector2(-3.34508, -1.0984)
 color = Color(0.819608, 1, 0.901961, 1)
-energy = 0.97
+energy = 0.3
 texture_scale = 0.2

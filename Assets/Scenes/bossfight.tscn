@@ -473,13 +473,14 @@ curve = SubResource("Curve2D_cs00x")
 position = Vector2(122.555, 34.75)
 rotation = -2.3538
 
-[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "crab_spawnpoints", "blast_spawnpoints", "player") instance=ExtResource("23_07pr1")]
+[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player") instance=ExtResource("23_07pr1")]
 position = Vector2(-5.54512, 108.349)
 rotation = 2.35379
 scale = Vector2(1.15164, 1)
 floor_snap_length = 3.0
 path1 = NodePath("../..")
 path2 = NodePath("../../../Path2")
+smash_path = NodePath("../../../Path3")
 crab_spawnpoints = NodePath("../../../CrabSpawnNode")
 blast_spawnpoints = NodePath("../../../BlastSpawnNode")
 player = NodePath("../../../Mech")
@@ -488,6 +489,11 @@ player = NodePath("../../../Mech")
 position = Vector2(1339, 1057)
 scale = Vector2(3.47331, 4)
 curve = SubResource("Curve2D_jqy61")
+
+[node name="Path3" type="Path2D" parent="."]
+position = Vector2(1562.82, 1075)
+scale = Vector2(1.64703, 4)
+curve = SubResource("Curve2D_cs00x")
 
 [node name="CrabSpawnNode" type="Node" parent="."]
 
