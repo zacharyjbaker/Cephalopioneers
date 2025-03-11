@@ -35,6 +35,8 @@ var pilot = null
 signal bgmusic_chase
 signal bgmusic_stop
 signal bgmusic_rumble
+signal bg_music_lower_volume
+signal bg_music_raise_volume
 
 enum States {IDLE, CHASE, CS_SHAKE, CS_DEVOUR, CS_MOVE, CS_ROAR, CS_FALL, CS_FALL_ROAR, CS_END}
 
@@ -132,6 +134,9 @@ func _on_timer_timeout() -> void:
 		#velocity.x = 0
 		anim.play("Nom")
 		bgmusic_chase.emit()
+		#bg_music_raise_volume.emit()
+		#bg_music_raise_volume.emit()
+		#bg_music_raise_volume.emit()
 		Global.SHAKE = false
 		Global.FREEZE = false
 	if state != States.CS_FALL or state != States.CS_FALL_ROAR:

@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://buwddvpkgd6gl"
-path="res://.godot/imported/LieutenantAno.aseprite-25ffbc0cb4048146dde6154ea1c1352c.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/LieutenantAno.aseprite"
-dest_files=["res://.godot/imported/LieutenantAno.aseprite-25ffbc0cb4048146dde6154ea1c1352c.res"]
 
 [params]
 

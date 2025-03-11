@@ -2,6 +2,9 @@ extends TileMapLayer
 @export var durability = 100
 var drillable = false
 @onready var mech = get_node("/root/Node2D/Mech")
+@onready var break_player = $BreakSFX
+
+@export var break_sfx : Resource 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +21,10 @@ func _process(delta: float) -> void:
 			var all_tile_zero_cells = self.get_used_cells()
 			for i in all_tile_zero_cells:
 				clear()
-			queue_free()
+			break_player.stream = break_sfx
+			break_player.play()
+			print(break_sfx)
+			#queue_free()
 			drillable = false
 			mech.drill_particles.emitting = false
 	elif drillable == true and mech.drill_particles.emitting == true:

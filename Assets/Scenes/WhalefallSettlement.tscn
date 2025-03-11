@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=46 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
+[ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_601xo"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_x41q6"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_doonm"]
@@ -20,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="20_xxguo"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
+[ext_resource type="PackedScene" uid="uid://gm6hpf1l6li7" path="res://Assets/Prefabs/guard_crab.tscn" id="25_616cb"]
+[ext_resource type="PackedScene" uid="uid://tbxkugnbp6o8" path="res://Assets/Prefabs/drillable_wall.tscn" id="25_i25eq"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="34_c8sjs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -53,13 +56,13 @@ glow_levels/2 = 0.47
 glow_levels/3 = 1.55
 glow_levels/4 = 0.6
 glow_levels/5 = 1.75
-glow_intensity = 0.39
+glow_intensity = 0.4
 glow_strength = 0.35
-glow_bloom = 0.2
+glow_bloom = 0.17
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
-glow_hdr_scale = 0.83
-glow_hdr_luminance_cap = 0.38
+glow_hdr_scale = 2.98
+glow_hdr_luminance_cap = 0.78
 glow_map_strength = 0.72
 volumetric_fog_density = 0.0
 adjustment_enabled = true
@@ -188,6 +191,8 @@ animations = [{
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
 
+[node name="UI" parent="." instance=ExtResource("1_601xo")]
+
 [node name="SceneManager" type="Node2D" parent="."]
 script = ExtResource("1_x41q6")
 
@@ -218,6 +223,7 @@ motion_scale = Vector2(0.3, 1)
 motion_mirroring = Vector2(2048, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(-76, -321)
 texture = ExtResource("6_jer5l")
 centered = false
 
@@ -421,25 +427,15 @@ position = Vector2(739, 1098)
 
 [node name="ChaseHazards" type="Node" parent="."]
 
-[node name="LilCrab" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(1177, 989)
-
-[node name="LilCrab3" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(-875, 993)
-
-[node name="LilCrab4" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(2310, 990)
-
-[node name="LilCrab2" parent="." instance=ExtResource("20_c8c68")]
-position = Vector2(254, 989)
-
 [node name="PointLightSource" parent="." instance=ExtResource("34_c8sjs")]
+visible = false
 position = Vector2(1153, 1095)
 color = Color(0.200259, 0.61072, 0.426722, 1)
 energy = 2.1
 texture_scale = 2.43
 
 [node name="PointLightSource2" parent="." instance=ExtResource("34_c8sjs")]
+visible = false
 position = Vector2(191, 1101)
 color = Color(0.200259, 0.61072, 0.426722, 1)
 energy = 2.1
@@ -451,6 +447,19 @@ position = Vector2(10669, 828)
 energy = 0.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
+
+[node name="LilCrab" parent="." instance=ExtResource("20_c8c68")]
+position = Vector2(902, 1148)
+
+[node name="LilCrab2" parent="." instance=ExtResource("20_c8c68")]
+position = Vector2(1408, 866)
+crab_type = 2
+
+[node name="DrillableWall" parent="." instance=ExtResource("25_i25eq")]
+position = Vector2(1357, 1117)
+
+[node name="GuardCrab" parent="." instance=ExtResource("25_616cb")]
+position = Vector2(1041, 1144)
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]

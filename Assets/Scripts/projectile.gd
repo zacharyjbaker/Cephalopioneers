@@ -23,3 +23,6 @@ func _physics_process(delta: float) -> void:
 		scale.y = -1 * abs(scale.y)
 		rotation_degrees = 180
 	#print("Laser:", velocity.x)
+	
+func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	self.queue_free()
