@@ -24,7 +24,7 @@ var path_follow = null
 #var test_moveset = [States.SKULL_SLAM, States.BLAST]
 var moveset_one = [States.SLAM, States.BLAST, States.BLAST]
 var moveset_two= [States.SLAM, States.EEL_BLAST]
-var moveset_three = [States.BLAST, States.BLAST]
+#var moveset_three = [States.BLAST, States.BLAST]
 var moveset_final = [States.SKULL_SLAM, States.STRUGGLE] #States.TELEPORT]
 #var moveset_final = [States.SKULL_SLAM, States.STRUGGLE, States.TELEPORT]
 #var moveset_two = [States.MISSLE, States.MISSLE2, States.MISSLE]
@@ -37,6 +37,8 @@ var offset
 var path_end
 var current_path
 var prev_pos = 0
+var start_pos
+var move_counter = 0
 
 var inAir = false
 var isSkullSlamming = false
@@ -44,6 +46,7 @@ var isSkullSmashAnimPlaying = false
 var isStruggling = false
 var startOnFloor = false
 var flipped = false
+var resetOrder = false
 var nextMoveset = false
 var jumpDirDetermined = false
 var cooldown = 2
@@ -55,6 +58,7 @@ func _ready() -> void:
 	anim_player.play("Idle")
 	Global.BOSS_FIGHT = true
 	velocity.y = 100
+	start_pos = global_transform
 	
 func _physics_process(delta: float) -> void:
 	#print (position.y)
@@ -86,7 +90,17 @@ func _physics_process(delta: float) -> void:
 			
 		elif state == States.SLAM or state == States.SKULL_SLAM :
 			#print ("SLAM TO JUMP")
-			if inAir == true and is_on_floor():
+			if inAir == true and resetOrder == true and is_on_floor():
+				anim_player.play("Idle")
+				state = States.IDLE
+				inAir = false
+				resetOrder = false
+				jumpDirDetermined = false
+				#path_end = path_follow.h_offset
+				var current_transform = global_transform
+				global_transform = current_transform
+				_do_move()
+			elif inAir == true and is_on_floor():
 				anim_player.play("Idle")
 				state = States.IDLE
 				inAir = false
@@ -156,31 +170,59 @@ func _fight():
 	var last_move = current_move
 	current_move = 0
 	#moveset_num = rng.randi_range(0, 3)
-	moveset_num = rng.randi_range(0, 3)
+	moveset_num = rng.randi_range(0, 2)
+	move_counter += 1
 	
 	if moveset_num == last_move:
 		moveset_num += 1
-		
+	
+	#if move_counter >= 3 and !flipped:
+		#current_moveset = moveset_final
+		#cooldown = 2
+		#move_counter = 0
+	#else:
 	match moveset_num:
 		0:
-			current_moveset = moveset_final
-			cooldown = 1
-		1:
-			current_moveset = moveset_final
-			cooldown = 3
-		2:
-			current_moveset = moveset_final
-			cooldown = 4
-		3:
 			if !flipped:
+				print ("Skullslam")
 				current_moveset = moveset_final
 				cooldown = 2
 			else:
-				current_moveset = moveset_two
+				print ("Slam and Blast")
+				current_moveset = moveset_one
+				cooldown = 1
+		1:
+			print ("Slam and Summon")
+			current_moveset = moveset_two
+			cooldown = 3
+		2:
+			if !flipped:
+				print ("Skullslam")
+				current_moveset = moveset_final
+				cooldown = 2
+			else:
+				moveset_num = rng.randi_range(0, 1)
+				match moveset_num:
+					0:
+						print ("Slam and Blast_2")
+						current_moveset = moveset_one
+						cooldown = 1
+					1:
+						("Slam and Summon_2")
+						current_moveset = moveset_two
+						cooldown = 3
 		_:
-			current_moveset = moveset_one
-			#current_moveset = test_moveset
-			
+			moveset_num = rng.randi_range(0, 1)
+			match moveset_num:
+				0:
+					print ("Slam and Blast_2")
+					current_moveset = moveset_one
+					cooldown = 1
+				1:
+					("Slam and Summon_2")
+					current_moveset = moveset_two
+					cooldown = 3
+				
 	_do_move()
 	
 func _do_move():
@@ -278,13 +320,24 @@ func _on_sprite_animation_finished() -> void:
 				global_transform = current_transform
 			elif state == States.STRUGGLE:
 				anim_player.play("Struggle")
-				await get_tree().create_timer(5).timeout
-				
+				await get_tree().create_timer(1).timeout
 				anim_player.play("Teleport")
 				state = States.TELEPORT
 			elif state == States.TELEPORT:
-				global_position.y -= 1000
+				#global_position = start_pos
 				isStruggling = false
+				#var current_transform = global_transform
+				smash_path.remove_child(path_follow)
+				path1.add_child(path_follow)
+				path_follow.add_child(self)
+				current_path = path1
+				path_follow.h_offset = 0.0
+				global_transform = start_pos
+				inAir = true
+				resetOrder = true
+				print ("Return to normal moveset")
+				await get_tree().create_timer(1).timeout
+				_do_move()
 		if nextMoveset:
 			print ("Next Moveset")
 			nextMoveset = false

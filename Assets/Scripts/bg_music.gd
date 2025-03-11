@@ -6,8 +6,8 @@ extends Node2D
 @export var preset_volume = -0.5
 
 var color = Color("FFFFFF")
-var song_list = ["res://Assets/Sound/Music/Cargo.mp3", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3", "res://Assets/Sound/Music/Whale.mp3"]
-var credit_list = ["NOW PLAYING\n\"The Shallows\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", "", "NOW PLAYING\n\"The Whalefall\" by Josh Thies"]
+var song_list = ["res://Assets/Sound/Music/Cargo.mp3", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3", "res://Assets/Sound/Music/Whale.mp3", "res://Assets/Sound/Music/BossFight.mp3"]
+var credit_list = ["NOW PLAYING\n\"The Shallows\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", "", "NOW PLAYING\n\"The Whalefall\" by Josh Thies", "NOW PLAYING\n\"Deus Est Cancri\" by Josh Thies"]
 
 var isFading = false
 var isVolumeIncrease = false
@@ -26,7 +26,11 @@ func _ready() -> void:
 			eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
 			eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
 		"WhalefallSettlement":
-			change_music(3)
+			change_music(4)
+			change_volume(1)
+			change_volume(1)
+		"bossfight":
+			change_music(4)
 		_:
 			pass
 		

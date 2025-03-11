@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://d0la6ayh7nyw8"]
+[gd_scene load_steps=48 format=4 uid="uid://d0la6ayh7nyw8"]
 
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="2_qbk6u"]
@@ -197,6 +197,12 @@ point_count = 3
 [sub_resource type="Curve2D" id="Curve2D_jqy61"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -47.5051, 40.5, -78.4885, 0.148483, 78.4885, -0.148483, 43.1865, -40.5, 0, 0, 0, 0, 121.21, 39.75)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_34q02"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 65.4132, 39.6249, 16.6068, 19.2715, -16.6068, -19.2715, 38.9231, -20.6107, 15.2356, 0.461129, -15.2356, -0.461129, 6.67438, 40.2905)
 }
 point_count = 3
 
@@ -491,9 +497,9 @@ scale = Vector2(3.47331, 4)
 curve = SubResource("Curve2D_jqy61")
 
 [node name="Path3" type="Path2D" parent="."]
-position = Vector2(1562.82, 1075)
-scale = Vector2(1.64703, 4)
-curve = SubResource("Curve2D_cs00x")
+position = Vector2(1562.82, 1114.93)
+scale = Vector2(3.473, 3.00486)
+curve = SubResource("Curve2D_34q02")
 
 [node name="CrabSpawnNode" type="Node" parent="."]
 

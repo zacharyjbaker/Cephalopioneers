@@ -56,6 +56,8 @@ height = 139.974
 
 [node name="EelBlast" type="CharacterBody2D"]
 scale = Vector2(4, 4)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_lp671")
 speed = 180
 
@@ -112,7 +114,7 @@ position = Vector2(-13, -1)
 rotation = 1.57376
 scale = Vector2(0.610314, 0.592805)
 collision_layer = 0
-collision_mask = 32768
+collision_mask = 0
 
 [node name="HurtBox" type="CollisionShape2D" parent="Area2D" groups=["laser"]]
 shape = SubResource("CapsuleShape2D_27tbv")
