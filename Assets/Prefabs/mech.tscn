@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=75 format=3 uid="uid://by0icvlejbtja"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
 [ext_resource type="AudioStream" uid="uid://dcdxp1ox4iyhg" path="res://Assets/Sound/Sfx/Blaster.wav" id="2_brsws"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="8_xxlqe"]
 [ext_resource type="Texture2D" uid="uid://hwa51d66j4j8" path="res://Assets/Prefabs/gauge.tres" id="10_1tqin"]
 [ext_resource type="Texture2D" uid="uid://bc3jr6jcsapnn" path="res://Assets/Prefabs/Tab.png" id="11_vgfug"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s0cu"]
+size = Vector2(147, 194)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrob5"]
 atlas = ExtResource("2_rk7o7")
@@ -427,7 +430,7 @@ shader_parameter/wave_strength = 0.75
 shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_885of"]
-size = Vector2(69, 44)
+size = Vector2(99, 44)
 
 [sub_resource type="Curve" id="Curve_utgam"]
 max_value = 100.0
@@ -492,7 +495,15 @@ blaster_sfx = ExtResource("2_brsws")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 40)
-polygon = PackedVector2Array(-40, 96, -24, 96, 48, 24, 48, -88, -88, -96, -88, -24, -80, 16)
+polygon = PackedVector2Array(-40, 96, -24, 96, 48, 24, 47, -85, -66, -85, -69, -27, -64, 16)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1.5, 52)
+shape = SubResource("RectangleShape2D_6s0cu")
 
 [node name="BackArm" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -602,7 +613,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrillArea"]
-position = Vector2(85.5, 61)
+position = Vector2(70.5, 61)
 shape = SubResource("RectangleShape2D_885of")
 
 [node name="DrillParticles" type="CPUParticles2D" parent="DrillArea"]
@@ -793,12 +804,18 @@ metadata/_aseprite_wizard_source_file_hash_ = "fd61466691b0dfe847676365b941504b"
 [node name="BlasterSFX" type="AudioStreamPlayer2D" parent="."]
 
 [node name="ThrusterSFX" type="AudioStreamPlayer2D" parent="."]
+volume_db = -9.054
 
 [node name="DrillSFX" type="AudioStreamPlayer2D" parent="."]
+volume_db = -6.987
 
+[node name="IFrames" type="Timer" parent="."]
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]
 [connection signal="frame_changed" from="FrontArm" to="." method="_on_front_arm_frame_changed"]
 [connection signal="sprite_frames_changed" from="FrontArm" to="." method="_on_front_arm_sprite_frames_changed"]
 [connection signal="body_entered" from="FlashlightCone" to="." method="_on_flashlight_cone_body_entered"]
 [connection signal="body_exited" from="FlashlightCone" to="." method="_on_flashlight_cone_body_exited"]
+[connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

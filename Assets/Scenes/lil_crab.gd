@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var altcrab_sprite = $AltCrab
 @onready var timer = $Timer
 @onready var ambush_timer = $AmbushTimer
+@onready var hit_box = $HitBox
 
 @export var run_speed = 800.0
 @export var run_max_speed = 500.0
@@ -51,42 +52,54 @@ func _physics_process(delta: float) -> void:
 		scale.y = -1 * abs(scale.y)
 		rotation_degrees = 180
 		#shader.flip_h = true
-		
-	if state == States.AMBUSH:
-		var distance = global_position.x - player.global_position.x
-		#print (distance)
-		if abs(distance) < detection_range and ambush_triggered == false:
-			#print("start")
-			ambush_triggered = true
-			timer.start(0.5)
-			
-	if state == States.WALK or state == States.WALKDRILL:
-		if player:
-			var distance =  global_position.x - player.global_position.x
-			#print (velocity.x)
+	if is_on_floor():
+		if state == States.AMBUSH:
+			var distance = global_position.x - player.global_position.x
 			#print (distance)
-			#print (Global.MODE)
-			'''
-			if abs(distance) < aggro_range:
-				if Global.MODE == "Nauto":
-					velocity.x += delta * speed * -sign(distance)
-					if abs(velocity.x) > max_speed:
-						velocity.x = -sign(distance) * max_speed
-				elif Global.MODE == "Mech":
-					velocity.x += delta * speed * sign(distance)
-					if abs(velocity.x) > max_speed:
-						velocity.x = sign(distance) * max_speed 
-			'''
-			#print (is_in_flashlight)
-			if abs(distance) < aggro_range:
-				if is_in_flashlight == true:
-					velocity.x += delta * run_speed * sign(distance)
-					if abs(velocity.x) > run_max_speed:
-						velocity.x = sign(distance) * run_max_speed 
-				else:
-					velocity.x += delta * charge_speed * -sign(distance)
-					if abs(velocity.x) > charge_max_speed:
-						velocity.x = -sign(distance) * charge_max_speed
+			if abs(distance) < detection_range and ambush_triggered == false:
+				#print("start")
+				ambush_triggered = true
+				timer.start(0.5)
+			if velocity.x <= 10 and velocity.x >= -10:
+				velocity.x = 0
+			elif velocity.x > 0:
+				velocity.x -= 100
+			elif velocity.x < -1:
+				velocity.x += 100
+		elif state == States.MIMIC:
+			if velocity.x <= 10 and velocity.x >= -10:
+				velocity.x = 0
+			elif velocity.x > 0:
+				velocity.x -= 100
+			elif velocity.x < -1:
+				velocity.x += 100
+		if state == States.WALK or state == States.WALKDRILL:
+			if player:
+				var distance =  global_position.x - player.global_position.x
+				#print (velocity.x)
+				#print (distance)
+				#print (Global.MODE)
+				'''
+				if abs(distance) < aggro_range:
+					if Global.MODE == "Nauto":
+						velocity.x += delta * speed * -sign(distance)
+						if abs(velocity.x) > max_speed:
+							velocity.x = -sign(distance) * max_speed
+					elif Global.MODE == "Mech":
+						velocity.x += delta * speed * sign(distance)
+						if abs(velocity.x) > max_speed:
+							velocity.x = sign(distance) * max_speed 
+				'''
+				#print (is_in_flashlight)
+				if abs(distance) < aggro_range:
+					if is_in_flashlight == true:
+						velocity.x += delta * run_speed * sign(distance)
+						if abs(velocity.x) > run_max_speed:
+							velocity.x = sign(distance) * run_max_speed 
+					else:
+						velocity.x += delta * charge_speed * -sign(distance)
+						if abs(velocity.x) > charge_max_speed:
+							velocity.x = -sign(distance) * charge_max_speed
 
 func _on_timer_timeout() -> void:
 	if state == States.AMBUSH:
@@ -101,9 +114,13 @@ func _on_timer_timeout() -> void:
 	elif state == States.MIMIC:
 		anim_player.play("Idle")
 		state = States.IDLE
+		hit_box.add_to_group("mech_damage")
+		hit_box.add_to_group("mech_knockback")
+		hit_box.add_to_group("damage")
 		timer.start(0.3)
 	elif state == States.IDLE:
 		anim_player.play("Walk")
+		
 		state = States.WALK
 		#timer.start(3)
 	#elif state == States.WALK:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bebhepwqjerot"]
+[gd_scene load_steps=11 format=3 uid="uid://bebhepwqjerot"]
 
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="1_s65cq"]
 [ext_resource type="Texture2D" uid="uid://dnq0inl3de5au" path="res://Assets/Prefabs/EyeBlast.png" id="1_tqeif"]
@@ -36,6 +36,10 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ed3oo"]
+radius = 10.9421
+height = 100.94
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_27tbv"]
 radius = 23.9321
 height = 139.974
@@ -43,7 +47,9 @@ height = 139.974
 [node name="EyeBlast" type="CharacterBody2D"]
 z_index = 1001
 scale = Vector2(4, 4)
+collision_layer = 2049
 script = ExtResource("1_v667b")
+speed = 400
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
@@ -87,12 +93,11 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "4bc51b50a665f2db40792cbec5e7f7c6"
 
-[node name="HitBox" type="CollisionShape2D" parent="." groups=["laser"]]
-visible = false
-position = Vector2(4.75, -0.25)
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["damage", "mech_damage"]]
+position = Vector2(-5.75, -1)
 rotation = 1.57376
-scale = Vector2(0.593627, -0.320031)
-shape = SubResource("CapsuleShape2D_27tbv")
+scale = Vector2(0.833804, -0.500356)
+shape = SubResource("CapsuleShape2D_ed3oo")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-13, -1)

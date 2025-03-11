@@ -27,8 +27,6 @@ func _ready() -> void:
 			eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
 		"WhalefallSettlement":
 			change_music(4)
-			change_volume(1)
-			change_volume(1)
 		"bossfight":
 			change_music(4)
 		_:

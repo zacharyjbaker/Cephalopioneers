@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://d0la6ayh7nyw8"]
+[gd_scene load_steps=48 format=4 uid="uid://d0la6ayh7nyw8"]
 
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="2_qbk6u"]
@@ -22,8 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="20_lnafa"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="21_ehq06"]
 [ext_resource type="PackedScene" uid="uid://bebhepwqjerot" path="res://Assets/Prefabs/eye_blast.tscn" id="21_wk13f"]
-[ext_resource type="AudioStream" uid="uid://ds6v4fb0mu4ll" path="res://Assets/Sound/Sfx/Thrusters.wav" id="21_xnltu"]
-[ext_resource type="AudioStream" uid="uid://ceirfiplhhbgh" path="res://Assets/Sound/Sfx/Drill.wav" id="22_mrnfo"]
 [ext_resource type="PackedScene" uid="uid://0b3xea72rab" path="res://Assets/Prefabs/crab_pope.tscn" id="23_07pr1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -271,11 +269,10 @@ collision_enabled = false
 
 [node name="BackgroundMusicManager" type="Node2D" parent="."]
 script = ExtResource("11_cdk8d")
-preset_volume = -1.5
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("12_h8pnm")
-volume_db = -1.708
+volume_db = -0.455
 max_distance = 137586.0
 panning_strength = 0.0
 
@@ -443,8 +440,6 @@ position = Vector2(1344, 973)
 
 [node name="Mech" parent="." instance=ExtResource("20_lnafa")]
 position = Vector2(1349, 1097)
-thruster_sfx = ExtResource("21_xnltu")
-drill_sfx = ExtResource("22_mrnfo")
 
 [node name="NPCs" type="Node" parent="."]
 

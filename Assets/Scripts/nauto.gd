@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var charge_bar = $ChargeJumpBar
 @onready var physics_collider = $PhysicsCollider
 @onready var crouch_collider = $PhysicsColliderCrouch
+@onready var iFrames = $IFrames
 @onready var mech_camera = get_node("/root/Node2D/Mech/MechCamera")
 @onready var mech = get_node("/root/Node2D/Mech")
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
@@ -16,6 +17,7 @@ extends CharacterBody2D
 @onready var breakable_floor = get_node("/root/Node2D/MiscEnv/BreakableFloor")
 @onready var HP = get_node("/root/Node2D/UI/HP").get_children()
 
+@export var iFrameTime = 1.2
 @export var jump_impulse = 350
 
 var camera = null
@@ -26,6 +28,7 @@ var boost = 0.0
 var charge = false
 var crouched = false
 var isShiftingNauto = false
+var hasIFrames = false
 
 enum States {IDLE, MOVE, STOP, SHOOT, FALL, FADE}
 signal cs_break
@@ -250,28 +253,49 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	print ("Hurt by ", body.name)
-	if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
-		#print ("hit")
-		#velocity.x += body.velocity.x * 3
-		velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-		#velocity.y += body.velocity.y * 3
-		velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
-		health_loss()
-		#print (env_node.environment.glow_intensity)
-		env_node.set_glow(1)
-	if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
-		#print ("hit")
-		#velocity.x += body.velocity.x * 3
-		#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-		#velocity.y += body.velocity.y * 3
-		if body.is_in_group("aardvark") and body.upside_down == true:
-			velocity.y += -(velocity.y * 2 + body.y_knockback)
+	if !hasIFrames:
+		print ("Hurt by ", body.name)
+		if body.get_node("HitBox"):
+			if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
+				health_loss()
+				#print (env_node.environment.glow_intensity)
+				env_node.set_glow(1)
+			if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				if body.is_in_group("aardvark") and body.upside_down == true:
+					velocity.y += -(velocity.y * 2 + body.y_knockback)
+		if body.get_node("TempHitBox"):
+			if (body.get_node("TempHitBox").is_in_group("damage") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
+				health_loss()
+				#print (env_node.environment.glow_intensity)
+				env_node.set_glow(1)
+			if (body.get_node("TempHitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				if body.is_in_group("aardvark") and body.upside_down == true:
+					velocity.y += -(velocity.y * 2 + body.y_knockback)
 
 func health_loss() -> void:
 	if Global.HEALTH > 0:
 		Global.HEALTH -= 1
 		HP[Global.HEALTH].visible = false
+	hasIFrames = true
+	iFrames.start(iFrameTime)
 
 func _on_timer_timeout() -> void:
 	if state == States.MOVE:
@@ -306,3 +330,7 @@ func _on_timer_timeout() -> void:
 			get_node("HurtBox").set_process(true)
 			visible = true
 			nauto_camera.make_current()
+
+
+func _on_i_frames_timeout() -> void:
+	hasIFrames = false

@@ -4,6 +4,7 @@ var SCENE = ""
 var GRAVITY = 400
 var WALK_SPEED = 400
 var HEALTH = 5
+var MECH_HEALTH = 5
 var MODE = "Nauto"
 var INTERACTABLE = false
 var FREEZE = false

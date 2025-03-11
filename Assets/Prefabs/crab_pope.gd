@@ -1,12 +1,26 @@
 extends CharacterBody2D
 @onready var anim_player = $Sprite
 @onready var timer = $Timer
+@onready var temp_hit_box = $TempHitBox
+@onready var hit_box = $HitBox
+@onready var roarSFX = $RoarSFX
+@onready var beamsSFX = $BeamsSFX
+@onready var slamSFX = $SlamSFX
+@onready var portalSFX = $PortalSFX
+@onready var jumpSFX = $JumpSFX
+@onready var magicSFX = $MagicSFX
+@onready var shatterSFX = $ShatterSFX
+
 @export var path1 : Node2D
 @export var path2 : Node2D
 @export var smash_path : Node2D
 @export var crab_spawnpoints : Node
 @export var blast_spawnpoints : Node
 @export var player: Node2D = null
+@export var max_durability = 100
+@export var durability = max_durability
+@export var health = 3
+@onready var mech = get_node("/root/Node2D/Mech")
 var crab_minion = preload("res://Assets/Prefabs/lil_crab.tscn")
 var eye_blast = preload("res://Assets/Prefabs/eye_blast.tscn")
 var eel_blast = preload("res://Assets/Prefabs/eel_blast.tscn")
@@ -41,6 +55,7 @@ var start_pos
 var start_rot
 var move_counter = 0
 
+var drillable = false
 var inAir = false
 var teleporting = false
 var isSkullSlamming = false
@@ -66,6 +81,30 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	###print (position.y)
 	move_and_slide()
+	
+	if health == 0:
+		queue_free()
+		print ("King Crab Defeated")
+	
+	if drillable == true and Input.is_action_pressed("back_arm"):
+		print ("Durability:", durability)
+		mech.drill_particles.emitting = true
+		if durability > 0:
+			durability -= 1
+		else:
+			#break_player.stream = break_sfx
+			#break_player.play()
+			#print(break_sfx)
+			#queue_free()
+			drillable = false
+			mech.drill_particles.emitting = false
+			print ("skull broken")
+			shatterSFX.play()
+			health -= 1
+			
+	elif drillable == true and mech.drill_particles.emitting == true:
+		mech.drill_particles.emitting = false
+	
 	if is_on_floor() and startOnFloor == false:
 		##print ("on floor")
 		startOnFloor = true
@@ -88,8 +127,10 @@ func _physics_process(delta: float) -> void:
 			
 		if state == States.BLAST:
 			anim_player.play("Blast")
+			#magicSFX.play()
 		elif state == States.EEL_BLAST:
 			anim_player.play("ForwardBlast")
+			portalSFX.play()
 			
 		elif state == States.SLAM or state == States.SKULL_SLAM :
 			##print ("SLAM TO JUMP")
@@ -128,6 +169,7 @@ func _physics_process(delta: float) -> void:
 			elif isSkullSlamming == true and is_on_floor():
 				##print ("SkullSmash")
 				anim_player.play("Struggle")
+				slamSFX.play()
 				state = States.IDLE
 				isSkullSlamming = false
 				isSkullSmashAnimPlaying = false
@@ -258,14 +300,16 @@ func _on_sprite_animation_finished() -> void:
 						blast.rotation_degrees = 90
 						blast.global_position = waypoint.global_position
 						get_tree().root.add_child(blast)
+					#beamsSFX.play()
 				States.EEL_BLAST:
 					var eel_blast = eel_blast.instantiate()
+					roarSFX.play()
 					if flipped:
 						eel_blast.velocity.x = 1
-						eel_blast.global_position.x = global_position.x + 400
+						eel_blast.global_position.x = global_position.x + 300
 					else:
 						eel_blast.velocity.x = -1
-						eel_blast.global_position.x = global_position.x - 400
+						eel_blast.global_position.x = global_position.x - 300
 					#eel_blast.rotation_degrees = 90
 					eel_blast.global_position.y = global_position.y + 130
 					get_tree().root.add_child(eel_blast)
@@ -280,6 +324,7 @@ func _on_sprite_animation_finished() -> void:
 				#print ("Slam Begin")
 				velocity.y -= 100
 				inAir = true
+				jumpSFX.play()
 				#print ("Spawn crab minions")
 				
 				var spawn1 = rng.randi_range(0, 3)
@@ -315,12 +360,21 @@ func _on_sprite_animation_finished() -> void:
 					current_path = smash_path
 					path_follow.h_offset = 0.0
 				global_transform = current_transform
+				temp_hit_box.add_to_group("mech_damage")
+				temp_hit_box.add_to_group("damage")
+				hit_box.remove_from_group("mech_damage")
+				hit_box.remove_from_group("damage")
 			elif state == States.STRUGGLE:
 				anim_player.play("Struggle")
+				drillable = true
+				temp_hit_box.remove_from_group("mech_damage")
+				temp_hit_box.remove_from_group("damage")
 				state = States.TELEPORT
 			elif state == States.TELEPORT and !teleporting:
 				print ("Teleport")
 				anim_player.play("Teleport")
+				portalSFX.play()
+				drillable = false
 				teleporting = true
 				await get_tree().create_timer(2).timeout
 				teleporting = false
@@ -339,11 +393,23 @@ func _on_sprite_animation_finished() -> void:
 				global_scale = current_transform.get_scale()
 				inAir = true
 				resetOrder = true
+				durability = max_durability
 				#print ("Return to normal moveset")
 				state = States.IDLE
 				anim_player.play("Idle")
+				hit_box.add_to_group("mech_damage")
+				hit_box.add_to_group("damage")
 				#await get_tree().create_timer(3).timeout
 				#_do_move()
 		#if nextMoveset and !isStruggling and !teleporting:
 			
-	
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.name == "DrillArea":
+		print ("Detecting drill")
+		drillable = true
+		
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.name == "DrillArea":
+		print ("Not detecting drill")
+		drillable = false

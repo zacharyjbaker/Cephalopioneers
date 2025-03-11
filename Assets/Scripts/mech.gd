@@ -15,16 +15,21 @@ extends CharacterBody2D
 @onready var back_boost_light = $BackBoostLight
 @onready var back_boost_particles = $BackBoostParticles
 @onready var player = get_node("/root/Node2D/Nauto")
+@onready var env_node = get_node("/root/Node2D/WorldEnvironment")
+@onready var HP = get_node("/root/Node2D/UI/HP").get_children()
 @onready var interact = $InteractPrompt
 @onready var blaster_player = $BlasterSFX
 @onready var thruster_player = $ThrusterSFX
 @onready var drill_player = $DrillSFX
+@onready var iFrames = $IFrames
+
 #@onready var shader = $MechCamera/WaterShader
 
 @export var blaster_sfx : Resource
 @export var thruster_sfx : Resource
 @export var drill_sfx : Resource
 
+@export var iFrameTime = 1.2
 @export var jump_impulse = 200
 var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
 
@@ -44,6 +49,7 @@ var isOpening = false
 var isClosing = false
 var isThrusting = false
 var isBuzzing = false
+var hasIFrames = false
 
 func _ready() -> void:
 	mech_front_arm.play("Idle")
@@ -99,6 +105,8 @@ func close_anim():
 	current_anim = "Close"
 	mech_body_sprite.play(current_anim)
 	interact.visible = false
+	if Global.HEALTH < Global.MECH_HEALTH:
+		Global.MECH_HEALTH = Global.HEALTH
 
 	
 func laser_explosion():
@@ -182,7 +190,6 @@ func _physics_process(delta: float) -> void:
 	
 	if (Global.MODE == "Mech" and isClosing == false):
 		# charge jump anim
-		
 		#cockpit_light.texture_scale = lerp(3.8, 2.4, 0.03)
 		#cockpit_light.energy = lerp(1.1, 0.0, 0.01)
 		
@@ -358,3 +365,53 @@ func _on_flashlight_cone_body_exited(body: Node2D) -> void:
 	print ("Crab exited flashlight")
 	if body.is_in_group("crab"):
 		body.is_in_flashlight = false
+		
+func health_loss() -> void:
+	if Global.MECH_HEALTH > 0:
+		Global.MECH_HEALTH -= 1
+	elif Global.MECH_HEALTH == 0:
+		Global.HEALTH -= 1
+		#HP[Global.HEALTH].visible = false
+	hasIFrames = true
+	iFrames.start(iFrameTime)
+	print ("Mech HP:", Global.MECH_HEALTH)
+	print ("Nauto HP:", Global.HEALTH)
+		
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if !hasIFrames:
+		print ("Hurt by ", body.name)
+		if Global.MODE == "Mech":
+			if body.get_node("HitBox"):
+				if body.get_node("HitBox").is_in_group("mech_damage"):
+					health_loss()
+					#print (env_node.environment.glow_intensity)
+					env_node.set_glow(1)
+				if body.get_node("HitBox").is_in_group("mech_knockback"):
+					#print ("hit")
+					var distance = global_position.x - body.global_position.x
+					#print (distance)
+					if distance < 0:
+						body.velocity.x += 500
+					else:
+						body.velocity.x -= 500
+					body.velocity.y -= 300
+			if body.get_node("TempHitBox"):
+				if body.get_node("TempHitBox").is_in_group("mech_damage"):
+					health_loss()
+					#print (env_node.environment.glow_intensity)
+					env_node.set_glow(1)
+			if body.get_node("TempHitBox"):
+				if body.get_node("TempHitBox").is_in_group("mech_knockback"):
+					#print ("hit")
+					var distance = global_position.x - body.global_position.x
+					#print (distance)
+					if distance < 0:
+						body.velocity.x += 500
+					else:
+						body.velocity.x -= 500
+					body.velocity.y -= 300
+			else:
+				pass
+		
+func _on_i_frames_timeout() -> void:
+	hasIFrames = false

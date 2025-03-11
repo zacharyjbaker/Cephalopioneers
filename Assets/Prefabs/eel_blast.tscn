@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw41rsmdh1pu0"]
+[gd_scene load_steps=13 format=3 uid="uid://dw41rsmdh1pu0"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/eel_blast.gd" id="1_lp671"]
 [ext_resource type="Texture2D" uid="uid://daohygp34fkwy" path="res://Assets/Prefabs/EelBlast.png" id="2_7y3et"]
@@ -13,6 +13,10 @@ point_count = 2
 max_value = 3.0
 _data = [Vector2(0, 0.979067), 0.0, 0.0, 0, 0, Vector2(1, 0.442347), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2jyln"]
+radius = 20.3911
+height = 163.891
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_336ru"]
 atlas = ExtResource("2_7y3et")
@@ -50,16 +54,15 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_27tbv"]
-radius = 23.9321
-height = 139.974
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7ov6"]
+size = Vector2(14.9578, 16.7913)
 
 [node name="EelBlast" type="CharacterBody2D"]
 scale = Vector2(4, 4)
-collision_layer = 0
+collision_layer = 2048
 collision_mask = 0
 script = ExtResource("1_lp671")
-speed = 400
+speed = 145
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
@@ -78,6 +81,12 @@ scale_amount_min = 6.76
 scale_amount_max = 6.76
 scale_amount_curve = SubResource("Curve_pwi54")
 color = Color(0.823529, 0.976471, 0.882353, 1)
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["damage", "mech_damage"]]
+position = Vector2(-9, 1.25)
+rotation = 1.57376
+scale = Vector2(0.833804, -0.500356)
+shape = SubResource("CapsuleShape2D_2jyln")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -102,25 +111,6 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "c76aa5cfe0b11f1e6e953f7b60ac6f28"
 
-[node name="HitBox" type="CollisionShape2D" parent="." groups=["laser"]]
-visible = false
-position = Vector2(4.75, -0.25)
-rotation = 1.57376
-scale = Vector2(0.593627, -0.320031)
-shape = SubResource("CapsuleShape2D_27tbv")
-disabled = true
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-13, -1)
-rotation = 1.57376
-scale = Vector2(0.610314, 0.592805)
-collision_layer = 0
-collision_mask = 0
-
-[node name="HurtBox" type="CollisionShape2D" parent="Area2D" groups=["laser"]]
-shape = SubResource("CapsuleShape2D_27tbv")
-disabled = true
-
 [node name="PointLightSource" parent="." instance=ExtResource("3_51764")]
 z_index = 1001
 position = Vector2(-16, 0)
@@ -128,3 +118,17 @@ scale = Vector2(-3.34508, -1.0984)
 color = Color(0.819608, 1, 0.901961, 1)
 energy = 0.3
 texture_scale = 0.2
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(-1.5, 0.25)
+scale = Vector2(6.03195, 3.71797)
+collision_layer = 40960
+collision_mask = 40960
+
+[node name="ColliderShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-0.825435, 0.268964)
+rotation = 3.14159
+scale = Vector2(1.11435, -0.772676)
+shape = SubResource("RectangleShape2D_x7ov6")
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

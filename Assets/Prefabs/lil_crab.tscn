@@ -1,9 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://dhgx6o3rdua0q"]
+[gd_scene load_steps=35 format=3 uid="uid://dhgx6o3rdua0q"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="1_btat5"]
 [ext_resource type="Texture2D" uid="uid://bf8ytlxhgdfxc" path="res://Assets/Prefabs/SpiderCrab.png" id="2_xymsj"]
 [ext_resource type="Texture2D" uid="uid://ckr65e0rlvrum" path="res://Assets/Prefabs/SpiderCrabAlt.png" id="3_kmxdb"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="3_mmvsu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk7u7"]
+size = Vector2(15.25, 4.83651)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a1pl2"]
 atlas = ExtResource("2_xymsj")
@@ -230,17 +233,25 @@ animations = [{
 "speed": 17.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnf3g"]
+size = Vector2(20.153, 22.8434)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76kuc"]
+size = Vector2(37.75, 19.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0sat"]
+size = Vector2(20.5, 20)
+
 [node name="LilCrab" type="CharacterBody2D" groups=["crab", "enemy"]]
 scale = Vector2(4, 4)
 collision_layer = 6272
 collision_mask = 50176
 script = ExtResource("1_btat5")
 
-[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2(-2.60723, 25.3249)
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-1.125, 12.875)
 scale = Vector2(1, 3.67)
-polygon = PackedVector2Array(-10.75, -1.08992, -16.25, -4.22343, -14, -5.99455, -7.25, -6.40327, -0.5, -12.0572, 5.25, -12.0572, 9.75, -6.40327, 16.25, -6.40327, 20.25, -4.70027, 17, -1.08992)
-disabled = true
+shape = SubResource("RectangleShape2D_wk7u7")
 
 [node name="Crab" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -300,14 +311,18 @@ scale = Vector2(0.980001, 1.31)
 collision_layer = 40960
 collision_mask = 40960
 
-[node name="ColliderShape2D" type="CollisionPolygon2D" parent="HurtBox"]
-polygon = PackedVector2Array(-5.07652, -20.4198, -11.4541, -4.96183, -18.5969, -3.62595, -20.8928, 0.954197, -15.2806, 9.73283, 12.5255, 9.73283, 16.6071, 0, 12.5255, -4.77099, 5.63776, -5.15267, 1.04592, -20.6107)
-
-[node name="HitBox" type="CollisionPolygon2D" parent="." groups=["damage"]]
-position = Vector2(1.89277, 8.5749)
-scale = Vector2(1, 1.28946)
-polygon = PackedVector2Array(-5.07652, -20.4198, -11.4541, -4.96183, -18.5969, -3.62595, -20.8928, 0.954197, -15.2806, 9.73283, 12.5255, 9.73283, 16.6071, 0, 12.5255, -4.77099, 5.63776, -5.15267, 1.04592, -20.6107)
+[node name="ColliderShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-3.07936, -1.42172)
+shape = SubResource("RectangleShape2D_bnf3g")
 
 [node name="AmbushTimer" type="Timer" parent="."]
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["crab", "enemy"]]
+position = Vector2(-0.375, 11.125)
+shape = SubResource("RectangleShape2D_76kuc")
+
+[node name="TempHitBox" type="CollisionShape2D" parent="." groups=["enemy", "mech_knockback"]]
+position = Vector2(-1.25, 11.125)
+shape = SubResource("RectangleShape2D_r0sat")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

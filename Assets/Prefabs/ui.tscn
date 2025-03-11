@@ -1,82 +1,143 @@
-[gd_scene load_steps=19 format=3 uid="uid://rwbda23lhjk5"]
+[gd_scene load_steps=25 format=3 uid="uid://rwbda23lhjk5"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/ui.gd" id="1_ph2h1"]
 [ext_resource type="Texture2D" uid="uid://dj0uexi41meep" path="res://Assets/Scenes/UI_Bar.png" id="3_auo3r"]
 [ext_resource type="Texture2D" uid="uid://7rptxa1pol5a" path="res://Assets/Prefabs/Shealth_small.png" id="3_e4k8v"]
+[ext_resource type="Script" path="res://Assets/Prefabs/hp.gd" id="3_hc7xc"]
 [ext_resource type="Texture2D" uid="uid://7sqpcpv2ceo4" path="res://Assets/Prefabs/HealthBar.png" id="4_1hhhc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o20ut"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfibf"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(26, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76cpe"]
 atlas = ExtResource("3_e4k8v")
 region = Rect2(0, 0, 26, 23)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2viox"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2iw6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o20ut")
+"texture": SubResource("AtlasTexture_gfibf")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Armored",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76cpe")
+}],
+"loop": true,
+"name": &"Unarmored",
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qdo2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3rvh"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(26, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2dbs"]
 atlas = ExtResource("3_e4k8v")
 region = Rect2(0, 0, 26, 23)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yhxb6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5kxt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5qdo2")
+"texture": SubResource("AtlasTexture_s3rvh")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Armored",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2dbs")
+}],
+"loop": true,
+"name": &"Unarmored",
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m2o7y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_klfw3"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(26, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxwao"]
 atlas = ExtResource("3_e4k8v")
 region = Rect2(0, 0, 26, 23)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2xud6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_txmqt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m2o7y")
+"texture": SubResource("AtlasTexture_klfw3")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Armored",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxwao")
+}],
+"loop": true,
+"name": &"Unarmored",
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5aht"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbh3v"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(26, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8eyu"]
 atlas = ExtResource("3_e4k8v")
 region = Rect2(0, 0, 26, 23)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qwyfh"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7meag"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s5aht")
+"texture": SubResource("AtlasTexture_tbh3v")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Armored",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8eyu")
+}],
+"loop": true,
+"name": &"Unarmored",
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1mh2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4tl4"]
+atlas = ExtResource("3_e4k8v")
+region = Rect2(26, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8bmv"]
 atlas = ExtResource("3_e4k8v")
 region = Rect2(0, 0, 26, 23)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bash8"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qipl4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e1mh2")
+"texture": SubResource("AtlasTexture_l4tl4")
 }],
-"loop": true,
-"name": &"default",
+"loop": false,
+"name": &"Armored",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8bmv")
+}],
+"loop": false,
+"name": &"Unarmored",
 "speed": 10.0
 }]
 
@@ -120,7 +181,10 @@ z_index = 1
 texture_filter = 1
 position = Vector2(64, 58)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_2viox")
+sprite_frames = SubResource("SpriteFrames_x2iw6")
+animation = &"Unarmored"
+script = ExtResource("3_hc7xc")
+health_id = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -133,14 +197,17 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/Shealth_small.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+metadata/_aseprite_wizard_source_file_hash_ = "85d4fddeb5a3dbec581023ad4db06860"
 
 [node name="HP3" type="AnimatedSprite2D" parent="HP"]
 z_index = 1
 texture_filter = 1
 position = Vector2(176, 58)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_yhxb6")
+sprite_frames = SubResource("SpriteFrames_m5kxt")
+animation = &"Unarmored"
+script = ExtResource("3_hc7xc")
+health_id = 2
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -154,14 +221,17 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/Shealth_small.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+metadata/_aseprite_wizard_source_file_hash_ = "85d4fddeb5a3dbec581023ad4db06860"
 
 [node name="HP2" type="AnimatedSprite2D" parent="HP"]
 z_index = 1
 texture_filter = 1
 position = Vector2(287, 58)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_2xud6")
+sprite_frames = SubResource("SpriteFrames_txmqt")
+animation = &"Unarmored"
+script = ExtResource("3_hc7xc")
+health_id = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -174,14 +244,17 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/Shealth_small.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+metadata/_aseprite_wizard_source_file_hash_ = "85d4fddeb5a3dbec581023ad4db06860"
 
 [node name="HP1" type="AnimatedSprite2D" parent="HP"]
 z_index = 1
 texture_filter = 1
 position = Vector2(399, 58)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_qwyfh")
+sprite_frames = SubResource("SpriteFrames_7meag")
+animation = &"Unarmored"
+script = ExtResource("3_hc7xc")
+health_id = 4
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": false,
 "pending_changes": {}
@@ -195,14 +268,17 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/Shealth_small.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+metadata/_aseprite_wizard_source_file_hash_ = "85d4fddeb5a3dbec581023ad4db06860"
 
 [node name="HP0" type="AnimatedSprite2D" parent="HP"]
 z_index = 1
 texture_filter = 1
 position = Vector2(511, 58)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_bash8")
+sprite_frames = SubResource("SpriteFrames_qipl4")
+animation = &"Unarmored"
+script = ExtResource("3_hc7xc")
+health_id = 5
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -215,7 +291,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/Shealth_small.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "5e229f13c45af5d5995ccd26e4ffa53a"
+metadata/_aseprite_wizard_source_file_hash_ = "85d4fddeb5a3dbec581023ad4db06860"
 
 [node name="BottomBar" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

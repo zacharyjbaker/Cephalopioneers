@@ -1,10 +1,15 @@
-[gd_scene load_steps=64 format=3 uid="uid://0b3xea72rab"]
+[gd_scene load_steps=73 format=3 uid="uid://0b3xea72rab"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/crab_pope.gd" id="1_dquel"]
 [ext_resource type="Texture2D" uid="uid://d3kiot6u44p3n" path="res://Assets/Prefabs/KingCrab.png" id="2_anaf1"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="2_wo4fu"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1dq2w"]
+[ext_resource type="AudioStream" uid="uid://06wt1kriakdq" path="res://Assets/Sound/Sfx/CrabPope/Roar.wav" id="4_p3iyg"]
+[ext_resource type="AudioStream" uid="uid://c5ymfxr7kd7xl" path="res://Assets/Sound/Sfx/CrabPope/PopeBeams.wav" id="5_cxr3t"]
+[ext_resource type="AudioStream" uid="uid://27mg170xnn3n" path="res://Assets/Sound/Sfx/CrabPope/PopeShellSlam.wav" id="6_etrf8"]
+[ext_resource type="AudioStream" uid="uid://c3n4fu3eq7tcp" path="res://Assets/Sound/Sfx/CrabPope/PopePortal.wav" id="7_pbnc5"]
+[ext_resource type="AudioStream" uid="uid://d0jwmd47j834e" path="res://Assets/Sound/Sfx/CrabPope/PopeCrabJump.wav" id="8_8ppp3"]
+[ext_resource type="AudioStream" uid="uid://cjry2klio8nx1" path="res://Assets/Sound/Sfx/CrabPope/PopeMagic.wav" id="9_b71ii"]
+[ext_resource type="AudioStream" uid="uid://bsisd5ijd7iiy" path="res://Assets/Sound/Sfx/CrabPope/small-crack-shatter-sound-zzz000111-1-47921.mp3" id="9_y84aj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6aguj"]
 atlas = ExtResource("2_anaf1")
@@ -461,6 +466,30 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_08sba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j5hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtn3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd82e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ydmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x45lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xibwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kniy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08sba")
 }],
 "loop": false,
 "name": &"Struggle",
@@ -530,6 +559,15 @@ fill = 1
 fill_from = Vector2(0.495726, 0.491453)
 fill_to = Vector2(1, 0.0384615)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8icus"]
+size = Vector2(47.3978, 66.7289)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftoax"]
+size = Vector2(44.785, 29.4418)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwpuw"]
+size = Vector2(63.4369, 42.3073)
+
 [node name="CrabPope" type="CharacterBody2D"]
 light_mask = 129
 scale = Vector2(4, 4)
@@ -537,13 +575,8 @@ collision_layer = 6272
 collision_mask = 33792
 script = ExtResource("1_dquel")
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 6.75)
-scale = Vector2(1, 3.67)
-shape = SubResource("CircleShape2D_1dq2w")
-
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2(-2.60723, 77.5)
+position = Vector2(-2.60723, 76.75)
 scale = Vector2(1, 3.67)
 polygon = PackedVector2Array(-49.3928, -1.0218, -49.1428, -37.2616, 64.3572, -37.1253, 64.6072, -1.0218)
 
@@ -553,7 +586,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(0, 22.75)
 sprite_frames = SubResource("SpriteFrames_kjb38")
-animation = &"Teleport"
+animation = &"Idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -595,6 +628,56 @@ position = Vector2(-169.75, 0)
 [node name="W2" type="Node2D" parent="."]
 position = Vector2(182.75, 0)
 
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.23842, 1.35931)
+collision_layer = 0
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.59822, -3.75457)
+scale = Vector2(1.36723, 1.16155)
+shape = SubResource("RectangleShape2D_8icus")
+
+[node name="TempHitBox" type="CollisionShape2D" parent="."]
+position = Vector2(3.25, -2.625)
+rotation = 1.57376
+scale = Vector2(1.63148, -2.11322)
+shape = SubResource("RectangleShape2D_ftoax")
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["damage", "mech_damage"]]
+position = Vector2(17.2013, 21)
+rotation = 1.57376
+scale = Vector2(1.63148, -2.11322)
+shape = SubResource("RectangleShape2D_fwpuw")
+
+[node name="RoarSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p3iyg")
+
+[node name="BeamsSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_cxr3t")
+volume_db = -6.695
+
+[node name="SlamSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_etrf8")
+volume_db = -1.253
+
+[node name="PortalSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_pbnc5")
+volume_db = -1.972
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_8ppp3")
+volume_db = 1.253
+
+[node name="ShatterSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_y84aj")
+
+[node name="MagicSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_b71ii")
+volume_db = -4.386
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

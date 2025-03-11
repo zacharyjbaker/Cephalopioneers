@@ -27,3 +27,11 @@ func _physics_process(delta: float) -> void:
 	
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	self.queue_free()
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if !body.get_node("HitBox"):
+		return
+	if body.get_node("HitBox").is_in_group("laser"):
+		print ("hit")
+		body.queue_free()
+		self.queue_free()
