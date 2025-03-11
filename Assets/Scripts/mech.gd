@@ -31,6 +31,7 @@ extends CharacterBody2D
 
 @export var iFrameTime = 1.2
 @export var jump_impulse = 200
+@export var walk_speed = 420
 var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
 
 var current_anim = ""
@@ -206,8 +207,8 @@ func _physics_process(delta: float) -> void:
 			boost_particles.emitting = true
 			back_boost_light.enabled = true
 			back_boost_particles.emitting = true
-			if velocity.x < (Global.WALK_SPEED - 150):
-				velocity.x +=  Global.WALK_SPEED * delta * 1.5
+			if velocity.x < (walk_speed - 150):
+				velocity.x +=  walk_speed * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
 				position.y += -(jump_impulse) * delta
 				if global_position.y - (floor_height - hover_height) <= 5:
@@ -225,8 +226,8 @@ func _physics_process(delta: float) -> void:
 			boost_particles.emitting = true
 			back_boost_light.enabled = true
 			back_boost_particles.emitting = true
-			if velocity.x > -(Global.WALK_SPEED - 150):
-				velocity.x +=  -Global.WALK_SPEED * delta * 1.5
+			if velocity.x > -(walk_speed - 150):
+				velocity.x +=  -walk_speed * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
 				position.y += -(jump_impulse) * delta
 				if global_position.y - (floor_height - hover_height) <= 5:
@@ -255,27 +256,27 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("ui_right") and is_on_floor() and !Input.is_action_pressed("ui_up"):
 			#print ("move_right")
 			move_anim()
-			if velocity.x < (Global.WALK_SPEED - 250):
-				velocity.x +=  Global.WALK_SPEED * delta * 1
-			if velocity.x > (Global.WALK_SPEED - 250):
-				velocity.x = (Global.WALK_SPEED - 250)
+			if velocity.x < (walk_speed - 100):
+				velocity.x +=  walk_speed * delta * 1
+			if velocity.x > (walk_speed - 100):
+				velocity.x = (walk_speed - 100)
 			#mech_body_sprite.flip_h = false
 			
 		elif Input.is_action_pressed("ui_left") and is_on_floor() and !Input.is_action_pressed("ui_up"):
 			#print ("move_left")
 			move_anim()
-			if velocity.x > -(Global.WALK_SPEED - 250):
-				velocity.x +=  -Global.WALK_SPEED * delta * 1
-			if velocity.x < -(Global.WALK_SPEED - 250):
-				velocity.x = -(Global.WALK_SPEED - 250)
+			if velocity.x > -(walk_speed - 100):
+				velocity.x +=  -walk_speed * delta * 1
+			if velocity.x < -(walk_speed - 100):
+				velocity.x = -(walk_speed - 100)
 			#mech_body_sprite.flip_h = true
 			
 		elif is_on_floor() and !Input.is_action_pressed("ui_up") and isClosing == false and isOpening == false:
 			#gravity_offset = 0
 			if (velocity.x > 50):
-				velocity.x -= delta * 2000
+				velocity.x -= delta * 3500
 			elif (velocity.x < -50):
-				velocity.x += delta * 2000
+				velocity.x += delta * 3500
 			else:
 				velocity.x = 0
 			mech_body_sprite.play("Idle")

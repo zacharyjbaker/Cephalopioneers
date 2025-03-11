@@ -223,10 +223,9 @@ scale = Vector2(366.061, 31.7569)
 texture = ExtResource("5_8x1yd")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
-color = Color(0.03, 0.03, 0.03, 1)
+color = Color(0.349443, 0.427939, 0.181911, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n7rwt")

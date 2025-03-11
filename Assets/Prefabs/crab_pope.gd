@@ -243,19 +243,19 @@ func _fight():
 				0:
 					print ("Slam and Blast")
 					current_moveset = moveset_one
-					cooldown = 2
+					cooldown = 1
 				1:
 					print ("Slam and Summon")
 					current_moveset = moveset_two
-					cooldown = 3
+					cooldown = 2
 				2:
 					print ("Slam and Blast")
 					current_moveset = moveset_one
-					cooldown = 2
+					cooldown = 1
 				3:
 					print ("Slam and Summon")
 					current_moveset = moveset_two
-					cooldown = 3
+					cooldown = 2
 				_:
 					pass
 					

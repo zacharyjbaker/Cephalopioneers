@@ -586,7 +586,39 @@ z_index = -1
 texture_filter = 1
 position = Vector2(0, 22.75)
 sprite_frames = SubResource("SpriteFrames_kjb38")
+animation = &"Jaws"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/KingCrab.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "6439b904106bbe351ae3dfbab79e3e4b"
+
+[node name="StaffLight" parent="Sprite" instance=ExtResource("2_wo4fu")]
+position = Vector2(-36, -20.5)
+scale = Vector2(3.10376, 2.89719)
+color = Color(0.819608, 1, 0.901961, 1)
+energy = 0.8
+texture = SubResource("GradientTexture2D_0yxxh")
+texture_scale = 0.2
+
+[node name="UpdateSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+light_mask = 129
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 22.75)
+sprite_frames = SubResource("SpriteFrames_kjb38")
 animation = &"Idle"
+frame = 12
+frame_progress = 1.0
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -608,15 +640,6 @@ scale = Vector2(-1.07551, 1.18598)
 color = Color(0.819608, 1, 0.901961, 1)
 energy = 1.0
 range_item_cull_mask = 128
-texture = SubResource("GradientTexture2D_0yxxh")
-texture_scale = 0.1
-
-[node name="StaffLight" parent="." instance=ExtResource("2_wo4fu")]
-visible = false
-position = Vector2(-41.5, -9.5)
-scale = Vector2(3.10376, 2.89719)
-color = Color(0.819608, 1, 0.901961, 1)
-energy = 1.0
 texture = SubResource("GradientTexture2D_0yxxh")
 texture_scale = 0.1
 
@@ -678,6 +701,8 @@ volume_db = -4.386
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]
+[connection signal="animation_finished" from="UpdateSprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="animation_looped" from="UpdateSprite" to="." method="_on_sprite_animation_looped"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

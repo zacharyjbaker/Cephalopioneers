@@ -243,37 +243,37 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_0bt5i")
 }, {
-"duration": 1.0,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_a7mjb")
 }, {
-"duration": 1.3,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_doyrl")
 }, {
-"duration": 1.3,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_q6p5c")
 }, {
-"duration": 1.3,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_i46lu")
 }, {
-"duration": 1.3,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_xerpk")
 }, {
-"duration": 1.0,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_mg8xf")
 }, {
-"duration": 1.0,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_trkqm")
 }, {
-"duration": 1.0,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_34qjm")
 }, {
-"duration": 1.0,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_a3f87")
 }, {
-"duration": 1.0,
+"duration": 0.85,
 "texture": SubResource("AtlasTexture_qdiv0")
 }],
 "loop": true,
@@ -532,7 +532,7 @@ texture_filter = 1
 position = Vector2(19, 58)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_7beod")
-animation = &"Boost"
+animation = &"Move"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {},
@@ -578,7 +578,6 @@ metadata/_aseprite_wizard_source_file_hash_ = "3f0f9415cbdb609ea5d07b1a8aff56aa"
 position = Vector2(-4, -21)
 
 [node name="CockpitLight" parent="Pilot" instance=ExtResource("8_xxlqe")]
-visible = false
 light_mask = 0
 position = Vector2(34, 7)
 rotation = -1.5708
