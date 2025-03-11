@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://lw8xfb3534xn"]
+
+[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/cauldron.gd" id="1_wmkta"]
+[ext_resource type="Texture2D" uid="uid://di5v8cbvk0tmq" path="res://Assets/Sprites/Whale Fall Environment/Cathedral Cauldrons Charge.png" id="1_yv768"]
+[ext_resource type="Texture2D" uid="uid://dv1s47qih8bjn" path="res://Assets/Sprites/Whale Fall Environment/Cathedral Cauldrons Active.png" id="2_0t2ax"]
+
+[sub_resource type="Animation" id="Animation_pkonn"]
+resource_name = "Charge"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hn5wo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3tonw"]
+_data = {
+"Charge": SubResource("Animation_pkonn"),
+"RESET": SubResource("Animation_hn5wo")
+}
+
+[sub_resource type="Animation" id="Animation_t4fj1"]
+resource_name = "ActiveLoop"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bpmh7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmncw"]
+_data = {
+"ActiveLoop": SubResource("Animation_t4fj1"),
+"RESET": SubResource("Animation_bpmh7")
+}
+
+[node name="Cauldron" type="Node2D"]
+script = ExtResource("1_wmkta")
+
+[node name="CauldronSpriteActivate" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_yv768")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CauldronSpriteActivate"]
+libraries = {
+"": SubResource("AnimationLibrary_3tonw")
+}
+
+[node name="CauldronSpriteLoop" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("2_0t2ax")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CauldronSpriteLoop"]
+libraries = {
+"": SubResource("AnimationLibrary_rmncw")
+}
+speed_scale = 0.6
+
+[connection signal="animation_finished" from="CauldronSpriteActivate/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

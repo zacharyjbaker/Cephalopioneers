@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://exflkf1k5ti5"]
+[gd_scene load_steps=10 format=3 uid="uid://exflkf1k5ti5"]
 
 [ext_resource type="Texture2D" uid="uid://diufdchkp04gg" path="res://Assets/Sprites/Whale Fall Environment/City Gate Border.png" id="1_sk7k7"]
 [ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/city_gate.gd" id="1_vmg3v"]
 [ext_resource type="Texture2D" uid="uid://4erbe76h0mnv" path="res://Assets/Sprites/Whale Fall Environment/City Gate Door.png" id="2_ugcsr"]
+[ext_resource type="Texture2D" uid="uid://cbyjfi131rgrh" path="res://Assets/Sprites/Whale Fall Environment/City Gate Front Half.png" id="4_yk03t"]
 
 [sub_resource type="Animation" id="Animation_i25nf"]
 resource_name = "Door_Open"
@@ -34,9 +35,38 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../DoorSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_epp4p"]
+resource_name = "Door_Move_Up"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../DoorSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -600)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0pc0"]
 _data = {
+"Door_Move_Up": SubResource("Animation_epp4p"),
 "Door_Open": SubResource("Animation_i25nf"),
 "RESET": SubResource("Animation_4magu")
 }
@@ -77,3 +107,11 @@ shape = SubResource("RectangleShape2D_sloi5")
 z_index = -10
 scale = Vector2(4, 4)
 texture = ExtResource("1_sk7k7")
+
+[node name="CityGateFrontHalf" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(0, 1)
+scale = Vector2(4, 4)
+texture = ExtResource("4_yk03t")
+
+[connection signal="animation_finished" from="DoorSprite/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

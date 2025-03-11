@@ -245,6 +245,9 @@ decay = 0.0
 max_offset = Vector2(40, 30)
 noise = SubResource("FastNoiseLite_qjqus")
 
+[node name="CamTimer" type="Timer" parent="NautoCamera"]
+one_shot = true
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="InteractionBox" type="Area2D" parent="." groups=["player"]]
@@ -260,8 +263,9 @@ shape = SubResource("CapsuleShape2D_ylio2")
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="HurtBox" to="." method="_on_hurt_box_body_shape_entered"]
+[connection signal="timeout" from="NautoCamera/CamTimer" to="NautoCamera" method="_on_cam_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="InteractionBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="InteractionBox" to="." method="_on_interaction_box_area_entered"]
+[connection signal="area_entered" from="InteractionBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="InteractionBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="InteractionBox" to="." method="_on_hurt_box_body_shape_entered"]

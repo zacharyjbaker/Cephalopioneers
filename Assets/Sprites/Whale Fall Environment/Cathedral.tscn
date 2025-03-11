@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhl2xispv6sme"]
+
+[ext_resource type="Texture2D" uid="uid://bsgcilodfwsaf" path="res://Assets/Sprites/Whale Fall Environment/Crab Cathedral.png" id="1_euh0s"]
+[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/cathedral.gd" id="1_sk0l8"]
+[ext_resource type="Texture2D" uid="uid://dbys2lepmmcfe" path="res://Assets/Scenes/E Interact Prompt.png" id="3_e4ofk"]
+
+[sub_resource type="Animation" id="Animation_271oh"]
+resource_name = "CathedralDoor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tdyhl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7lxdi"]
+_data = {
+"CathedralDoor": SubResource("Animation_271oh"),
+"RESET": SubResource("Animation_tdyhl")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifame"]
+size = Vector2(344, 403.5)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 524288
+collision_mask = 524288
+script = ExtResource("1_sk0l8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_euh0s")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_7lxdi")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 517.75)
+shape = SubResource("RectangleShape2D_ifame")
+
+[node name="E" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 510)
+scale = Vector2(4, 4)
+texture = ExtResource("3_e4ofk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

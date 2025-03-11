@@ -1,5 +1,6 @@
 extends Area2D
 
+@onready var PlayerCamera : Camera2D = get_node("../Nauto/NautoCamera")
 @export var door: NodePath  # Assign the door instance in the Inspector
 var is_player_near = false
 var is_pulled = false
@@ -14,6 +15,7 @@ func pull_lever():
 		var door_node = get_node(door)
 		if door_node.has_method("open_door"):
 			door_node.open_door()
+			PlayerCamera.dooropenlerp()
 		else:
 			print("Door does not have an open_door method")
 	else:
