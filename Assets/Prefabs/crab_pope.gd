@@ -23,7 +23,7 @@ var path_follow = null
 
 #var test_moveset = [States.SKULL_SLAM, States.BLAST]
 var moveset_one = [States.SLAM, States.BLAST, States.BLAST]
-var moveset_two= [States.SLAM, States.EEL_BLAST]
+var moveset_two = [States.SLAM, States.EEL_BLAST]
 #var moveset_three = [States.BLAST, States.BLAST]
 var moveset_final = [States.SKULL_SLAM, States.STRUGGLE] #States.TELEPORT]
 #var moveset_final = [States.SKULL_SLAM, States.STRUGGLE, States.TELEPORT]
@@ -38,9 +38,11 @@ var path_end
 var current_path
 var prev_pos = 0
 var start_pos
+var start_rot
 var move_counter = 0
 
 var inAir = false
+var teleporting = false
 var isSkullSlamming = false
 var isSkullSmashAnimPlaying = false
 var isStruggling = false
@@ -58,29 +60,30 @@ func _ready() -> void:
 	anim_player.play("Idle")
 	Global.BOSS_FIGHT = true
 	velocity.y = 100
-	start_pos = global_transform
+	start_pos = global_position
+	start_rot = global_rotation_degrees
 	
 func _physics_process(delta: float) -> void:
-	#print (position.y)
+	###print (position.y)
 	move_and_slide()
 	if is_on_floor() and startOnFloor == false:
-		print ("on floor")
+		##print ("on floor")
 		startOnFloor = true
 		_fight()
 		velocity.y = 0
 		
 	if startOnFloor:
-		#print ("Current Anim: ", anim_player.get_animation())
+		##print ("Current Anim: ", anim_player.get_animation())
 		distance = global_position.x - player.global_position.x	
-		#print ("distance:", distance)
+		##print ("distance:", distance)
 		if !isStruggling:
 			if sign(distance) > 0 and flipped:
 				scale.x = -1 * abs(scale.x)
-				print ("flip_l")
+				#print ("flip_l")
 				flipped = false
 			elif sign(distance) < 0 and !flipped:
 				scale.x = -1 * abs(scale.x)
-				print ("flip_r")
+				#print ("flip_r")
 				flipped = true
 			
 		if state == States.BLAST:
@@ -89,16 +92,17 @@ func _physics_process(delta: float) -> void:
 			anim_player.play("ForwardBlast")
 			
 		elif state == States.SLAM or state == States.SKULL_SLAM :
-			#print ("SLAM TO JUMP")
+			##print ("SLAM TO JUMP")
 			if inAir == true and resetOrder == true and is_on_floor():
+				#print ("RESET")
 				anim_player.play("Idle")
 				state = States.IDLE
 				inAir = false
 				resetOrder = false
 				jumpDirDetermined = false
 				#path_end = path_follow.h_offset
-				var current_transform = global_transform
-				global_transform = current_transform
+				#var current_transform = global_transform
+				#global_transform = current_transform
 				_do_move()
 			elif inAir == true and is_on_floor():
 				anim_player.play("Idle")
@@ -122,7 +126,7 @@ func _physics_process(delta: float) -> void:
 				global_transform = current_transform
 				_do_move()
 			elif isSkullSlamming == true and is_on_floor():
-				#print ("SkullSmash")
+				##print ("SkullSmash")
 				anim_player.play("Struggle")
 				state = States.IDLE
 				isSkullSlamming = false
@@ -130,8 +134,8 @@ func _physics_process(delta: float) -> void:
 				_do_move()
 			if state == States.SLAM or state == States.SKULL_SLAM and is_on_floor():
 				anim_player.play("Slam")
-				#print ("slam")
-				#print (anim_player.frame)
+				##print ("slam")
+				##print (anim_player.frame)
 			elif state == States.SKULL_SLAM:
 				pass
 		
@@ -139,8 +143,12 @@ func _physics_process(delta: float) -> void:
 			anim_player.play("Idle")
 			
 		if !is_on_floor():
-			if inAir:
-				#print ("Offset:", path_follow.h_offset)
+			if resetOrder:
+				velocity.y += delta * Global.GRAVITY 
+				if prev_pos > position.y: # falling transition anim
+					anim_player.play("Descend")
+			elif inAir:
+				##print ("Offset:", path_follow.h_offset)
 		
 				velocity.y += delta * Global.GRAVITY 
 				if prev_pos > position.y: # falling transition anim
@@ -155,7 +163,7 @@ func _physics_process(delta: float) -> void:
 				
 				velocity.y += delta * Global.GRAVITY
 				if isSkullSmashAnimPlaying == false:
-					print ("playing Jaws")
+					#print ("playing Jaws")
 					anim_player.play("Jaws")
 					isSkullSmashAnimPlaying = true
 				#elif isSkullSmashAnimPlaying == false:
@@ -166,81 +174,70 @@ func _physics_process(delta: float) -> void:
 				var prev_pos = position.y
 			
 func _fight():
-	print ("Load next moveset")
-	var last_move = current_move
-	current_move = 0
-	#moveset_num = rng.randi_range(0, 3)
-	moveset_num = rng.randi_range(0, 2)
-	move_counter += 1
-	
-	if moveset_num == last_move:
-		moveset_num += 1
-	
-	#if move_counter >= 3 and !flipped:
-		#current_moveset = moveset_final
-		#cooldown = 2
-		#move_counter = 0
-	#else:
-	match moveset_num:
-		0:
-			if !flipped:
-				print ("Skullslam")
-				current_moveset = moveset_final
-				cooldown = 2
-			else:
-				print ("Slam and Blast")
-				current_moveset = moveset_one
-				cooldown = 1
-		1:
-			print ("Slam and Summon")
-			current_moveset = moveset_two
-			cooldown = 3
-		2:
-			if !flipped:
-				print ("Skullslam")
-				current_moveset = moveset_final
-				cooldown = 2
-			else:
-				moveset_num = rng.randi_range(0, 1)
-				match moveset_num:
-					0:
-						print ("Slam and Blast_2")
-						current_moveset = moveset_one
-						cooldown = 1
-					1:
-						("Slam and Summon_2")
-						current_moveset = moveset_two
-						cooldown = 3
-		_:
+	if is_on_floor() and !teleporting:
+		print ("Move Counter:", move_counter)
+		#print ("Load next moveset")
+		var last_move = current_move
+		current_move = 0
+		#moveset_num = rng.randi_range(0, 3)
+		moveset_num = rng.randi_range(0, 1)
+		move_counter += 1
+		
+		while moveset_num == last_move:
 			moveset_num = rng.randi_range(0, 1)
+		
+		#if move_counter >= 3 and !flipped:
+			#current_moveset = moveset_final
+			#cooldown = 2
+			#move_counter = 0
+		#else:
+		if !flipped and move_counter >= 2:
+			#print ("Skullslam")
+			current_moveset = moveset_final
+			cooldown = 2
+			move_counter = -1
+		else:
 			match moveset_num:
 				0:
-					print ("Slam and Blast_2")
+					print ("Slam and Blast")
 					current_moveset = moveset_one
-					cooldown = 1
+					cooldown = 2
 				1:
-					("Slam and Summon_2")
+					print ("Slam and Summon")
 					current_moveset = moveset_two
 					cooldown = 3
-				
-	_do_move()
+				2:
+					print ("Slam and Blast")
+					current_moveset = moveset_one
+					cooldown = 2
+				3:
+					print ("Slam and Summon")
+					current_moveset = moveset_two
+					cooldown = 3
+				_:
+					pass
+					
+		_do_move()
 	
 func _do_move():
 	print ("Performing Move")
-	if current_move <= len(current_moveset) - 1:
-		state = current_moveset[current_move]
-		current_move += 1
-		print ("State: ", state)
-		print ("MoveSet: ", current_moveset)
-		print ("Move: ", current_move)
-	else:
-		nextMoveset = true
+	if is_on_floor() and !teleporting:
+		if current_move <= len(current_moveset) - 1:
+			state = current_moveset[current_move]
+			current_move += 1
+			print ("State: ", state)
+			print ("MoveSet: ", current_moveset)
+			print ("Move: ", current_move)
+		else:
+			await get_tree().create_timer(cooldown).timeout
+			print ("Next Moveset")
+			_fight()
 
 func _on_sprite_animation_finished() -> void:
-	print ("anim finished")
+	#print ("anim finished")
 	if Global.BOSS_FIGHT == true:
 		if !extended_states.has(state):
-			print ("Extended State")
+			#print ("Extended State")
 			match state:
 				States.BLAST:
 					'''
@@ -280,10 +277,10 @@ func _on_sprite_animation_finished() -> void:
 			_do_move()
 		else:
 			if state == States.SLAM:
-				print ("Slam Begin")
+				#print ("Slam Begin")
 				velocity.y -= 100
 				inAir = true
-				print ("Spawn crab minions")
+				#print ("Spawn crab minions")
 				
 				var spawn1 = rng.randi_range(0, 3)
 				var crab_minion_spawn_1 = crab_minion.instantiate()
@@ -300,7 +297,7 @@ func _on_sprite_animation_finished() -> void:
 				crab_minion_spawn_2.aggro_range = 1000000
 				get_tree().root.add_child(crab_minion_spawn_2)
 			elif state == States.SKULL_SLAM:
-				print ("Skull Slam Begin")
+				#print ("Skull Slam Begin")
 				velocity.y -= 70
 				isSkullSlamming = true
 				isStruggling = true
@@ -320,27 +317,33 @@ func _on_sprite_animation_finished() -> void:
 				global_transform = current_transform
 			elif state == States.STRUGGLE:
 				anim_player.play("Struggle")
-				await get_tree().create_timer(1).timeout
-				anim_player.play("Teleport")
 				state = States.TELEPORT
-			elif state == States.TELEPORT:
+			elif state == States.TELEPORT and !teleporting:
+				print ("Teleport")
+				anim_player.play("Teleport")
+				teleporting = true
+				await get_tree().create_timer(2).timeout
+				teleporting = false
 				#global_position = start_pos
 				isStruggling = false
-				#var current_transform = global_transform
+				var current_transform = global_transform
 				smash_path.remove_child(path_follow)
 				path1.add_child(path_follow)
 				path_follow.add_child(self)
 				current_path = path1
 				path_follow.h_offset = 0.0
-				global_transform = start_pos
+				global_position.x = start_pos.x
+				global_position.y = start_pos.y - 1000
+				anim_player.rotation_degrees = 0
+				global_rotation_degrees = start_rot
+				global_scale = current_transform.get_scale()
 				inAir = true
 				resetOrder = true
-				print ("Return to normal moveset")
-				await get_tree().create_timer(1).timeout
-				_do_move()
-		if nextMoveset:
-			print ("Next Moveset")
-			nextMoveset = false
-			await get_tree().create_timer(cooldown).timeout
-			_fight()
+				#print ("Return to normal moveset")
+				state = States.IDLE
+				anim_player.play("Idle")
+				#await get_tree().create_timer(3).timeout
+				#_do_move()
+		#if nextMoveset and !isStruggling and !teleporting:
+			
 	

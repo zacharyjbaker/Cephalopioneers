@@ -59,7 +59,7 @@ scale = Vector2(4, 4)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_lp671")
-speed = 180
+speed = 400
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
@@ -108,6 +108,7 @@ position = Vector2(4.75, -0.25)
 rotation = 1.57376
 scale = Vector2(0.593627, -0.320031)
 shape = SubResource("CapsuleShape2D_27tbv")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-13, -1)
@@ -118,6 +119,7 @@ collision_mask = 0
 
 [node name="HurtBox" type="CollisionShape2D" parent="Area2D" groups=["laser"]]
 shape = SubResource("CapsuleShape2D_27tbv")
+disabled = true
 
 [node name="PointLightSource" parent="." instance=ExtResource("3_51764")]
 z_index = 1001

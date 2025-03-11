@@ -553,7 +553,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(0, 22.75)
 sprite_frames = SubResource("SpriteFrames_kjb38")
-animation = &"Jaws"
+animation = &"Teleport"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
