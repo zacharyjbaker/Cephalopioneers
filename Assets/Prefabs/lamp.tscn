@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctojvjycd40p0"]
+
+[ext_resource type="Texture2D" uid="uid://dfhguj3vropp5" path="res://Assets/Prefabs/Needlenose.png" id="1_kbour"]
+[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="2_oyc38"]
+
+[node name="Lamp" type="Node2D"]
+position = Vector2(28090, -104)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-28079, 123)
+texture = ExtResource("1_kbour")
+
+[node name="PointLightSource" parent="." instance=ExtResource("2_oyc38")]
+position = Vector2(-28090, 105)
+scale = Vector2(0.5, 0.5)
+texture_scale = 3.53
