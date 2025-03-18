@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bxa0nwx5uicwr"]
+[gd_scene load_steps=36 format=3 uid="uid://bxa0nwx5uicwr"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_djhdu"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_cwmej"]
@@ -234,6 +234,15 @@ animations = [{
 radius = 5.33728
 height = 20.6982
 
+[sub_resource type="Gradient" id="Gradient_r44jb"]
+offsets = PackedFloat32Array(0, 0.824675)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_miy4e"]
+gradient = SubResource("Gradient_r44jb")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Nauto" type="CharacterBody2D"]
 position = Vector2(-1609, 1143)
 scale = Vector2(4, 4)
@@ -362,10 +371,21 @@ position = Vector2(-2, 0.75)
 rotation = -0.634701
 shape = SubResource("CapsuleShape2D_7kcsx")
 
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+light_mask = 128
+visibility_layer = 128
+y_sort_enabled = true
+blend_mode = 2
+range_z_min = -1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_miy4e")
+texture_scale = 1.5
+
 [connection signal="animation_finished" from="Nauto" to="." method="_on_nauto_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="HurtBox" to="." method="_on_hurt_box_body_shape_entered"]
+[connection signal="timeout" from="NautoCamera/CamTimer" to="NautoCamera" method="_on_cam_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="ChargeJumpBar" to="." method="_on_charge_jump_bar_animation_finished"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://rwbda23lhjk5"]
+[gd_scene load_steps=20 format=3 uid="uid://rwbda23lhjk5"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/ui.gd" id="1_ph2h1"]
 [ext_resource type="Texture2D" uid="uid://dj0uexi41meep" path="res://Assets/Scenes/UI_Bar.png" id="3_auo3r"]
+[ext_resource type="Script" path="res://Assets/Prefabs/hp.gd" id="3_e3v5b"]
 [ext_resource type="Texture2D" uid="uid://7rptxa1pol5a" path="res://Assets/Prefabs/Shealth_small.png" id="3_e4k8v"]
 [ext_resource type="Texture2D" uid="uid://7sqpcpv2ceo4" path="res://Assets/Prefabs/HealthBar.png" id="4_1hhhc"]
 
@@ -121,6 +122,7 @@ texture_filter = 1
 position = Vector2(64, 58)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2viox")
+script = ExtResource("3_e3v5b")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -141,6 +143,7 @@ texture_filter = 1
 position = Vector2(176, 58)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_yhxb6")
+script = ExtResource("3_e3v5b")
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -162,6 +165,7 @@ texture_filter = 1
 position = Vector2(287, 58)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2xud6")
+script = ExtResource("3_e3v5b")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -182,6 +186,7 @@ texture_filter = 1
 position = Vector2(399, 58)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qwyfh")
+script = ExtResource("3_e3v5b")
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": false,
 "pending_changes": {}
@@ -203,6 +208,7 @@ texture_filter = 1
 position = Vector2(511, 58)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_bash8")
+script = ExtResource("3_e3v5b")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

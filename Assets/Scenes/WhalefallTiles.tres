@@ -165,6 +165,7 @@ texture = ExtResource("4_gcnpl")
 0:9/0 = 0
 
 [resource]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 32768
 physics_layer_0/collision_mask = 32768
 sources/0 = SubResource("TileSetAtlasSource_f3mlo")

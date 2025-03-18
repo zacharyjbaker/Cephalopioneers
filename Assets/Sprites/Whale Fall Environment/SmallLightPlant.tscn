@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://ia3q2ma1s0hi"]
+
+[ext_resource type="Texture2D" uid="uid://duhm8y356myhd" path="res://Assets/Sprites/Whale Fall Environment/LightPlant.png" id="1_02l8k"]
+
+[sub_resource type="Gradient" id="Gradient_tobd1"]
+offsets = PackedFloat32Array(0, 0.766234)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ie7pt"]
+gradient = SubResource("Gradient_tobd1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="SmallLightPlant" type="Node2D"]
+light_mask = 16384
+z_index = -5
+
+[node name="LightPlant" type="Sprite2D" parent="."]
+light_mask = 16384
+texture_filter = 1
+position = Vector2(0, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("1_02l8k")
+
+[node name="BulbLight" type="PointLight2D" parent="LightPlant"]
+z_index = -10
+y_sort_enabled = true
+position = Vector2(-6, 14.6667)
+color = Color(0.980392, 0.666667, 0, 1)
+energy = 2.0
+blend_mode = 2
+range_item_cull_mask = 16384
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ie7pt")
+texture_scale = 0.4
+
+[node name="BulbLight" type="PointLight2D" parent="LightPlant/BulbLight"]
+light_mask = 128
+visibility_layer = 128
+z_index = -10
+y_sort_enabled = true
+position = Vector2(0, -10)
+color = Color(0.980392, 0.666667, 0, 1)
+energy = 2.0
+blend_mode = 2
+range_item_cull_mask = 16384
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ie7pt")
+texture_scale = 0.4
+
+[node name="BulbLight" type="PointLight2D" parent="LightPlant/BulbLight/BulbLight"]
+light_mask = 128
+visibility_layer = 128
+z_index = -10
+y_sort_enabled = true
+position = Vector2(12.3333, 9.66667)
+color = Color(0.980392, 0.666667, 0, 1)
+energy = 2.0
+blend_mode = 2
+range_item_cull_mask = 16384
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ie7pt")
+texture_scale = 0.4
+
+[node name="BulbLight" type="PointLight2D" parent="LightPlant/BulbLight/BulbLight/BulbLight"]
+light_mask = 128
+visibility_layer = 128
+z_index = -10
+y_sort_enabled = true
+position = Vector2(-0.333333, -10)
+color = Color(0.980392, 0.666667, 0, 1)
+energy = 2.0
+blend_mode = 2
+range_item_cull_mask = 16384
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ie7pt")
+texture_scale = 0.4
+
+[node name="BulbLight" type="PointLight2D" parent="LightPlant/BulbLight/BulbLight/BulbLight/BulbLight"]
+light_mask = 128
+visibility_layer = 128
+y_sort_enabled = true
+position = Vector2(-6, -18)
+color = Color(0.980392, 0.666667, 0, 1)
+energy = 2.0
+blend_mode = 2
+range_item_cull_mask = 16384
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ie7pt")
+texture_scale = 0.8

@@ -196,9 +196,9 @@ func _physics_process(delta: float) -> void:
 		
 		#cockpit_light.enabled = true
 		#$AmbientLight.enabled = false
-		cockpit_light.energy = lerp(cockpit_light.energy, 1.1, 0.3 * delta)
+		cockpit_light.energy = lerp(cockpit_light.energy, 1.5, 0.3 * delta)
 		#print (cockpit_light.energy)
-		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 3.8, 0.9 * delta)
+		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 4.0, 0.9 * delta)
 		#print (cockpit_light.texture_scale)
 		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
 			#print ("Hover Right")

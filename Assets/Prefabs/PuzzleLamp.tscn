@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctojvjycd40p0"]
+[gd_scene load_steps=11 format=3 uid="uid://ctojvjycd40p0"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/puzzle_lamp.gd" id="1_e2rbp"]
 [ext_resource type="Texture2D" uid="uid://c2nqwhnv5qlpw" path="res://Assets/Sprites/Whale Fall Environment/Light Collectable.png" id="2_ryyen"]
@@ -45,6 +45,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1h2m"]
 size = Vector2(94, 111)
 
+[sub_resource type="Gradient" id="Gradient_se6w1"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kroet"]
+gradient = SubResource("Gradient_se6w1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Area2D" type="Area2D"]
 collision_layer = 524288
 collision_mask = 524288
@@ -75,9 +83,22 @@ texture = ExtResource("3_fuqy6")
 
 [node name="E" type="Sprite2D" parent="."]
 visible = false
+visibility_layer = 16385
+z_index = 100
 position = Vector2(-1, -76)
 scale = Vector2(4, 4)
 texture = ExtResource("4_3b3ps")
+
+[node name="BulbLight" type="PointLight2D" parent="."]
+light_mask = 128
+visibility_layer = 128
+y_sort_enabled = true
+position = Vector2(32, 16)
+color = Color(0.101961, 1, 1, 1)
+blend_mode = 2
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_kroet")
+texture_scale = 3.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

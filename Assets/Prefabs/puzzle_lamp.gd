@@ -4,6 +4,7 @@ extends Area2D
 @export var lamp: NodePath  # Assign the booster instance in the Inspector
 @onready var animation_player = $Sprite2D/AnimationPlayer
 @onready var Sprite1 = $Sprite2D
+@onready var Plantlight = $BulbLight
 @onready var Sprite2 = $E
 var is_player_near = false
 var is_active = false
@@ -34,6 +35,7 @@ func _on_area_exited(area):
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	Sprite1.visible = false
 	Sprite2.queue_free()
+	Plantlight.visible = false
 	if anim_name == "Collect":
 		# Enable the lamp and activate the cauldron after the animation finishes
 		if lamp:
