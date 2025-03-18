@@ -8,12 +8,30 @@ extends CharacterBody2D
 @onready var pilot = $Pilot
 @onready var camera = $MechCamera
 @onready var flashlight = $Flashlight
+@onready var flashlight_cone = $FlashlightCone
 @onready var cockpit_light = $Pilot/CockpitLight
 @onready var boost_light = $BoostLight
+@onready var boost_particles = $BoostParticles
 @onready var back_boost_light = $BackBoostLight
+@onready var back_boost_particles = $BackBoostParticles
+@onready var player = get_node("/root/Node2D/Nauto")
+@onready var env_node = get_node("/root/Node2D/WorldEnvironment")
+@onready var HP = get_node("/root/Node2D/UI/HP").get_children()
+@onready var interact = $InteractPrompt
+@onready var blaster_player = $BlasterSFX
+@onready var thruster_player = $ThrusterSFX
+@onready var drill_player = $DrillSFX
+@onready var iFrames = $IFrames
+
 #@onready var shader = $MechCamera/WaterShader
 
+@export var blaster_sfx : Resource
+@export var thruster_sfx : Resource
+@export var drill_sfx : Resource
+
+@export var iFrameTime = 1.2
 @export var jump_impulse = 200
+@export var walk_speed = 420
 var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
 
 var current_anim = ""
@@ -30,6 +48,9 @@ var isShooting = false
 var isDrilling = false
 var isOpening = false
 var isClosing = false
+var isThrusting = false
+var isBuzzing = false
+var hasIFrames = false
 
 func _ready() -> void:
 	mech_front_arm.play("Idle")
@@ -39,6 +60,7 @@ func _ready() -> void:
 	original_scale.y = camera.scale.y
 	original_rotation = camera.rotation_degrees
 	flashlight.enabled = false
+	flashlight_cone.monitoring = false
 	
 	match Global.SCENE:
 		"TheShallows":
@@ -83,6 +105,9 @@ func close_anim():
 	isClosing = true
 	current_anim = "Close"
 	mech_body_sprite.play(current_anim)
+	interact.visible = false
+	if Global.HEALTH < Global.MECH_HEALTH:
+		Global.MECH_HEALTH = Global.HEALTH
 
 	
 func laser_explosion():
@@ -91,6 +116,13 @@ func laser_explosion():
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	
+	if Global.MODE == "Nauto":
+		if position.distance_to(player.position) < 250 and Global.FREEZE == false:
+			interact.visible = true
+		if position.distance_to(player.position) >= 250 :
+			interact.visible = false
+		
 	
 	pilot.global_position = Vector2(global_position.x - 4, global_position.y - 21)
 	#print ("Mech:", position)
@@ -104,10 +136,13 @@ func _physics_process(delta: float) -> void:
 	if velocity.x > 1:
 		scale.y = abs(scale.y)
 		rotation_degrees = 0
+		interact.scale.x = 4
+		
 
 	elif velocity.x < -1:
 		scale.y = -1 * abs(scale.y)
 		rotation_degrees = 180
+		interact.scale.x = -4
 
 	#print (Global.MODE)
 	#print (floor_height)
@@ -118,29 +153,44 @@ func _physics_process(delta: float) -> void:
 		if Global.DAMAGED == false:
 			if Global.MODE == "Mech":
 				mech_body_sprite.play("Boost")
+				if isThrusting == false:
+					thruster_player.stream = thruster_sfx
+					thruster_player.play()
+					isThrusting = true
 			else:
 				mech_body_sprite.play("BoostOpen")
 				mech_back_arm.stop()	
 				mech_front_arm.stop()	
 		boost_light.enabled = true
+		boost_particles.emitting = true
 		back_boost_light.enabled = false
+		back_boost_particles.emitting = false
 	
 	if is_on_floor():
 		floor_height = global_position.y
 		boost_light.enabled = false
+		boost_particles.emitting = false
 		back_boost_light.enabled = false
+		back_boost_particles.emitting = false
+		isThrusting = false
+		thruster_player.stop()
 		
 	if isDrilling == true:
 		mech_back_arm.play("Drill")
+		if isBuzzing == false :
+			drill_player.stream = drill_sfx
+			drill_player.play()
+			isBuzzing = true
 		#drill_particles.emitting = true
 		
 	elif isDrilling == false:
 		mech_back_arm.play("Idle")
+		isBuzzing = false
+		drill_player.stop()
 		drill_particles.emitting = false
 	
 	if (Global.MODE == "Mech" and isClosing == false):
 		# charge jump anim
-		
 		#cockpit_light.texture_scale = lerp(3.8, 2.4, 0.03)
 		#cockpit_light.energy = lerp(1.1, 0.0, 0.01)
 		
@@ -154,34 +204,48 @@ func _physics_process(delta: float) -> void:
 			#print ("Hover Right")
 			hover_move_anim()
 			boost_light.enabled = true
+			boost_particles.emitting = true
 			back_boost_light.enabled = true
-			if velocity.x < (Global.WALK_SPEED - 150):
-				velocity.x +=  Global.WALK_SPEED * delta * 1.5
+			back_boost_particles.emitting = true
+			if velocity.x < (walk_speed - 150):
+				velocity.x +=  walk_speed * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
 				position.y += -(jump_impulse) * delta
 				if global_position.y - (floor_height - hover_height) <= 5:
 					position.y = (floor_height - hover_height)
 				isHovering = true
+			if isThrusting == false:
+				thruster_player.stream = thruster_sfx
+				thruster_player.play()
+				isThrusting = true
 		
 		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
 			#print ("Hover Right")
 			hover_move_anim()
 			boost_light.enabled = true
+			boost_particles.emitting = true
 			back_boost_light.enabled = true
-			if velocity.x > -(Global.WALK_SPEED - 150):
-				velocity.x +=  -Global.WALK_SPEED * delta * 1.5
+			back_boost_particles.emitting = true
+			if velocity.x > -(walk_speed - 150):
+				velocity.x +=  -walk_speed * delta * 1.5
 			if (global_position.y > floor_height - hover_height):
 				position.y += -(jump_impulse) * delta
 				if global_position.y - (floor_height - hover_height) <= 5:
 					position.y = (floor_height - hover_height)
 				isHovering = true
+			if isThrusting == false:
+				thruster_player.stream = thruster_sfx
+				thruster_player.play()
+				isThrusting = true
 				
 		elif Input.is_action_pressed("ui_up"):
 			if (global_position.y > floor_height - hover_height):
 				position.y += -(jump_impulse) * delta
 				isHovering = true
 				boost_light.enabled = true
+				boost_particles.emitting = true
 				back_boost_light.enabled = false
+				back_boost_particles.emitting = false
 				velocity.x = 0
 				if global_position.y - (floor_height - hover_height) <= 5:
 					position.y = (floor_height - hover_height)
@@ -190,27 +254,29 @@ func _physics_process(delta: float) -> void:
 			
 		# move anims
 		if Input.is_action_pressed("ui_right") and is_on_floor() and !Input.is_action_pressed("ui_up"):
+			#print ("move_right")
 			move_anim()
-			if velocity.x < (Global.WALK_SPEED - 250):
-				velocity.x +=  Global.WALK_SPEED * delta * 1
-			if velocity.x > (Global.WALK_SPEED - 250):
-				velocity.x = (Global.WALK_SPEED - 250)
+			if velocity.x < (walk_speed - 100):
+				velocity.x +=  walk_speed * delta * 1
+			if velocity.x > (walk_speed - 100):
+				velocity.x = (walk_speed - 100)
 			#mech_body_sprite.flip_h = false
 			
 		elif Input.is_action_pressed("ui_left") and is_on_floor() and !Input.is_action_pressed("ui_up"):
+			#print ("move_left")
 			move_anim()
-			if velocity.x > -(Global.WALK_SPEED - 250):
-				velocity.x +=  -Global.WALK_SPEED * delta * 1
-			if velocity.x < -(Global.WALK_SPEED - 250):
-				velocity.x = -(Global.WALK_SPEED - 250)
+			if velocity.x > -(walk_speed - 100):
+				velocity.x +=  -walk_speed * delta * 1
+			if velocity.x < -(walk_speed - 100):
+				velocity.x = -(walk_speed - 100)
 			#mech_body_sprite.flip_h = true
 			
 		elif is_on_floor() and !Input.is_action_pressed("ui_up") and isClosing == false and isOpening == false:
 			#gravity_offset = 0
 			if (velocity.x > 50):
-				velocity.x -= delta * 2000
+				velocity.x -= delta * 3500
 			elif (velocity.x < -50):
-				velocity.x += delta * 2000
+				velocity.x += delta * 3500
 			else:
 				velocity.x = 0
 			mech_body_sprite.play("Idle")
@@ -221,10 +287,11 @@ func _physics_process(delta: float) -> void:
 			#print ("Shoot")
 			if isHovering == false:
 				mech_body_sprite.stop()
-			if isDrilling == false:
-				drill_area.monitorable = false
-				mech_back_arm.stop()
+			#if isDrilling == false:
+				#drill_area.monitorable = false
+				#mech_back_arm.stop()
 			isShooting = true
+			#mech_front_arm.stop()
 		elif isShooting == false:
 			mech_front_arm.play("Idle")
 		
@@ -243,8 +310,10 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("flashlight"):
 			if flashlight.enabled == true:
 				flashlight.enabled = false
+				flashlight_cone.monitoring = false
 			else:
 				flashlight.enabled = true
+				flashlight_cone.monitoring = true
 			
 	else:
 		if is_on_floor() and isClosing == false and isOpening == false:
@@ -258,13 +327,15 @@ func _physics_process(delta: float) -> void:
 
 func shoot() -> void:
 	var laser_proj_instance = laser_projectile.instantiate()
+	blaster_player.stream = blaster_sfx
+	blaster_player.play()
 	
 	if rotation_degrees == 0:
 		laser_proj_instance.velocity.x = 1
-		laser_proj_instance.position = position + Vector2(90, 45)
+		laser_proj_instance.position = position + Vector2(90, 60)
 	else:
 		laser_proj_instance.velocity.x = -1
-		laser_proj_instance.position = position + Vector2(-90, 45)
+		laser_proj_instance.position = position + Vector2(-90, 60)
 	#print (velocity.norma	lized().x)
 	get_tree().root.add_child(laser_proj_instance)
 
@@ -285,3 +356,63 @@ func _on_mech_body_animation_finished() -> void:
 		isClosing = false
 	if isOpening == true:
 		isOpening = false
+
+func _on_flashlight_cone_body_entered(body: Node2D) -> void:
+	print ("Crab entered flashlight")
+	if body.is_in_group("crab"):
+		body.is_in_flashlight = true
+
+func _on_flashlight_cone_body_exited(body: Node2D) -> void:
+	print ("Crab exited flashlight")
+	if body.is_in_group("crab"):
+		body.is_in_flashlight = false
+		
+func health_loss() -> void:
+	if Global.MECH_HEALTH > 0:
+		Global.MECH_HEALTH -= 1
+	elif Global.MECH_HEALTH == 0:
+		Global.HEALTH -= 1
+		#HP[Global.HEALTH].visible = false
+	hasIFrames = true
+	iFrames.start(iFrameTime)
+	print ("Mech HP:", Global.MECH_HEALTH)
+	print ("Nauto HP:", Global.HEALTH)
+		
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if !hasIFrames:
+		print ("Hurt by ", body.name)
+		if Global.MODE == "Mech":
+			if body.get_node("HitBox"):
+				if body.get_node("HitBox").is_in_group("mech_damage"):
+					health_loss()
+					#print (env_node.environment.glow_intensity)
+					env_node.set_glow(1)
+				if body.get_node("HitBox").is_in_group("mech_knockback"):
+					#print ("hit")
+					var distance = global_position.x - body.global_position.x
+					#print (distance)
+					if distance < 0:
+						body.velocity.x += 500
+					else:
+						body.velocity.x -= 500
+					body.velocity.y -= 300
+			if body.get_node("TempHitBox"):
+				if body.get_node("TempHitBox").is_in_group("mech_damage"):
+					health_loss()
+					#print (env_node.environment.glow_intensity)
+					env_node.set_glow(1)
+			if body.get_node("TempHitBox"):
+				if body.get_node("TempHitBox").is_in_group("mech_knockback"):
+					#print ("hit")
+					var distance = global_position.x - body.global_position.x
+					#print (distance)
+					if distance < 0:
+						body.velocity.x += 500
+					else:
+						body.velocity.x -= 500
+					body.velocity.y -= 300
+			else:
+				pass
+		
+func _on_i_frames_timeout() -> void:
+	hasIFrames = false

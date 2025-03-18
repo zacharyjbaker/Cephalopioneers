@@ -1,6 +1,7 @@
 extends Camera2D
 
 const CAMERA_MOVEMENT_SPEED : int = 4
+#@onready var shader = get_node("/root/Node2D/WaterShader")
 
 @export var decay := 0.8 # How quickly shaking will stop [0,1].
 @export var max_offset := Vector2(100, 75) # Maximum displacement in pixels.
@@ -42,6 +43,11 @@ func add_trauma(amount : float):
 	trauma = min(trauma + amount, 1.0)
 
 func _process(delta):
+	#if (Input.is_action_pressed("ui_left") and position.x > CAMERA_LEFT_LIMIT):
+		#position.x -= CAMERA_MOVEMENT_SPEED
+	#if (Input.is_action_pressed("ui_right") and position.x < CAMERA_RIGHT_LIMIT):
+		#position.x += CAMERA_MOVEMENT_SPEED
+		
 	if Global.SHAKE == true and shaking == false:
 		decay = 0
 		add_trauma(2)

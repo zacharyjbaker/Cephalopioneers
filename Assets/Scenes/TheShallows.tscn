@@ -1,6 +1,7 @@
-[gd_scene load_steps=81 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=82 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
+[ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_srkuf"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_qfhot"]
@@ -9,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ddc63b22fsubo" path="res://Assets/MapDraft/Layer 2 Resized.png" id="6_d27y2"]
 [ext_resource type="Texture2D" uid="uid://bf2hopcupr884" path="res://Assets/MapDraft/Shallows Final Background.png" id="8_blre6"]
 [ext_resource type="TileSet" uid="uid://8fuoflysuhrr" path="res://Assets/Prefabs/tile.tres" id="8_nnxgj"]
-[ext_resource type="PackedScene" uid="uid://bfe6oxodnb5nu" path="res://Assets/Prefabs/Shallows_Tile_map_layer.tscn" id="9_n0xr4"]
+[ext_resource type="PackedScene" uid="uid://bfe6oxodnb5nu" path="res://Assets/Scenes/Shallows_Tile_map_layer.tscn" id="9_n0xr4"]
 [ext_resource type="PackedScene" uid="uid://tbxkugnbp6o8" path="res://Assets/Prefabs/drillable_wall.tscn" id="9_so8s1"]
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="10_0gom4"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="11_2qxj4"]
@@ -379,6 +380,8 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
+
+[node name="UI" parent="." instance=ExtResource("1_srkuf")]
 
 [node name="SceneManager" type="Node2D" parent="."]
 script = ExtResource("1_b8dk6")

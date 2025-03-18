@@ -334,7 +334,6 @@ animations = [{
 script = ExtResource("1_x41q6")
 
 [node name="WaterShader" type="Sprite2D" parent="."]
-visible = false
 z_index = 99
 material = SubResource("ShaderMaterial_toho5")
 position = Vector2(10603, 396)
@@ -343,7 +342,6 @@ scale = Vector2(366.061, 31.7569)
 texture = ExtResource("3_doonm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
 color = Color(0.08, 0.08, 0.08, 1)
@@ -589,7 +587,7 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." instance=ExtResource("21_2t1sa")]
-position = Vector2(6892, 1230)
+position = Vector2(19526, 1049)
 
 [node name="Mech" parent="." instance=ExtResource("22_joohn")]
 position = Vector2(20299, 1085)
@@ -1151,7 +1149,7 @@ texture = ExtResource("47_ba50m")
 metadata/_edit_lock_ = true
 
 [node name="OutSkirtVent" parent="." node_paths=PackedStringArray("body") instance=ExtResource("30_cl1eo")]
-position = Vector2(14349, 1216)
+position = Vector2(14364, 1216)
 rotation = 6.28319
 body = NodePath("../Nauto")
 push_strength = 1000

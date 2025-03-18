@@ -13,9 +13,12 @@ extends CharacterBody2D
 @onready var pilot_pos = get_node("/root/Node2D/Mech/Pilot").global_position
 @onready var env_node = get_node("/root/Node2D/WorldEnvironment")
 @onready var breakable_floor = get_node("/root/Node2D/MiscEnv/BreakableFloor")
+@onready var charge_bar = $ChargeJumpBar
+@onready var iFrames = $IFrames
+@onready var HP = get_node("/root/Node2D/UI/HP").get_children()
 
+@export var iFrameTime = 1.2
 @export var jump_impulse = 350
-
 
 var camera = null
 var knockback = Vector2.ZERO
@@ -25,6 +28,7 @@ var boost = 0.0
 var charge = false
 var crouched = false
 var isShiftingNauto = false
+var hasIFrames = false
 
 enum States {IDLE, MOVE, STOP, SHOOT, FALL, FADE}
 signal cs_break
@@ -57,7 +61,7 @@ func _input(event)-> void:
 			#Global.START = false
 			print ("Shift")
 			shift_mode()
-		elif event.is_action_pressed("ui_down") and is_on_floor():
+		elif event.is_action_pressed("ui_down") and is_on_floor() and Global.MODE == "Nauto":
 			#print ("crouched")
 			crouched = !crouched
 			if crouched:
@@ -124,9 +128,14 @@ func move_anim():
 func charge_anim():
 	current_anim = "Charge"
 	nauto_sprite.play(current_anim)
+	if crouched == false:
+		charge_bar.visible = true
+		charge_bar.play("Charge")
 		
 func finish_jump() -> void:
 	velocity.y = -(jump_impulse + boost * 300)
+	charge_bar.visible = false
+	charge_bar.play("Idle")
 	#nauto_sprite.self_modulate = original_modulate
 	boost = 0.0
 
@@ -180,13 +189,14 @@ func _physics_process(delta: float) -> void:
 			
 		# charge jump anim
 		if Input.is_action_pressed("ui_up") and is_on_floor():
+			print("Boost:", boost)
 			charge = true;
 			physics_collider.disabled = true
 			crouch_collider.disabled = false
 			if crouched:
 				crouched = false
 				Global.WALK_SPEED = 400
-			if (boost < 1):
+			if (boost < 0.70):
 				boost+=delta
 				#nauto_sprite.self_modulate = Color(0,0,boost*2, 100)
 			if (velocity.x > 50):
@@ -234,6 +244,7 @@ func _physics_process(delta: float) -> void:
 		elif is_on_floor():
 			if crouched == false:
 				current_anim = "Idle"
+				charge_bar.visible = false
 			else:
 				current_anim = "Charge"
 			nauto_sprite.play(current_anim)
@@ -246,23 +257,49 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	print ("Hurt by ", body.name)
-	if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
-		#print ("hit")
-		#velocity.x += body.velocity.x * 3
-		velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-		#velocity.y += body.velocity.y * 3
-		velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
+	if !hasIFrames:
+		print ("Hurt by ", body.name)
+		if body.get_node("HitBox"):
+			if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
+				health_loss()
+				#print (env_node.environment.glow_intensity)
+				env_node.set_glow(1)
+			if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				if body.is_in_group("aardvark") and body.upside_down == true:
+					velocity.y += -(velocity.y * 2 + body.y_knockback)
+		if body.get_node("TempHitBox"):
+			if (body.get_node("TempHitBox").is_in_group("damage") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
+				health_loss()
+				#print (env_node.environment.glow_intensity)
+				env_node.set_glow(1)
+			if (body.get_node("TempHitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
+				#print ("hit")
+				#velocity.x += body.velocity.x * 3
+				#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+				#velocity.y += body.velocity.y * 3
+				if body.is_in_group("aardvark") and body.upside_down == true:
+					velocity.y += -(velocity.y * 2 + body.y_knockback)
+
+func health_loss() -> void:
+	if Global.HEALTH > 0:
 		Global.HEALTH -= 1
-		#print (env_node.environment.glow_intensity)
-		env_node.set_glow(1)
-	if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
-		#print ("hit")
-		#velocity.x += body.velocity.x * 3
-		#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-		#velocity.y += body.velocity.y * 3
-		if body.is_in_group("aardvark") and body.upside_down == true:
-			velocity.y += -(velocity.y * 2 + body.y_knockback)
+		HP[Global.HEALTH].visible = false
+	hasIFrames = true
+	iFrames.start(iFrameTime)
 
 func _on_timer_timeout() -> void:
 	if state == States.MOVE:
@@ -301,3 +338,6 @@ func _on_timer_timeout() -> void:
 
 func _on_interaction_box_area_entered(area: Area2D) -> void:
 	print("Nauto Collided")
+
+func _on_i_frames_timeout() -> void:
+	hasIFrames = false

@@ -1,70 +1,67 @@
-[gd_scene load_steps=34 format=3 uid="uid://bxa0nwx5uicwr"]
+[gd_scene load_steps=24 format=3 uid="uid://bt3lmibga3tx7"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_djhdu"]
-[ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_cwmej"]
-[ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_kx56x"]
-[ext_resource type="Texture2D" uid="uid://dlrfbadv04ie1" path="res://Assets/Prefabs/ChargeJumpBar.png" id="4_nudv3"]
-[ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="5_e1fd8"]
-[ext_resource type="Texture2D" uid="uid://hwa51d66j4j8" path="res://Assets/Prefabs/gauge.tres" id="6_e77tp"]
+[ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_hmm6j"]
+[ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_2317c"]
+[ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_f3pj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(0, 54, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2drs"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(54, 36, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgetx"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(0, 0, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_br1h2"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(36, 36, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ookl7"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(18, 36, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbv8j"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(36, 54, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mn1pg"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(54, 54, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_maukm"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(18, 0, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hpcqy"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(36, 0, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cq45e"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(54, 0, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7v6lx"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(0, 18, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_62a38"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(18, 18, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l8q65"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(36, 18, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yhkn"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(54, 18, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_508hp"]
-atlas = ExtResource("2_cwmej")
+atlas = ExtResource("2_2317c")
 region = Rect2(0, 36, 18, 18)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2l2c7"]
@@ -174,80 +171,18 @@ height = 20.6982
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qjqus"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aj3bo"]
-atlas = ExtResource("4_nudv3")
-region = Rect2(5, 0, 5, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_37sag"]
-atlas = ExtResource("4_nudv3")
-region = Rect2(10, 0, 5, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ojx2"]
-atlas = ExtResource("4_nudv3")
-region = Rect2(0, 16, 5, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7p437"]
-atlas = ExtResource("4_nudv3")
-region = Rect2(5, 16, 5, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ix0hp"]
-atlas = ExtResource("4_nudv3")
-region = Rect2(0, 0, 5, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vuvcp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aj3bo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_37sag")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6ojx2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7p437")
-}],
-"loop": false,
-"name": &"Charge",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7p437")
-}],
-"loop": false,
-"name": &"Full",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ix0hp")
-}],
-"loop": false,
-"name": &"Idle",
-"speed": 10.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7kcsx"]
-radius = 5.33728
-height = 20.6982
-
-[node name="Nauto" type="CharacterBody2D"]
+[node name="Nauto" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-1609, 1143)
 scale = Vector2(4, 4)
 collision_layer = 4224
 collision_mask = 49152
-script = ExtResource("1_djhdu")
+script = ExtResource("1_hmm6j")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-visible = false
 position = Vector2(0, 0.75)
 polygon = PackedVector2Array(-11.5, 7.75, 12.75, -9.5, -6.75, -10, -9.25, -5)
 
 [node name="PhysicsColliderCrouch" type="CollisionPolygon2D" parent="."]
-visible = false
 position = Vector2(0, 0.75)
 polygon = PackedVector2Array(-11.5, 7.75, 7.25, 7.75, 7, -1.75, -10.25, -1.5)
 disabled = true
@@ -255,7 +190,7 @@ disabled = true
 [node name="Nauto" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2l2c7")
-animation = &"BeginFall"
+animation = &"Walk"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": false,
@@ -289,8 +224,7 @@ root_node = NodePath("../..")
 collision_layer = 2048
 collision_mask = 2048
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" groups=["player"]]
 position = Vector2(-2, 0.75)
 rotation = -0.634701
 shape = SubResource("CapsuleShape2D_ylio2")
@@ -306,7 +240,7 @@ drag_left_margin = 0.05
 drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
-script = ExtResource("3_kx56x")
+script = ExtResource("3_f3pj6")
 decay = 0.0
 max_offset = Vector2(40, 30)
 noise = SubResource("FastNoiseLite_qjqus")
@@ -316,43 +250,6 @@ one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="ChargeJumpBar" type="AnimatedSprite2D" parent="."]
-visible = false
-light_mask = 16384
-texture_filter = 1
-position = Vector2(11, 0)
-sprite_frames = SubResource("SpriteFrames_vuvcp")
-animation = &"Charge"
-frame = 3
-frame_progress = 1.0
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/ChargeJumpBar.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "9152cec7c3677fc0b8628fcc41e26c16"
-
-[node name="BoostParticleLight" parent="ChargeJumpBar" instance=ExtResource("5_e1fd8")]
-light_mask = 0
-z_index = 1
-position = Vector2(0, 0.499992)
-rotation = 3.14159
-scale = Vector2(25.1291, 30.1595)
-energy = 2.1
-range_item_cull_mask = 16384
-shadow_item_cull_mask = 0
-texture = ExtResource("6_e77tp")
-texture_scale = 0.01
-
-[node name="IFrames" type="Timer" parent="."]
-
 [node name="InteractionBox" type="Area2D" parent="." groups=["player"]]
 collision_layer = 524288
 collision_mask = 524288
@@ -360,12 +257,15 @@ collision_mask = 524288
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox" groups=["player"]]
 position = Vector2(-2, 0.75)
 rotation = -0.634701
-shape = SubResource("CapsuleShape2D_7kcsx")
+shape = SubResource("CapsuleShape2D_ylio2")
 
 [connection signal="animation_finished" from="Nauto" to="." method="_on_nauto_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="HurtBox" to="." method="_on_hurt_box_body_shape_entered"]
+[connection signal="timeout" from="NautoCamera/CamTimer" to="NautoCamera" method="_on_cam_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="animation_finished" from="ChargeJumpBar" to="." method="_on_charge_jump_bar_animation_finished"]
-[connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
+[connection signal="area_entered" from="InteractionBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="InteractionBox" to="." method="_on_interaction_box_area_entered"]
+[connection signal="body_entered" from="InteractionBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_shape_entered" from="InteractionBox" to="." method="_on_hurt_box_body_shape_entered"]
