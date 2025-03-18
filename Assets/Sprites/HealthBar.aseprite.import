@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://b1vx0wd1cdkq5"
-path="res://.godot/imported/HealthBar.aseprite-9524f5c31415665a2df2894653b1aa07.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/HealthBar.aseprite"
-dest_files=["res://.godot/imported/HealthBar.aseprite-9524f5c31415665a2df2894653b1aa07.res"]
 
 [params]
 

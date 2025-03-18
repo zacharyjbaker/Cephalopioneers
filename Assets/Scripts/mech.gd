@@ -21,6 +21,7 @@ extends CharacterBody2D
 @onready var blaster_player = $BlasterSFX
 @onready var thruster_player = $ThrusterSFX
 @onready var drill_player = $DrillSFX
+@onready var flash_player = $FlashSFX
 @onready var iFrames = $IFrames
 
 #@onready var shader = $MechCamera/WaterShader
@@ -28,6 +29,7 @@ extends CharacterBody2D
 @export var blaster_sfx : Resource
 @export var thruster_sfx : Resource
 @export var drill_sfx : Resource
+@export var flash_sfx : Resource
 
 @export var iFrameTime = 1.2
 @export var jump_impulse = 200
@@ -310,6 +312,8 @@ func _physics_process(delta: float) -> void:
 				print ("Stop Drilling")
 				
 			if Input.is_action_just_pressed("flashlight"):
+				flash_player.stream = flash_sfx
+				flash_player.play()
 				if flashlight.enabled == true:
 					flashlight.enabled = false
 					flashlight_cone.monitoring = false

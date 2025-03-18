@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhaqcrrolyagl"]
+[gd_scene load_steps=9 format=3 uid="uid://dhaqcrrolyagl"]
 
 [ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/lever.gd" id="1_2efg8"]
 [ext_resource type="Texture2D" uid="uid://c0alj7mlha8rr" path="res://Assets/Sprites/Whale Fall Environment/Lever.png" id="2_33odp"]
+[ext_resource type="AudioStream" uid="uid://mmh6tc8yfm6n" path="res://Assets/Sound/Sfx/DoorRattle.wav" id="3_vpkc1"]
+[ext_resource type="AudioStream" uid="uid://dux3wsfudxrt7" path="res://Assets/Sound/Sfx/LeverPull.wav" id="4_dice5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdqen"]
 size = Vector2(19.6875, 20)
@@ -63,6 +65,12 @@ libraries = {
 "": SubResource("AnimationLibrary_p58wb")
 }
 speed_scale = 0.8
+
+[node name="DoorSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vpkc1")
+
+[node name="LeverSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dice5")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

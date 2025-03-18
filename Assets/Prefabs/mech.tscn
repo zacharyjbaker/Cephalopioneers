@@ -1,7 +1,5 @@
-[gd_scene load_steps=79 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=78 format=3 uid="uid://by0icvlejbtja"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
-[ext_resource type="AudioStream" uid="uid://dcdxp1ox4iyhg" path="res://Assets/Sound/Sfx/Blaster.wav" id="2_brsws"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="2_rk7o7"]
 [ext_resource type="Texture2D" uid="uid://bf5totkq46lws" path="res://Assets/Prefabs/MechNoArms.png" id="3_fya3w"]
 [ext_resource type="Texture2D" uid="uid://dhhcmm0r0ugoi" path="res://Assets/Sprites/FrontArm_Laser.png" id="4_a011g"]
@@ -11,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bdgyx31pb88l2" path="res://Assets/lightcone.png" id="8_sxyis"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="8_xxlqe"]
 [ext_resource type="Texture2D" uid="uid://hwa51d66j4j8" path="res://Assets/Prefabs/gauge.tres" id="10_1tqin"]
+[ext_resource type="AudioStream" uid="uid://xj7mfusne8vc" path="res://Assets/Sound/Sfx/Flashlight.wav" id="11_d8xkc"]
 [ext_resource type="Texture2D" uid="uid://bc3jr6jcsapnn" path="res://Assets/Prefabs/Tab.png" id="11_vgfug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s0cu"]
@@ -507,9 +506,6 @@ animations = [{
 light_mask = 3
 collision_layer = 16384
 collision_mask = 32768
-script = ExtResource("1_uj2yd")
-blaster_sfx = ExtResource("2_brsws")
-walk_speed = 350
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 40)
@@ -847,6 +843,9 @@ volume_db = -9.054
 volume_db = -6.987
 
 [node name="IFrames" type="Timer" parent="."]
+
+[node name="FlashSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_d8xkc")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://dhgx6o3rdua0q"]
+[gd_scene load_steps=37 format=3 uid="uid://dhgx6o3rdua0q"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="1_btat5"]
 [ext_resource type="Texture2D" uid="uid://bf8ytlxhgdfxc" path="res://Assets/Prefabs/SpiderCrab.png" id="2_xymsj"]
 [ext_resource type="Texture2D" uid="uid://ckr65e0rlvrum" path="res://Assets/Prefabs/SpiderCrabAlt.png" id="3_kmxdb"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="3_mmvsu"]
+[ext_resource type="AudioStream" uid="uid://w8lgl02dsrfp" path="res://Assets/Sound/Sfx/CrabSpawn.wav" id="5_7ktvd"]
+[ext_resource type="AudioStream" uid="uid://ji0fjaggdq52" path="res://Assets/Sound/Sfx/Scuttle.wav" id="6_yitq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wk7u7"]
 size = Vector2(15.25, 4.83651)
@@ -324,5 +326,13 @@ shape = SubResource("RectangleShape2D_76kuc")
 [node name="TempHitBox" type="CollisionShape2D" parent="." groups=["enemy", "mech_knockback"]]
 position = Vector2(-1.25, 11.125)
 shape = SubResource("RectangleShape2D_r0sat")
+
+[node name="SpawnSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7ktvd")
+volume_db = -9.905
+
+[node name="ScuttleSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_yitq2")
+volume_db = -10.929
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cice6ag8x3yru"
-path="res://.godot/imported/NautoJump.wav-6febc802cbc3ef3697261fb6892353ed.sample"
+uid="uid://dux3wsfudxrt7"
+path="res://.godot/imported/LeverPull.wav-8ad8e9afe056159c9aa54a362887db9f.sample"
 
 [deps]
 
-source_file="res://Assets/Sound/Sfx/NautoJump.wav"
-dest_files=["res://.godot/imported/NautoJump.wav-6febc802cbc3ef3697261fb6892353ed.sample"]
+source_file="res://Assets/Sound/Sfx/LeverPull.wav"
+dest_files=["res://.godot/imported/LeverPull.wav-8ad8e9afe056159c9aa54a362887db9f.sample"]
 
 [params]
 

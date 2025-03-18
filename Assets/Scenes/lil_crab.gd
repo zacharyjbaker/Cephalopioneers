@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var timer = $Timer
 @onready var ambush_timer = $AmbushTimer
 @onready var hit_box = $HitBox
+@onready var scuttle_player = $ScuttleSFX
+@onready var spawn_player = $SpawnSFX
 
 @export var run_speed = 800.0
 @export var run_max_speed = 500.0
@@ -23,6 +25,7 @@ var player: Node2D = null
 var flashlight: Node2D = null
 var is_in_flashlight = false
 var ambush_triggered = false
+var isScuttling = false
 
 var rng = RandomNumberGenerator.new()
 
@@ -38,10 +41,16 @@ func _ready() -> void:
 		altcrab_sprite.visible = true
 		anim_player = altcrab_sprite
 	#print ("anim:", anim_player)
+	
+	scuttle_player.connect("finished", restart_scuttle)
 
 func _physics_process(delta: float) -> void:
 	player = get_tree().current_scene.get_node_or_null("Nauto")
 	if is_instance_valid(Global):
+		if abs(velocity.x) > 0 and !isScuttling:
+			print("scuttling")
+			scuttle_player.play()
+			isScuttling = true
 		#print (position)
 		velocity.y += delta * Global.GRAVITY 
 		move_and_slide()
@@ -115,6 +124,7 @@ func _on_timer_timeout() -> void:
 		timer.start(random_num) #will use random number
 	elif state == States.READY:
 		anim_player.play("Mimic")
+		spawn_player.play()
 		state = States.MIMIC
 		timer.start(1)
 	elif state == States.MIMIC:
@@ -137,3 +147,7 @@ func _on_timer_timeout() -> void:
 func find_player():
 	player = get_tree().current_scene.get_node_or_null("Nauto")
 	flashlight = get_tree().current_scene.get_node_or_null("FlashlightCone")
+	
+func restart_scuttle():
+	print("fin scuttling")
+	isScuttling = false

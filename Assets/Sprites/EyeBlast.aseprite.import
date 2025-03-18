@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://b58qwj4i1qicb"
-path="res://.godot/imported/EyeBlast.aseprite-a597e74d33bd0a0163415f8432c0f2d7.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/EyeBlast.aseprite"
-dest_files=["res://.godot/imported/EyeBlast.aseprite-a597e74d33bd0a0163415f8432c0f2d7.res"]
 
 [params]
 

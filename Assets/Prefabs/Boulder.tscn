@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://clgn2bcvfayy"]
+[gd_scene load_steps=8 format=3 uid="uid://clgn2bcvfayy"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/boulder.gd" id="1_itcnh"]
 [ext_resource type="Texture2D" uid="uid://bslvmoibm6qwx" path="res://Assets/Prefabs/Boulder.png" id="1_t0mnw"]
+[ext_resource type="AudioStream" uid="uid://32xvwmf1long" path="res://Assets/Sound/Sfx/BoulderRolling.wav" id="3_6po6n"]
+[ext_resource type="AudioStream" uid="uid://bo6fl5sw8yql0" path="res://Assets/Sound/Sfx/BoulderCrash.wav" id="4_7u5jp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ft6lw"]
 friction = 0.0
@@ -42,5 +44,11 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boulder"]
 scale = Vector2(14.7679, 14.5936)
 shape = SubResource("CircleShape2D_jaudt")
+
+[node name="RollSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6po6n")
+
+[node name="CrashSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7u5jp")
 
 [connection signal="timeout" from="FallTimer" to="." method="_on_timer_timeout"]

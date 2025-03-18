@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://cwf4lydtpxfj5"
-path="res://.godot/imported/UI_Bar.aseprite-81be171629bedf6c661c0e5fb9e1e433.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/UI_Bar.aseprite"
-dest_files=["res://.godot/imported/UI_Bar.aseprite-81be171629bedf6c661c0e5fb9e1e433.res"]
 
 [params]
 

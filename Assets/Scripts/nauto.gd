@@ -15,6 +15,9 @@ extends CharacterBody2D
 @onready var breakable_floor = get_node("/root/Node2D/MiscEnv/BreakableFloor")
 @onready var charge_bar = $ChargeJumpBar
 @onready var iFrames = $IFrames
+@onready var walk_player = $WalkSFX
+@onready var charge_player = $ChargeSFX
+@onready var jump_player = $JumpSFX
 @onready var HP = get_node("/root/Node2D/UI/HP").get_children()
 
 @export var iFrameTime = 1.2
@@ -26,9 +29,11 @@ var current_anim = ""
 var play_transition_anim = true
 var boost = 0.0
 var charge = false
+var charging = false
 var crouched = false
 var isShiftingNauto = false
 var hasIFrames = false
+var isWalking = false
 
 enum States {IDLE, MOVE, STOP, SHOOT, FALL, FADE}
 signal cs_break
@@ -46,6 +51,7 @@ func _ready() -> void:
 		Global.MODE = "Nauto"
 		if is_in_group("player"):
 			print("Nauto is in the player group!")
+		walk_player.connect("finished", restart_walk)
 	
 	
 	
@@ -154,6 +160,13 @@ func _physics_process(delta: float) -> void:
 		if state == States.MOVE:
 			mech.velocity.x = -100
 			mech.move_anim()
+		if abs(velocity.x) > 0 and !isWalking and is_on_floor():
+			print("walking")
+			walk_player.play()
+			isWalking = true
+		if abs(velocity.x) == 0 or !is_on_floor():
+			walk_player.stop()
+			isWalking = false
 		
 		elif state == States.STOP:
 			mech.velocity.x = 0
@@ -196,9 +209,12 @@ func _physics_process(delta: float) -> void:
 			# charge jump anim
 			if Input.is_action_pressed("ui_up") and is_on_floor():
 				print("Boost:", boost)
-				charge = true;
+				charge = true
 				physics_collider.disabled = true
 				crouch_collider.disabled = false
+				if !charging:
+					charge_player.play()
+					charging = true
 				if crouched:
 					crouched = false
 					Global.WALK_SPEED = 400
@@ -214,6 +230,9 @@ func _physics_process(delta: float) -> void:
 					
 			elif Input.is_action_just_released("ui_up") and charge == true and is_on_floor():
 				charge = false
+				charge_player.stop()
+				jump_player.play()
+				charging = false
 				physics_collider.disabled = false
 				crouch_collider.disabled = true
 				finish_jump()
@@ -347,3 +366,7 @@ func _on_interaction_box_area_entered(area: Area2D) -> void:
 
 func _on_i_frames_timeout() -> void:
 	hasIFrames = false
+	
+func restart_walk():
+	print("fin scuttling")
+	isWalking = false

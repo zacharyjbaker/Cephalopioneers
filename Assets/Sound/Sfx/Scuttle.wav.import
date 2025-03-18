@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cice6ag8x3yru"
-path="res://.godot/imported/NautoJump.wav-6febc802cbc3ef3697261fb6892353ed.sample"
+uid="uid://ji0fjaggdq52"
+path="res://.godot/imported/Scuttle.wav-386d947bae97cafba28a45cc3a011ad9.sample"
 
 [deps]
 
-source_file="res://Assets/Sound/Sfx/NautoJump.wav"
-dest_files=["res://.godot/imported/NautoJump.wav-6febc802cbc3ef3697261fb6892353ed.sample"]
+source_file="res://Assets/Sound/Sfx/Scuttle.wav"
+dest_files=["res://.godot/imported/Scuttle.wav-386d947bae97cafba28a45cc3a011ad9.sample"]
 
 [params]
 

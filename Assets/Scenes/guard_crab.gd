@@ -2,7 +2,11 @@ extends CharacterBody2D
 @onready var anim_player = $Crab
 @onready var timer = $Timer
 @onready var ambush_timer = $AmbushTimer
+@onready var scuttle_player = $ScuttleSFX
+@onready var spawn_player = $SpawnSFX
 
+@export var scuttle_sfx : Resource
+@export var spawn_sfx : Resource
 @export var run_speed = 800.0
 @export var run_max_speed = 500.0
 @export var charge_speed = 250.0
@@ -77,6 +81,8 @@ func _on_timer_timeout() -> void:
 		print ("begin_walk")
 		anim_player.play("Walk")
 		state = States.WALK
+		scuttle_player.stream = scuttle_sfx
+		scuttle_player.play()
 		#timer.start(3)
 	#elif state == States.WALK:
 		#anim_player.play("WalkDrill")
