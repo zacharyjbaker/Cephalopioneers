@@ -40,66 +40,72 @@ func _ready() -> void:
 	#print ("anim:", anim_player)
 
 func _physics_process(delta: float) -> void:
-	#print (position)
-	velocity.y += delta * Global.GRAVITY 
-	move_and_slide()
-	
-	if velocity.x < 1:
-		scale.y = abs(scale.y)
-		rotation_degrees = 0
-		#shader.flip_h = false
-	elif velocity.x > -1:
-		scale.y = -1 * abs(scale.y)
-		rotation_degrees = 180
-		#shader.flip_h = true
-	if is_on_floor():
-		if state == States.AMBUSH:
-			var distance = global_position.x - player.global_position.x
-			#print (distance)
-			if abs(distance) < detection_range and ambush_triggered == false:
-				#print("start")
-				ambush_triggered = true
-				timer.start(0.5)
-			if velocity.x <= 10 and velocity.x >= -10:
-				velocity.x = 0
-			elif velocity.x > 0:
-				velocity.x -= 100
-			elif velocity.x < -1:
-				velocity.x += 100
-		elif state == States.MIMIC:
-			if velocity.x <= 10 and velocity.x >= -10:
-				velocity.x = 0
-			elif velocity.x > 0:
-				velocity.x -= 100
-			elif velocity.x < -1:
-				velocity.x += 100
-		if state == States.WALK or state == States.WALKDRILL:
-			if player:
-				var distance =  global_position.x - player.global_position.x
-				#print (velocity.x)
+	player = get_tree().current_scene.get_node_or_null("Nauto")
+	if is_instance_valid(Global):
+		#print (position)
+		velocity.y += delta * Global.GRAVITY 
+		move_and_slide()
+		
+		if velocity.x < 1:
+			scale.y = abs(scale.y)
+			rotation_degrees = 0
+			#shader.flip_h = false
+		elif velocity.x > -1:
+			scale.y = -1 * abs(scale.y)
+			rotation_degrees = 180
+			#shader.flip_h = true
+		if is_on_floor():
+			if state == States.AMBUSH:
+				var distance = 0
+				if player:
+					distance = global_position.x - player.global_position.x
+				else:
+					distance = 100000000
 				#print (distance)
-				#print (Global.MODE)
-				'''
-				if abs(distance) < aggro_range:
-					if Global.MODE == "Nauto":
-						velocity.x += delta * speed * -sign(distance)
-						if abs(velocity.x) > max_speed:
-							velocity.x = -sign(distance) * max_speed
-					elif Global.MODE == "Mech":
-						velocity.x += delta * speed * sign(distance)
-						if abs(velocity.x) > max_speed:
-							velocity.x = sign(distance) * max_speed 
-				'''
-				#print (is_in_flashlight)
-				if abs(distance) < aggro_range:
-					if is_in_flashlight == true:
-						velocity.x += delta * run_speed * sign(distance)
-						if abs(velocity.x) > run_max_speed:
-							velocity.x = sign(distance) * run_max_speed 
-					else:
-						velocity.x += delta * charge_speed * -sign(distance)
-						if abs(velocity.x) > charge_max_speed:
-							velocity.x = -sign(distance) * charge_max_speed
+				if abs(distance) < detection_range and ambush_triggered == false:
+					#print("start")
+					ambush_triggered = true
+					timer.start(0.5)
+				if velocity.x <= 10 and velocity.x >= -10:
+					velocity.x = 0
+				elif velocity.x > 0:
+					velocity.x -= 100
+				elif velocity.x < -1:
+					velocity.x += 100
+			elif state == States.MIMIC:
+				if velocity.x <= 10 and velocity.x >= -10:
+					velocity.x = 0
+				elif velocity.x > 0:
+					velocity.x -= 100
+				elif velocity.x < -1:
+					velocity.x += 100
+			if state == States.WALK or state == States.WALKDRILL:
+				if player:
+					var distance =  global_position.x - player.global_position.x
+					#print (velocity.x)
+					#print (distance)
+					#print (Global.MODE)
+					'''
+					if abs(distance) < aggro_range:
+						if Global.MODE == "Nauto":
+							velocity.x += delta * speed * -sign(distance)
+							if abs(velocity.x) > max_speed:
+								velocity.x = -sign(distance) * max_speed
+						elif Global.MODE == "Mech":
+							velocity.x += delta * speed * sign(distance)
+							if abs(velocity.x) > max_speed:
+								velocity.x = sign(distance) * max_speed 
+					'''
+					#print (is_in_flashlight)
+					if abs(distance) < aggro_range:
+						if is_in_flashlight == true:
+							velocity.x += delta * run_speed * sign(distance)
+							if abs(velocity.x) > run_max_speed:
+								velocity.x = sign(distance) * run_max_speed 
+						else:
+							velocity.x += delta * charge_speed * -sign(distance)
+							if abs(velocity.x) > charge_max_speed:
+								velocity.x = -sign(distance) * charge_max_speed
 
 func _on_timer_timeout() -> void:
 	if state == States.AMBUSH:

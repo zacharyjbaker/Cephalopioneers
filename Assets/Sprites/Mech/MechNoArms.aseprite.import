@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dyueyxyj500ny"
-valid=false
+path="res://.godot/imported/MechNoArms.aseprite-a941bf2c60a8d1c6e644c85462424f46.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Mech/MechNoArms.aseprite"
+dest_files=["res://.godot/imported/MechNoArms.aseprite-a941bf2c60a8d1c6e644c85462424f46.res"]
 
 [params]
 

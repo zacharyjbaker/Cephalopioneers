@@ -53,29 +53,30 @@ var isBuzzing = false
 var hasIFrames = false
 
 func _ready() -> void:
-	mech_front_arm.play("Idle")
-	mech_back_arm.play("Idle")
-	mech_body_sprite.play("Idle")
-	original_scale.x = camera.scale.x
-	original_scale.y = camera.scale.y
-	original_rotation = camera.rotation_degrees
-	flashlight.enabled = false
-	flashlight_cone.monitoring = false
-	
-	match Global.SCENE:
-		"TheShallows":
-			cockpit_light.enabled = false
-		"WhalefallSettlement":
-			cockpit_light.enabled = true
-		_:
-			pass
+	if is_instance_valid(Global):
+		mech_front_arm.play("Idle")
+		mech_back_arm.play("Idle")
+		mech_body_sprite.play("Idle")
+		original_scale.x = camera.scale.x
+		original_scale.y = camera.scale.y
+		original_rotation = camera.rotation_degrees
+		flashlight.enabled = false
+		flashlight_cone.monitoring = false
 		
-	#cockpit_light.enabled = false
-	#drill_area.get_child(0).disabled = false
-	#original_shader_scale.x = shader.scale.x
-	#original_shader_scale.y = shader.scale.y
-	#original_shader_rotation = shader.rotation_degrees
-	
+		match Global.SCENE:
+			"TheShallows":
+				cockpit_light.enabled = false
+			"WhalefallSettlement":
+				cockpit_light.enabled = true
+			_:
+				pass
+			
+		#cockpit_light.enabled = false
+		#drill_area.get_child(0).disabled = false
+		#original_shader_scale.x = shader.scale.x
+		#original_shader_scale.y = shader.scale.y
+		#original_shader_rotation = shader.rotation_degrees
+		
 func _input(event)-> void:
 	pass
 
@@ -115,218 +116,220 @@ func laser_explosion():
 	#laser_explosion_particles.emitting = true
 	
 func _physics_process(delta: float) -> void:
-	move_and_slide()
-	
-	if Global.MODE == "Nauto":
-		if position.distance_to(player.position) < 250 and Global.FREEZE == false:
-			interact.visible = true
-		if position.distance_to(player.position) >= 250 :
-			interact.visible = false
+	if is_instance_valid(Global):
+		move_and_slide()
 		
-	
-	pilot.global_position = Vector2(global_position.x - 4, global_position.y - 21)
-	#print ("Mech:", position)
-	#print (pilot.global_position)
-	#print (isDrilling)
-	#print (current_anim)
-	#print ("close", isClosing)
-	#print ("open", isOpening)
-	
-	# Sets orientation of body
-	if velocity.x > 1:
-		scale.y = abs(scale.y)
-		rotation_degrees = 0
-		interact.scale.x = 4
+		if Global.MODE == "Nauto":
+			if position.distance_to(player.position) < 250 and Global.FREEZE == false:
+				interact.visible = true
+			if position.distance_to(player.position) >= 250 :
+				interact.visible = false
+			
 		
+		pilot.global_position = Vector2(global_position.x - 4, global_position.y - 21)
+		#print ("Mech:", position)
+		#print (pilot.global_position)
+		#print (isDrilling)
+		#print (current_anim)
+		#print ("close", isClosing)
+		#print ("open", isOpening)
+		
+		# Sets orientation of body
+		if velocity.x > 1:
+			scale.y = abs(scale.y)
+			rotation_degrees = 0
+			interact.scale.x = 4
+			
 
-	elif velocity.x < -1:
-		scale.y = -1 * abs(scale.y)
-		rotation_degrees = 180
-		interact.scale.x = -4
+		elif velocity.x < -1:
+			scale.y = -1 * abs(scale.y)
+			rotation_degrees = 180
+			interact.scale.x = -4
 
-	#print (Global.MODE)
-	#print (floor_height)
-	if (!isHovering):
-		velocity.y += delta * (Global.GRAVITY - gravity_offset)
-	
-	if !is_on_floor() and !(Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
-		if Global.DAMAGED == false:
-			if Global.MODE == "Mech":
-				mech_body_sprite.play("Boost")
+		#print (Global.MODE)
+		#print (floor_height)
+		if (!isHovering):
+			velocity.y += delta * (Global.GRAVITY - gravity_offset)
+		
+		if !is_on_floor() and !(Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
+			if Global.DAMAGED == false:
+				if Global.MODE == "Mech":
+					mech_body_sprite.play("Boost")
+					if isThrusting == false:
+						thruster_player.stream = thruster_sfx
+						thruster_player.play()
+						isThrusting = true
+				else:
+					mech_body_sprite.play("BoostOpen")
+					mech_back_arm.stop()	
+					mech_front_arm.stop()	
+			boost_light.enabled = true
+			boost_particles.emitting = true
+			back_boost_light.enabled = false
+			back_boost_particles.emitting = false
+		
+		if is_on_floor():
+			floor_height = global_position.y
+			boost_light.enabled = false
+			boost_particles.emitting = false
+			back_boost_light.enabled = false
+			back_boost_particles.emitting = false
+			isThrusting = false
+			thruster_player.stop()
+			
+		if isDrilling == true:
+			mech_back_arm.play("Drill")
+			if isBuzzing == false :
+				drill_player.stream = drill_sfx
+				drill_player.play()
+				isBuzzing = true
+			#drill_particles.emitting = true
+			
+		elif isDrilling == false:
+			mech_back_arm.play("Idle")
+			isBuzzing = false
+			drill_player.stop()
+			drill_particles.emitting = false
+		
+		if (Global.MODE == "Mech" and isClosing == false):
+			# charge jump anim
+			#cockpit_light.texture_scale = lerp(3.8, 2.4, 0.03)
+			#cockpit_light.energy = lerp(1.1, 0.0, 0.01)
+			
+			#cockpit_light.enabled = true
+			#$AmbientLight.enabled = false
+			cockpit_light.energy = lerp(cockpit_light.energy, 1.5, 0.3 * delta)
+			#print (cockpit_light.energy)
+			cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 4.0, 0.9 * delta)
+			#print (cockpit_light.texture_scale)
+			if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
+				#print ("Hover Right")
+				hover_move_anim()
+				boost_light.enabled = true
+				boost_particles.emitting = true
+				back_boost_light.enabled = true
+				back_boost_particles.emitting = true
+				if velocity.x < (walk_speed - 150):
+					velocity.x +=  walk_speed * delta * 1.5
+				if (global_position.y > floor_height - hover_height):
+					position.y += -(jump_impulse) * delta
+					if global_position.y - (floor_height - hover_height) <= 5:
+						position.y = (floor_height - hover_height)
+					isHovering = true
 				if isThrusting == false:
 					thruster_player.stream = thruster_sfx
 					thruster_player.play()
 					isThrusting = true
-			else:
-				mech_body_sprite.play("BoostOpen")
-				mech_back_arm.stop()	
-				mech_front_arm.stop()	
-		boost_light.enabled = true
-		boost_particles.emitting = true
-		back_boost_light.enabled = false
-		back_boost_particles.emitting = false
-	
-	if is_on_floor():
-		floor_height = global_position.y
-		boost_light.enabled = false
-		boost_particles.emitting = false
-		back_boost_light.enabled = false
-		back_boost_particles.emitting = false
-		isThrusting = false
-		thruster_player.stop()
-		
-	if isDrilling == true:
-		mech_back_arm.play("Drill")
-		if isBuzzing == false :
-			drill_player.stream = drill_sfx
-			drill_player.play()
-			isBuzzing = true
-		#drill_particles.emitting = true
-		
-	elif isDrilling == false:
-		mech_back_arm.play("Idle")
-		isBuzzing = false
-		drill_player.stop()
-		drill_particles.emitting = false
-	
-	if (Global.MODE == "Mech" and isClosing == false):
-		# charge jump anim
-		#cockpit_light.texture_scale = lerp(3.8, 2.4, 0.03)
-		#cockpit_light.energy = lerp(1.1, 0.0, 0.01)
-		
-		#cockpit_light.enabled = true
-		#$AmbientLight.enabled = false
-		cockpit_light.energy = lerp(cockpit_light.energy, 1.5, 0.3 * delta)
-		#print (cockpit_light.energy)
-		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 4.0, 0.9 * delta)
-		#print (cockpit_light.texture_scale)
-		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
-			#print ("Hover Right")
-			hover_move_anim()
-			boost_light.enabled = true
-			boost_particles.emitting = true
-			back_boost_light.enabled = true
-			back_boost_particles.emitting = true
-			if velocity.x < (walk_speed - 150):
-				velocity.x +=  walk_speed * delta * 1.5
-			if (global_position.y > floor_height - hover_height):
-				position.y += -(jump_impulse) * delta
-				if global_position.y - (floor_height - hover_height) <= 5:
-					position.y = (floor_height - hover_height)
-				isHovering = true
-			if isThrusting == false:
-				thruster_player.stream = thruster_sfx
-				thruster_player.play()
-				isThrusting = true
-		
-		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
-			#print ("Hover Right")
-			hover_move_anim()
-			boost_light.enabled = true
-			boost_particles.emitting = true
-			back_boost_light.enabled = true
-			back_boost_particles.emitting = true
-			if velocity.x > -(walk_speed - 150):
-				velocity.x +=  -walk_speed * delta * 1.5
-			if (global_position.y > floor_height - hover_height):
-				position.y += -(jump_impulse) * delta
-				if global_position.y - (floor_height - hover_height) <= 5:
-					position.y = (floor_height - hover_height)
-				isHovering = true
-			if isThrusting == false:
-				thruster_player.stream = thruster_sfx
-				thruster_player.play()
-				isThrusting = true
-				
-		elif Input.is_action_pressed("ui_up"):
-			if (global_position.y > floor_height - hover_height):
-				position.y += -(jump_impulse) * delta
-				isHovering = true
+			
+			elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
+				#print ("Hover Right")
+				hover_move_anim()
 				boost_light.enabled = true
 				boost_particles.emitting = true
-				back_boost_light.enabled = false
-				back_boost_particles.emitting = false
-				velocity.x = 0
-				if global_position.y - (floor_height - hover_height) <= 5:
-					position.y = (floor_height - hover_height)
-		else:
-			isHovering = false
-			
-		# move anims
-		if Input.is_action_pressed("ui_right") and is_on_floor() and !Input.is_action_pressed("ui_up"):
-			#print ("move_right")
-			move_anim()
-			if velocity.x < (walk_speed - 100):
-				velocity.x +=  walk_speed * delta * 1
-			if velocity.x > (walk_speed - 100):
-				velocity.x = (walk_speed - 100)
-			#mech_body_sprite.flip_h = false
-			
-		elif Input.is_action_pressed("ui_left") and is_on_floor() and !Input.is_action_pressed("ui_up"):
-			#print ("move_left")
-			move_anim()
-			if velocity.x > -(walk_speed - 100):
-				velocity.x +=  -walk_speed * delta * 1
-			if velocity.x < -(walk_speed - 100):
-				velocity.x = -(walk_speed - 100)
-			#mech_body_sprite.flip_h = true
-			
-		elif is_on_floor() and !Input.is_action_pressed("ui_up") and isClosing == false and isOpening == false:
-			#gravity_offset = 0
-			if (velocity.x > 50):
-				velocity.x -= delta * 3500
-			elif (velocity.x < -50):
-				velocity.x += delta * 3500
+				back_boost_light.enabled = true
+				back_boost_particles.emitting = true
+				if velocity.x > -(walk_speed - 150):
+					velocity.x +=  -walk_speed * delta * 1.5
+				if (global_position.y > floor_height - hover_height):
+					position.y += -(jump_impulse) * delta
+					if global_position.y - (floor_height - hover_height) <= 5:
+						position.y = (floor_height - hover_height)
+					isHovering = true
+				if isThrusting == false:
+					thruster_player.stream = thruster_sfx
+					thruster_player.play()
+					isThrusting = true
+					
+			elif Input.is_action_pressed("ui_up"):
+				if (global_position.y > floor_height - hover_height):
+					position.y += -(jump_impulse) * delta
+					isHovering = true
+					boost_light.enabled = true
+					boost_particles.emitting = true
+					back_boost_light.enabled = false
+					back_boost_particles.emitting = false
+					velocity.x = 0
+					if global_position.y - (floor_height - hover_height) <= 5:
+						position.y = (floor_height - hover_height)
 			else:
-				velocity.x = 0
-			mech_body_sprite.play("Idle")
+				isHovering = false
+				
+			# move anims
+			if Input.is_action_pressed("ui_right") and is_on_floor() and !Input.is_action_pressed("ui_up"):
+				#print ("move_right")
+				move_anim()
+				if velocity.x < (walk_speed - 100):
+					velocity.x +=  walk_speed * delta * 1
+				if velocity.x > (walk_speed - 100):
+					velocity.x = (walk_speed - 100)
+				#mech_body_sprite.flip_h = false
+				
+			elif Input.is_action_pressed("ui_left") and is_on_floor() and !Input.is_action_pressed("ui_up"):
+				#print ("move_left")
+				move_anim()
+				if velocity.x > -(walk_speed - 100):
+					velocity.x +=  -walk_speed * delta * 1
+				if velocity.x < -(walk_speed - 100):
+					velocity.x = -(walk_speed - 100)
+				#mech_body_sprite.flip_h = true
+				
+			elif is_on_floor() and !Input.is_action_pressed("ui_up") and isClosing == false and isOpening == false:
+				#gravity_offset = 0
+				if (velocity.x > 100):
+					velocity.x -= delta * 2000
+				elif (velocity.x < -100):
+					velocity.x += delta * 2000
+				else:
+					velocity.x = 0
+				mech_body_sprite.play("Idle")
+				
 			
-		
-		if Input.is_action_just_pressed("front_arm"):
-			shoot_anim()
-			#print ("Shoot")
-			if isHovering == false:
-				mech_body_sprite.stop()
-			#if isDrilling == false:
-				#drill_area.monitorable = false
-				#mech_back_arm.stop()
-			isShooting = true
-			#mech_front_arm.stop()
-		elif isShooting == false:
-			mech_front_arm.play("Idle")
-		
-		if Input.is_action_just_pressed("back_arm"):
-			isDrilling = true
-			#drill_area.get_child(0).disabled = true
-			print ("Is Drilling")
-		elif isDrilling == false:
-			mech_back_arm.play("Idle")
+			if Input.is_action_just_pressed("front_arm"):
+				shoot_anim()
+				#print ("Shoot")
+				if isHovering == false:
+					mech_body_sprite.stop()
+				#if isDrilling == false:
+					#drill_area.monitorable = false
+					#mech_back_arm.stop()
+				isShooting = true
+				#mech_front_arm.stop()
+			elif isShooting == false:
+				mech_front_arm.play("Idle")
+			
+			if Input.is_action_just_pressed("back_arm"):
+				isDrilling = true
+				#drill_area.get_child(0).disabled = true
+				print ("Is Drilling")
+			elif isDrilling == false:
+				mech_back_arm.play("Idle")
 
-		if Input.is_action_just_released("back_arm"):
-			isDrilling = false
-			#drill_area.get_child(0).disabled = false
-			print ("Stop Drilling")
-			
-		if Input.is_action_just_pressed("flashlight"):
-			if flashlight.enabled == true:
-				flashlight.enabled = false
-				flashlight_cone.monitoring = false
-			else:
-				flashlight.enabled = true
-				flashlight_cone.monitoring = true
-			
-	else:
-		if is_on_floor() and isClosing == false and isOpening == false:
-			mech_body_sprite.play("IdleOpen")	
-			mech_back_arm.stop()	
-			mech_front_arm.stop()
-		cockpit_light.energy = lerp(cockpit_light.energy, 0.9, 0.5 * delta)
-		#print (cockpit_light.energy)
-		cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 2.2, 1.4 * delta)
-			
+			if Input.is_action_just_released("back_arm"):
+				isDrilling = false
+				#drill_area.get_child(0).disabled = false
+				print ("Stop Drilling")
+				
+			if Input.is_action_just_pressed("flashlight"):
+				if flashlight.enabled == true:
+					flashlight.enabled = false
+					flashlight_cone.monitoring = false
+				else:
+					flashlight.enabled = true
+					flashlight_cone.monitoring = true
+				
+		else:
+			if is_on_floor() and isClosing == false and isOpening == false:
+				mech_body_sprite.play("IdleOpen")	
+				mech_back_arm.stop()	
+				mech_front_arm.stop()
+			cockpit_light.energy = lerp(cockpit_light.energy, 0.9, 0.5 * delta)
+			#print (cockpit_light.energy)
+			cockpit_light.texture_scale = lerp(cockpit_light.texture_scale, 2.2, 1.4 * delta)
+				
 
 func shoot() -> void:
 	var laser_proj_instance = laser_projectile.instantiate()
+	laser_proj_instance.add_to_group("instanced")
 	blaster_player.stream = blaster_sfx
 	blaster_player.play()
 	

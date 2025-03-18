@@ -10,24 +10,25 @@ var credit_list = ["NOW PLAYING\n\"The Shallows\" by Josh Thies", "NOW PLAYING\n
 var isFading = false
 
 func _ready() -> void:
-	match Global.SCENE:
-		"TheShallows":
-			change_music(0)
-			var eel_script = get_node("/root/Node2D/LeviathanEel")
-			eel_script.bgmusic_chase.connect(change_music.bind(1))
-			eel_script.bgmusic_stop.connect(change_music.bind(-1))
-		"WhalefallSettlement":
-			change_music(3)
-		_:
-			pass
+	if is_instance_valid(Global):
+		match Global.SCENE:
+			"TheShallows":
+				change_music(0)
+				var eel_script = get_node("/root/Node2D/LeviathanEel")
+				eel_script.bgmusic_chase.connect(change_music.bind(1))
+				eel_script.bgmusic_stop.connect(change_music.bind(-1))
+			"WhalefallSettlement":
+				change_music(3)
+			_:
+				pass
+			
 		
-	
-	var dialogue_script = get_node("/root/Node2D/DialogueManager")
-	var nauto_script = get_node("/root/Node2D/Nauto")
-	
-	dialogue_script.bgmusic_stop.connect(change_music.bind(-1))
-	dialogue_script.bgmusic_rumble.connect(change_music.bind(2))
-	nauto_script.bgmusic_rumble.connect(change_music.bind(2))
+		var dialogue_script = get_node("/root/Node2D/DialogueManager")
+		var nauto_script = get_node("/root/Node2D/Nauto")
+		
+		dialogue_script.bgmusic_stop.connect(change_music.bind(-1))
+		dialogue_script.bgmusic_rumble.connect(change_music.bind(2))
+		nauto_script.bgmusic_rumble.connect(change_music.bind(2))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

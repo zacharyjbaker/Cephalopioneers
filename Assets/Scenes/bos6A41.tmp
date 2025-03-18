@@ -207,6 +207,8 @@ _data = {
 point_count = 3
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
+
+[node name="SaveLoader" type="Node" parent="."]
 script = ExtResource("23_rprh3")
 
 [node name="UI" parent="." instance=ExtResource("1_ktyl6")]

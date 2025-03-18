@@ -243,37 +243,37 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_0bt5i")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_a7mjb")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_doyrl")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_q6p5c")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_i46lu")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_xerpk")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_mg8xf")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_trkqm")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_34qjm")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_a3f87")
 }, {
-"duration": 0.85,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_qdiv0")
 }],
 "loop": true,
@@ -509,6 +509,7 @@ collision_layer = 16384
 collision_mask = 32768
 script = ExtResource("1_uj2yd")
 blaster_sfx = ExtResource("2_brsws")
+walk_speed = 350
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 40)
