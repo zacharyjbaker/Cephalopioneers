@@ -1,6 +1,6 @@
 extends Node
 
-var SCENE = ""
+var SCENE = "TheShallows"
 var GRAVITY = 400
 var WALK_SPEED = 400
 var HEALTH = 5
@@ -15,3 +15,22 @@ var BOSS_FIGHT = false
 var DAMAGED = false
 var START = true
 var last_active_cauldron: int = -1
+var DIALOGUE_INSTANCE = 1
+var SAVENUM = 0
+
+func reset_globals():
+	HEALTH = 5
+	MECH_HEALTH = 5
+	#MODE = "Nauto"
+	INTERACTABLE = false
+	FREEZE = false
+	SHAKE = false
+	SHAKE_AMT = 0
+	EEL_CUTSCENE = false
+	BOSS_FIGHT = false
+	DAMAGED = false
+	START = false
+	
+func set_dialogue(dialogue_instance: int):
+	var DIALOGUE_INSTANCE = dialogue_instance
+	

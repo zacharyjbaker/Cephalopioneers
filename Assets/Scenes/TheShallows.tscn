@@ -1,6 +1,6 @@
 [gd_scene load_steps=68 format=4 uid="uid://d0sd375ae8jx2"]
 
-[ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
+[ext_resource type="Script" path="res://Assets/Prefabs/shallows_manager.gd" id="1_b8dk6"]
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_iceec"]
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_srkuf"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
@@ -265,9 +265,14 @@ animations = [{
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
 script = ExtResource("1_iceec")
 
+[node name="Checkpoint2" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("37_i0rgm")]
+position = Vector2(16709, 1071)
+save_load = NodePath("..")
+
 [node name="UI" parent="." instance=ExtResource("1_srkuf")]
 
-[node name="SceneManager" type="Node2D" parent="."]
+[node name="ShallowsManager" type="Node2D" parent="."]
+visible = false
 script = ExtResource("1_b8dk6")
 
 [node name="WaterShader" type="Sprite2D" parent="."]
@@ -305,10 +310,11 @@ tile_map_data = PackedByteArray("AAAJAgAAAQACAAIAAAAKAgAAAQACAAIAAAALAgAAAQACAAI
 tile_set = ExtResource("8_nnxgj")
 collision_enabled = false
 
-[node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script")]
+[node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script", "eel_script")]
 script = ExtResource("10_0gom4")
 dialogue_script = NodePath("../DialogueManager")
 nauto_script = NodePath("../Nauto")
+eel_script = NodePath("../LeviathanEel")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("11_2qxj4")
@@ -503,25 +509,26 @@ theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node") instance=ExtResource("21_ye3to")]
-position = Vector2(1369, 812)
+position = Vector2(16398, 876)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("22_2m0jb")]
-position = Vector2(926, 881)
+position = Vector2(15955, 945)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 hover_height = 300
 
-[node name="Malo" type="CharacterBody2D" parent="."]
+[node name="Malo" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player")]
 z_index = -3
 position = Vector2(17144, 1117)
 scale = Vector2(16, 16)
 collision_layer = 4096
 collision_mask = 0
 script = ExtResource("23_kjnq7")
+player = NodePath("../Nauto")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Malo"]
 texture_filter = 1
@@ -573,10 +580,14 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "63d319f3b7d96c43098a9c21cc2b1a1c"
 
-[node name="LeviathanEel" parent="." instance=ExtResource("26_pku6s")]
+[node name="LeviathanEel" parent="." node_paths=PackedStringArray("save_load", "player", "mech", "dg_manager") instance=ExtResource("26_pku6s")]
 z_index = -1
 position = Vector2(17157, 1999)
 rotation = 0.000544786
+save_load = NodePath("..")
+player = NodePath("../Nauto")
+mech = NodePath("../Mech")
+dg_manager = NodePath("../DialogueManager")
 
 [node name="NPCs" type="Node" parent="."]
 

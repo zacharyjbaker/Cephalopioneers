@@ -14,12 +14,12 @@ var first_dialogue = false
 var dialogue_in_process = false
 var speaker = ""
 var dialogue_line = ""
-var dialogue_instance = "1"
+var dialogue_instance = 0
 var dialogue_stage = "0"
 var dialogue_stage_int = 0
 var dialogue_text_color = "theme_override_colors/default_color"
 var dialogue_font_path = ""
-var dialogue_file_path = "res://Assets/Sound/Dialogue/" + dialogue_instance + "." + dialogue_stage + ".wav"
+var dialogue_file_path = "res://Assets/Sound/Dialogue/" + str(dialogue_instance) + "." + dialogue_stage + ".wav"
 
 # Import JSON file as Dictionary
 var file = FileAccess.open("res://Assets/Scripts/Data/dialogue_dict.json", FileAccess.READ)
@@ -39,12 +39,18 @@ signal bgmusic_fight
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dialogue.visible_characters = 0
-	dialogue_instance = "3"
-	other_talk = $DialogueCanvas/HiddenTalk
+	load_next_dialogue()
+	#dialogue_instance = "3"
+	#other_talk = $DialogueCanvas/HiddenTalk
+	#dialogue_instance = Global.DIALOGUE_INSTANCE
+	#load_next_dialogue()
+			
 	#print ("Dict:", DialogueDict)
+
 	
 func load_next_dialogue():
-	dialogue_instance = str(dialogue_instance.to_int() + 1)
+	dialogue_instance = Global.DIALOGUE_INSTANCE
+	print ("DI:", dialogue_instance)
 	dialogue_in_process = false
 	speaker = ""
 	dialogue_line = ""
@@ -53,12 +59,18 @@ func load_next_dialogue():
 	dialogue_text_color = "theme_override_colors/default_color"
 	dialogue_font_path = ""
 	
-	if dialogue_instance == "2":
+	if dialogue_instance == 1:
+		print ("dialogue 1")
+		other_talk = bite_talk
+	
+	if dialogue_instance == 2:
+		print ("dialogue 2")
 		other_talk = bite_talk
 		other_talk.visible = false
 		other_talk = malo_talk
 	
-	elif dialogue_instance == "3":
+	elif dialogue_instance == 3:
+		print ("dialogue 3")
 		other_talk = malo_talk
 		other_talk.visible = false
 		other_talk = crab_talk
@@ -99,12 +111,14 @@ func _physics_process(delta: float) -> void:
 				dialogue_stage_int = int(dialogue_stage)
 				dialogue_stage_int += 1
 				dialogue_stage = str(dialogue_stage_int)
-				dialogue_line = DialogueDict[dialogue_instance][dialogue_stage]
+				dialogue_line = DialogueDict[str(dialogue_instance)][dialogue_stage]
 				
 				match dialogue_line.get_slice("/", 1):
 					"END":
 						print ("End Dialogue")
 						_disable_dialogue()
+						Global.DIALOGUE_INSTANCE = 2
+						load_next_dialogue()
 					"ENDCRAB":
 						print ("End Dialogue")
 						_disable_dialogue()
@@ -118,6 +132,7 @@ func _physics_process(delta: float) -> void:
 						# Trigger eel cutscene
 						if speaker == "Malo":
 							cs_eel.emit()
+							print ("start cutscene")
 						load_next_dialogue()
 						return
 					"N":
@@ -183,7 +198,7 @@ func _load_bite() -> void:
 	dialogue.add_theme_color_override("default_color", Color("c7a97c"))
 	dialogue_font_path = load("res://Assets/Fonts/Bite.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
-	dialogue_file_path = "res://Assets/Sound/Dialogue/B" + dialogue_instance + "-" + dialogue_stage + ".wav"
+	dialogue_file_path = "res://Assets/Sound/Dialogue/B" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
 
 func _load_malo() -> void:
 	other_talk = malo_talk
@@ -194,7 +209,7 @@ func _load_malo() -> void:
 	dialogue.add_theme_color_override("default_color", Color("c9dfba"))
 	dialogue_font_path = load("res://Assets/Fonts/Bite.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
-	dialogue_file_path = "res://Assets/Sound/Dialogue/M" + dialogue_instance + "-" + dialogue_stage + ".wav"
+	dialogue_file_path = "res://Assets/Sound/Dialogue/M" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
 
 func _load_nauto() -> void:
 	nauto_talk.play("Talk")
@@ -204,7 +219,7 @@ func _load_nauto() -> void:
 	dialogue.add_theme_color_override("default_color", Color("86b0ee"))
 	dialogue_font_path = load("res://Assets/Fonts/Nauto2.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
-	dialogue_file_path = "res://Assets/Sound/Dialogue/N" + dialogue_instance + "-" + dialogue_stage + ".wav"
+	dialogue_file_path = "res://Assets/Sound/Dialogue/N" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
 
 func _load_crab() -> void:
 	print ("load crab")
@@ -218,7 +233,7 @@ func _load_crab() -> void:
 	dialogue.add_theme_color_override("default_color", Color("00A36C"))
 	dialogue_font_path = load("res://Assets/Fonts/Crab3.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
-	#dialogue_file_path = "res://Assets/Sound/Dialogue/N" + dialogue_instance + "-" + dialogue_stage + ".wav"
+	#dialogue_file_path = "res://Assets/Sound/Dialogue/N" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
 
 func _load_hidden() -> void:
 	print ("load hidden")
@@ -230,4 +245,4 @@ func _load_hidden() -> void:
 	dialogue.add_theme_color_override("default_color", Color("00A36C"))
 	dialogue_font_path = load("res://Assets/Fonts/Crab3.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
-	#dialogue_file_path = "res://Assets/Sound/Dialogue/N" + dialogue_instance + "-" + dialogue_stage + ".wav"
+	#dialogue_file_path = "res://Assets/Sound/Dialogue/N" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"

@@ -21,7 +21,7 @@ extends CharacterBody2D
 @export var max_durability = 100
 @export var durability = max_durability
 @export var health = 3
-@onready var mech = get_node("/root/Node2D/Mech")
+@export var mech : Node2D
 var crab_minion = preload("res://Assets/Prefabs/lil_crab.tscn")
 var eye_blast = preload("res://Assets/Prefabs/eye_blast.tscn")
 var eel_blast = preload("res://Assets/Prefabs/eel_blast.tscn")

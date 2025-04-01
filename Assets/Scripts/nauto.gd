@@ -32,11 +32,11 @@ extends CharacterBody2D
 @export var jump_impulse = 350
 
 #@onready var pilot = mech.get_child(5)
-@onready var pilot = mech.get_node("Pilot")
+var pilot = null
 #@onready var mech_camera = mech.get_child(6)
-@onready var mech_camera = mech.get_node("MechCamera")
-@onready var pilot_pos = pilot.global_position
-@onready var HP = HP_node.get_node("HP").get_children()
+var mech_camera = null
+var pilot_pos = null
+var HP = null
 var camera = null
 var knockback = Vector2.ZERO
 var current_anim = ""
@@ -58,6 +58,11 @@ var state: States = States.IDLE
 
 func _ready() -> void:
 	visible = true
+	pilot = mech.get_node("Pilot")
+	#@onready var mech_camera = mech.get_child(6)
+	mech_camera = mech.get_node("MechCamera")
+	pilot_pos = pilot.global_position
+	HP = HP_node.get_node("HP").get_children()
 	#if get_tree().current_scene.name == "TheShallows":
 		
 	#shift_mode()
@@ -141,6 +146,7 @@ func shift_mode() -> void:
 			cutscene()
 		
 func cutscene():
+	print ("CS")
 	if is_instance_valid(Global):
 		if state == States.MOVE:
 			Global.FREEZE = true
@@ -227,7 +233,7 @@ func _physics_process(delta: float) -> void:
 		# Nauto movement
 		elif (Global.MODE == "Nauto") and Global.FREEZE == false:
 			if Input.is_action_just_pressed("debug_teleport"):
-				position = Vector2(25400, 1040)
+				position = Vector2(29000, 1040)
 			if velocity.y > 0: # falling transition anim
 				if play_transition_anim == true:
 					fall_anim()
@@ -238,7 +244,7 @@ func _physics_process(delta: float) -> void:
 				
 			# charge jump anim
 			if Input.is_action_pressed("ui_up") and is_on_floor():
-				print("Boost:", boost)
+				#print("Boost:", boost)
 				charge = true;
 				physics_collider.disabled = true
 				crouch_collider.disabled = false
@@ -361,11 +367,15 @@ func health_loss() -> void:
 func _on_timer_timeout() -> void:
 	if state == States.MOVE:
 		state = States.STOP
+		mech.velocity.x = 0
+		mech.idle_anim()
+		print ("Stop moving")
 		cutscene()
 	elif state == States.STOP:
 		state = States.SHOOT
 		mech.shoot_anim()
 		mech.laser_explosion()
+		print ("Shooting")
 		cutscene()
 	elif state == States.SHOOT:
 		#bgmusic_stop.emit()

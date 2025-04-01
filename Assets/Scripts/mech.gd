@@ -25,7 +25,7 @@ extends CharacterBody2D
 @export var HP_node : CanvasLayer
 
 @onready var pilot_pos = pilot.global_position
-@onready var HP = HP_node.get_node("HP").get_children()
+var HP = null
 
 #@onready var shader = $MechCamera/WaterShader
 
@@ -35,7 +35,7 @@ extends CharacterBody2D
 
 @export var iFrameTime = 1.2
 @export var jump_impulse = 200
-@export var walk_speed = 420
+@export var walk_speed = 375
 var laser_projectile = preload("res://Assets/Prefabs/laser_projectile.tscn")
 
 var current_anim = ""
@@ -57,6 +57,7 @@ var isBuzzing = false
 var hasIFrames = false
 
 func _ready() -> void:
+	HP = HP_node.get_node("HP").get_children()
 	if is_instance_valid(Global):
 		velocity.x = 0
 		velocity.y = 0
@@ -89,6 +90,11 @@ func _ready() -> void:
 func _input(event)-> void:
 	pass
 
+func idle_anim():
+	current_anim = "Idle"
+	mech_body_sprite.play(current_anim)
+	#print (position)	
+
 func move_anim():
 	current_anim = "Move"
 	mech_body_sprite.play(current_anim)
@@ -102,7 +108,7 @@ func hover_move_anim():
 func shoot_anim():
 	current_anim = "Shoot"
 	mech_front_arm.play(current_anim)
-	#print (position)	
+	print ("Shoot")	
 	
 func open_anim():
 	isOpening = true

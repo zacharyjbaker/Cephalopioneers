@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_4i3ih"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
-[ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_x41q6"]
+[ext_resource type="Script" path="res://Assets/Prefabs/shallows_manager.gd" id="1_x41q6"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
 [ext_resource type="PackedScene" uid="uid://c4g4f2tjgiexs" path="res://Assets/checkpoint.tscn" id="2_8f1f3"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_doonm"]

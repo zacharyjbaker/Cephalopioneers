@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=4 uid="uid://d0la6ayh7nyw8"]
 
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
-[ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="2_qbk6u"]
+[ext_resource type="Script" path="res://Assets/Prefabs/shallows_manager.gd" id="2_qbk6u"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="3_pgb00"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="4_dnxwv"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="5_8x1yd"]
@@ -225,7 +225,7 @@ curve = SubResource("Curve2D_cs00x")
 position = Vector2(122.555, 34.75)
 rotation = -2.3538
 
-[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player") instance=ExtResource("23_07pr1")]
+[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player", "mech") instance=ExtResource("23_07pr1")]
 position = Vector2(-5.54517, 108.349)
 rotation = 2.35379
 scale = Vector2(1.15164, 1)
@@ -236,6 +236,7 @@ smash_path = NodePath("../../../Path3")
 crab_spawnpoints = NodePath("../../../CrabSpawnNode")
 blast_spawnpoints = NodePath("../../../BlastSpawnNode")
 player = NodePath("../../../Mech")
+mech = NodePath("../../../Mech")
 
 [node name="Path2" type="Path2D" parent="."]
 position = Vector2(1339, 1057)

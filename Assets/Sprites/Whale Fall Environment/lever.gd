@@ -7,10 +7,11 @@ extends Area2D
 var is_player_near = false
 var is_pulled = false
 
-@onready var PlayerCamera = Player.get_node("NautoCamera")
+var PlayerCamera = null
 
 func _ready():
 	print("DoorSound:", DoorSound)
+	PlayerCamera = Player.get_node("NautoCamera")
 func _process(_delta):
 	if is_player_near and Input.is_action_just_pressed("interact") and not is_pulled:
 		pull_lever()

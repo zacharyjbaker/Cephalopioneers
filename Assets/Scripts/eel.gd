@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var anim = $AnimatedSprite2D
 @onready var audio = $AudioStreamPlayer2D
 
+@export var save_load : Node2D
+
 @export var tag = "Needlenose"
 @export var speed = 170
 @export var charge_speed = 800
@@ -16,9 +18,15 @@ extends CharacterBody2D
 @export var degrees_per_second = 90
 @export var gravity = 0
 
+@export var player : Node2D
+@export var mech : Node2D
+@export var dg_manager : Node2D
+
 var smashed = false
 var fall_start = false
 var mech_moved = false
+var pilot
+
 
 # Vars for random enemy orientation
 var random_dir_x = false 
@@ -27,9 +35,7 @@ var rng = RandomNumberGenerator.new()
 
 # Targeting vars
 var target = null
-var player = null
-var mech = null
-var pilot = null
+
 
 # Signals
 signal bgmusic_chase
@@ -41,12 +47,10 @@ enum States {IDLE, CHASE, CS_SHAKE, CS_DEVOUR, CS_MOVE, CS_ROAR, CS_FALL, CS_FAL
 var state: States = States.IDLE
 
 func _ready() -> void:
-	var dg_manager = get_node("/root/Node2D/DialogueManager")
+	state = States.IDLE
+	pilot = mech.get_node("Pilot")
 	dg_manager.cs_eel.connect(cutscene)
-	player = get_node("/root/Node2D/Nauto")
 	player.cs_break.connect(break_cutscene)
-	mech = get_node("/root/Node2D/Mech")
-	pilot = get_node("/root/Node2D/Mech/Pilot")
 	anim.play("Idle")
 	
 func break_cutscene():
@@ -99,6 +103,7 @@ func cutscene():
 		#print ("chase")
 		state = States.CHASE
 		Global.SHAKE = false
+		#save_load.save_game()
 		if mech_moved == false:
 			mech_moved = true
 			mech.velocity.x = 0
@@ -127,6 +132,7 @@ func _on_timer_timeout() -> void:
 		set_rotation_degrees(90)
 		scale.x = -2
 		Global.SHAKE = true
+		Global.DIALOGUE_INSTANCE = 3
 
 	if state == States.CS_ROAR:
 		#velocity.x = 0
@@ -156,7 +162,7 @@ func _physics_process(delta: float) -> void:
 	elif state == States.CS_FALL:
 		var vector = player.global_position - self.global_position
 		#look_at(player.global_position)
-		print (position.distance_to(player.global_position))
+		#print (position.distance_to(player.global_position))
 		if position.distance_to(player.global_position) < 820:
 			velocity.x = 0
 		else:
@@ -195,7 +201,12 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 	if body.name == "Malo":
 		body.queue_free()
 	if body.name == "Nauto" and Global.FREEZE == false:
-		body.queue_free()
+		Global.reset_globals()
+		Global.DIALOGUE_INSTANCE = 2
+		save_load.load_game()
+		velocity.x = 0
+		velocity.y = 0
+		rotation_degrees = 0
 	if body.is_in_group("Enemy"):
 		body.queue_free()
 	if body.is_in_group("NPC"):

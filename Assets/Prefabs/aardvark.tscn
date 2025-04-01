@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cqf0gnysb5fvx"]
+[gd_scene load_steps=27 format=3 uid="uid://cqf0gnysb5fvx"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/aardvark.gd" id="1_6c45j"]
 [ext_resource type="Texture2D" uid="uid://ytncn7ed5swm" path="res://Assets/Prefabs/Aardvark.png" id="2_ug6rc"]
@@ -265,6 +265,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iv4dv"]
+size = Vector2(27.8947, 22.7786)
+
 [node name="Aardvark" type="CharacterBody2D" groups=["NPC", "aardvark"]]
 z_index = -2
 position = Vector2(-331, 899)
@@ -295,6 +298,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "04d2eef7278578f71137d17eb481a6da"
 
-[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2(-0.125, 3.125)
-polygon = PackedVector2Array(-17.125, -0.375, -30.125, -7.625, -44.625, -7.125, -39.375, -12.875, 35.125, -12.875, 45.875, -1.875, 32.875, -3.625, 23.625, -3.125, 15.125, 7.625, -12.875, 7.625)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.25, -4.5)
+scale = Vector2(2.85, 0.340232)
+shape = SubResource("RectangleShape2D_iv4dv")

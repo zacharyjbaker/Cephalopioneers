@@ -2,10 +2,14 @@ extends Node
 #var scene_load = preload("res://save.tscn").instantiate()
 
 func save_game():
+	print ("Saving: ", str("res://Saves/save", str(Global.SAVENUM), ".tscn"))
+	#if ResourceLoader.exists("res://Saves/save.tscn"):
+		#var dir = DirAccess.open("res://Saves")
+		#dir.remove("save.tscn")
 	var scene_root = self
 	var packed_scene = PackedScene.new()
 	var result = packed_scene.pack(scene_root)
-	ResourceSaver.save(packed_scene, "res://save.tscn")
+	ResourceSaver.save(packed_scene, str("res://Saves/save", str(Global.SAVENUM), ".tscn"))
 	#scene_load = load("res://save.tscn")
 	
 func load_game():
@@ -18,17 +22,20 @@ func load_game():
 	#get_tree().root.add_child(scene_load)
 	
 	#await get_tree().create_timer(1).timeout
-	
-	await get_tree().process_frame
-	for item in get_tree().get_nodes_in_group("instanced"):
-		item.queue_free()
+	if ResourceLoader.exists(str("res://Saves/save", str(Global.SAVENUM), ".tscn")):
+		await get_tree().process_frame
+		for item in get_tree().get_nodes_in_group("instanced"):
+			item.queue_free()
 		
-	var new_scene = ResourceLoader.load("res://save.tscn")
-	get_tree().get_root().add_child(new_scene.instantiate())
-	#await get_tree().process_frame
-	#Global.FREEZE = true
-	
-	self.queue_free()
+		var new_scene = ResourceLoader.load(str("res://Saves/save", str(Global.SAVENUM), ".tscn"))
+		print ("Loading: ", str("res://Saves/save", str(Global.SAVENUM), ".tscn"))
+		get_tree().get_root().add_child(new_scene.instantiate())
+		#await get_tree().process_frame
+		#Global.FREEZE = true
+		Global.SAVENUM += 1
+		if Global.SAVENUM == 5:
+			Global.SAVENUM = 0
+		self.queue_free()
 	
 	
 	#var scene_load = load("res://save.tscn")
@@ -46,8 +53,8 @@ func _ready() -> void:
 	if get_tree().paused == true:
 		get_tree().paused = false
 	#save_game()
-	Global.FREEZE = false
-	Global.MODE = "Nauto"
+	#Global.FREEZE = false
+	#Global.MODE = "Nauto"
 	if self.name != "Node2D":
 		self.name = "Node2D"
 	get_tree().set_current_scene(get_tree().get_root().get_child(0))

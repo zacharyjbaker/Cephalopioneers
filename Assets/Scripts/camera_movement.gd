@@ -8,7 +8,7 @@ const CAMERA_MOVEMENT_SPEED : int = 4
 @export var max_roll := 0.1 # Maximum rotation in radians (use sparingly).
 @export var noise : FastNoiseLite # The source of random values.
 
-@onready var CityDoor = get_node("/root/Node2D/CityGate")
+var CityDoor = null
 @onready var Cauldrons: Array
 @onready var cam_timer = $CamTimer
 @onready var player = get_parent() #Reference the Nauto Parent Node
@@ -29,7 +29,7 @@ var trauma_pwr := 3 # Trauma exponent. Use [2,3]
 func _ready():
 	randomize()
 	noise.seed = randi()
-	
+	CityDoor = get_node("/root/Node2D/CityGate")
 	Cauldrons = [
 	get_node("/root/Node2D/Cauldron"),
 	get_node("/root/Node2D/Cauldron2"),

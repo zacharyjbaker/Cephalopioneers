@@ -17,6 +17,7 @@ var linearSliderValue = 0.9
 
 @export var dialogue_script : Node2D
 @export var nauto_script : Node2D
+@export var eel_script: Node2D
 
 func _ready() -> void:
 	background_music.volume_db = 20 * (log(linearSliderValue) / log(10))
@@ -29,11 +30,10 @@ func _ready() -> void:
 	match Global.SCENE:
 		"TheShallows":
 			change_music(0)
-			var eel_script = get_node("/root/Node2D/LeviathanEel")
 			eel_script.bgmusic_chase.connect(change_music.bind(1))
 			eel_script.bgmusic_stop.connect(change_music.bind(-1))
-			eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
-			eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
+			#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
+			#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
 			
 		"WhalefallSettlement":
 			change_music(3)
