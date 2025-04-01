@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cbkjxe8o45c7v"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/needlenose.gd" id="1_fgl5h"]
-[ext_resource type="Texture2D" uid="uid://b6x7smyy24y52" path="res://Assets/Sprites/Enemies/Needlenose.png" id="2_tyvnu"]
+[ext_resource type="Texture2D" uid="uid://dfhguj3vropp5" path="res://Assets/Prefabs/Needlenose.png" id="3_m2df4"]
 [ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Sprites/FX/mode.png" id="3_t17bm"]
 [ext_resource type="Texture2D" uid="uid://dxlgvvpfew8x1" path="res://Assets/Sprites/FX/StunnedFX.png" id="4_mlvr7"]
 
@@ -30,36 +30,36 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qid5t"]
 size = Vector2(17, 9.5)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ssyjn"]
-atlas = ExtResource("2_tyvnu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0axj"]
+atlas = ExtResource("3_m2df4")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_penkd"]
-atlas = ExtResource("2_tyvnu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yr7p"]
+atlas = ExtResource("3_m2df4")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1cx1"]
-atlas = ExtResource("2_tyvnu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru8el"]
+atlas = ExtResource("3_m2df4")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nga0o"]
-atlas = ExtResource("2_tyvnu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh6m6"]
+atlas = ExtResource("3_m2df4")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_adejb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7l2xo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ssyjn")
+"texture": SubResource("AtlasTexture_i0axj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_penkd")
+"texture": SubResource("AtlasTexture_8yr7p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k1cx1")
+"texture": SubResource("AtlasTexture_ru8el")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nga0o")
+"texture": SubResource("AtlasTexture_fh6m6")
 }],
 "loop": true,
 "name": &"Swim",
@@ -132,7 +132,7 @@ shape = SubResource("RectangleShape2D_qid5t")
 [node name="Needlenose" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0.25, -0.25)
-sprite_frames = SubResource("SpriteFrames_adejb")
+sprite_frames = SubResource("SpriteFrames_7l2xo")
 animation = &"Swim"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
@@ -146,7 +146,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/Needlenose.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "d59966d0710275feee2b6696804b9b64"
+metadata/_aseprite_wizard_source_file_hash_ = "27d11628be0a6d4b0b762a794acf9b6e"
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(6.75, -4.25)

@@ -7,9 +7,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#print(position.distance_to(player.position))
-	if position.distance_to(player.position) < 130 and Global.MODE == "Nauto" and Global.FREEZE == false:
-		interact.visible = true
-		Global.INTERACTABLE = true
-	if Global.INTERACTABLE == false:
-		interact.visible = false
+	if is_instance_valid(Global):
+		if is_instance_valid(player):
+			if position.distance_to(player.position) < 130 and Global.MODE == "Nauto" and Global.FREEZE == false:
+				interact.visible = true
+				Global.INTERACTABLE = true
+			if Global.INTERACTABLE == false:
+				interact.visible = false
 		

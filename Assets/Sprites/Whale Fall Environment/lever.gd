@@ -1,16 +1,23 @@
 extends Area2D
 
-@onready var PlayerCamera : Camera2D = get_node("../Nauto/NautoCamera")
+@export var Player : Node2D
+@onready var LeverSound = $LeverSFX
+@onready var DoorSound = $DoorSFX
 @export var door: NodePath  # Assign the door instance in the Inspector
 var is_player_near = false
 var is_pulled = false
 
+@onready var PlayerCamera = Player.get_node("NautoCamera")
+
+func _ready():
+	print("DoorSound:", DoorSound)
 func _process(_delta):
 	if is_player_near and Input.is_action_just_pressed("interact") and not is_pulled:
 		pull_lever()
 
 func pull_lever():
 	is_pulled = true
+	LeverSound.play()
 	if door:
 		var door_node = get_node(door)
 		if door_node.has_method("open_door"):
@@ -30,3 +37,8 @@ func _on_area_exited(area):
 	if area.is_in_group("player"):
 		print("Player exited lever area")
 		is_player_near = false
+		
+
+
+func _on_lever_sfx_finished() -> void:
+	DoorSound.play()

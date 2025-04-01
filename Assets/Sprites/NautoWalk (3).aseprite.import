@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://xjv2a38fib6e"
+path="res://.godot/imported/NautoWalk (3).aseprite-1b9bb4cfeb3efe0c567ff900cdf04052.res"
+
+[deps]
+
+source_file="res://Assets/Sprites/NautoWalk (3).aseprite"
+dest_files=["res://.godot/imported/NautoWalk (3).aseprite-1b9bb4cfeb3efe0c567ff900cdf04052.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

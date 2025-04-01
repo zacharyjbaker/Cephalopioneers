@@ -20,13 +20,17 @@ var player: Node2D = null
 var flashlight: Node2D = null
 var is_in_flashlight = false
 var ambush_triggered = false
+var isWalking = false
+var isIdling = true
 
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
-	timer.start(2)
+	velocity.x = 0
+	velocity.y = 0
+	#timer.start(2)
 	anim_player.play("Idle")
-	state = States.IDLE
+	state = States.WALK
 	find_player()
 
 func _physics_process(delta: float) -> void:
@@ -43,8 +47,8 @@ func _physics_process(delta: float) -> void:
 		rotation_degrees = 180
 		#shader.flip_h = true
 		
-	if state == States.WALK or state == States.WALKDRILL:
-		if player:
+	if state == States.WALK:
+		if player and is_on_floor():
 			var distance =  global_position.x - player.global_position.x
 			#print (velocity.x)
 			#print (distance)
@@ -62,15 +66,25 @@ func _physics_process(delta: float) -> void:
 			'''
 			#print (is_in_flashlight)
 			if abs(distance) < aggro_range:
+				if !isWalking:
+					anim_player.play("Walk")
+					isWalking = true
+					isIdling = false
 				if is_in_flashlight == true:
-					velocity.x += delta * charge_speed / 3 * sign(distance)
-					if abs(velocity.x) > charge_max_speed / 3:
-						velocity.x = sign(distance) * charge_max_speed / 3 
+					velocity.x += delta * charge_speed / 5 * -sign(distance)
+					if abs(velocity.x) > charge_max_speed / 5:
+						velocity.x = -sign(distance) * charge_max_speed / 5
 				else:
-					velocity.x += delta * charge_speed * -sign(distance)
-					if abs(velocity.x) > charge_max_speed:
-						velocity.x = -sign(distance) * charge_max_speed
+					velocity.x += delta * charge_speed / 2.5 * -sign(distance)
+					if abs(velocity.x) > charge_max_speed / 2.5:
+						velocity.x = -sign(distance) * charge_max_speed / 2.5
+			else:
+				if !isIdling:
+					isWalking = false
+					anim_player.play("Idle")
+					velocity.x = 0
 
+'''
 func _on_timer_timeout() -> void:
 
 	if state == States.IDLE:
@@ -82,7 +96,7 @@ func _on_timer_timeout() -> void:
 		#anim_player.play("WalkDrill")
 		#state = States.WALKDRILL
 		#timer.start(4)
-		
+'''
 func find_player():
 	player = get_tree().current_scene.get_node_or_null("Nauto")
 	flashlight = get_tree().current_scene.get_node_or_null("FlashlightCone")

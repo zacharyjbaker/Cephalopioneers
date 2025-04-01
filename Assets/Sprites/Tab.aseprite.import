@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://svreig4ne3hm"
-valid=false
+path="res://.godot/imported/Tab.aseprite-fc01de15b2c69ab6c2d52c89ef9bb04e.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Tab.aseprite"
+dest_files=["res://.godot/imported/Tab.aseprite-fc01de15b2c69ab6c2d52c89ef9bb04e.res"]
 
 [params]
 
