@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var drill_particles = $DrillArea/DrillParticles
 @onready var laser_explosion_particles = $LaserExplosion
 @onready var pilot = $Pilot
+@onready var static_field = $StaticField
 @onready var camera = $MechCamera
 @onready var flashlight = $Flashlight
 @onready var flashlight_cone = $FlashlightCone
@@ -415,6 +416,7 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 						else:
 							body.velocity.x -= 500
 						body.velocity.y -= 300
+						static_field.emitting = true
 				if body.get_node("TempHitBox"):
 					if body.get_node("TempHitBox").is_in_group("mech_damage"):
 						health_loss()
@@ -430,6 +432,7 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 						else:
 							body.velocity.x -= 500
 						body.velocity.y -= 300
+						static_field.emitting = true
 				else:
 					pass
 			

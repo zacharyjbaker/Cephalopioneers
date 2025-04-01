@@ -18,7 +18,7 @@ extends CharacterBody2D
 @export var crab_spawnpoints : Node
 @export var blast_spawnpoints : Node
 @export var player: Node2D = null
-@export var max_durability = 100
+@export var max_durability = 50
 @export var durability = max_durability
 @export var health = 3
 @export var mech : Node2D
@@ -354,6 +354,7 @@ func _on_sprite_animation_finished() -> void:
 					var crab_minion_spawn_1 = crab_minion.instantiate()
 					crab_minion_spawn_1.global_position = crab_spawnpoints.get_child(spawn1).global_position
 					crab_minion_spawn_1.aggro_range = 1000000
+					crab_minion_spawn_1.player = player
 					crab_minion_spawn_1.add_to_group("instanced")
 					get_tree().root.add_child(crab_minion_spawn_1)
 					
@@ -364,6 +365,7 @@ func _on_sprite_animation_finished() -> void:
 					var crab_minion_spawn_2 = crab_minion.instantiate()
 					crab_minion_spawn_2.global_position = crab_spawnpoints.get_child(spawn2).global_position
 					crab_minion_spawn_2.aggro_range = 1000000
+					crab_minion_spawn_2.player = player
 					crab_minion_spawn_2.add_to_group("instanced")
 					get_tree().root.add_child(crab_minion_spawn_2)
 				elif state == States.SKULL_SLAM:

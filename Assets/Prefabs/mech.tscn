@@ -859,6 +859,25 @@ volume_db = -6.987
 
 [node name="IFrames" type="Timer" parent="."]
 
+[node name="StaticField" type="CPUParticles2D" parent="."]
+position = Vector2(-0.25, 20)
+scale = Vector2(-6.93058, -0.37301)
+emitting = false
+amount = 300
+lifetime = 0.3
+one_shot = true
+speed_scale = 0.36
+explosiveness = 0.87
+emission_shape = 2
+emission_sphere_radius = 25.0
+gravity = Vector2(0, 0)
+angular_velocity_max = 269.09
+orbit_velocity_max = 555.56
+radial_accel_max = 26.26
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+color = Color(0.486275, 0.921569, 1, 1)
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]
 [connection signal="animation_finished" from="FrontArm" to="." method="_on_front_arm_animation_finished"]
