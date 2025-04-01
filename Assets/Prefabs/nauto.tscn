@@ -457,7 +457,7 @@ disabled = true
 texture_filter = 1
 material = SubResource("ShaderMaterial_i3ie5")
 sprite_frames = SubResource("SpriteFrames_dpuya")
-animation = &"Walk"
+animation = &"Charge"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": false,

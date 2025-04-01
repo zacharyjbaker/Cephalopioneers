@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(Global):
 		move_and_slide()
 		
-		if Global.MODE == "Nauto" and player:
+		if Global.MODE == "Nauto" and player and is_instance_valid(player):
 			if position.distance_to(player.position) < 250 and Global.FREEZE == false:
 				interact.visible = true
 			if position.distance_to(player.position) >= 250 :
@@ -398,39 +398,40 @@ func health_loss() -> void:
 		
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	if !hasIFrames:
-		print ("Hurt by ", body.name)
-		if Global.MODE == "Mech":
-			if body.get_node("HitBox"):
-				if body.get_node("HitBox").is_in_group("mech_damage"):
-					health_loss()
-					#print (env_node.environment.glow_intensity)
-					env_node.set_glow(1)
-				if body.get_node("HitBox").is_in_group("mech_knockback"):
-					#print ("hit")
-					var distance = global_position.x - body.global_position.x
-					#print (distance)
-					if distance < 0:
-						body.velocity.x += 500
-					else:
-						body.velocity.x -= 500
-					body.velocity.y -= 300
-			if body.get_node("TempHitBox"):
-				if body.get_node("TempHitBox").is_in_group("mech_damage"):
-					health_loss()
-					#print (env_node.environment.glow_intensity)
-					env_node.set_glow(1)
-			if body.get_node("TempHitBox"):
-				if body.get_node("TempHitBox").is_in_group("mech_knockback"):
-					#print ("hit")
-					var distance = global_position.x - body.global_position.x
-					#print (distance)
-					if distance < 0:
-						body.velocity.x += 500
-					else:
-						body.velocity.x -= 500
-					body.velocity.y -= 300
-			else:
-				pass
-		
+		if is_instance_valid(Global):
+			print ("Hurt by ", body.name)
+			if Global.MODE == "Mech":
+				if body.get_node("HitBox"):
+					if body.get_node("HitBox").is_in_group("mech_damage"):
+						health_loss()
+						#print (env_node.environment.glow_intensity)
+						env_node.set_glow(1)
+					if body.get_node("HitBox").is_in_group("mech_knockback"):
+						#print ("hit")
+						var distance = global_position.x - body.global_position.x
+						#print (distance)
+						if distance < 0:
+							body.velocity.x += 500
+						else:
+							body.velocity.x -= 500
+						body.velocity.y -= 300
+				if body.get_node("TempHitBox"):
+					if body.get_node("TempHitBox").is_in_group("mech_damage"):
+						health_loss()
+						#print (env_node.environment.glow_intensity)
+						env_node.set_glow(1)
+				if body.get_node("TempHitBox"):
+					if body.get_node("TempHitBox").is_in_group("mech_knockback"):
+						#print ("hit")
+						var distance = global_position.x - body.global_position.x
+						#print (distance)
+						if distance < 0:
+							body.velocity.x += 500
+						else:
+							body.velocity.x -= 500
+						body.velocity.y -= 300
+				else:
+					pass
+			
 func _on_i_frames_timeout() -> void:
 	hasIFrames = false

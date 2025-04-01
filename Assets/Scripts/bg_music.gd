@@ -27,25 +27,27 @@ func _ready() -> void:
 	dialogue_script.bgmusic_rumble.connect(change_music.bind(2))
 	dialogue_script.bgmusic_fight.connect(change_music.bind(4))
 	nauto_script.bgmusic_rumble.connect(change_music.bind(2))
-	match Global.SCENE:
-		"TheShallows":
-			change_music(0)
-			eel_script.bgmusic_chase.connect(change_music.bind(1))
-			eel_script.bgmusic_stop.connect(change_music.bind(-1))
-			#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
-			#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
-			
-		"WhalefallSettlement":
-			change_music(3)
-			
-		"bossfight":
-			change_music(3)
+	if is_instance_valid(Global):
+		match Global.SCENE:
+			"TheShallows":
+				change_music(0)
+				if is_instance_valid(eel_script):
+					eel_script.bgmusic_chase.connect(change_music.bind(1))
+					eel_script.bgmusic_stop.connect(change_music.bind(-1))
+				#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
+				#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
+				
+			"WhalefallSettlement":
+				change_music(3)
+				
+			"bossfight":
+				change_music(3)
 
-			#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
-			#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
-			#change_music(3)
-		_:
-			pass
+				#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
+				#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
+				#change_music(3)
+			_:
+				pass
 		
 	
 	

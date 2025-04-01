@@ -14,9 +14,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.MODE == "Mech":
-		botbar.position.y = lerp(botbar.position.y, botbar_onscreen_pos.y, delta * 5)
-		topbar.position.y = lerp(topbar.position.y, topbar_onscreen_pos.y, delta * 5)
-	elif Global.MODE == "Nauto":
-		botbar.position.y = lerp(botbar.position.y, botbar_offscreen_pos.y, delta * 5)
-		topbar.position.y = lerp(topbar.position.y, topbar_offscreen_pos.y, delta * 5)
+	if is_instance_valid(Global):
+		if Global.MODE == "Mech":
+			botbar.position.y = lerp(botbar.position.y, botbar_onscreen_pos.y, delta * 5)
+			topbar.position.y = lerp(topbar.position.y, topbar_onscreen_pos.y, delta * 5)
+		elif Global.MODE == "Nauto":
+			botbar.position.y = lerp(botbar.position.y, botbar_offscreen_pos.y, delta * 5)
+			topbar.position.y = lerp(topbar.position.y, topbar_offscreen_pos.y, delta * 5)

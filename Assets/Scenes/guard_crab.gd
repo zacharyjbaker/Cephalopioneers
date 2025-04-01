@@ -35,7 +35,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#print (position)
-	velocity.y += delta * Global.GRAVITY 
+	if is_instance_valid(Global):
+		velocity.y += delta * Global.GRAVITY 
 	move_and_slide()
 	
 	if velocity.x < 1:

@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=4 uid="uid://d0la6ayh7nyw8"]
+[gd_scene load_steps=27 format=4 uid="uid://d0la6ayh7nyw8"]
 
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
 [ext_resource type="Script" path="res://Assets/Scenes/boss_manager.gd" id="1_p48oh"]
-[ext_resource type="Script" path="res://Assets/Prefabs/shallows_manager.gd" id="2_qbk6u"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="3_pgb00"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="4_dnxwv"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="5_8x1yd"]
@@ -93,9 +92,6 @@ player = NodePath("../Nauto")
 
 [node name="UI" parent="." instance=ExtResource("1_ktyl6")]
 
-[node name="SceneManager" type="Node2D" parent="."]
-script = ExtResource("2_qbk6u")
-
 [node name="WaterShader" type="Sprite2D" parent="."]
 z_index = 99
 material = SubResource("ShaderMaterial_toho5")
@@ -166,6 +162,7 @@ panning_strength = 0.0
 [node name="BGMusicCanvas" type="CanvasLayer" parent="BackgroundMusicManager"]
 
 [node name="BGMusicCredit" type="RichTextLabel" parent="BackgroundMusicManager/BGMusicCanvas"]
+visible = false
 anchors_preset = -1
 anchor_left = -0.00434028
 anchor_top = -0.0493827

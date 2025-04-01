@@ -22,7 +22,7 @@ extends CharacterBody2D
 #@onready var env_node = get_node("/root/Node2D/WorldEnvironment")
 @export var env_node : WorldEnvironment
 #@onready var breakable_floor = get_node("/root/Node2D/MiscEnv/BreakableFloor")
-#@export var breakable_floor : Node2D
+@export var misc_env : Node
 @onready var charge_bar = $ChargeJumpBar
 @onready var iFrames = $IFrames
 #@onready var HP = get_node("/root/Node2D/UI/HP").get_children()
@@ -35,6 +35,8 @@ extends CharacterBody2D
 var pilot = null
 #@onready var mech_camera = mech.get_child(6)
 var mech_camera = null
+var breakable_floor = null
+var breakable_particles = null
 var pilot_pos = null
 var HP = null
 var camera = null
@@ -49,7 +51,7 @@ var hasIFrames = false
 var charging = false
 var isWalking = false
 
-enum States {IDLE, MOVE, STOP, SHOOT, FALL, FADE}
+enum States {IDLE, MOVE, STOP, SHOOT, FALL, FADE, CHANGE_SCENE}
 signal cs_break
 signal bgmusic_stop
 signal bgmusic_rumble
@@ -63,6 +65,9 @@ func _ready() -> void:
 	mech_camera = mech.get_node("MechCamera")
 	pilot_pos = pilot.global_position
 	HP = HP_node.get_node("HP").get_children()
+	if is_instance_valid(misc_env):
+		breakable_floor = misc_env.get_node("BreakableFloor")
+		breakable_particles = misc_env.get_node("BreakableParticles")
 	#if get_tree().current_scene.name == "TheShallows":
 		
 	#shift_mode()
@@ -234,6 +239,7 @@ func _physics_process(delta: float) -> void:
 		elif (Global.MODE == "Nauto") and Global.FREEZE == false:
 			if Input.is_action_just_pressed("debug_teleport"):
 				position = Vector2(29000, 1040)
+				_load_whalefall()
 			if velocity.y > 0: # falling transition anim
 				if play_transition_anim == true:
 					fall_anim()
@@ -318,42 +324,43 @@ func _physics_process(delta: float) -> void:
 					velocity.x = 0
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	if !hasIFrames:
-		print ("Hurt by ", body.name)
-		if body.get_node("HitBox"):
-			if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
-				#print ("hit")
-				#velocity.x += body.velocity.x * 3
-				velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-				#velocity.y += body.velocity.y * 3
-				velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
-				health_loss()
-				#print (env_node.environment.glow_intensity)
-				env_node.set_glow(1)
-			if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
-				#print ("hit")
-				#velocity.x += body.velocity.x * 3
-				#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-				#velocity.y += body.velocity.y * 3
-				if body.is_in_group("aardvark") and body.upside_down == true:
-					velocity.y += -(velocity.y * 2 + body.y_knockback)
-		if body.get_node("TempHitBox"):
-			if (body.get_node("TempHitBox").is_in_group("damage") and Global.MODE == "Nauto"):
-				#print ("hit")
-				#velocity.x += body.velocity.x * 3
-				velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-				#velocity.y += body.velocity.y * 3
-				velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
-				health_loss()
-				#print (env_node.environment.glow_intensity)
-				env_node.set_glow(1)
-			if (body.get_node("TempHitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
-				#print ("hit")
-				#velocity.x += body.velocity.x * 3
-				#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
-				#velocity.y += body.velocity.y * 3
-				if body.is_in_group("aardvark") and body.upside_down == true:
-					velocity.y += -(velocity.y * 2 + body.y_knockback)
+	if is_instance_valid(Global):
+		if !hasIFrames:
+			print ("Hurt by ", body.name)
+			if body.get_node("HitBox"):
+				if (body.get_node("HitBox").is_in_group("damage") and Global.MODE == "Nauto"):
+					#print ("hit")
+					#velocity.x += body.velocity.x * 3
+					velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+					#velocity.y += body.velocity.y * 3
+					velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
+					health_loss()
+					#print (env_node.environment.glow_intensity)
+					env_node.set_glow(1)
+				if (body.get_node("HitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
+					#print ("hit")
+					#velocity.x += body.velocity.x * 3
+					#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+					#velocity.y += body.velocity.y * 3
+					if body.is_in_group("aardvark") and body.upside_down == true:
+						velocity.y += -(velocity.y * 2 + body.y_knockback)
+			if body.get_node("TempHitBox"):
+				if (body.get_node("TempHitBox").is_in_group("damage") and Global.MODE == "Nauto"):
+					#print ("hit")
+					#velocity.x += body.velocity.x * 3
+					velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+					#velocity.y += body.velocity.y * 3
+					velocity.y += -(velocity.y * 2 + body.y_knockback) + body.velocity.x / 2.0
+					health_loss()
+					#print (env_node.environment.glow_intensity)
+					env_node.set_glow(1)
+				if (body.get_node("TempHitBox").is_in_group("knockback") and Global.MODE == "Nauto"):
+					#print ("hit")
+					#velocity.x += body.velocity.x * 3
+					#velocity.x += -(velocity.x * 2 + body.x_knockback) + body.velocity.x / 2.0
+					#velocity.y += body.velocity.y * 3
+					if body.is_in_group("aardvark") and body.upside_down == true:
+						velocity.y += -(velocity.y * 2 + body.y_knockback)
 
 func health_loss() -> void:
 	print ("Lost hp")
@@ -380,15 +387,22 @@ func _on_timer_timeout() -> void:
 	elif state == States.SHOOT:
 		#bgmusic_stop.emit()
 		bgmusic_rumble.emit()
+		breakable_particles.visible = true
 		state = States.FALL
 		cutscene()
 	elif state == States.FALL:
-		#breakable_floor.enabled = false
+		breakable_floor.enabled = false
 		state = States.FADE
+		breakable_particles.one_shot = true
 		cutscene()
 	elif state == States.FADE:
 		env_node.fade_to_black()
+		timer.start(3)
 		print ("fade to black")
+		state = States.CHANGE_SCENE
+	elif state == States.CHANGE_SCENE:
+		_load_whalefall()
+		#get_tree().change_scene_to_file("res://Assets/Scenes/WhalefallSettlement.tscn")
 	elif state == States.IDLE:
 		if isShiftingNauto == true:
 			isShiftingNauto = false
@@ -408,3 +422,15 @@ func _on_interaction_box_area_entered(area: Area2D) -> void:
 
 func _on_i_frames_timeout() -> void:
 	hasIFrames = false
+	
+func _load_whalefall() -> void:
+	await get_tree().process_frame
+	var current_scene = get_parent()
+	for item in get_tree().get_nodes_in_group("instanced"):
+		item.queue_free()
+	var new_scene = ResourceLoader.load("res://Assets/Scenes/WhalefallSettlement.tscn")
+	get_tree().get_root().add_child(new_scene.instantiate())
+	#await get_tree().process_frame
+	#Global.FREEZE = true
+	current_scene.queue_free()
+	

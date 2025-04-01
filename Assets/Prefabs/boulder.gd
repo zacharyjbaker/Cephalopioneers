@@ -26,7 +26,7 @@ func _ready():
 	angular_damp = 0  
 
 func _process(_delta):
-	if player and not has_fallen:
+	if player and not has_fallen and is_instance_valid(player):
 		var distance = global_position.distance_to(player.global_position)
 		if distance < detection_range:
 			freeze = false  

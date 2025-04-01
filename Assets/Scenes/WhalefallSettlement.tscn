@@ -455,10 +455,12 @@ shader_parameter/skew = 0.0
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
 script = ExtResource("1_4i3ih")
 
-[node name="WhalefallManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player")]
+[node name="WhalefallManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player", "env_node", "dialogue_manager")]
 script = ExtResource("2_1gigv")
 mech = NodePath("../Mech")
 player = NodePath("../Nauto")
+env_node = NodePath("../WorldEnvironment")
+dialogue_manager = NodePath("../DialogueManager")
 
 [node name="WaterShader" type="Sprite2D" parent="."]
 light_mask = 16387
@@ -504,6 +506,7 @@ panning_strength = 0.0
 [node name="BGMusicCanvas" type="CanvasLayer" parent="BackgroundMusicManager"]
 
 [node name="BGMusicCredit" type="RichTextLabel" parent="BackgroundMusicManager/BGMusicCanvas"]
+visible = false
 anchors_preset = -1
 anchor_left = -0.00434028
 anchor_top = -0.0493827
@@ -522,13 +525,13 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node") instance=ExtResource("21_2t1sa")]
-position = Vector2(22664, 990)
+position = Vector2(6562, 1238)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("22_joohn")]
-position = Vector2(22660, 1127)
+position = Vector2(6434, 1127)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")

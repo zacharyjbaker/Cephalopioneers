@@ -196,11 +196,12 @@ func random_direction_selection() -> void:
 	#print (name, ": ", random_dir_x, ": ", random_time)
 
 func _on_view_cone_body_entered(body: Node2D) -> void:
-	if body == player and Global.MODE == "Nauto" and Global.FREEZE == false:
-		isInViewCone = true
-		if isAttackReady == false and state == "Swim" and isStun == false:
-			target_body = body
-			enter_attack_state(body)
+	if is_instance_valid(Global):
+		if body == player and Global.MODE == "Nauto" and Global.FREEZE == false:
+			isInViewCone = true
+			if isAttackReady == false and state == "Swim" and isStun == false:
+				target_body = body
+				enter_attack_state(body)
 		
 func _on_view_cone_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	isInViewCone = false
