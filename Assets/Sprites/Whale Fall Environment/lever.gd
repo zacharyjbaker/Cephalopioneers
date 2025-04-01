@@ -37,8 +37,7 @@ func _on_area_exited(area):
 	if area.is_in_group("player"):
 		print("Player exited lever area")
 		is_player_near = false
-		
-
 
 func _on_lever_sfx_finished() -> void:
+	print ("Door Sound")
 	DoorSound.play()

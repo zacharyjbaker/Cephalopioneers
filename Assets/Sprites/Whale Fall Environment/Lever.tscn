@@ -72,9 +72,11 @@ max_distance = 59100.0
 
 [node name="DoorSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_q7bmp")
-max_distance = 22550.0
+max_distance = 22405.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="finished" from="LeverSFX" to="." method="_on_lever_sfx_finished"]
+[connection signal="finished" from="DoorSFX" to="." method="_on_door_sfx_finished"]

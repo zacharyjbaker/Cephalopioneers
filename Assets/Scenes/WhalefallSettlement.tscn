@@ -600,7 +600,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node") instance=ExtResource("21_2t1sa")]
-position = Vector2(22659, 1005)
+position = Vector2(21186, -636)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
