@@ -2,13 +2,12 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cice6ag8x3yru"
-path="res://.godot/imported/NautoJump.wav-6febc802cbc3ef3697261fb6892353ed.sample"
+uid="uid://b3hc0dwaavc7h"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sound/Sfx/NautoJump.wav"
-dest_files=["res://.godot/imported/NautoJump.wav-6febc802cbc3ef3697261fb6892353ed.sample"]
 
 [params]
 

@@ -54,69 +54,68 @@ func load_next_dialogue():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if is_instance_valid(Global):
-		#print (Global.INTERACTABLE)
-		if (Input.is_action_just_pressed("ui_cancel")):
-			_disable_dialogue()
-		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
-			nauto_talk.visible = true
-			other_talk.visible = true
-			dialogue_flag = true
-			Global.INTERACTABLE = false
-			Global.FREEZE = true
-			first_dialogue = true
-			dialogueBG.visible = true
-			dialogueBG.set_process(true)
-			dialogue.visible = true
-			dialogue.set_process(true)
+	#print (Global.INTERACTABLE)
+	if (Input.is_action_just_pressed("ui_cancel")):
+		_disable_dialogue()
+	if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
+		nauto_talk.visible = true
+		other_talk.visible = true
+		dialogue_flag = true
+		Global.INTERACTABLE = false
+		Global.FREEZE = true
+		first_dialogue = true
+		dialogueBG.visible = true
+		dialogueBG.set_process(true)
+		dialogue.visible = true
+		dialogue.set_process(true)
 
-		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true:
-			Global.START = false
-			print (other_talk)
-			if (dialogue_in_process): #Skip text tick
-				dialogue.visible_characters = -1
-				timer.stop()
-				other_talk.stop()
-				nauto_talk.stop()
-				dialogue_in_process = false
-			else: #Text tick
-				timer.start()
-				dialogue.text = ""
-				dialogue.visible_characters = 0
-				dialogue_stage_int = int(dialogue_stage)
-				dialogue_stage_int += 1
-				dialogue_stage = str(dialogue_stage_int)
-				dialogue_line = DialogueDict[dialogue_instance][dialogue_stage]
-				
-				match dialogue_line.get_slice("/", 1):
-					"END":
-						print ("End Dialogue")
-						_disable_dialogue()
-						
-						# Trigger eel cutscene
-						if speaker == "Malo":
-							cs_eel.emit()
-						load_next_dialogue()
-						return
-					"N":
-						_load_nauto()
-					"S":
-						_load_nauto()
-						print ("begin shaking")
-						Global.SHAKE = true
-						bgmusic_rumble.emit()
-					"B":
-						_load_bite()
-					"M":
-						_load_malo()
-				print (speaker)
-				if (load(dialogue_file_path) != null):
-					dialogue_stream.stream = load(dialogue_file_path)
-					dialogue_stream.play()
-				dialogue_in_process = true
-				print (dialogue_file_path)
-				dialogue_line = dialogue_line.get_slice("/", 2)
-				dialogue.text = dialogue_line
+	if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true:
+		Global.START = false
+		print (other_talk)
+		if (dialogue_in_process): #Skip text tick
+			dialogue.visible_characters = -1
+			timer.stop()
+			other_talk.stop()
+			nauto_talk.stop()
+			dialogue_in_process = false
+		else: #Text tick
+			timer.start()
+			dialogue.text = ""
+			dialogue.visible_characters = 0
+			dialogue_stage_int = int(dialogue_stage)
+			dialogue_stage_int += 1
+			dialogue_stage = str(dialogue_stage_int)
+			dialogue_line = DialogueDict[dialogue_instance][dialogue_stage]
+			
+			match dialogue_line.get_slice("/", 1):
+				"END":
+					print ("End Dialogue")
+					_disable_dialogue()
+					
+					# Trigger eel cutscene
+					if speaker == "Malo":
+						cs_eel.emit()
+					load_next_dialogue()
+					return
+				"N":
+					_load_nauto()
+				"S":
+					_load_nauto()
+					print ("begin shaking")
+					Global.SHAKE = true
+					bgmusic_rumble.emit()
+				"B":
+					_load_bite()
+				"M":
+					_load_malo()
+			print (speaker)
+			if (load(dialogue_file_path) != null):
+				dialogue_stream.stream = load(dialogue_file_path)
+				dialogue_stream.play()
+			dialogue_in_process = true
+			print (dialogue_file_path)
+			dialogue_line = dialogue_line.get_slice("/", 2)
+			dialogue.text = dialogue_line
 
 func _on_timer_timeout() -> void:
 	dialogue.visible_characters += 1

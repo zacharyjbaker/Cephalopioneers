@@ -71,7 +71,7 @@ scale = Vector2(4, 4)
 collision_layer = 2048
 collision_mask = 0
 script = ExtResource("1_lp671")
-speed = 180
+speed = 145
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1

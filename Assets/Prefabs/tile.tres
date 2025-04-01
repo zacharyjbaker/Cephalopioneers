@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://8fuoflysuhrr"]
+[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://8fuoflysuhrr"]
 
 [ext_resource type="Texture2D" uid="uid://bp3vkhp0joom8" path="res://Assets/MapDraft/Test Tile.png" id="1_y10pn"]
 [ext_resource type="Texture2D" uid="uid://p2gvfjui6qd" path="res://Assets/MapDraft/Sand tiles (2).png" id="2_ajvct"]
+[ext_resource type="Texture2D" uid="uid://cx3olqrl2sjdw" path="res://Assets/Sprites/Whale Fall Environment/Whale Fall Floor Tiles.png" id="3_ett20"]
 [ext_resource type="Texture2D" uid="uid://bbo70u5ma3mk5" path="res://Assets/MapDraft/Seaweed 1.png" id="3_h47cf"]
 [ext_resource type="Texture2D" uid="uid://bje7dbtti4rqe" path="res://Assets/MapDraft/Rock 1.png" id="4_nwre2"]
 [ext_resource type="Texture2D" uid="uid://brprjbno8jvew" path="res://Assets/MapDraft/Rock 2 Coral.png" id="5_54kle"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsuuq2xp3kxlf" path="res://Assets/MapDraft/Corals 16x16.png" id="7_ljw55"]
 [ext_resource type="Texture2D" uid="uid://i4l7v4ff5b7o" path="res://Assets/MapDraft/Breakable Sand Sprites.png" id="8_wu2n1"]
 [ext_resource type="Texture2D" uid="uid://yd3221tigrel" path="res://Assets/MapDraft/Breakable Bone Tiles.png" id="9_on47s"]
+[ext_resource type="Texture2D" uid="uid://5hw8rekmuxix" path="res://Assets/Sprites/Whale Fall Environment/Drillable Wall Stone.png" id="11_6umwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kjpva"]
 texture = ExtResource("1_y10pn")
@@ -76,6 +78,67 @@ texture = ExtResource("2_ajvct")
 4:11/0 = 0
 6:11/0 = 0
 8:11/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tqxly"]
+texture = ExtResource("3_ett20")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+10:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+10:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+5:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+10:2/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+10:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+10:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+10:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mb55t"]
 texture = ExtResource("3_h47cf")
@@ -159,6 +222,10 @@ texture = ExtResource("9_on47s")
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_51h43"]
+texture = ExtResource("11_6umwv")
+0:0/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 32768
 physics_layer_0/collision_mask = 32768
@@ -171,3 +238,5 @@ sources/5 = SubResource("TileSetAtlasSource_x7n30")
 sources/6 = SubResource("TileSetAtlasSource_os3cl")
 sources/7 = SubResource("TileSetAtlasSource_jp7cq")
 sources/8 = SubResource("TileSetAtlasSource_geeod")
+sources/9 = SubResource("TileSetAtlasSource_51h43")
+sources/10 = SubResource("TileSetAtlasSource_tqxly")

@@ -638,6 +638,7 @@ position = Vector2(1369, 812)
 
 [node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
 position = Vector2(926, 881)
+hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]
 z_index = -3

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqytgchq4me5"]
+
+[sub_resource type="Gradient" id="Gradient_ruvux"]
+offsets = PackedFloat32Array(0, 0.746753)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x640a"]
+gradient = SubResource("Gradient_ruvux")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="PointLight2D2" type="PointLight2D"]
+light_mask = 128
+visibility_layer = 128
+y_sort_enabled = true
+scale = Vector2(0.3, 0.3)
+color = Color(0, 0.980392, 0.933333, 1)
+energy = 2.0
+blend_mode = 2
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_x640a")
+texture_scale = 3.0

@@ -14,6 +14,7 @@ light_mask = 128
 visibility_layer = 128
 y_sort_enabled = true
 color = Color(0.282353, 1, 0.654902, 0.8)
+energy = 1.2
 blend_mode = 2
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_x640a")

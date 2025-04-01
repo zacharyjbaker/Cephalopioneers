@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=4 uid="uid://bref2e80q5nwl"]
+
+[ext_resource type="TileSet" uid="uid://8fuoflysuhrr" path="res://Assets/Prefabs/tile.tres" id="1_rrfsl"]
+[ext_resource type="Script" path="res://Assets/Scenes/drillable_wall.gd" id="2_x4ftk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ece16"]
+size = Vector2(42.5, 64)
+
+[node name="DrillableWall" type="TileMapLayer"]
+position = Vector2(-103, 1181)
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAD///7/CQAAAAAAAAAAAP7/CgABAAIAAAD/////CQAAAAAAAAD//wAACQAAAAAAAAD//wEACQAAAAAAAAAAAAEACgABAAIAAAAAAAAACgABAAIAAAAAAP//CgABAAIAAAABAP7/CgABAAIAAAABAP//CgABAAIAAAABAAAACgABAAIAAAABAAEACgABAAIAAAA=")
+tile_set = ExtResource("1_rrfsl")
+script = ExtResource("2_x4ftk")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2.25, 0)
+collision_layer = 0
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7.5, 0)
+shape = SubResource("RectangleShape2D_ece16")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

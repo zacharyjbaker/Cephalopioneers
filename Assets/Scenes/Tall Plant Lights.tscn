@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dngpnw4kl20yq"]
+
+[ext_resource type="PackedScene" uid="uid://cqytgchq4me5" path="res://Assets/Prefabs/Outskirt Lights.tscn" id="1_bss81"]
+[ext_resource type="Texture2D" uid="uid://c2jpdpnwiyd6c" path="res://Assets/Plant Lightcone.png" id="2_5enc1"]
+
+[node name="PlantLight" type="Node2D"]
+
+[node name="PointLight2D34" parent="." instance=ExtResource("1_bss81")]
+light_mask = 2
+visibility_layer = 130
+z_index = -5
+position = Vector2(71, 152)
+rotation = -0.319753
+scale = Vector2(0.88076, 0.274981)
+energy = 1.3
+range_z_max = 124
+range_item_cull_mask = 3
+shadow_item_cull_mask = 3
+texture = ExtResource("2_5enc1")
+texture_scale = 4.0
+
+[node name="PointLight2D2" parent="." instance=ExtResource("1_bss81")]
+position = Vector2(-3, -1)
+energy = 3.0
+range_item_cull_mask = 2
+texture_scale = 2.0

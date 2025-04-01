@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://d0la6ayh7nyw8"]
+[gd_scene load_steps=49 format=4 uid="uid://d0la6ayh7nyw8"]
 
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="2_qbk6u"]
@@ -21,8 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="19_qle4q"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="20_lnafa"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="21_ehq06"]
+[ext_resource type="AudioStream" uid="uid://ds6v4fb0mu4ll" path="res://Assets/Sound/Sfx/Thrusters.wav" id="21_xnltu"]
+[ext_resource type="AudioStream" uid="uid://ceirfiplhhbgh" path="res://Assets/Sound/Sfx/Drill.wav" id="22_mrnfo"]
 [ext_resource type="PackedScene" uid="uid://0b3xea72rab" path="res://Assets/Prefabs/crab_pope.tscn" id="23_07pr1"]
-[ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="23_rprh3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
 noise_type = 2
@@ -207,7 +208,6 @@ _data = {
 point_count = 3
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
-script = ExtResource("23_rprh3")
 
 [node name="UI" parent="." instance=ExtResource("1_ktyl6")]
 
@@ -443,7 +443,8 @@ position = Vector2(1344, 973)
 
 [node name="Mech" parent="." instance=ExtResource("20_lnafa")]
 position = Vector2(1349, 1097)
-walk_speed = 360
+thruster_sfx = ExtResource("21_xnltu")
+drill_sfx = ExtResource("22_mrnfo")
 
 [node name="NPCs" type="Node" parent="."]
 
@@ -480,9 +481,10 @@ position = Vector2(122.555, 34.75)
 rotation = -2.3538
 
 [node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player") instance=ExtResource("23_07pr1")]
-position = Vector2(-33.8448, 132.177)
-rotation = 2.3538
+position = Vector2(-5.54517, 108.349)
+rotation = 2.35379
 scale = Vector2(1.15164, 1)
+floor_snap_length = 3.0
 path1 = NodePath("../..")
 path2 = NodePath("../../../Path2")
 smash_path = NodePath("../../../Path3")

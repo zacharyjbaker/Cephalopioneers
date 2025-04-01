@@ -1,9 +1,5 @@
 extends RigidBody2D
-@onready var crash_player = $CrashSFX
-@onready var roll_player = $RollSFX
 
-@export var crash_sfx : Resource
-@export var roll_sfx : Resource
 @export var detection_range: float = 100.0
 @export var roll_force: Vector2 = Vector2(-150.0, 0.0)
 @export var friction_reduction: float = 0.1
@@ -37,12 +33,8 @@ func _process(_delta):
 
 func _on_timer_timeout() -> void:
 	has_landed = true
-	crash_player.stream = crash_sfx
-	crash_player.play()
 	if has_landed:
 		add_constant_force(roll_force)
-	roll_player.stream = roll_sfx
-	roll_player.play()
 
 func find_player():
 	var scene = get_tree().current_scene

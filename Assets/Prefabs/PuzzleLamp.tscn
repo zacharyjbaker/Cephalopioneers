@@ -59,7 +59,7 @@ collision_mask = 524288
 script = ExtResource("1_e2rbp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -5
+z_index = -1
 position = Vector2(11, 19)
 scale = Vector2(4, 4)
 texture = ExtResource("2_ryyen")
