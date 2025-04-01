@@ -1,5 +1,6 @@
-[gd_scene load_steps=27 format=4 uid="uid://d0la6ayh7nyw8"]
+[gd_scene load_steps=28 format=4 uid="uid://d0la6ayh7nyw8"]
 
+[ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_1ukan"]
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
 [ext_resource type="Script" path="res://Assets/Scenes/boss_manager.gd" id="1_p48oh"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="3_pgb00"]
@@ -13,7 +14,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="11_cdk8d"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="12_h8pnm"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="13_dx66a"]
-[ext_resource type="PackedScene" uid="uid://btbtxm7pfgotw" path="res://Assets/Prefabs/dialogue_manager_bf.tscn" id="14_0wevl"]
+[ext_resource type="PackedScene" uid="uid://c846dxhfsnnmd" path="res://Assets/Prefabs/dialogue_manager_bf.tscn" id="14_0wevl"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="19_qle4q"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="20_lnafa"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="21_ehq06"]
@@ -84,11 +85,13 @@ _data = {
 point_count = 3
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
+script = ExtResource("1_1ukan")
 
-[node name="BossManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player")]
+[node name="BossManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player", "save_load")]
 script = ExtResource("1_p48oh")
 mech = NodePath("../Mech")
 player = NodePath("../Nauto")
+save_load = NodePath("..")
 
 [node name="UI" parent="." instance=ExtResource("1_ktyl6")]
 
@@ -103,7 +106,7 @@ texture = ExtResource("5_8x1yd")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
-color = Color(0.349443, 0.427939, 0.181911, 1)
+color = Color(0.1179, 0.151906, 0.0447641, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n7rwt")
@@ -182,11 +185,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DialogueManager" parent="." instance=ExtResource("14_0wevl")]
 
-[node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node") instance=ExtResource("19_qle4q")]
-position = Vector2(1344, 973)
+[node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("19_qle4q")]
+position = Vector2(1344, 1021)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
+save_load = NodePath("..")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("20_lnafa")]
 position = Vector2(1349, 1097)

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://dnawyujiub3da"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://f46mg4arw03n"]
 
 [ext_resource type="Texture2D" uid="uid://bp3vkhp0joom8" path="res://Assets/MapDraft/Test Tile.png" id="1_12yqe"]
 [ext_resource type="Texture2D" uid="uid://3irytp0k3tnh" path="res://Assets/Sprites/Whale Fall Environment/Bone Lamps Whale Fall.png" id="2_s5m2t"]

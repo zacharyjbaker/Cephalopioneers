@@ -78,9 +78,9 @@ func load_next_dialogue():
 		
 		elif dialogue_instance == 4:
 			print ("dialogue 4")
-			other_talk = malo_talk
+			other_talk = bite_talk
 			other_talk.visible = false
-			other_talk = crab_talk
+			other_talk = hidden_talk
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

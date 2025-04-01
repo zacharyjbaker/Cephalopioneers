@@ -2,11 +2,14 @@ extends Area2D
 
 @onready var animation_player = $Sprite2D/AnimationPlayer
 @onready var Sprite2 = $E
+@export var save_load : Node2D
 var is_player_near = false
 var is_pulled = false
 
 func _process(_delta):
 	if is_player_near and Input.is_action_just_pressed("interact") and not is_pulled and all_cauldrons_activated():
+		open_cathedral()
+	if is_player_near and Input.is_action_just_pressed("interact"):
 		open_cathedral()
 
 func open_cathedral():
@@ -36,4 +39,16 @@ func all_cauldrons_activated() -> bool:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "CathedralDoor":  # Match the exact animation name
-		get_tree().change_scene_to_file("res://Assets/Scenes/bossfight.tscn")
+		_load_bossfight()
+		
+func _load_bossfight() -> void:
+	save_load.save_game()
+	await get_tree().process_frame
+	var current_scene = get_parent()
+	for item in get_tree().get_nodes_in_group("instanced"):
+		item.queue_free()
+	var new_scene = ResourceLoader.load("res://Assets/Scenes/bossfight.tscn")
+	get_tree().get_root().add_child(new_scene.instantiate())
+	#await get_tree().process_frame
+	#Global.FREEZE = true
+	current_scene.queue_free()

@@ -114,6 +114,7 @@ rotation = 1.5708
 scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_o3qdc")
+max_speed = 310
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(4.52499e-05, 12.5)

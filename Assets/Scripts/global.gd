@@ -31,6 +31,19 @@ func reset_globals():
 	DAMAGED = false
 	START = false
 	
+func reset_globals_bossfight():
+	HEALTH = 5
+	MECH_HEALTH = 5
+	#MODE = "Nauto"
+	INTERACTABLE = false
+	FREEZE = false
+	SHAKE = false
+	SHAKE_AMT = 0
+	EEL_CUTSCENE = false
+	DAMAGED = false
+	START = false
+	BOSS_FIGHT = false
+	
 func set_dialogue(dialogue_instance: int):
 	var DIALOGUE_INSTANCE = dialogue_instance
 	

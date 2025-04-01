@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://btbtxm7pfgotw"]
+[gd_scene load_steps=33 format=3 uid="uid://c846dxhfsnnmd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="1_0ss0d"]
 [ext_resource type="Texture2D" uid="uid://cjcsbevwuvnnr" path="res://Assets/Prefabs/DialogueBG.png" id="2_hx4tf"]

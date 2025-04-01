@@ -40,8 +40,8 @@ func _ready() -> void:
 			"WhalefallSettlement":
 				change_music(3)
 				
-			"bossfight":
-				change_music(3)
+			"BossFight":
+				change_music(4)
 
 				#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
 				#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))

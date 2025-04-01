@@ -31,6 +31,8 @@ extends CharacterBody2D
 @export var iFrameTime = 1.2
 @export var jump_impulse = 350
 
+@export var save_load : Node2D
+
 #@onready var pilot = mech.get_child(5)
 var pilot = null
 #@onready var mech_camera = mech.get_child(6)
@@ -65,6 +67,7 @@ func _ready() -> void:
 	mech_camera = mech.get_node("MechCamera")
 	pilot_pos = pilot.global_position
 	HP = HP_node.get_node("HP").get_children()
+	print ("HP Nodes:", HP)
 	if is_instance_valid(misc_env):
 		breakable_floor = misc_env.get_node("BreakableFloor")
 		breakable_particles = misc_env.get_node("BreakableParticles")
@@ -238,8 +241,9 @@ func _physics_process(delta: float) -> void:
 		# Nauto movement
 		elif (Global.MODE == "Nauto") and Global.FREEZE == false:
 			if Input.is_action_just_pressed("debug_teleport"):
-				position = Vector2(29000, 1040)
-				_load_whalefall()
+				#position = Vector2(29000, 1040)
+				#_load_whalefall()
+				health_loss()
 			if velocity.y > 0: # falling transition anim
 				if play_transition_anim == true:
 					fall_anim()
@@ -370,6 +374,17 @@ func health_loss() -> void:
 		print (HP[Global.HEALTH].name)
 	hasIFrames = true
 	iFrames.start(iFrameTime)
+	
+	if Global.HEALTH == 0:
+		if Global.BOSS_FIGHT:
+			Global.reset_globals_bossfight()
+		else:
+			Global.reset_globals()
+		#Global.DIALOGUE_INSTANCE = 2
+		save_load.load_game()
+		velocity.x = 0
+		#velocity.y = 0
+		#rotation_degrees = 0
 
 func _on_timer_timeout() -> void:
 	if state == States.MOVE:

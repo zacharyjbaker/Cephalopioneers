@@ -184,6 +184,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_mhllr")
 animation = &"Unarmored"
 script = ExtResource("3_e3v5b")
+health_id = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -206,6 +207,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_jyeuu")
 animation = &"Unarmored"
 script = ExtResource("3_e3v5b")
+health_id = 2
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
@@ -229,6 +231,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_v2xky")
 animation = &"Unarmored"
 script = ExtResource("3_e3v5b")
+health_id = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -251,6 +254,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qjgxn")
 animation = &"Unarmored"
 script = ExtResource("3_e3v5b")
+health_id = 4
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": false,
 "pending_changes": {}
@@ -274,6 +278,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_5u3ww")
 animation = &"Unarmored"
 script = ExtResource("3_e3v5b")
+health_id = 5
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}
