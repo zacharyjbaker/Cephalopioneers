@@ -495,12 +495,13 @@ theme_override_fonts/normal_font = ExtResource("12_th2xk")
 theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
-[node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "misc_env", "HP_node") instance=ExtResource("21_ye3to")]
+[node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "misc_env", "HP_node", "save_load") instance=ExtResource("21_ye3to")]
 position = Vector2(16398, 876)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 misc_env = NodePath("../MiscEnv")
 HP_node = NodePath("../UI")
+save_load = NodePath("..")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("22_2m0jb")]
 position = Vector2(15955, 945)
