@@ -63,14 +63,20 @@ func load_next_dialogue():
 		print ("dialogue 1")
 		other_talk = bite_talk
 	
-	if dialogue_instance == 2:
+	elif dialogue_instance == 2:
 		print ("dialogue 2")
 		other_talk = bite_talk
 		other_talk.visible = false
 		other_talk = malo_talk
-	
+		
 	elif dialogue_instance == 3:
 		print ("dialogue 3")
+		other_talk = malo_talk
+		other_talk.visible = false
+		other_talk = bite_talk
+	
+	elif dialogue_instance == 4:
+		print ("dialogue 4")
 		other_talk = malo_talk
 		other_talk.visible = false
 		other_talk = crab_talk
@@ -119,6 +125,11 @@ func _physics_process(delta: float) -> void:
 						_disable_dialogue()
 						Global.DIALOGUE_INSTANCE = 2
 						load_next_dialogue()
+					"END":
+						print ("End Dialogue")
+						_disable_dialogue()
+						#Global.DIALOGUE_INSTANCE = 3
+						#load_next_dialogue()
 					"ENDCRAB":
 						print ("End Dialogue")
 						_disable_dialogue()

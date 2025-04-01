@@ -265,15 +265,17 @@ animations = [{
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
 script = ExtResource("1_iceec")
 
+[node name="ShallowsManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player")]
+visible = false
+script = ExtResource("1_b8dk6")
+mech = NodePath("../Mech")
+player = NodePath("../Nauto")
+
 [node name="Checkpoint2" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("37_i0rgm")]
 position = Vector2(16709, 1071)
 save_load = NodePath("..")
 
 [node name="UI" parent="." instance=ExtResource("1_srkuf")]
-
-[node name="ShallowsManager" type="Node2D" parent="."]
-visible = false
-script = ExtResource("1_b8dk6")
 
 [node name="WaterShader" type="Sprite2D" parent="."]
 visible = false

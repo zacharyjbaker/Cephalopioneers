@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_4i3ih"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
-[ext_resource type="Script" path="res://Assets/Prefabs/shallows_manager.gd" id="1_x41q6"]
+[ext_resource type="Script" path="res://Assets/Scenes/whalefall_manager.gd" id="2_1gigv"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_2c7dp"]
 [ext_resource type="PackedScene" uid="uid://c4g4f2tjgiexs" path="res://Assets/checkpoint.tscn" id="2_8f1f3"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_doonm"]
@@ -455,11 +455,12 @@ shader_parameter/skew = 0.0
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
 script = ExtResource("1_4i3ih")
 
-[node name="SceneManager" type="Node2D" parent="."]
-script = ExtResource("1_x41q6")
+[node name="WhalefallManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player")]
+script = ExtResource("2_1gigv")
+mech = NodePath("../Mech")
+player = NodePath("../Nauto")
 
 [node name="WaterShader" type="Sprite2D" parent="."]
-visible = false
 light_mask = 16387
 z_index = 99
 material = SubResource("ShaderMaterial_toho5")
@@ -469,7 +470,6 @@ scale = Vector2(568.231, 49.296)
 texture = ExtResource("3_doonm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 515
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
@@ -522,7 +522,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node") instance=ExtResource("21_2t1sa")]
-position = Vector2(21186, -636)
+position = Vector2(22664, 990)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
@@ -1385,8 +1385,9 @@ position = Vector2(42752, -1088)
 position = Vector2(42802, -991)
 new_color = Color(0.8434, 0.667813, 0, 1)
 
-[node name="Checkpoint" parent="." instance=ExtResource("2_8f1f3")]
+[node name="Checkpoint" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
 position = Vector2(22937, 1190)
+save_load = NodePath("..")
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]

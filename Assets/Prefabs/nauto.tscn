@@ -587,7 +587,7 @@ position = Vector2(-2, 0.75)
 rotation = -0.634701
 shape = SubResource("CapsuleShape2D_7kcsx")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="SelfLight" type="PointLight2D" parent="."]
 light_mask = 128
 visibility_layer = 128
 y_sort_enabled = true

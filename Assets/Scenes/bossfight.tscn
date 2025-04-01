@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=4 uid="uid://d0la6ayh7nyw8"]
+[gd_scene load_steps=28 format=4 uid="uid://d0la6ayh7nyw8"]
 
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
+[ext_resource type="Script" path="res://Assets/Scenes/boss_manager.gd" id="1_p48oh"]
 [ext_resource type="Script" path="res://Assets/Prefabs/shallows_manager.gd" id="2_qbk6u"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="3_pgb00"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="4_dnxwv"]
@@ -84,6 +85,11 @@ _data = {
 point_count = 3
 
 [node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
+
+[node name="BossManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player")]
+script = ExtResource("1_p48oh")
+mech = NodePath("../Mech")
+player = NodePath("../Nauto")
 
 [node name="UI" parent="." instance=ExtResource("1_ktyl6")]
 
