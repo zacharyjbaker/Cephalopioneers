@@ -1,9 +1,11 @@
-[gd_scene load_steps=110 format=3 uid="uid://by0icvlejbtja"]
+[gd_scene load_steps=112 format=3 uid="uid://by0icvlejbtja"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="1_uj2yd"]
 [ext_resource type="AudioStream" uid="uid://dcdxp1ox4iyhg" path="res://Assets/Sound/Sfx/Blaster.wav" id="2_brsws"]
 [ext_resource type="Texture2D" uid="uid://bf5totkq46lws" path="res://Assets/Prefabs/MechNoArms.png" id="3_fya3w"]
+[ext_resource type="AudioStream" uid="uid://ds6v4fb0mu4ll" path="res://Assets/Sound/Sfx/Thrusters.wav" id="3_rpxal"]
 [ext_resource type="Texture2D" uid="uid://dwbn1sq5qsm40" path="res://Assets/Prefabs/BackArm_Drill.png" id="3_wwn3q"]
+[ext_resource type="AudioStream" uid="uid://ceirfiplhhbgh" path="res://Assets/Sound/Sfx/Drill.wav" id="4_0wfgy"]
 [ext_resource type="Texture2D" uid="uid://cxdo6xqt0p5d0" path="res://Assets/Prefabs/FrontArm_Laser.png" id="5_cvuf6"]
 [ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="5_lgde3"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="6_4f4cx"]
@@ -664,7 +666,7 @@ animations = [{
 "duration": 1.9,
 "texture": SubResource("AtlasTexture_byud0")
 }],
-"loop": true,
+"loop": false,
 "name": &"Shoot",
 "speed": 10.0
 }]
@@ -777,6 +779,8 @@ collision_layer = 16384
 collision_mask = 32768
 script = ExtResource("1_uj2yd")
 blaster_sfx = ExtResource("2_brsws")
+thruster_sfx = ExtResource("3_rpxal")
+drill_sfx = ExtResource("4_0wfgy")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 40)
@@ -796,7 +800,7 @@ texture_filter = 1
 position = Vector2(40, 43)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_gr5c2")
-animation = &"Idle"
+animation = &"Drill"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {}
@@ -868,7 +872,7 @@ texture_filter = 1
 position = Vector2(43, 29)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_cpqtp")
-animation = &"Shoot"
+animation = &"Idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {}

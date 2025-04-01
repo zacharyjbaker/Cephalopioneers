@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bpyouqxbxr7f5"]
+[gd_scene load_steps=33 format=3 uid="uid://btbtxm7pfgotw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="1_0ss0d"]
 [ext_resource type="Texture2D" uid="uid://cjcsbevwuvnnr" path="res://Assets/Prefabs/DialogueBG.png" id="2_hx4tf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="5_yd13p"]
 [ext_resource type="Texture2D" uid="uid://dx4am2gokj4gw" path="res://Assets/Prefabs/CrabPopePortrait.png" id="6_drmmv"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="6_hrh64"]
+[ext_resource type="Texture2D" uid="uid://bjcusclgdwisc" path="res://Assets/Prefabs/hidden_portrait.png" id="7_gksgq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpqwc"]
 atlas = ExtResource("2_hx4tf")
@@ -162,15 +163,27 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tt0am")
 }, {
-"duration": 1.0,
+"duration": 1.67,
 "texture": SubResource("AtlasTexture_k41h7")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_tt0am")
 }],
 "loop": true,
 "name": &"Talk",
-"speed": 4.0
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf6ld"]
+atlas = ExtResource("7_gksgq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0qkpq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf6ld")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 10.0
 }]
 
 [node name="DialogueManager" type="Node2D"]
@@ -309,6 +322,28 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Assets/Sprites/CrabPopePortrait.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "904342f8980432ac07324996ddc2299f"
+
+[node name="HiddenTalk" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
+texture_filter = 1
+position = Vector2(1496, 322)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_0qkpq")
+animation = &"Talk"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Prefabs/hidden_portrait.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "93e90ede3b4b495822918e4ffa089958"
 
 [node name="NautoPortrait" type="ColorRect" parent="DialogueCanvas"]
 visible = false

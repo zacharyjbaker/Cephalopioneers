@@ -1,15 +1,15 @@
-[gd_scene load_steps=82 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=68 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/scene_manager.gd" id="1_b8dk6"]
+[ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_iceec"]
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_srkuf"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_vxh8v"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="2_srgfu"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_qfhot"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_3ifyq"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="5_6u7nn"]
-[ext_resource type="Texture2D" uid="uid://ddc63b22fsubo" path="res://Assets/MapDraft/Layer 2 Resized.png" id="6_d27y2"]
-[ext_resource type="Texture2D" uid="uid://bf2hopcupr884" path="res://Assets/MapDraft/Shallows Final Background.png" id="8_blre6"]
 [ext_resource type="TileSet" uid="uid://8fuoflysuhrr" path="res://Assets/Prefabs/tile.tres" id="8_nnxgj"]
+[ext_resource type="PackedScene" uid="uid://b17t1sspo1ejp" path="res://parallax_background.tscn" id="9_ervmy"]
 [ext_resource type="PackedScene" uid="uid://bfe6oxodnb5nu" path="res://Assets/Scenes/Shallows_Tile_map_layer.tscn" id="9_n0xr4"]
 [ext_resource type="PackedScene" uid="uid://tbxkugnbp6o8" path="res://Assets/Prefabs/drillable_wall.tscn" id="9_so8s1"]
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="10_0gom4"]
@@ -32,10 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://bss4600ghnvh8" path="res://Assets/Prefabs/chase_needlenose.tscn" id="29_xbdbo"]
 [ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="30_ny3i0"]
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="31_vmlcy"]
-[ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="32_pt0sa"]
-[ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="33_g8pmf"]
 [ext_resource type="PackedScene" uid="uid://cio233345wwf8" path="res://Assets/Prefabs/boulder_wall.tscn" id="34_empbd"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="35_fdgge"]
+[ext_resource type="PackedScene" uid="uid://c4g4f2tjgiexs" path="res://Assets/checkpoint.tscn" id="37_i0rgm"]
 [ext_resource type="PackedScene" uid="uid://clgn2bcvfayy" path="res://Assets/Prefabs/Boulder.tscn" id="37_rha8h"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
@@ -263,123 +262,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hcpi8"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(64, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iiwjo"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(192, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pn3lu"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(64, 0, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0e86"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(128, 0, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0t44"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(192, 0, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tl12"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(0, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmwsc"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(128, 128, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkmmq"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(0, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c8abm"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(64, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ebjf"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(128, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_62oxf"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(192, 256, 64, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vw16r"]
-atlas = ExtResource("33_g8pmf")
-region = Rect2(0, 384, 64, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1qsi2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iiwjo")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pn3lu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j0e86")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p0t44")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0tl12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
-}],
-"loop": false,
-"name": &"Mimic",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hcpi8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rmwsc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iiwjo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dkmmq")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 17.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c8abm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ebjf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_62oxf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vw16r")
-}],
-"loop": true,
-"name": &"WalkDrill",
-"speed": 17.0
-}]
-
 [node name="Node2D" type="Node2D" groups=["TheShallows"]]
+script = ExtResource("1_iceec")
 
 [node name="UI" parent="." instance=ExtResource("1_srkuf")]
 
@@ -407,25 +291,7 @@ default_intensity = 0.37
 
 [node name="Timer" type="Timer" parent="WorldEnvironment"]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.3, 1)
-motion_mirroring = Vector2(2048, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource("6_d27y2")
-centered = false
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.9, 1)
-motion_mirroring = Vector2(2048, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2(6, 6)
-texture = ExtResource("8_blre6")
-centered = false
+[node name="ParallaxBackground" parent="." instance=ExtResource("9_ervmy")]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("9_n0xr4")]
 scale = Vector2(4, 4)
@@ -439,8 +305,10 @@ tile_map_data = PackedByteArray("AAAJAgAAAQACAAIAAAAKAgAAAQACAAIAAAALAgAAAQACAAI
 tile_set = ExtResource("8_nnxgj")
 collision_enabled = false
 
-[node name="BackgroundMusicManager" type="Node2D" parent="."]
+[node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script")]
 script = ExtResource("10_0gom4")
+dialogue_script = NodePath("../DialogueManager")
+nauto_script = NodePath("../Nauto")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("11_2qxj4")
@@ -634,11 +502,17 @@ theme_override_fonts/normal_font = ExtResource("12_th2xk")
 theme_override_font_sizes/normal_font_size = 80
 metadata/_edit_use_anchors_ = true
 
-[node name="Nauto" parent="." instance=ExtResource("21_ye3to")]
+[node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node") instance=ExtResource("21_ye3to")]
 position = Vector2(1369, 812)
+mech = NodePath("../Mech")
+env_node = NodePath("../WorldEnvironment")
+HP_node = NodePath("../UI")
 
-[node name="Mech" parent="." instance=ExtResource("22_2m0jb")]
+[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("22_2m0jb")]
 position = Vector2(926, 881)
+player = NodePath("../Nauto")
+env_node = NodePath("../WorldEnvironment")
+HP_node = NodePath("../UI")
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="."]
@@ -703,33 +577,6 @@ metadata/_aseprite_wizard_source_file_hash_ = "63d319f3b7d96c43098a9c21cc2b1a1c"
 z_index = -1
 position = Vector2(17157, 1999)
 rotation = 0.000544786
-
-[node name="LilCrab" type="CharacterBody2D" parent="."]
-visible = false
-position = Vector2(11629, 889)
-scale = Vector2(4, 4)
-script = ExtResource("32_pt0sa")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LilCrab"]
-texture_filter = 1
-position = Vector2(-1.33333, 9)
-sprite_frames = SubResource("SpriteFrames_1qsi2")
-animation = &"Mimic"
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"slice": "",
-"source": "res://Assets/Sprites/SpiderCrab.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "d033356c267ab18f49b61b6b6d3dbbe9"
-
-[node name="Timer" type="Timer" parent="LilCrab"]
 
 [node name="NPCs" type="Node" parent="."]
 
@@ -1654,7 +1501,8 @@ energy = 0.72
 texture = ExtResource("35_fdgge")
 texture_scale = 6.85
 
+[node name="Checkpoint" parent="." instance=ExtResource("37_i0rgm")]
+
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="DialogueManager/DialogueTimer" to="DialogueManager" method="_on_timer_timeout"]
-[connection signal="timeout" from="LilCrab/Timer" to="LilCrab" method="_on_timer_timeout"]

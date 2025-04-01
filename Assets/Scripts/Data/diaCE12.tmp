@@ -10,7 +10,11 @@
 		"8": "/B/Report back as soon as you learn anything.",
 		"9": "/END/"
 	},
-	
+	"Level2" : {
+		"1": "/B/Hello, this is level 2 dialogue.",
+		"2": "/N/Yes",
+		"3": "/END/",
+	},
 	"2" : {
 		"1": "/N/Lieutenant!",
 		"2": "/M/Nauto... ya' got the signal. Excellent work rookie.",

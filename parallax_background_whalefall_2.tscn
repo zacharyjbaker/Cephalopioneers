@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bacwwvwuc4206"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/parallax_switch.gd" id="1_4rtir"]
+[ext_resource type="Texture2D" uid="uid://dnb3qpldd6q3e" path="res://Assets/Sprites/Whale Fall Environment/Whale Fall BG.png" id="2_onbgw"]
+
+[node name="ParallaxBackground2" type="ParallaxBackground"]
+script = ExtResource("1_4rtir")
+player = NodePath("../Nauto")
+parallax_to_hide = NodePath(".")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+position = Vector2(0, 235)
+motion_scale = Vector2(0.3, 1)
+motion_mirroring = Vector2(3072, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(-557, 283)
+scale = Vector2(4, 4)
+texture = ExtResource("2_onbgw")
+centered = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

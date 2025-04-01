@@ -189,7 +189,7 @@ func _physics_process(delta: float) -> void:
 			mech.velocity.x = -100
 			mech.move_anim()
 			
-		if abs(velocity.x) > 0 and !isWalking and is_on_floor():
+		if abs(velocity.x) > 0 and !isWalking and is_on_floor() and Global.MODE == "Nauto":
 			print("walking")
 			walk_player.play()
 			isWalking = true

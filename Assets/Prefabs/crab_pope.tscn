@@ -263,7 +263,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_viqo2")
 }],
-"loop": true,
+"loop": false,
 "name": &"Blast",
 "speed": 5.0
 }, {
@@ -444,7 +444,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ug4p2")
 }],
-"loop": true,
+"loop": false,
 "name": &"Struggle",
 "speed": 5.0
 }, {
@@ -1074,9 +1074,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(0, 22.75)
 sprite_frames = SubResource("SpriteFrames_armdq")
-animation = &"Teleport"
-frame = 14
-frame_progress = 1.0
+animation = &"Struggle"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -1095,9 +1093,9 @@ metadata/_aseprite_wizard_source_file_hash_ = "6439b904106bbe351ae3dfbab79e3e4b"
 position = Vector2(-36, -20.5)
 scale = Vector2(3.10376, 2.89719)
 color = Color(0.819608, 1, 0.901961, 1)
-energy = 0.8
+energy = 0.0
 texture = SubResource("GradientTexture2D_0yxxh")
-texture_scale = 0.2
+texture_scale = 0.01
 
 [node name="UpdateSprite" type="AnimatedSprite2D" parent="."]
 visible = false

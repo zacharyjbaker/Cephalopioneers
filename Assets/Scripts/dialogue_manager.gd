@@ -39,8 +39,8 @@ signal bgmusic_fight
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dialogue.visible_characters = 0
-	dialogue_instance = "1"
-	other_talk = $DialogueCanvas/BiteTalk
+	dialogue_instance = "3"
+	other_talk = $DialogueCanvas/HiddenTalk
 	#print ("Dict:", DialogueDict)
 	
 func load_next_dialogue():
@@ -53,7 +53,6 @@ func load_next_dialogue():
 	dialogue_text_color = "theme_override_colors/default_color"
 	dialogue_font_path = ""
 	
-	'''
 	if dialogue_instance == "2":
 		other_talk = bite_talk
 		other_talk.visible = false
@@ -63,7 +62,6 @@ func load_next_dialogue():
 		other_talk = malo_talk
 		other_talk.visible = false
 		other_talk = crab_talk
-	'''
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

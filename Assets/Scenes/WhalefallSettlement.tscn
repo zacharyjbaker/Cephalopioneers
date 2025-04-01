@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=72 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_4i3ih"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
@@ -8,20 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="3_doonm"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="4_e1pi3"]
 [ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="5_gcgym"]
-[ext_resource type="Texture2D" uid="uid://dnb3qpldd6q3e" path="res://Assets/Sprites/Whale Fall Environment/Whale Fall BG.png" id="7_1a3wl"]
 [ext_resource type="PackedScene" uid="uid://bpyouqxbxr7f5" path="res://Assets/Prefabs/dialogue_manager.tscn" id="8_135n4"]
-[ext_resource type="Texture2D" uid="uid://025sq2a3pv6d" path="res://Assets/MapDraft/Water.png" id="8_bcj67"]
-[ext_resource type="Texture2D" uid="uid://2qmxddsquduq" path="res://Assets/Sprites/Whale Fall Environment/Skull BG 3 Alt.png" id="8_qitqd"]
-[ext_resource type="Texture2D" uid="uid://k5kxud264f1q" path="res://Assets/Sprites/Whale Fall Environment/Skulls BG 2.png" id="9_u6l3y"]
-[ext_resource type="Texture2D" uid="uid://d2ys1aqsvebdl" path="res://Assets/Sprites/Whale Fall Environment/Skulls BG 1.png" id="10_2i7rw"]
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="10_6mb7k"]
-[ext_resource type="Script" path="res://Assets/Scenes/parallax_switch.gd" id="11_5japl"]
+[ext_resource type="PackedScene" uid="uid://c55yyfmqks0ja" path="res://parallax_background_whalefall.tscn" id="10_carru"]
+[ext_resource type="PackedScene" uid="uid://bacwwvwuc4206" path="res://parallax_background_whalefall_2.tscn" id="11_5kpfi"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="11_pgbqo"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="12_rqy8y"]
-[ext_resource type="AudioStream" uid="uid://ds6v4fb0mu4ll" path="res://Assets/Sound/Sfx/Thrusters.wav" id="20_22oj7"]
 [ext_resource type="PackedScene" uid="uid://ctojvjycd40p0" path="res://Assets/Prefabs/PuzzleLamp.tscn" id="20_eb28t"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
-[ext_resource type="AudioStream" uid="uid://ceirfiplhhbgh" path="res://Assets/Sound/Sfx/Drill.wav" id="21_yntg1"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
 [ext_resource type="PackedScene" uid="uid://gm6hpf1l6li7" path="res://Assets/Prefabs/guard_crab.tscn" id="22_pfjnx"]
 [ext_resource type="PackedScene" uid="uid://b3jgfc12ggl4v" path="res://Assets/Sprites/Whale Fall Environment/Bone Gate.tscn" id="23_3ta5d"]
@@ -492,81 +486,9 @@ default_intensity = 0.0
 
 [node name="DialogueManager" parent="." instance=ExtResource("8_135n4")]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" parent="." instance=ExtResource("10_carru")]
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, 235)
-motion_scale = Vector2(0.3, 1)
-motion_mirroring = Vector2(3072, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-position = Vector2(-557, 283)
-scale = Vector2(4, 4)
-texture = ExtResource("7_1a3wl")
-centered = false
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, 235)
-motion_scale = Vector2(0.3, 1)
-motion_mirroring = Vector2(3072, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
-position = Vector2(-559, -3081)
-scale = Vector2(4, 17.5208)
-texture = ExtResource("8_bcj67")
-centered = false
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.6, 1)
-motion_mirroring = Vector2(3840, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2(0, 418)
-scale = Vector2(5, 5)
-texture = ExtResource("8_qitqd")
-centered = false
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.7, 1)
-motion_offset = Vector2(289, 0)
-motion_mirroring = Vector2(2304, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(0, 580)
-scale = Vector2(3, 3)
-texture = ExtResource("9_u6l3y")
-centered = false
-region_rect = Rect2(0, 0, 2304, 192)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.9, 1)
-motion_mirroring = Vector2(2304, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(0, 726)
-scale = Vector2(3, 3)
-texture = ExtResource("10_2i7rw")
-centered = false
-
-[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
-script = ExtResource("11_5japl")
-player = NodePath("../Nauto")
-parallax_to_hide = NodePath(".")
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2"]
-position = Vector2(0, 235)
-motion_scale = Vector2(0.3, 1)
-motion_mirroring = Vector2(3072, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer4"]
-position = Vector2(-557, 283)
-scale = Vector2(4, 4)
-texture = ExtResource("7_1a3wl")
-centered = false
-
-[node name="Timer" type="Timer" parent="ParallaxBackground2"]
-
-[node name="Timer2" type="Timer" parent="ParallaxBackground2"]
+[node name="ParallaxBackground2" parent="." instance=ExtResource("11_5kpfi")]
 
 [node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script")]
 script = ExtResource("10_6mb7k")
@@ -610,8 +532,6 @@ position = Vector2(22660, 1127)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
-thruster_sfx = ExtResource("20_22oj7")
-drill_sfx = ExtResource("21_yntg1")
 
 [node name="NPCs" type="Node" parent="."]
 
@@ -1469,6 +1389,4 @@ new_color = Color(0.8434, 0.667813, 0, 1)
 position = Vector2(22937, 1190)
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
-[connection signal="timeout" from="ParallaxBackground2/Timer" to="ParallaxBackground2" method="_on_timer_timeout"]
-[connection signal="timeout" from="ParallaxBackground2/Timer2" to="ParallaxBackground2" method="_on_timer_2_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]
