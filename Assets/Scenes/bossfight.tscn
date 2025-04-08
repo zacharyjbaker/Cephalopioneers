@@ -244,8 +244,6 @@ smash_path = NodePath("../../../Path3")
 crab_spawnpoints = NodePath("../../../CrabSpawnNode")
 blast_spawnpoints = NodePath("../../../BlastSpawnNode")
 player = NodePath("../../../Mech")
-max_durability = 50
-health = 3
 mech = NodePath("../../../Mech")
 env_node = NodePath("../../../WorldEnvironment")
 

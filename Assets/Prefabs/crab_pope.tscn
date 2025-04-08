@@ -1224,6 +1224,7 @@ color = Color(0.486275, 0.921569, 1, 1)
 
 [node name="Death" type="CPUParticles2D" parent="."]
 position = Vector2(3, 13.5)
+emitting = false
 amount = 3000
 lifetime = 20.0
 speed_scale = 2.0
