@@ -192,11 +192,12 @@ env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
-[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("20_lnafa")]
+[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("20_lnafa")]
 position = Vector2(1349, 1097)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
+save_load = NodePath("..")
 
 [node name="NPCs" type="Node" parent="."]
 

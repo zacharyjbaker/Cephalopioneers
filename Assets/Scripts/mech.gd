@@ -20,10 +20,12 @@ extends CharacterBody2D
 @onready var thruster_player = $ThrusterSFX
 @onready var drill_player = $DrillSFX
 @onready var iFrames = $IFrames
+@onready var death_fx = $Death
 
 @export var player : Node2D
 @export var env_node : WorldEnvironment
 @export var HP_node : CanvasLayer
+@export var save_load : Node2D
 
 @onready var pilot_pos = pilot.global_position
 var HP = null
@@ -396,6 +398,21 @@ func health_loss() -> void:
 	iFrames.start(iFrameTime)
 	print ("Mech HP:", Global.MECH_HEALTH)
 	print ("Nauto HP:", Global.HEALTH)
+	
+	if Global.HEALTH == 0:
+		Global.FREEZE = true
+		death_fx.emitting = true
+		await get_tree().create_timer(1.0).timeout
+		self.visible = false
+		if Global.BOSS_FIGHT:
+			Global.reset_globals_bossfight()
+		else:
+			Global.reset_globals()
+		#Global.DIALOGUE_INSTANCE = 2
+		save_load.load_game()
+		velocity.x = 0
+		#velocity.y = 0
+		#rotation_degrees = 0
 		
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	if !hasIFrames:

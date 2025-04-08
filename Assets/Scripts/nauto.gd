@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var physics_collider = $PhysicsCollider
 @onready var crouch_collider = $PhysicsColliderCrouch
 @onready var self_light = $SelfLight
+@onready var death_fx = $Death
 
 @onready var walk_player = $WalkSFX
 @onready var charge_player = $ChargeSFX
@@ -380,6 +381,10 @@ func health_loss() -> void:
 	iFrames.start(iFrameTime)
 	
 	if Global.HEALTH == 0:
+		Global.FREEZE = true
+		death_fx.emitting = true
+		await get_tree().create_timer(1.0).timeout
+		self.visible = false
 		if Global.BOSS_FIGHT:
 			Global.reset_globals_bossfight()
 		else:

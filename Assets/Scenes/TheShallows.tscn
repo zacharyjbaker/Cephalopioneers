@@ -253,11 +253,12 @@ misc_env = NodePath("../MiscEnv")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
-[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("22_2m0jb")]
+[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("22_2m0jb")]
 position = Vector2(15422, 912)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
+save_load = NodePath("..")
 hover_height = 300
 
 [node name="Malo" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player")]
