@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var magicSFX = $MagicSFX
 @onready var shatterSFX = $ShatterSFX
 @onready var staff_light = $Sprite/StaffLight
+@onready var death_fx = $Death
+@onready var damage_fx = $Damage
 
 @export var path1 : Node2D
 @export var path2 : Node2D
@@ -22,6 +24,7 @@ extends CharacterBody2D
 @export var durability = max_durability
 @export var health = 3
 @export var mech : Node2D
+@export var env_node : WorldEnvironment
 var crab_minion = preload("res://Assets/Prefabs/lil_crab.tscn")
 var eye_blast = preload("res://Assets/Prefabs/eye_blast.tscn")
 var eel_blast = preload("res://Assets/Prefabs/eel_blast.tscn")
@@ -92,7 +95,13 @@ func _physics_process(delta: float) -> void:
 		###print (position.y)
 		
 		if health == 0:
-			queue_free()
+			Global.FREEZE = true
+			death_fx.emitting = true
+			await get_tree().create_timer(2.0).timeout
+			#self.visible = false
+			Global.FREEZE = false
+			#queue_free()
+			env_node.fade_to_black()
 			print ("King Crab Defeated")
 			
 		if isLightLerp:
@@ -115,6 +124,7 @@ func _physics_process(delta: float) -> void:
 				print ("skull broken")
 				shatterSFX.play()
 				health -= 1
+				damage_fx.emitting = true
 				
 		elif drillable == true and mech.drill_particles.emitting == true:
 			mech.drill_particles.emitting = false

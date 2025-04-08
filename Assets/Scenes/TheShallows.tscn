@@ -1060,6 +1060,12 @@ scale_amount_min = 2.0
 scale_amount_max = 5.0
 color = Color(0.97, 0.700663, 0.4947, 1)
 
+[node name="DeathPit" parent="MiscEnv" instance=ExtResource("30_ny3i0")]
+visible = false
+position = Vector2(5512, 1662)
+rotation = -1.57141
+scale = Vector2(2.23857, 53.561)
+
 [node name="GodrayLighting" type="Node" parent="."]
 
 [node name="Godrays" type="PointLight2D" parent="GodrayLighting"]
