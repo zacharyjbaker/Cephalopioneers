@@ -28,6 +28,7 @@ var flashlight: Node2D = null
 var is_in_flashlight = false
 var ambush_triggered = false
 var isScuttling = false
+var isStun = false
 
 var rng = RandomNumberGenerator.new()
 
@@ -78,8 +79,8 @@ func _physics_process(delta: float) -> void:
 				else:
 					distance = 100000000
 					y_distance = 10000000
-				#print (distance)
-				if abs(distance) < detection_range and y_distance < 50 and ambush_triggered == false:
+				print (y_distance)
+				if abs(distance) < detection_range and y_distance < 100 and ambush_triggered == false:
 					#print("start")
 					ambush_triggered = true
 					timer.start(0.5)
@@ -114,18 +115,23 @@ func _physics_process(delta: float) -> void:
 								velocity.x = sign(distance) * max_speed 
 					'''
 					#print (is_in_flashlight)
-					if abs(distance) < aggro_range:
-						if is_in_flashlight == true:
-							velocity.x += delta * run_speed * sign(distance)
-							if abs(velocity.x) > run_max_speed:
-								velocity.x = sign(distance) * run_max_speed 
-						else:
-							velocity.x += delta * charge_speed * -sign(distance)
-							if abs(velocity.x) > charge_max_speed:
-								velocity.x = -sign(distance) * charge_max_speed
+					if isStun:
+						velocity.x += delta * run_speed * sign(distance)
+						if abs(velocity.x) > run_max_speed:
+							velocity.x = sign(distance) * run_max_speed 
 					else:
-						velocity.x = 0
-						anim_player.play("Idle")
+						if abs(distance) < aggro_range:
+							if is_in_flashlight == true:
+								velocity.x += delta * run_speed * sign(distance)
+								if abs(velocity.x) > run_max_speed:
+									velocity.x = sign(distance) * run_max_speed 
+							else:
+								velocity.x += delta * charge_speed * -sign(distance)
+								if abs(velocity.x) > charge_max_speed:
+									velocity.x = -sign(distance) * charge_max_speed
+						else:
+							velocity.x = 0
+							#anim_player.play("Idle")
 
 func _on_timer_timeout() -> void:
 	if state == States.AMBUSH:
@@ -154,6 +160,8 @@ func _on_timer_timeout() -> void:
 		#anim_player.play("WalkDrill")
 		#state = States.WALKDRILL
 		#timer.start(4)
+	if isStun:
+		isStun = false
 		
 func find_player():
 	player = get_tree().current_scene.get_node_or_null("Nauto")
@@ -163,3 +171,27 @@ func find_player():
 func restart_scuttle():
 	print("fin scuttling")
 	isScuttling = false
+	
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if state == States.WALK:
+		if !body.get_node("HitBox"):
+			return
+		if body.get_node("HitBox").is_in_group("laser"):
+			print ("hit")
+			body.queue_free()
+			if isStun == false:
+				#velocity.x += body.velocity.x * 3
+				velocity.x = 0
+				velocity.x += body.velocity.x / 8
+				var random_num = rng.randf_range(-1.0, 1.0)
+				velocity.y = 0
+				velocity.y += body.velocity.x / 4 * random_num
+				#print (env_node.environment.glow_intensity)
+				isStun = true
+				#mode.visible = false
+				#stun.visible = true
+				#stun.play("Stunned")
+				#mode.play("Cooldown")
+				#sprite.stop()
+				timer.start(3.0)

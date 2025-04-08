@@ -535,7 +535,7 @@ position = Vector2(-1.5, 52)
 shape = SubResource("RectangleShape2D_6s0cu")
 
 [node name="BackArm" type="AnimatedSprite2D" parent="."]
-z_index = -2
+z_index = -1
 texture_filter = 1
 position = Vector2(40, 43)
 scale = Vector2(4, 4)
@@ -558,7 +558,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "71df3f208cd5fa3502d27772443687ac"
 
 [node name="MechBody" type="AnimatedSprite2D" parent="."]
 light_mask = 27
-z_index = -2
+z_index = -1
 texture_filter = 1
 position = Vector2(19, 58)
 scale = Vector2(4, 4)
@@ -582,7 +582,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "c2b92b5491f68b56925438d7308f5701"
 
 [node name="FrontArm" type="AnimatedSprite2D" parent="."]
 light_mask = 25
-z_index = 1000
+z_index = 2
 texture_filter = 1
 position = Vector2(43, 29)
 scale = Vector2(4, 4)
@@ -712,6 +712,7 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 
 [node name="FlashlightCone" type="Area2D" parent="."]
+z_index = -2
 position = Vector2(603, 62)
 rotation = -1.5708
 collision_layer = 0
@@ -730,7 +731,7 @@ z_index = 1
 position = Vector2(603, 62)
 rotation = -1.5708
 energy = 1.28
-range_z_max = 999
+range_z_max = 1
 range_item_cull_mask = 7
 texture = ExtResource("8_sxyis")
 texture_scale = 1.8

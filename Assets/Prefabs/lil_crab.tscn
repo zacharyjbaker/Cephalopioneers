@@ -303,3 +303,4 @@ stream = ExtResource("6_8mf2g")
 volume_db = -7.518
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
