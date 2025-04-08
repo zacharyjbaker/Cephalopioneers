@@ -36,12 +36,14 @@ func _ready() -> void:
 					eel_script.bgmusic_stop.connect(change_music.bind(-1))
 				#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
 				#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))
+				print ("Playing Cargo.mp3")
 				
 			"WhalefallSettlement":
 				change_music(3)
+				print ("Playing Whale.mp3")
 				
 			"BossFight":
-				change_music(4)
+				change_music(3)
 
 				#eel_script.bg_music_lower_volume.connect(change_volume.bind(-1))
 				#eel_script.bg_music_raise_volume.connect(change_volume.bind(1))

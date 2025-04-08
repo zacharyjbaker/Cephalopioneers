@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dnpi7o2tmbwut"
-valid=false
+path="res://.godot/imported/Aardvark.aseprite-923ae762b93553adc99a5e83924dbfe1.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Aardvark.aseprite"
+dest_files=["res://.godot/imported/Aardvark.aseprite-923ae762b93553adc99a5e83924dbfe1.res"]
 
 [params]
 

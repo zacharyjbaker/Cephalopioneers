@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=74 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_4i3ih"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
@@ -51,7 +51,9 @@
 [ext_resource type="Texture2D" uid="uid://bld4um2lhrbgv" path="res://Assets/Sprites/Whale Fall Environment/Tall Light Plant 1.png" id="53_p81hq"]
 [ext_resource type="Texture2D" uid="uid://pybdcindewkf" path="res://Assets/Sprites/Whale Fall Environment/Tall Light Plant 2.png" id="54_lgbqt"]
 [ext_resource type="Texture2D" uid="uid://dukg6tej3fs6p" path="res://Assets/Sprites/Whale Fall Environment/Tall Light Plant 3.png" id="55_bsniu"]
+[ext_resource type="PackedScene" uid="uid://g2ooqjtfx8pk" path="res://Assets/Prefabs/crab_mimic.tscn" id="56_2qghl"]
 [ext_resource type="PackedScene" uid="uid://b6sh2h644n12a" path="res://Assets/Sprites/Whale Fall Environment/ColorCollectable.tscn" id="57_ad17f"]
+[ext_resource type="PackedScene" uid="uid://ci3uvytrvfcdg" path="res://Assets/Prefabs/crab_mimic_alt.tscn" id="57_q43hi"]
 [ext_resource type="PackedScene" uid="uid://d4g2ylwhqe6f5" path="res://mechcurrent.tscn" id="58_q2jjd"]
 [ext_resource type="PackedScene" uid="uid://dngpnw4kl20yq" path="res://Assets/Scenes/Tall Plant Lights.tscn" id="59_uggkb"]
 [ext_resource type="PackedScene" uid="uid://bref2e80q5nwl" path="res://Assets/Prefabs/drillable_wall_stone.tscn" id="59_x5y2w"]
@@ -509,6 +511,7 @@ scale = Vector2(568.231, 49.296)
 texture = ExtResource("3_doonm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 515
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
@@ -562,14 +565,14 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
-position = Vector2(21709, 1168)
+position = Vector2(25531, -268)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("22_joohn")]
-position = Vector2(21223, 966)
+position = Vector2(25045, -470)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
@@ -612,7 +615,7 @@ crab_type = 2
 player = NodePath("../../Nauto")
 
 [node name="LilCrab7" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("48_ai2gs")]
-position = Vector2(25154, -1109)
+position = Vector2(25428, -1110)
 crab_type = 2
 player = NodePath("../../Nauto")
 
@@ -1510,6 +1513,12 @@ new_color = Color(0.8434, 0.667813, 0, 1)
 [node name="Checkpoint" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
 position = Vector2(22937, 1190)
 save_load = NodePath("..")
+
+[node name="CrabMimic" parent="." instance=ExtResource("56_2qghl")]
+position = Vector2(25849, -406)
+
+[node name="CrabMimicAlt" parent="." instance=ExtResource("57_q43hi")]
+position = Vector2(25527, -1110)
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]

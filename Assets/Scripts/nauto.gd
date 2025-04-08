@@ -348,6 +348,10 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 					#velocity.y += body.velocity.y * 3
 					if body.is_in_group("aardvark") and body.upside_down == true:
 						velocity.y += -(velocity.y * 2 + body.y_knockback)
+				if (body.get_node("HitBox").is_in_group("instant_death") and Global.MODE == "Nauto"):
+					Global.HEALTH = 0
+					health_loss()
+					#print (env_node.environm
 			if body.get_node("TempHitBox"):
 				if (body.get_node("TempHitBox").is_in_group("damage") and Global.MODE == "Nauto"):
 					#print ("hit")

@@ -265,8 +265,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iv4dv"]
-size = Vector2(27.8947, 22.7786)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n8ac"]
+size = Vector2(31.6667, 20)
 
 [node name="Aardvark" type="CharacterBody2D" groups=["NPC", "aardvark"]]
 z_index = -2
@@ -299,6 +299,6 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "04d2eef7278578f71137d17eb481a6da"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.25, -4.5)
+position = Vector2(0.125, -5)
 scale = Vector2(2.85, 0.340232)
-shape = SubResource("RectangleShape2D_iv4dv")
+shape = SubResource("RectangleShape2D_6n8ac")

@@ -35,7 +35,7 @@ func _ready() -> void:
 	#timer.start(2)
 	velocity.x = 0
 	velocity.y = 0
-	find_player()
+	#find_player()
 	if crab_type == 1:
 		altcrab_sprite.visible = false
 		crab_sprite.visible = true
@@ -45,10 +45,11 @@ func _ready() -> void:
 		altcrab_sprite.visible = true
 		anim_player = altcrab_sprite
 	#print ("anim:", anim_player)
-	
+	print ("Player:", player)
 	scuttle_player.connect("finished", restart_scuttle)
 
 func _physics_process(delta: float) -> void:
+	#find_player()
 	if is_instance_valid(Global):
 		#print (position)
 		if abs(velocity.x) > 0 and !isScuttling:
@@ -70,12 +71,15 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			if state == States.AMBUSH:
 				var distance = 0
+				var y_distance = 0
 				if is_instance_valid(player):
 					distance = global_position.x - player.global_position.x
+					y_distance = abs(global_position.y - player.global_position.y)
 				else:
 					distance = 100000000
+					y_distance = 10000000
 				#print (distance)
-				if abs(distance) < detection_range and ambush_triggered == false:
+				if abs(distance) < detection_range and y_distance < 50 and ambush_triggered == false:
 					#print("start")
 					ambush_triggered = true
 					timer.start(0.5)
@@ -119,6 +123,9 @@ func _physics_process(delta: float) -> void:
 							velocity.x += delta * charge_speed * -sign(distance)
 							if abs(velocity.x) > charge_max_speed:
 								velocity.x = -sign(distance) * charge_max_speed
+					else:
+						velocity.x = 0
+						anim_player.play("Idle")
 
 func _on_timer_timeout() -> void:
 	if state == States.AMBUSH:
@@ -151,7 +158,7 @@ func _on_timer_timeout() -> void:
 func find_player():
 	player = get_tree().current_scene.get_node_or_null("Nauto")
 	flashlight = get_tree().current_scene.get_node_or_null("FlashlightCone")
-	
+	#print (player)
 	
 func restart_scuttle():
 	print("fin scuttling")

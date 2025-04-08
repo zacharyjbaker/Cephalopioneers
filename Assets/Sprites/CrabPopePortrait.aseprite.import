@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://nlgo0odai0n7"
-valid=false
+path="res://.godot/imported/CrabPopePortrait.aseprite-959b4c175c6ea75840cf8ff1198ca28b.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/CrabPopePortrait.aseprite"
+dest_files=["res://.godot/imported/CrabPopePortrait.aseprite-959b4c175c6ea75840cf8ff1198ca28b.res"]
 
 [params]
 

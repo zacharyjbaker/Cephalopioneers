@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://cycgotxm5gyon"
-valid=false
+path="res://.godot/imported/ChargeJumpBar.aseprite-bf8b8ccbcac688b21e9ed8d2cc9953e8.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/ChargeJumpBar.aseprite"
+dest_files=["res://.godot/imported/ChargeJumpBar.aseprite-bf8b8ccbcac688b21e9ed8d2cc9953e8.res"]
 
 [params]
 

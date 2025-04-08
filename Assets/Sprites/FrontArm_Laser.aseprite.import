@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://ca23xibk5w1ld"
-valid=false
+path="res://.godot/imported/FrontArm_Laser.aseprite-9f3f0269833f5a0953e2fadf218d0c69.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/FrontArm_Laser.aseprite"
+dest_files=["res://.godot/imported/FrontArm_Laser.aseprite-9f3f0269833f5a0953e2fadf218d0c69.res"]
 
 [params]
 

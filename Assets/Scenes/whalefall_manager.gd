@@ -16,10 +16,10 @@ func _ready() -> void:
 	if Global.BOSS_FIGHT == false:
 		Global.DIALOGUE_INSTANCE = 3
 		Global.SHAKE = false
+		Global.SCENE = "WhalefallSettlement"
 		player.get_node("Nauto").play("Charge")
 		await get_tree().create_timer(5).timeout
 		player.get_node("Nauto").play("Idle")
-		Global.SCENE = "WhalefallSettlement"
 		dialogue_manager.get_node("DialogueCanvas").visible = true
 	
 

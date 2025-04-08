@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://ciesqbb66h71i"
-valid=false
+path="res://.godot/imported/hidden_portrait.aseprite-ad8076230e6f2859415ac40311d1377d.res"
 
 [deps]
 
 source_file="res://Assets/Prefabs/hidden_portrait.aseprite"
+dest_files=["res://.godot/imported/hidden_portrait.aseprite-ad8076230e6f2859415ac40311d1377d.res"]
 
 [params]
 

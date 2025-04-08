@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dhgx6o3rdua0q"]
+[gd_scene load_steps=33 format=3 uid="uid://dhgx6o3rdua0q"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/lil_crab.gd" id="1_btat5"]
 [ext_resource type="Texture2D" uid="uid://bf8ytlxhgdfxc" path="res://Assets/Prefabs/SpiderCrab.png" id="2_xymsj"]
@@ -10,67 +10,51 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wk7u7"]
 size = Vector2(15.25, 4.83651)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a1pl2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc4bq"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(0, 0, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_og376"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_erhce"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(0, 43, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t2rny"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3br2"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(39, 43, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xcinf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aph5v"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(39, 0, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7hva1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tna0k"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(78, 0, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkncr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnib8"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(117, 0, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t2ag6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uirid"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(78, 43, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7o2i7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkhd2"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(117, 43, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r4ta6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnmnq"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(0, 86, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wsufi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xmrf"]
 atlas = ExtResource("2_xymsj")
 region = Rect2(39, 86, 39, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ldl6h"]
-atlas = ExtResource("2_xymsj")
-region = Rect2(78, 86, 39, 43)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ug1f"]
-atlas = ExtResource("2_xymsj")
-region = Rect2(117, 86, 39, 43)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_seaoq"]
-atlas = ExtResource("2_xymsj")
-region = Rect2(0, 129, 39, 43)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1pcoi"]
-atlas = ExtResource("2_xymsj")
-region = Rect2(39, 129, 39, 43)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_h7pam"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5es37"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a1pl2")
+"texture": SubResource("AtlasTexture_bc4bq")
 }],
 "loop": false,
 "name": &"Ambush",
@@ -78,10 +62,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_og376")
+"texture": SubResource("AtlasTexture_erhce")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t2rny")
+"texture": SubResource("AtlasTexture_q3br2")
 }],
 "loop": true,
 "name": &"Idle",
@@ -89,16 +73,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a1pl2")
+"texture": SubResource("AtlasTexture_bc4bq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xcinf")
+"texture": SubResource("AtlasTexture_aph5v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7hva1")
+"texture": SubResource("AtlasTexture_tna0k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fkncr")
+"texture": SubResource("AtlasTexture_mnib8")
 }],
 "loop": false,
 "name": &"Mimic",
@@ -106,36 +90,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t2ag6")
+"texture": SubResource("AtlasTexture_uirid")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7o2i7")
+"texture": SubResource("AtlasTexture_dkhd2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r4ta6")
+"texture": SubResource("AtlasTexture_pnmnq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wsufi")
+"texture": SubResource("AtlasTexture_5xmrf")
 }],
 "loop": true,
 "name": &"Walk",
-"speed": 17.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ldl6h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ug1f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_seaoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1pcoi")
-}],
-"loop": true,
-"name": &"WalkDrill",
 "speed": 17.0
 }]
 
@@ -257,8 +224,8 @@ shape = SubResource("RectangleShape2D_wk7u7")
 
 [node name="Crab" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_h7pam")
-animation = &"Walk"
+sprite_frames = SubResource("SpriteFrames_5es37")
+animation = &"Ambush"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

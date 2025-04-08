@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dcyuo1l20trh1"
-valid=false
+path="res://.godot/imported/Shealth_small.aseprite-5326fcc1cf1b7866944398843384e9b7.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Shealth_small.aseprite"
+dest_files=["res://.godot/imported/Shealth_small.aseprite-5326fcc1cf1b7866944398843384e9b7.res"]
 
 [params]
 

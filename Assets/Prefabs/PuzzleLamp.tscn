@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Prefabs/puzzle_lamp.gd" id="1_e2rbp"]
 [ext_resource type="Texture2D" uid="uid://c2nqwhnv5qlpw" path="res://Assets/Sprites/Whale Fall Environment/Light Collectable.png" id="2_ryyen"]
 [ext_resource type="Texture2D" uid="uid://dmvqsnul5jk6h" path="res://Assets/Sprites/Whale Fall Environment/Light Collectable Finished.png" id="3_fuqy6"]
-[ext_resource type="Texture2D" uid="uid://dbys2lepmmcfe" path="res://Assets/Scenes/E Interact Prompt.png" id="4_3b3ps"]
+[ext_resource type="Texture2D" uid="uid://q7nyw2ymwqsp" path="res://Assets/Scenes/F.png" id="4_lq8rt"]
 
 [sub_resource type="Animation" id="Animation_hxkmg"]
 resource_name = "Collect"
@@ -87,7 +87,7 @@ visibility_layer = 16385
 z_index = 100
 position = Vector2(-1, -76)
 scale = Vector2(4, 4)
-texture = ExtResource("4_3b3ps")
+texture = ExtResource("4_lq8rt")
 
 [node name="BulbLight" type="PointLight2D" parent="."]
 light_mask = 128

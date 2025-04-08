@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bpk4i2mtfnymx"
-valid=false
+path="res://.godot/imported/BackArm_Drill_Damaged.aseprite-084de8f38865560cbfc956bfe458c5cf.res"
 
 [deps]
 
 source_file="res://Assets/Sprites/Mech/BackArm_Drill_Damaged.aseprite"
+dest_files=["res://.godot/imported/BackArm_Drill_Damaged.aseprite-084de8f38865560cbfc956bfe458c5cf.res"]
 
 [params]
 

@@ -75,7 +75,7 @@ anim_player7 = NodePath("Sprite2D7/AnimationPlayer")
 anim_player8 = NodePath("Sprite2D8/AnimationPlayer")
 anim_player9 = NodePath("Sprite2D9/AnimationPlayer")
 
-[node name="HitBox" type="CollisionShape2D" parent="." groups=["damage"]]
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["damage", "instant_death"]]
 position = Vector2(-8, -34.5)
 shape = SubResource("RectangleShape2D_bmpie")
 

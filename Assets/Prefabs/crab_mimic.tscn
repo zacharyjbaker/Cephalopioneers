@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://g2ooqjtfx8pk"]
+
+[ext_resource type="Texture2D" uid="uid://ggcl08aapu5d" path="res://Assets/Scenes/SpiderCrab.png" id="1_s2unu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp7ek"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(0, 0, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23mhe"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(0, 43, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u33om"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(39, 43, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emycq"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(39, 0, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmydd"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(78, 0, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7owcj"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(117, 0, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq6xa"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(78, 43, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41q7x"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(117, 43, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ra3j"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(0, 86, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ow2g"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(39, 86, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1ruh"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(78, 86, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeorl"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(117, 86, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxd7y"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(0, 129, 39, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eotk"]
+atlas = ExtResource("1_s2unu")
+region = Rect2(39, 129, 39, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_42mas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp7ek")
+}],
+"loop": true,
+"name": &"Ambush",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23mhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u33om")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp7ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emycq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmydd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owcj")
+}],
+"loop": true,
+"name": &"Mimic",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq6xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41q7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ra3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ow2g")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1ruh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeorl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxd7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eotk")
+}],
+"loop": true,
+"name": &"WalkDrill",
+"speed": 17.0
+}]
+
+[node name="CrabMimic" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(25368, -406)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_42mas")
+animation = &"Ambush"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/SpiderCrab.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "2b95f2d169ffc9028c36eba9cbccdb62"
