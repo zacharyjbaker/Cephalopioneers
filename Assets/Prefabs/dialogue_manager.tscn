@@ -343,17 +343,16 @@ metadata/_edit_use_anchors_ = true
 [node name="Dialogue" type="RichTextLabel" parent="DialogueCanvas"]
 anchors_preset = -1
 anchor_left = -0.0980901
-anchor_top = -0.0327157
+anchor_top = -0.0901232
 anchor_right = 0.180557
 anchor_bottom = -0.0901232
-offset_left = 781.333
-offset_top = 247.333
-offset_right = 1144.33
-offset_bottom = 594.333
+offset_left = 783.333
+offset_top = 274.333
+offset_right = 1146.33
+offset_bottom = 621.333
 scale = Vector2(0.816538, 0.79159)
 theme_override_fonts/normal_font = ExtResource("6_hrh64")
 theme_override_font_sizes/normal_font_size = 70
-text = "Placeholder"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_timer_timeout"]

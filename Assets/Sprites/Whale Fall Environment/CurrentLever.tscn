@@ -1,10 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuyojuhdlhc7j"]
+[gd_scene load_steps=9 format=3 uid="uid://cuyojuhdlhc7j"]
 
 [ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/currentlever.gd" id="1_fn77b"]
 [ext_resource type="Texture2D" uid="uid://c0alj7mlha8rr" path="res://Assets/Sprites/Whale Fall Environment/Lever.png" id="2_do5td"]
+[ext_resource type="Shader" path="res://Assets/Sprites/Whale Fall Environment/Outline.gdshader" id="2_wemxp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdqen"]
 size = Vector2(32.875, 31.6875)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1k6t6"]
+shader = ExtResource("2_wemxp")
+shader_parameter/onoff = 1.0
+shader_parameter/rainbow = true
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_scale = 1.2
+shader_parameter/frequency = 0.2
+shader_parameter/light_offset = 0.5
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Animation" id="Animation_vg8rt"]
 resource_name = "Pull"
@@ -55,6 +66,7 @@ shape = SubResource("RectangleShape2D_vdqen")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -2
+material = SubResource("ShaderMaterial_1k6t6")
 scale = Vector2(4, 4)
 texture = ExtResource("2_do5td")
 hframes = 3

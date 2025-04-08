@@ -8,7 +8,7 @@ const CAMERA_MOVEMENT_SPEED : int = 4
 @export var max_roll := 0.1 # Maximum rotation in radians (use sparingly).
 @export var noise : FastNoiseLite # The source of random values.
 
-@onready var CityDoor = get_node("/root/Node2D/CityGate")
+var CityDoor = null
 @onready var Cauldrons: Array
 @onready var cam_timer = $CamTimer
 @onready var player = get_parent() #Reference the Nauto Parent Node
@@ -29,7 +29,7 @@ var trauma_pwr := 3 # Trauma exponent. Use [2,3]
 func _ready():
 	randomize()
 	noise.seed = randi()
-	
+	CityDoor = get_node("/root/Node2D/CityGate")
 	Cauldrons = [
 	get_node("/root/Node2D/Cauldron"),
 	get_node("/root/Node2D/Cauldron2"),
@@ -43,49 +43,50 @@ func add_trauma(amount : float):
 	trauma = min(trauma + amount, 1.0)
 
 func _process(delta):
-	#if (Input.is_action_pressed("ui_left") and position.x > CAMERA_LEFT_LIMIT):
-		#position.x -= CAMERA_MOVEMENT_SPEED
-	#if (Input.is_action_pressed("ui_right") and position.x < CAMERA_RIGHT_LIMIT):
-		#position.x += CAMERA_MOVEMENT_SPEED
+	if is_instance_valid(Global):
+		#if (Input.is_action_pressed("ui_left") and position.x > CAMERA_LEFT_LIMIT):
+			#position.x -= CAMERA_MOVEMENT_SPEED
+		#if (Input.is_action_pressed("ui_right") and position.x < CAMERA_RIGHT_LIMIT):
+			#position.x += CAMERA_MOVEMENT_SPEED
+			
+		if Global.SHAKE == true and shaking == false:
+			decay = 0
+			add_trauma(2)
+		elif Global.SHAKE == false and shaking == true:
+			decay = 0.9
+			shaking = false
 		
-	if Global.SHAKE == true and shaking == false:
-		decay = 0
-		add_trauma(2)
-	elif Global.SHAKE == false and shaking == true:
-		decay = 0.9
-		shaking = false
-	
-	if trauma:
-		trauma = max(trauma - decay * delta, 0)
-		shake()
-	elif offset.x != 0 or offset.y != 0 or rotation != 0:
-		offset.x = lerp(offset.x, 0.0, 0.1)
-		offset.y = lerp(offset.y, 0.0, 0.1)
-		rotation = lerp(rotation, 0.0, 0.1)
-	
-	if panCamera:
-		Global.FREEZE = true
-		global_position = global_position.lerp(CityDoor.global_position, 5 * delta)
-		if global_position.distance_to(CityDoor.global_position) < 10:
-			panCamera = false
-			cam_timer.start(3)
-	
-	if reversePanCamera:
-		#Use the player's current position from a Node2D-based child (e.g., a Sprite2D)
-		var player_position = player.get_node("Nauto").global_position
-		global_position = global_position.lerp(player_position, 5 * delta)
-		if global_position.distance_to(player_position) < 10:
-			print("reached back")
-			reversePanCamera = false
-			global_position = player_position
-			Global.FREEZE = false
-	
-	if panToCauldron: #Handle panning to cauldrons
-		Global.FREEZE = true
-		global_position = global_position.lerp(target_position, 5 * delta)
-		if global_position.distance_to(target_position) < 10:
-			panToCauldron = false
-			cam_timer.start(3)
+		if trauma:
+			trauma = max(trauma - decay * delta, 0)
+			shake()
+		elif offset.x != 0 or offset.y != 0 or rotation != 0:
+			offset.x = lerp(offset.x, 0.0, 0.1)
+			offset.y = lerp(offset.y, 0.0, 0.1)
+			rotation = lerp(rotation, 0.0, 0.1)
+		
+		if panCamera:
+			Global.FREEZE = true
+			global_position = global_position.lerp(CityDoor.global_position, 5 * delta)
+			if global_position.distance_to(CityDoor.global_position) < 10:
+				panCamera = false
+				cam_timer.start(3)
+		
+		if reversePanCamera:
+			#Use the player's current position from a Node2D-based child (e.g., a Sprite2D)
+			var player_position = player.get_node("Nauto").global_position
+			global_position = global_position.lerp(player_position, 5 * delta)
+			if global_position.distance_to(player_position) < 10:
+				print("reached back")
+				reversePanCamera = false
+				global_position = player_position
+				Global.FREEZE = false
+		
+		if panToCauldron: #Handle panning to cauldrons
+			Global.FREEZE = true
+			global_position = global_position.lerp(target_position, 5 * delta)
+			if global_position.distance_to(target_position) < 10:
+				panToCauldron = false
+				cam_timer.start(3)
 
 func shake():
 	var amt = pow(trauma, trauma_pwr)

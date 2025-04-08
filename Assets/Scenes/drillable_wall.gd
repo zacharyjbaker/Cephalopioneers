@@ -1,7 +1,7 @@
 extends TileMapLayer
 @export var durability = 100
 var drillable = false
-@onready var mech = get_node("/root/Node2D/Mech")
+@export var mech : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,17 +1,203 @@
-[gd_scene load_steps=38 format=3 uid="uid://bxa0nwx5uicwr"]
+[gd_scene load_steps=59 format=3 uid="uid://bxa0nwx5uicwr"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_djhdu"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_cwmej"]
 [ext_resource type="Shader" path="res://Assets/Prefabs/NautoSkin.gdshader" id="2_hmnaa"]
 [ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_kx56x"]
+[ext_resource type="Texture2D" uid="uid://c521jun7qucr1" path="res://Assets/Prefabs/NautoWalk (3).png" id="3_nmfqb"]
 [ext_resource type="Texture2D" uid="uid://dlrfbadv04ie1" path="res://Assets/Prefabs/ChargeJumpBar.png" id="4_nudv3"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="5_e1fd8"]
 [ext_resource type="Texture2D" uid="uid://hwa51d66j4j8" path="res://Assets/Prefabs/gauge.tres" id="6_e77tp"]
+[ext_resource type="AudioStream" uid="uid://dx8ydbhop7pmq" path="res://Assets/Sound/Sfx/NautoWalk.wav" id="8_dxc0m"]
+[ext_resource type="AudioStream" uid="uid://bygtc5v0xm2wi" path="res://Assets/Sound/Sfx/JumpCharge.wav" id="9_y4w2g"]
+[ext_resource type="AudioStream" uid="uid://1tfai0b2p8jw" path="res://Assets/Sound/Sfx/NautoJump.wav" id="10_c536x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i3ie5"]
 shader = ExtResource("2_hmnaa")
 shader_parameter/color_tint = Vector4(1, 1, 1, 1)
 shader_parameter/tint_strength = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq56l"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(0, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02bln"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(54, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnsbu"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbs1e"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(36, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x17kc"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(18, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvh2a"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(36, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qonc0"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(54, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8knc"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(18, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbh45"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4crgk"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(36, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ey2x"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(54, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4b4a"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xusq"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oixmh"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(36, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng33g"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(54, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i18m3"]
+atlas = ExtResource("3_nmfqb")
+region = Rect2(0, 36, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dpuya"]
+animations = [{
+"frames": [{
+"duration": 7.5,
+"texture": SubResource("AtlasTexture_dq56l")
+}],
+"loop": false,
+"name": &"Ascend",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_02bln")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_cnsbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbs1e")
+}],
+"loop": false,
+"name": &"BeginFall",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_x17kc")
+}],
+"loop": false,
+"name": &"Charge",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_hvh2a")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_qonc0")
+}],
+"loop": false,
+"name": &"CrouchWalk",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbs1e")
+}],
+"loop": true,
+"name": &"Descend",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnsbu")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_x17kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbs1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnsbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02bln")
+}, {
+"duration": 7.5,
+"texture": SubResource("AtlasTexture_dq56l")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_q8knc")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnsbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbh45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4crgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ey2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4b4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xusq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oixmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng33g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i18m3")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_cnsbu")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 30.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("2_cwmej")
@@ -270,8 +456,31 @@ disabled = true
 [node name="Nauto" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_i3ie5")
+sprite_frames = SubResource("SpriteFrames_dpuya")
+animation = &"Charge"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": false,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/NautoWalk (3).aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a13f6763ddf1878fab3426eb4c551483"
+
+[node name="Nauto2" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_i3ie5")
 sprite_frames = SubResource("SpriteFrames_2l2c7")
-animation = &"BeginFall"
+animation = &"Walk"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": false,
@@ -378,7 +587,7 @@ position = Vector2(-2, 0.75)
 rotation = -0.634701
 shape = SubResource("CapsuleShape2D_7kcsx")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="SelfLight" type="PointLight2D" parent="."]
 light_mask = 128
 visibility_layer = 128
 y_sort_enabled = true
@@ -388,7 +597,24 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_miy4e")
 texture_scale = 1.5
 
+[node name="BoostSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="WalkSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_dxc0m")
+volume_db = -15.602
+pitch_scale = 1.4
+
+[node name="ChargeSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_y4w2g")
+volume_db = -6.892
+pitch_scale = 1.12
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_c536x")
+volume_db = -5.639
+
 [connection signal="animation_finished" from="Nauto" to="." method="_on_nauto_animation_finished"]
+[connection signal="animation_finished" from="Nauto2" to="." method="_on_nauto_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_shape_entered" from="HurtBox" to="." method="_on_hurt_box_body_shape_entered"]

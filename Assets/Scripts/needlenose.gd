@@ -42,6 +42,8 @@ var isStun = false
 func _ready() -> void:
 	#original_scale = scale
 	#sprite.flip_h = false
+	velocity.x = 0
+	velocity.y = 0
 	mode.visible = false
 	state = "Swim"
 	sprite.play("Swim")

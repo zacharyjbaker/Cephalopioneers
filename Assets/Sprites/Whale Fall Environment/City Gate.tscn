@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://exflkf1k5ti5"]
+[gd_scene load_steps=16 format=3 uid="uid://exflkf1k5ti5"]
 
 [ext_resource type="Texture2D" uid="uid://diufdchkp04gg" path="res://Assets/Sprites/Whale Fall Environment/City Gate Border.png" id="1_sk7k7"]
 [ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/city_gate.gd" id="1_vmg3v"]
 [ext_resource type="Texture2D" uid="uid://4erbe76h0mnv" path="res://Assets/Sprites/Whale Fall Environment/City Gate Door.png" id="2_ugcsr"]
 [ext_resource type="Texture2D" uid="uid://cbyjfi131rgrh" path="res://Assets/Sprites/Whale Fall Environment/City Gate Front Half.png" id="4_yk03t"]
+[ext_resource type="PackedScene" uid="uid://cqytgchq4me5" path="res://Assets/Prefabs/Outskirt Lights.tscn" id="5_ov1xk"]
 
 [sub_resource type="Animation" id="Animation_epp4p"]
 resource_name = "Door_Move_Up"
@@ -71,6 +72,32 @@ _data = {
 "RESET": SubResource("Animation_4magu")
 }
 
+[sub_resource type="Gradient" id="Gradient_wtlmg"]
+colors = PackedColorArray(0, 0, 0.929412, 1, 0.0666667, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t1wnk"]
+gradient = SubResource("Gradient_wtlmg")
+
+[sub_resource type="Curve" id="Curve_slp57"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.351648), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_afkpn"]
+curve = SubResource("Curve_slp57")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nfq8j"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.101
+radial_velocity_min = -225.35
+radial_velocity_max = 84.51
+gravity = Vector3(0, -98, 0)
+scale_min = 5.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_afkpn")
+color_ramp = SubResource("GradientTexture1D_t1wnk")
+turbulence_enabled = true
+turbulence_noise_scale = 2.158
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sloi5"]
 size = Vector2(41, 175.5)
 
@@ -90,6 +117,46 @@ libraries = {
 "": SubResource("AnimationLibrary_k0pc0")
 }
 speed_scale = 0.25
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="DoorSprite"]
+position = Vector2(10, 25.75)
+scale = Vector2(0.25, 0.25)
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_nfq8j")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="DoorSprite"]
+position = Vector2(4.75, 25.75)
+scale = Vector2(0.25, 0.25)
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_nfq8j")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="DoorSprite"]
+position = Vector2(-13, 16.5)
+scale = Vector2(0.25, 0.25)
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_nfq8j")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="DoorSprite"]
+position = Vector2(-18, 16.5)
+scale = Vector2(0.25, 0.25)
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_nfq8j")
+
+[node name="PointLight2D2" parent="DoorSprite" instance=ExtResource("5_ov1xk")]
+position = Vector2(-14.85, 17.9)
+scale = Vector2(0.075, 0.075)
+energy = 10.0
+blend_mode = 0
+range_item_cull_mask = 2
+texture_scale = 6.0
+
+[node name="PointLight2D3" parent="DoorSprite" instance=ExtResource("5_ov1xk")]
+position = Vector2(7.9, 27.15)
+scale = Vector2(0.075, 0.075)
+energy = 10.0
+blend_mode = 0
+range_item_cull_mask = 2
+texture_scale = 6.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 z_index = 2

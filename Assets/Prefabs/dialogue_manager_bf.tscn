@@ -1,0 +1,393 @@
+[gd_scene load_steps=33 format=3 uid="uid://c846dxhfsnnmd"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="1_0ss0d"]
+[ext_resource type="Texture2D" uid="uid://cjcsbevwuvnnr" path="res://Assets/Prefabs/DialogueBG.png" id="2_hx4tf"]
+[ext_resource type="Texture2D" uid="uid://dhe1ys2huxmqv" path="res://Assets/Sprites/NautoTalk.png" id="3_fti16"]
+[ext_resource type="Texture2D" uid="uid://c4b3x0so1qsc" path="res://Assets/Sprites/CommanderBiteTalk.png" id="4_hlkln"]
+[ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="5_yd13p"]
+[ext_resource type="Texture2D" uid="uid://dx4am2gokj4gw" path="res://Assets/Prefabs/CrabPopePortrait.png" id="6_drmmv"]
+[ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="6_hrh64"]
+[ext_resource type="Texture2D" uid="uid://bjcusclgdwisc" path="res://Assets/Prefabs/hidden_portrait.png" id="7_gksgq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpqwc"]
+atlas = ExtResource("2_hx4tf")
+region = Rect2(0, 0, 480, 112)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n7nlt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpqwc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i25tg"]
+atlas = ExtResource("3_fti16")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyd1e"]
+atlas = ExtResource("3_fti16")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4o6xb"]
+animations = [{
+"frames": [{
+"duration": 1.07692,
+"texture": SubResource("AtlasTexture_i25tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyd1e")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uksd2"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5bra"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iy2j"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08ud5"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkhi6"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm84j"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au6la"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wymnl"]
+atlas = ExtResource("4_hlkln")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o066n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uksd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5bra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iy2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08ud5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkhi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm84j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au6la")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wymnl")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rftn"]
+atlas = ExtResource("5_yd13p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnpbr"]
+atlas = ExtResource("5_yd13p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg07r"]
+atlas = ExtResource("5_yd13p")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4o7q1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rftn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnpbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rftn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg07r")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3b3e"]
+atlas = ExtResource("6_drmmv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt0am"]
+atlas = ExtResource("6_drmmv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k41h7"]
+atlas = ExtResource("6_drmmv")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_66g6q"]
+animations = [{
+"frames": [{
+"duration": 2.59259,
+"texture": SubResource("AtlasTexture_w3b3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt0am")
+}, {
+"duration": 1.67,
+"texture": SubResource("AtlasTexture_k41h7")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf6ld"]
+atlas = ExtResource("7_gksgq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0qkpq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf6ld")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 10.0
+}]
+
+[node name="DialogueManager" type="Node2D"]
+script = ExtResource("1_0ss0d")
+
+[node name="DialogueStream" type="AudioStreamPlayer2D" parent="."]
+volume_db = 5.887
+max_distance = 5e+10
+
+[node name="DialogueTimer" type="Timer" parent="."]
+wait_time = 0.025
+autostart = true
+
+[node name="DialogueCanvas" type="CanvasLayer" parent="."]
+
+[node name="DialogueBG" type="AnimatedSprite2D" parent="DialogueCanvas"]
+texture_filter = 1
+position = Vector2(960, 322)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_n7nlt")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/DialogueBG.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "2196561ee494cde8b596b55b0bdb811c"
+
+[node name="DialogueBG_old" type="ColorRect" parent="DialogueCanvas"]
+visible = false
+anchors_preset = -1
+anchor_left = -0.0861111
+anchor_top = -0.162037
+anchor_right = 0.178472
+anchor_bottom = -0.162037
+offset_left = 253.333
+offset_top = 231.0
+offset_right = 710.333
+offset_bottom = 640.0
+scale = Vector2(1.8, 0.8)
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="NautoTalk" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
+texture_filter = 1
+position = Vector2(424, 322)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_4o6xb")
+animation = &"Talk"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Portraits/NautoTalk.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0adaee1de3687af596512ab669d24182"
+
+[node name="BiteTalk" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
+texture_filter = 1
+position = Vector2(1496, 322)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_o066n")
+animation = &"Talk"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Portraits/CommanderBiteTalk.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f9c742f2e245fdb7c8e4fd6bee639a50"
+
+[node name="MaloTalk" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
+texture_filter = 1
+position = Vector2(1496, 322)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_4o7q1")
+animation = &"Talk"
+frame_progress = 0.0478252
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/Portraits/LieutenantMaloTalk.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "50066f18e95e7f3d88d0b0e1a8c7ae4c"
+
+[node name="CrabTalk" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
+texture_filter = 1
+position = Vector2(1496, 322)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_66g6q")
+animation = &"Talk"
+frame_progress = 0.324913
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/CrabPopePortrait.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "904342f8980432ac07324996ddc2299f"
+
+[node name="HiddenTalk" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
+texture_filter = 1
+position = Vector2(1496, 322)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_0qkpq")
+animation = &"Talk"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Prefabs/hidden_portrait.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "93e90ede3b4b495822918e4ffa089958"
+
+[node name="NautoPortrait" type="ColorRect" parent="DialogueCanvas"]
+visible = false
+anchors_preset = -1
+anchor_left = -0.0861111
+anchor_top = -0.162037
+anchor_right = 0.178472
+anchor_bottom = -0.162037
+offset_left = 270.333
+offset_top = 248.0
+offset_right = 727.333
+offset_bottom = 657.0
+scale = Vector2(0.32, 0.92)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="OtherPortrait" type="ColorRect" parent="DialogueCanvas"]
+visible = false
+anchors_preset = -1
+anchor_left = -0.0861111
+anchor_top = -0.162037
+anchor_right = 0.178472
+anchor_bottom = -0.162037
+offset_left = 1662.33
+offset_top = 248.0
+offset_right = 2119.33
+offset_bottom = 657.0
+scale = Vector2(0.32, 0.92)
+color = Color(0, 0.62, 0.599333, 0.301961)
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialogue" type="RichTextLabel" parent="DialogueCanvas"]
+anchors_preset = -1
+anchor_left = -0.0980901
+anchor_top = -0.0901232
+anchor_right = 0.180557
+anchor_bottom = -0.0901232
+offset_left = 783.333
+offset_top = 274.333
+offset_right = 1146.33
+offset_bottom = 621.333
+scale = Vector2(0.816538, 0.79159)
+theme_override_fonts/normal_font = ExtResource("6_hrh64")
+theme_override_font_sizes/normal_font_size = 70
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="DialogueTimer" to="." method="_on_timer_timeout"]

@@ -4,14 +4,24 @@ extends Area2D
 var is_player_near = false
 var is_pulled = false
 
+func _ready():
+	# Ensure each lever has its own unique material copy
+	$Sprite2D.material = $Sprite2D.material.duplicate()
+
 func _process(_delta):
 	if is_player_near and Input.is_action_just_pressed("interact") and not is_pulled:
 		pull_lever()
 
 func pull_lever():
 	is_pulled = true
-	# Play lever animation (if any)
 	$AnimationPlayer.play("Pull")
+	
+	var sprite = $Sprite2D
+	if sprite.material:
+		print("Material exists, setting enabled=false")
+		sprite.material.set_shader_parameter("onoff", 0)
+	else:
+		print("ERROR: No material found on sprite!")
 	
 	# Enable the booster if it's disabled
 	if booster:

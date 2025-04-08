@@ -1,0 +1,17 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://ca23xibk5w1ld"
+valid=false
+
+[deps]
+
+source_file="res://Assets/Sprites/FrontArm_Laser.aseprite"
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

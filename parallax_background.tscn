@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b17t1sspo1ejp"]
+
+[ext_resource type="Texture2D" uid="uid://ddc63b22fsubo" path="res://Assets/MapDraft/Layer 2 Resized.png" id="1_wyxvy"]
+[ext_resource type="Texture2D" uid="uid://bf2hopcupr884" path="res://Assets/MapDraft/Shallows Final Background.png" id="2_r7ngq"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+visible = false
+motion_scale = Vector2(0.3, 1)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("1_wyxvy")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(6, 6)
+texture = ExtResource("2_r7ngq")
+centered = false

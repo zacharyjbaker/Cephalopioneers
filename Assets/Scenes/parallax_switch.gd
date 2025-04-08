@@ -27,16 +27,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var current_x = player_node.global_position.x
+	var current_y = player_node.global_position.y
 
 	# Crossing from left to right
-	if last_player_x < hide_at_x and current_x >= hide_at_x and not waiting_to_hide:
+	if last_player_x < hide_at_x and current_x >= hide_at_x and not waiting_to_hide and current_y > 700 :
 		transition_node.startTransition()
 		BGTimer.start()
 		waiting_to_hide = true
 		waiting_to_show = false
 
 	# Crossing from right to left
-	if last_player_x > hide_at_x and current_x <= hide_at_x and not waiting_to_show:
+	if last_player_x > hide_at_x and current_x <= hide_at_x and not waiting_to_show and current_y > 700:
 		transition_node.startTransition()
 		BGTimer.start()
 		waiting_to_show = true

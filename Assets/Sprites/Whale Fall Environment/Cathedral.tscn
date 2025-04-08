@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bsgcilodfwsaf" path="res://Assets/Sprites/Whale Fall Environment/Crab Cathedral.png" id="1_euh0s"]
 [ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/cathedral.gd" id="1_sk0l8"]
-[ext_resource type="Texture2D" uid="uid://dbys2lepmmcfe" path="res://Assets/Scenes/E Interact Prompt.png" id="3_e4ofk"]
+[ext_resource type="Texture2D" uid="uid://7qxr8p8gbgsp" path="res://Assets/F.png" id="3_biauq"]
 
 [sub_resource type="Animation" id="Animation_271oh"]
 resource_name = "CathedralDoor"
@@ -66,7 +66,7 @@ shape = SubResource("RectangleShape2D_ifame")
 visible = false
 position = Vector2(1, 510)
 scale = Vector2(4, 4)
-texture = ExtResource("3_e4ofk")
+texture = ExtResource("3_biauq")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
