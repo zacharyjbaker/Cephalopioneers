@@ -1,37 +1,37 @@
 [gd_scene load_steps=8 format=3 uid="uid://uvgu3lg3knl1"]
 
-[ext_resource type="Texture2D" uid="uid://bkyul5vtbd71b" path="res://Assets/Scenes/shealth_pickup_new.png" id="1_3o2r0"]
 [ext_resource type="Script" path="res://shealth_pickup.gd" id="1_4xmyh"]
+[ext_resource type="Texture2D" uid="uid://dwwmtpcgmlrsm" path="res://shealth_pickup_new.png" id="2_e0ekl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cf3iv"]
-atlas = ExtResource("1_3o2r0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_re4er"]
+atlas = ExtResource("2_e0ekl")
 region = Rect2(0, 0, 25, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_was81"]
-atlas = ExtResource("1_3o2r0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a754d"]
+atlas = ExtResource("2_e0ekl")
 region = Rect2(25, 0, 25, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_36fma"]
-atlas = ExtResource("1_3o2r0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_58k54"]
+atlas = ExtResource("2_e0ekl")
 region = Rect2(0, 35, 25, 35)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3jol0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdvcl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cf3iv")
+"texture": SubResource("AtlasTexture_re4er")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_was81")
+"texture": SubResource("AtlasTexture_a754d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_36fma")
+"texture": SubResource("AtlasTexture_58k54")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_was81")
+"texture": SubResource("AtlasTexture_a754d")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
 "speed": 4.0
 }]
 
@@ -44,9 +44,7 @@ script = ExtResource("1_4xmyh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_3jol0")
-animation = &"idle"
-frame_progress = 0.603081
+sprite_frames = SubResource("SpriteFrames_cdvcl")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -59,7 +57,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/shealth_pickup_new.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a9518cdd249a423fe6ec3b9ede9c7862"
+metadata/_aseprite_wizard_source_file_hash_ = "ca662c7a32cfd068e22b66390ca322dc"
 
 [node name="Collider" type="Area2D" parent="."]
 collision_layer = 0

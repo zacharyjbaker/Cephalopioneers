@@ -46,7 +46,7 @@ func _ready() -> void:
 		altcrab_sprite.visible = true
 		anim_player = altcrab_sprite
 	#print ("anim:", anim_player)
-	print ("Player:", player)
+	#print ("Player:", player)
 	scuttle_player.connect("finished", restart_scuttle)
 
 func _physics_process(delta: float) -> void:
@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(Global):
 		#print (position)
 		if abs(velocity.x) > 0 and !isScuttling:
-			print("scuttling")
+			#print("scuttling")
 			scuttle_player.play()
 			isScuttling = true
 		#print (position)
@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 				else:
 					distance = 100000000
 					y_distance = 10000000
-				print (y_distance)
+				#print (y_distance)
 				if abs(distance) < detection_range and y_distance < 100 and ambush_triggered == false:
 					#print("start")
 					ambush_triggered = true

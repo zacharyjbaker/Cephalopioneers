@@ -564,14 +564,14 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
-position = Vector2(27297, 999)
+position = Vector2(6614, 1235)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("22_joohn")]
-position = Vector2(27289, 1116)
+position = Vector2(6474, 1128)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")

@@ -68,6 +68,7 @@ func _ready() -> void:
 	mech_camera = mech.get_node("MechCamera")
 	pilot_pos = pilot.global_position
 	HP = HP_node.get_node("HP").get_children()
+	state = States.IDLE
 	print ("HP Nodes:", HP)
 	if is_instance_valid(misc_env):
 		breakable_floor = misc_env.get_node("BreakableFloor")
@@ -242,7 +243,7 @@ func _physics_process(delta: float) -> void:
 		# Nauto movement
 		elif (Global.MODE == "Nauto") and Global.FREEZE == false:
 			if Input.is_action_just_pressed("debug_teleport"):
-				#position = Vector2(29000, 1040)
+				position = Vector2(29000, 1040)
 				#_load_whalefall()
 				health_loss()
 			if velocity.y > 0: # falling transition anim
@@ -425,6 +426,9 @@ func _on_timer_timeout() -> void:
 		print ("fade to black")
 		state = States.CHANGE_SCENE
 	elif state == States.CHANGE_SCENE:
+		state = States.IDLE
+		Global.EEL_CUTSCENE = false
+		Global.START = true
 		_load_whalefall()
 		#get_tree().change_scene_to_file("res://Assets/Scenes/WhalefallSettlement.tscn")
 	elif state == States.IDLE:
