@@ -40,8 +40,10 @@ signal bgmusic_fight
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dialogue.visible_characters = 0
-	
+	print ("GDI:", Global.DIALOGUE_INSTANCE)
+	dialogue_instance = Global.DIALOGUE_INSTANCE
 	load_next_dialogue()
+	#print (dialogue_instance)
 	#dialogue_instance = "3"
 	#other_talk = $DialogueCanvas/HiddenTalk
 	#dialogue_instance = Global.DIALOGUE_INSTANCE

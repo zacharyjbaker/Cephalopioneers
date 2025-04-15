@@ -368,371 +368,433 @@ scale = Vector2(4, 4)
 position = Vector2(23787, 674)
 scale = Vector2(4, 4)
 
-[node name="Needlenose" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(-662, 892)
+player = NodePath("../../Nauto")
 
-[node name="Needlenose2" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose2" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(-813, 724)
 rotation = 3.14159
 scale = Vector2(4, -4)
+player = NodePath("../../Nauto")
 
-[node name="Needlenose3" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose3" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(8885, 179)
 rotation = 3.14159
 scale = Vector2(4, -4)
+player = NodePath("../../Nauto")
 
-[node name="Needlenose7" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose7" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(7917, 898)
 rotation = 3.14159
 scale = Vector2(4, -4)
+player = NodePath("../../Nauto")
 
-[node name="Needlenose8" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose8" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(6995, 546)
 rotation = 3.14159
 scale = Vector2(4, -4)
+player = NodePath("../../Nauto")
 
-[node name="Needlenose4" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose4" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(1508, 493)
 rotation = 3.14159
 scale = Vector2(4, -4)
+player = NodePath("../../Nauto")
 
-[node name="Needlenose5" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose5" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(2443, 291)
 rotation = 3.14159
 scale = Vector2(4, -4)
+player = NodePath("../../Nauto")
 
-[node name="Needlenose6" parent="NPCs" instance=ExtResource("28_s4lt4")]
+[node name="Needlenose6" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("28_s4lt4")]
 position = Vector2(1934, 278)
 rotation = 3.14159
 scale = Vector2(4, -4)
+player = NodePath("../../Nauto")
 
 [node name="ChaseHazards" type="Node" parent="."]
 
 [node name="Needlenode Ambush" type="Node" parent="ChaseHazards"]
 
-[node name="Needlenose_chase" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(27756, -92.998)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase2" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase2" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28002, -6.99899)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase3" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase3" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28337, -110)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase4" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase4" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28036, 88.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase5" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase5" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28271, 2.00101)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase6" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase6" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(27724, 161.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase7" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase7" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(27970, 247.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase8" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase8" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28305, 144.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase9" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase9" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28004, 342.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase10" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase10" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28239, 256.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase11" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase11" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28156, 78.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase12" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase12" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(27926, 202.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase13" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase13" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28261, 99.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase14" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase14" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28436, 259.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase15" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase15" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28671, 173.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase16" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase16" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28124, 332.004)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase17" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase17" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(27894, 456.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase18" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase18" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28229, 353.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase19" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase19" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28404, 513.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase20" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase20" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28639, 427.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase21" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase21" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28585, -78)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase22" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase22" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28760, 82.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase23" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase23" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28995, -3.99899)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase24" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase24" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28553, 176.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase25" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase25" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(30724, 316.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase26" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase26" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28963, 250.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase27" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase27" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28404, 110.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase28" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase28" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28650, 196.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase29" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase29" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28985, 93.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase30" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase30" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29160, 253.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase31" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase31" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29395, 167.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase32" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase32" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28372, 364.004)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase33" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase33" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28618, 450.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase34" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase34" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(28953, 347.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase35" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase35" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29128, 507.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase36" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase36" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29363, 421.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase37" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase37" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29360, -53)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase38" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase38" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29535, 107.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase39" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase39" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29649, -23)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase40" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase40" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29328, 201.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase41" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase41" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29503, 361.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase42" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase42" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29617, 231.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase43" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase43" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29179, 135.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase44" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase44" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29425, 221.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase45" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase45" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29639, 74)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase46" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase46" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29814, 234.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase47" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase47" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(30049, 148.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase48" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase48" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29147, 389.004)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase49" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase49" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29393, 475.003)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase50" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase50" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29607, 328.001)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase51" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase51" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(29782, 488.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase52" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase52" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(30017, 402.002)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase53" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase53" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(30316, -4)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
-[node name="Needlenose_chase54" parent="ChaseHazards/Needlenode Ambush" instance=ExtResource("29_xbdbo")]
+[node name="Needlenose_chase54" parent="ChaseHazards/Needlenode Ambush" node_paths=PackedStringArray("player") instance=ExtResource("29_xbdbo")]
 position = Vector2(30519, -61)
 rotation = -0.954304
 charge_speed = 1800
 charge_max_speed = 2400
+player = NodePath("../../../Nauto")
 
 [node name="Eel Pit Hazard" type="Node" parent="ChaseHazards"]
 
