@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://brlsqqal6pcva"]
+
+[ext_resource type="FontFile" uid="uid://cqtgah6n4b372" path="res://Assets/Fonts/Nauto2.ttf" id="1_pi0x2"]
+
+[node name="SaveGame" type="CanvasLayer"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1637.0
+offset_top = 12.0
+offset_right = 2046.0
+offset_bottom = 91.0
+theme_override_fonts/normal_font = ExtResource("1_pi0x2")
+theme_override_font_sizes/normal_font_size = 50
+text = "Game Saved"

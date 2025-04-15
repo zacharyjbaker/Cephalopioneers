@@ -1,9 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://cep45148qy5gc"]
+[gd_scene load_steps=20 format=3 uid="uid://cep45148qy5gc"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/eel.gd" id="1_o3qdc"]
 [ext_resource type="Texture2D" uid="uid://h6ogk3dmo8lq" path="res://Assets/Prefabs/Eel (1).png" id="2_6ydkt"]
 [ext_resource type="AudioStream" uid="uid://c4yl4ux836lxh" path="res://Assets/Sound/Monster.mp3" id="3_xh035"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="4_m6f3o"]
+
+[sub_resource type="Curve" id="Curve_2147v"]
+_data = [Vector2(0.00377358, 0.993848), 0.0, 0.0, 0, 0, Vector2(0.596226, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eiawt"]
 radius = 48.0
@@ -115,6 +119,22 @@ scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_o3qdc")
 max_speed = 310
+
+[node name="RoarParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-13.5001, -38)
+emitting = false
+amount = 500
+lifetime = 3.0
+emission_shape = 2
+emission_sphere_radius = 17.43
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_2147v")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(4.52499e-05, 12.5)

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var timer = $Timer
 @onready var anim = $AnimatedSprite2D
 @onready var audio = $AudioStreamPlayer2D
+@onready var roar_particles = $RoarParticles
 
 @export var save_load : Node2D
 
@@ -69,6 +70,7 @@ func break_cutscene():
 		timer.start(2)
 		audio.play()
 		anim.play("Roar")
+		roar_particles.emitting = true
 		print ("CS_FALL_ROAR")
 
 func cutscene():
@@ -98,6 +100,7 @@ func cutscene():
 		Global.SHAKE = true
 		audio.play()
 		anim.play("Roar")
+		roar_particles.emitting = true
 	elif state != States.CS_FALL and state != States.CS_FALL_ROAR and state != States.CS_END:
 		timer.start(2)
 		#print ("chase")
@@ -123,6 +126,7 @@ func _on_timer_timeout() -> void:
 		break_cutscene()
 	elif state == States.CS_FALL_ROAR:
 		print ("Timeout")
+		roar_particles.emitting = false
 		anim.play("Nom")
 		state = States.CS_END
 	if state == States.CS_DEVOUR:
@@ -137,6 +141,7 @@ func _on_timer_timeout() -> void:
 	if state == States.CS_ROAR:
 		#velocity.x = 0
 		anim.play("Nom")
+		roar_particles.emitting = false
 		bgmusic_chase.emit()
 		Global.SHAKE = false
 		Global.FREEZE = false

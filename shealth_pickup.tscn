@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://uvgu3lg3knl1"]
+
+[ext_resource type="Texture2D" uid="uid://bkyul5vtbd71b" path="res://Assets/Scenes/shealth_pickup_new.png" id="1_3o2r0"]
+[ext_resource type="Script" path="res://shealth_pickup.gd" id="1_4xmyh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf3iv"]
+atlas = ExtResource("1_3o2r0")
+region = Rect2(0, 0, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_was81"]
+atlas = ExtResource("1_3o2r0")
+region = Rect2(25, 0, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36fma"]
+atlas = ExtResource("1_3o2r0")
+region = Rect2(0, 35, 25, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jol0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf3iv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_was81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36fma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_was81")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywfrw"]
+radius = 13.2877
+
+[node name="ShealthPickup" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_4xmyh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3jol0")
+animation = &"idle"
+frame_progress = 0.603081
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/shealth_pickup_new.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a9518cdd249a423fe6ec3b9ede9c7862"
+
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6144
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("CircleShape2D_ywfrw")
+
+[connection signal="body_entered" from="Collider" to="." method="_on_collider_body_entered"]

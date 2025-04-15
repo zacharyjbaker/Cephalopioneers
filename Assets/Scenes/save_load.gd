@@ -1,5 +1,6 @@
 extends Node
 #var scene_load = preload("res://save.tscn").instantiate()
+@export var save_text : CanvasLayer
 
 func save_game():
 	print ("Saving: ", str("res://Saves/save", str(Global.SAVENUM), ".tscn"))
@@ -10,6 +11,10 @@ func save_game():
 	var packed_scene = PackedScene.new()
 	var result = packed_scene.pack(scene_root)
 	ResourceSaver.save(packed_scene, str("res://Saves/save", str(Global.SAVENUM), ".tscn"))
+	save_text.visible = true
+	await get_tree().create_timer(2.5).timeout
+	save_text.visible = false
+	Global.START = false
 	#scene_load = load("res://save.tscn")
 	
 func load_game():
@@ -67,6 +72,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("load"):
 		print ("Save loaded")
 		load_game()
+		
 	
 
 	
