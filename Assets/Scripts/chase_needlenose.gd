@@ -17,6 +17,7 @@ extends CharacterBody2D
 @export var degrees_per_second = 90
 @export var y_knockback = 50
 @export var x_knockback = 50
+@export var player : Node2D
 
 # Vars for random enemy orientation
 var random_dir_x = false 
@@ -24,7 +25,7 @@ var random_dir_y = false
 var rng = RandomNumberGenerator.new()
 
 # Targeting vars
-var player = null
+#var player = null
 var target = null
 var target_body = null
 var direction = null
@@ -47,7 +48,7 @@ func _ready() -> void:
 	sprite.play("Swim")
 	#timer.start(3)
 	random_direction_selection()
-	player = get_node("/root/Node2D/Nauto")
+	#player = get_node("/root/Node2D/Nauto")
 	
 func _physics_process(delta: float) -> void:
 	#print (timer.time_left)

@@ -17,6 +17,7 @@ extends CharacterBody2D
 @export var degrees_per_second = 90
 @export var y_knockback = 50
 @export var x_knockback = 50
+@export var player : Node2D
 
 # Vars for random enemy orientation
 var random_dir_x = false 
@@ -24,7 +25,7 @@ var random_dir_y = false
 var rng = RandomNumberGenerator.new()
 
 # Targeting vars
-var player = null
+#var player = null
 var target = null
 var target_body = null
 var direction = null
@@ -49,7 +50,7 @@ func _ready() -> void:
 	sprite.play("Swim")
 	#timer.start(3)
 	random_direction_selection()
-	player = get_node("/root/Node2D/Nauto")
+	#player = get_node("/root/Node2D/Nauto")
 	
 func _physics_process(delta: float) -> void:
 	#print (timer.time_left)
@@ -187,7 +188,7 @@ func _on_timer_timeout() -> void:
 		mode.visible = false
 		mode.flip_h = false
 		timer.start(3)
-		if isInViewCone == true:
+		if isInViewCone == true and target_body.name == "Nauto":
 			enter_attack_state(target_body)
 
 	# Randomly switch direction of idle movement
@@ -210,7 +211,7 @@ func random_direction_selection() -> void:
 	#print (name, ": ", random_dir_x, ": ", random_time)
 
 func _on_view_cone_body_entered(body: Node2D) -> void:
-	if body == player and Global.MODE == "Nauto" and Global.FREEZE == false:
+	if body.name == "Nauto" and Global.MODE == "Nauto" and Global.FREEZE == false:
 		isInViewCone = true
 		if isAttackReady == false and state == "Swim" and isStun == false:
 			target_body = body
@@ -244,6 +245,7 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		
 	
 func enter_attack_state(body: Node2D) -> void:
+	print (body.name)
 	target = body.global_position
 	direction = global_position.direction_to(target)
 	timer.stop()
