@@ -10,6 +10,8 @@ func _ready() -> void:
 	player.get_node("SelfLight").visible = true
 	Global.SCENE = "BossFight"
 	Global.DIALOGUE_INSTANCE = 4
+	print ("BF Ready")
+	print ("GDI", Global.DIALOGUE_INSTANCE)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

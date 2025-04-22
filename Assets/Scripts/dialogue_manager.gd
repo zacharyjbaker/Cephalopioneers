@@ -9,6 +9,7 @@ extends Node2D
 @onready var bite_talk =  $DialogueCanvas/BiteTalk
 @onready var crab_talk =  $DialogueCanvas/CrabTalk
 @onready var hidden_talk =  $DialogueCanvas/HiddenTalk
+@onready var f = $DialogueCanvas/F
 @export var dialogue_flag = false
 var first_dialogue = false
 var dialogue_in_process = false
@@ -39,14 +40,16 @@ signal bgmusic_fight
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dialogue.visible_characters = 0
+	print ("GDI:", Global.DIALOGUE_INSTANCE)
+	dialogue_instance = Global.DIALOGUE_INSTANCE
 	load_next_dialogue()
+	#print (dialogue_instance)
 	#dialogue_instance = "3"
 	#other_talk = $DialogueCanvas/HiddenTalk
 	#dialogue_instance = Global.DIALOGUE_INSTANCE
 	#load_next_dialogue()
 			
 	#print ("Dict:", DialogueDict)
-
 	
 func load_next_dialogue():
 	if is_instance_valid(Global):
@@ -91,27 +94,33 @@ func _physics_process(delta: float) -> void:
 		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
 			nauto_talk.visible = true
 			other_talk.visible = true
+			dialogue_in_process = false
 			dialogue_flag = true
 			Global.INTERACTABLE = false
 			Global.FREEZE = true
 			first_dialogue = true
 			dialogueBG.visible = true
 			dialogueBG.set_process(true)
+			f.visible = true
 			dialogue.visible = true
 			dialogue.set_process(true)
 			bg_music_lower_volume.emit()
 			bg_music_lower_volume.emit()
+			print ("start dialogue")
 
 		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true:
+			print ("start text scroll")
 			Global.START = false
 			print (other_talk)
 			if (dialogue_in_process): #Skip text tick
+				print ("skip text tick")
 				dialogue.visible_characters = -1
 				timer.stop()
 				other_talk.stop()
 				nauto_talk.stop()
 				dialogue_in_process = false
 			else: #Text tick
+				print ("text tick")
 				timer.start()
 				dialogue.text = ""
 				dialogue.visible_characters = 0
@@ -125,6 +134,7 @@ func _physics_process(delta: float) -> void:
 						print ("End Dialogue")
 						_disable_dialogue()
 						Global.DIALOGUE_INSTANCE = 2
+						Global.START = false
 						load_next_dialogue()
 					"END":
 						print ("End Dialogue")
@@ -157,6 +167,7 @@ func _physics_process(delta: float) -> void:
 					"B":
 						_load_bite()
 					"M":
+						print ("malotalk")
 						_load_malo()
 					"C":
 						_load_crab()
@@ -193,6 +204,7 @@ func _on_timer_timeout() -> void:
 func _disable_dialogue() -> void:
 	dialogue_flag = false
 	dialogueBG.visible = false
+	f.visible = false
 	dialogueBG.set_process(false)
 	#dialogueBG.color="ffffff00"
 	dialogue.visible = false
@@ -200,8 +212,9 @@ func _disable_dialogue() -> void:
 	timer.stop()
 	nauto_talk.visible = false
 	other_talk.visible = false
+	dialogue_in_process = false
 	Global.FREEZE = false
-
+	
 func _load_bite() -> void:
 	other_talk = bite_talk
 	nauto_talk.stop()
@@ -209,7 +222,7 @@ func _load_bite() -> void:
 	speaker = "Bite"
 	#dialogueBG.color="4b4051"
 	dialogue.add_theme_color_override("default_color", Color("c7a97c"))
-	dialogue_font_path = load("res://Assets/Fonts/Bite.ttf")
+	dialogue_font_path = load("res://Assets/Fonts/Nauto2.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
 	dialogue_file_path = "res://Assets/Sound/Dialogue/B" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
 
@@ -220,7 +233,7 @@ func _load_malo() -> void:
 	speaker = "Malo"
 	#dialogueBG.color="101218"
 	dialogue.add_theme_color_override("default_color", Color("c9dfba"))
-	dialogue_font_path = load("res://Assets/Fonts/Bite.ttf")
+	dialogue_font_path = load("res://Assets/Fonts/Nauto2.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
 	dialogue_file_path = "res://Assets/Sound/Dialogue/M" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
 

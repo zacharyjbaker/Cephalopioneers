@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://0b3xea72rab"]
+[gd_scene load_steps=134 format=3 uid="uid://0b3xea72rab"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/crab_pope.gd" id="1_dquel"]
 [ext_resource type="Texture2D" uid="uid://d3kiot6u44p3n" path="res://Assets/Prefabs/KingCrab.png" id="2_anaf1"]
@@ -1056,6 +1056,19 @@ size = Vector2(44.785, 29.4418)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwpuw"]
 size = Vector2(63.4369, 42.3073)
 
+[sub_resource type="Curve" id="Curve_ntahe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.918994, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_jfy50"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.14)
+colors = PackedColorArray(0.584314, 0.741176, 0.643137, 1, 1, 0.207843, 1, 1)
+
+[sub_resource type="Curve" id="Curve_raal0"]
+_data = [Vector2(0, 0.984561), 0.0, 0.0, 0, 0, Vector2(0.963687, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="CrabPope" type="CharacterBody2D"]
 light_mask = 129
 scale = Vector2(4, 4)
@@ -1064,6 +1077,7 @@ collision_mask = 33792
 script = ExtResource("1_dquel")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(-2.60723, 76.75)
 scale = Vector2(1, 3.67)
 polygon = PackedVector2Array(-49.3928, -1.0218, -49.1428, -37.2616, 64.3572, -37.1253, 64.6072, -1.0218)
@@ -1145,17 +1159,20 @@ collision_layer = 0
 collision_mask = 32768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(3.59822, -3.75457)
 scale = Vector2(1.36723, 1.16155)
 shape = SubResource("RectangleShape2D_8icus")
 
 [node name="TempHitBox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(3.25, -2.625)
 rotation = 1.57376
 scale = Vector2(1.63148, -2.11322)
 shape = SubResource("RectangleShape2D_ftoax")
 
 [node name="HitBox" type="CollisionShape2D" parent="." groups=["damage", "mech_damage"]]
+visible = false
 position = Vector2(17.2013, 21)
 rotation = 1.57376
 scale = Vector2(1.63148, -2.11322)
@@ -1188,6 +1205,7 @@ stream = ExtResource("9_b71ii")
 volume_db = -4.386
 
 [node name="StaticField" type="CPUParticles2D" parent="."]
+visible = false
 position = Vector2(-0.25, 0)
 emitting = false
 amount = 500
@@ -1203,6 +1221,48 @@ radial_accel_max = 26.26
 scale_amount_min = 3.0
 scale_amount_max = 5.0
 color = Color(0.486275, 0.921569, 1, 1)
+
+[node name="Death" type="CPUParticles2D" parent="."]
+position = Vector2(3, 13.5)
+emitting = false
+amount = 3000
+lifetime = 20.0
+speed_scale = 2.0
+explosiveness = 0.26
+emission_shape = 2
+emission_sphere_radius = 17.11
+direction = Vector2(1, 10)
+spread = 180.0
+gravity = Vector2(1, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_ntahe")
+color = Color(0.784314, 0.890196, 0.827451, 1)
+color_ramp = SubResource("Gradient_jfy50")
+
+[node name="Damage" type="CPUParticles2D" parent="."]
+position = Vector2(2.25, 14)
+emitting = false
+amount = 1000
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+emission_shape = 2
+emission_sphere_radius = 17.11
+spread = 180.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_raal0")
+color = Color(0.666667, 0.615686, 0.541176, 1)
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]

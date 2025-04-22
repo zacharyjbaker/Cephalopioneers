@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_1ukan"]
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
 [ext_resource type="Script" path="res://Assets/Scenes/boss_manager.gd" id="1_p48oh"]
+[ext_resource type="PackedScene" uid="uid://bpyouqxbxr7f5" path="res://Assets/Prefabs/dialogue_manager.tscn" id="2_uhsb1"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="3_pgb00"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="4_dnxwv"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="5_8x1yd"]
@@ -14,7 +15,6 @@
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="11_cdk8d"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="12_h8pnm"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="13_dx66a"]
-[ext_resource type="PackedScene" uid="uid://c846dxhfsnnmd" path="res://Assets/Prefabs/dialogue_manager_bf.tscn" id="14_0wevl"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="19_qle4q"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="20_lnafa"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="21_ehq06"]
@@ -92,6 +92,8 @@ script = ExtResource("1_p48oh")
 mech = NodePath("../Mech")
 player = NodePath("../Nauto")
 save_load = NodePath("..")
+
+[node name="DialogueManager" parent="." instance=ExtResource("2_uhsb1")]
 
 [node name="UI" parent="." instance=ExtResource("1_ktyl6")]
 
@@ -183,8 +185,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
-[node name="DialogueManager" parent="." instance=ExtResource("14_0wevl")]
-
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("19_qle4q")]
 position = Vector2(1344, 1021)
 mech = NodePath("../Mech")
@@ -192,11 +192,12 @@ env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
-[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("20_lnafa")]
+[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("20_lnafa")]
 position = Vector2(1349, 1097)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
+save_load = NodePath("..")
 
 [node name="NPCs" type="Node" parent="."]
 
@@ -232,7 +233,7 @@ curve = SubResource("Curve2D_cs00x")
 position = Vector2(122.555, 34.75)
 rotation = -2.3538
 
-[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player", "mech") instance=ExtResource("23_07pr1")]
+[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player", "mech", "env_node") instance=ExtResource("23_07pr1")]
 position = Vector2(-5.54517, 108.349)
 rotation = 2.35379
 scale = Vector2(1.15164, 1)
@@ -244,6 +245,7 @@ crab_spawnpoints = NodePath("../../../CrabSpawnNode")
 blast_spawnpoints = NodePath("../../../BlastSpawnNode")
 player = NodePath("../../../Mech")
 mech = NodePath("../../../Mech")
+env_node = NodePath("../../../WorldEnvironment")
 
 [node name="Path2" type="Path2D" parent="."]
 position = Vector2(1339, 1057)

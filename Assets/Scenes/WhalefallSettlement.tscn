@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=76 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_4i3ih"]
 [ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
@@ -56,6 +56,7 @@
 [ext_resource type="PackedScene" uid="uid://b6sh2h644n12a" path="res://Assets/Sprites/Whale Fall Environment/ColorCollectable.tscn" id="57_ad17f"]
 [ext_resource type="PackedScene" uid="uid://ci3uvytrvfcdg" path="res://Assets/Prefabs/crab_mimic_alt.tscn" id="57_q43hi"]
 [ext_resource type="PackedScene" uid="uid://d4g2ylwhqe6f5" path="res://mechcurrent.tscn" id="58_q2jjd"]
+[ext_resource type="PackedScene" uid="uid://brlsqqal6pcva" path="res://save_game_text.tscn" id="59_rkjtm"]
 [ext_resource type="PackedScene" uid="uid://dngpnw4kl20yq" path="res://Assets/Scenes/Tall Plant Lights.tscn" id="59_uggkb"]
 [ext_resource type="PackedScene" uid="uid://bref2e80q5nwl" path="res://Assets/Prefabs/drillable_wall_stone.tscn" id="59_x5y2w"]
 
@@ -455,23 +456,20 @@ shader_parameter/skew = 0.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_avhrs"]
 
-[node name="Node2D" type="Node2D" groups=["WhalefallSettlement"]]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("save_text") groups=["WhalefallSettlement"]]
 script = ExtResource("1_4i3ih")
+save_text = NodePath("SaveGame")
 
 [node name="Checkpoint2" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
 position = Vector2(40147, -1030)
 save_load = NodePath("..")
 
 [node name="Checkpoint3" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
-position = Vector2(11232, 1201)
+position = Vector2(7562, 1201)
 save_load = NodePath("..")
 
 [node name="Checkpoint4" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
 position = Vector2(11971, 1210)
-save_load = NodePath("..")
-
-[node name="Checkpoint5" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
-position = Vector2(16007, 1110)
 save_load = NodePath("..")
 
 [node name="Checkpoint6" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
@@ -512,7 +510,6 @@ scale = Vector2(568.231, 49.296)
 texture = ExtResource("3_doonm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 515
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
@@ -526,6 +523,7 @@ default_intensity = 0.0
 [node name="Timer" type="Timer" parent="WorldEnvironment"]
 
 [node name="UI" parent="." instance=ExtResource("28_8x1rs")]
+visible = false
 
 [node name="DialogueManager" parent="." instance=ExtResource("8_135n4")]
 
@@ -566,17 +564,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
-position = Vector2(27297, 999)
+position = Vector2(23339, 1192)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
-[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node") instance=ExtResource("22_joohn")]
-position = Vector2(27289, 1116)
+[node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("22_joohn")]
+position = Vector2(23199, 1085)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
+save_load = NodePath("..")
 
 [node name="NPCs" type="Node" parent="."]
 
@@ -1564,6 +1563,9 @@ position = Vector2(25849, -406)
 
 [node name="CrabMimicAlt" parent="." instance=ExtResource("57_q43hi")]
 position = Vector2(25527, -1110)
+
+[node name="SaveGame" parent="." instance=ExtResource("59_rkjtm")]
+visible = false
 
 [connection signal="timeout" from="WorldEnvironment/Timer" to="WorldEnvironment" method="_on_timer_timeout"]
 [connection signal="timeout" from="BackgroundMusicManager/Timer" to="BackgroundMusicManager" method="_on_timer_timeout"]

@@ -1,0 +1,193 @@
+[gd_scene load_steps=5 format=3 uid="uid://bikdi2nbopovg"]
+
+[ext_resource type="Texture2D" uid="uid://7ankhaskb15k" path="res://Assets/light-rays-on-transparent-background-free-png.png" id="1_ohm7c"]
+
+[sub_resource type="Animation" id="Animation_d18sl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uiq67"]
+resource_name = "move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-300.115, 0), Vector2(0, 0), Vector2(300, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cub0e"]
+_data = {
+"RESET": SubResource("Animation_d18sl"),
+"move": SubResource("Animation_uiq67")
+}
+
+[node name="Lighting" type="Node2D"]
+
+[node name="Godray" type="Node2D" parent="."]
+position = Vector2(-4620, 6137)
+
+[node name="Mover" type="Node2D" parent="Godray"]
+
+[node name="Godrays" type="PointLight2D" parent="Godray/Mover"]
+z_index = 1
+position = Vector2(-3, 21)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.6
+texture = ExtResource("1_ohm7c")
+texture_scale = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Godray"]
+libraries = {
+"": SubResource("AnimationLibrary_cub0e")
+}
+autoplay = "move"
+speed_scale = 0.3
+
+[node name="Godray2" type="Node2D" parent="."]
+position = Vector2(2103, 4999)
+metadata/_edit_lock_ = true
+
+[node name="Mover" type="Node2D" parent="Godray2"]
+
+[node name="Godrays" type="PointLight2D" parent="Godray2/Mover"]
+z_index = 1
+position = Vector2(-3, 21)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.6
+texture = ExtResource("1_ohm7c")
+texture_scale = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Godray2"]
+libraries = {
+"": SubResource("AnimationLibrary_cub0e")
+}
+autoplay = "move"
+speed_scale = 0.3
+
+[node name="Godray3" type="Node2D" parent="."]
+position = Vector2(7880, 5811)
+metadata/_edit_lock_ = true
+
+[node name="Mover" type="Node2D" parent="Godray3"]
+
+[node name="Godrays" type="PointLight2D" parent="Godray3/Mover"]
+z_index = 1
+position = Vector2(-3, 21)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.6
+texture = ExtResource("1_ohm7c")
+texture_scale = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Godray3"]
+libraries = {
+"": SubResource("AnimationLibrary_cub0e")
+}
+autoplay = "move"
+speed_scale = 0.3
+
+[node name="Godray4" type="Node2D" parent="."]
+position = Vector2(13508, 6217)
+metadata/_edit_lock_ = true
+
+[node name="Mover" type="Node2D" parent="Godray4"]
+
+[node name="Godrays" type="PointLight2D" parent="Godray4/Mover"]
+z_index = 1
+position = Vector2(-3, 21)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.6
+texture = ExtResource("1_ohm7c")
+texture_scale = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Godray4"]
+libraries = {
+"": SubResource("AnimationLibrary_cub0e")
+}
+autoplay = "move"
+speed_scale = 0.3
+
+[node name="Godray5" type="Node2D" parent="."]
+position = Vector2(19719, 5781)
+
+[node name="Mover" type="Node2D" parent="Godray5"]
+
+[node name="Godrays" type="PointLight2D" parent="Godray5/Mover"]
+z_index = 1
+position = Vector2(-3, 21)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.6
+texture = ExtResource("1_ohm7c")
+texture_scale = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Godray5"]
+libraries = {
+"": SubResource("AnimationLibrary_cub0e")
+}
+autoplay = "move"
+speed_scale = 0.3
+
+[node name="Godray6" type="Node2D" parent="."]
+position = Vector2(25489, 5679)
+
+[node name="Mover" type="Node2D" parent="Godray6"]
+
+[node name="Godrays" type="PointLight2D" parent="Godray6/Mover"]
+z_index = 1
+position = Vector2(-3, 21)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.6
+texture = ExtResource("1_ohm7c")
+texture_scale = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Godray6"]
+libraries = {
+"": SubResource("AnimationLibrary_cub0e")
+}
+autoplay = "move"
+speed_scale = 0.3
+
+[node name="Godray7" type="Node2D" parent="."]
+position = Vector2(33149, 2070)
+
+[node name="Mover" type="Node2D" parent="Godray7"]
+
+[node name="Godrays" type="PointLight2D" parent="Godray7/Mover"]
+z_index = 1
+position = Vector2(-3, 21)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.6
+texture = ExtResource("1_ohm7c")
+texture_scale = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Godray7"]
+libraries = {
+"": SubResource("AnimationLibrary_cub0e")
+}
+autoplay = "move"
+speed_scale = 0.3

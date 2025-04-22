@@ -8,14 +8,15 @@ extends RigidBody2D
 @export var roll_force: Vector2 = Vector2(-150.0, 0.0)
 @export var friction_reduction: float = 0.1
 @export var FallTimer: Timer
-
-var player: Node2D = null
+@export var particles : Node2D
+@export var player: Node2D
 var has_fallen := false
 var has_landed := false
 
 func _ready():
 	freeze = true  
-	find_player()
+	#find_player()
+	#print (player.name)
 
 	# Adjust physics material for rolling
 	physics_material_override = PhysicsMaterial.new()

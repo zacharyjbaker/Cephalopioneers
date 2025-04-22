@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bpyouqxbxr7f5"]
+[gd_scene load_steps=34 format=3 uid="uid://bpyouqxbxr7f5"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="1_0ss0d"]
 [ext_resource type="Texture2D" uid="uid://cjcsbevwuvnnr" path="res://Assets/Prefabs/DialogueBG.png" id="2_hx4tf"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dcqaeuvh0y8jj" path="res://Assets/Scenes/LieutenantMaloTalk.png" id="5_yd13p"]
 [ext_resource type="Texture2D" uid="uid://dx4am2gokj4gw" path="res://Assets/Prefabs/CrabPopePortrait.png" id="6_drmmv"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="6_hrh64"]
+[ext_resource type="Texture2D" uid="uid://bjcusclgdwisc" path="res://Assets/Prefabs/hidden_portrait.png" id="7_aybt2"]
+[ext_resource type="Texture2D" uid="uid://q7nyw2ymwqsp" path="res://Assets/Scenes/F.png" id="8_yqloy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpqwc"]
 atlas = ExtResource("2_hx4tf")
@@ -173,6 +175,21 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf6ld"]
+atlas = ExtResource("7_aybt2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3bhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf6ld")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 10.0
+}]
+
 [node name="DialogueManager" type="Node2D"]
 script = ExtResource("1_0ss0d")
 
@@ -187,6 +204,7 @@ autostart = true
 [node name="DialogueCanvas" type="CanvasLayer" parent="."]
 
 [node name="DialogueBG" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
 texture_filter = 1
 position = Vector2(960, 322)
 scale = Vector2(4, 4)
@@ -310,6 +328,28 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "904342f8980432ac07324996ddc2299f"
 
+[node name="HiddenTalk" type="AnimatedSprite2D" parent="DialogueCanvas"]
+visible = false
+texture_filter = 1
+position = Vector2(1496, 322)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_w3bhd")
+animation = &"Talk"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Prefabs/hidden_portrait.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "93e90ede3b4b495822918e4ffa089958"
+
 [node name="NautoPortrait" type="ColorRect" parent="DialogueCanvas"]
 visible = false
 anchors_preset = -1
@@ -347,12 +387,18 @@ anchor_top = -0.0901232
 anchor_right = 0.180557
 anchor_bottom = -0.0901232
 offset_left = 783.333
-offset_top = 274.333
+offset_top = 287.333
 offset_right = 1146.33
-offset_bottom = 621.333
+offset_bottom = 634.333
 scale = Vector2(0.816538, 0.79159)
 theme_override_fonts/normal_font = ExtResource("6_hrh64")
 theme_override_font_sizes/normal_font_size = 70
 metadata/_edit_use_anchors_ = true
+
+[node name="F" type="Sprite2D" parent="DialogueCanvas"]
+visible = false
+position = Vector2(1317, 426)
+scale = Vector2(4, 4)
+texture = ExtResource("8_yqloy")
 
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_timer_timeout"]

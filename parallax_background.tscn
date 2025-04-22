@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b17t1sspo1ejp"]
+[gd_scene load_steps=5 format=3 uid="uid://b17t1sspo1ejp"]
 
 [ext_resource type="Texture2D" uid="uid://ddc63b22fsubo" path="res://Assets/MapDraft/Layer 2 Resized.png" id="1_wyxvy"]
 [ext_resource type="Texture2D" uid="uid://bf2hopcupr884" path="res://Assets/MapDraft/Shallows Final Background.png" id="2_r7ngq"]
+[ext_resource type="Texture2D" uid="uid://cptyvbpio4t73" path="res://Assets/Scenes/Shallows BG Top Extension.png" id="3_u62no"]
+[ext_resource type="Texture2D" uid="uid://bipbbeqfn0322" path="res://Assets/Scenes/Shallows BG Bottom Extension.png" id="4_mysh4"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
@@ -22,3 +24,23 @@ motion_mirroring = Vector2(2048, 0)
 scale = Vector2(6, 6)
 texture = ExtResource("2_r7ngq")
 centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="ShallowsBgTopExtension" type="Sprite2D" parent="ParallaxLayer3"]
+z_index = -1
+position = Vector2(2305, 1)
+scale = Vector2(6, 6)
+texture = ExtResource("3_u62no")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="ShallowsBgBottomExtension" type="Sprite2D" parent="ParallaxLayer4"]
+z_index = -1
+position = Vector2(2305, 1536)
+scale = Vector2(6, 6)
+texture = ExtResource("4_mysh4")

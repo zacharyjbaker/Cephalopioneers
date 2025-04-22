@@ -727,12 +727,11 @@ polygon = PackedVector2Array(-13.5, -1.5, -877.864, -161.044, -876.403, 163.882)
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 light_mask = 0
-z_index = 1
+visibility_layer = 1048575
+z_index = 100
 position = Vector2(603, 62)
 rotation = -1.5708
-energy = 1.28
-range_z_max = 1
-range_item_cull_mask = 7
+range_item_cull_mask = 1048575
 texture = ExtResource("8_sxyis")
 texture_scale = 1.8
 
@@ -878,6 +877,27 @@ radial_accel_max = 26.26
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 color = Color(0.486275, 0.921569, 1, 1)
+
+[node name="Death" type="CPUParticles2D" parent="."]
+position = Vector2(-0.25, 20)
+emitting = false
+amount = 2000
+lifetime = 4.0
+one_shot = true
+speed_scale = 1.97
+explosiveness = 0.43
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(1, 10)
+spread = 180.0
+gravity = Vector2(1, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 450.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(0.49, 1, 0.932, 1)
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="animation_finished" from="MechBody" to="." method="_on_mech_body_animation_finished"]

@@ -20,7 +20,7 @@ var linearSliderValue = 0.9
 @export var eel_script: Node2D
 
 func _ready() -> void:
-	background_music.volume_db = 20 * (log(linearSliderValue) / log(10))
+	background_music.volume_db = -200
 	dialogue_script.bg_music_lower_volume.connect(change_volume.bind(-1))
 	dialogue_script.bg_music_raise_volume.connect(change_volume.bind(1))
 	dialogue_script.bgmusic_stop.connect(change_music.bind(-1))
