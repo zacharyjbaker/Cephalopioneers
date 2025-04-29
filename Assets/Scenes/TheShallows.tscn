@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://d0sd375ae8jx2"]
+[gd_scene load_steps=53 format=4 uid="uid://d0sd375ae8jx2"]
 
 [ext_resource type="Script" path="res://Assets/Prefabs/shallows_manager.gd" id="1_b8dk6"]
 [ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_iceec"]
@@ -13,9 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://b17t1sspo1ejp" path="res://parallax_background.tscn" id="9_ervmy"]
 [ext_resource type="PackedScene" uid="uid://tbxkugnbp6o8" path="res://Assets/Prefabs/drillable_wall.tscn" id="9_so8s1"]
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="10_0gom4"]
-[ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="11_2qxj4"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="12_th2xk"]
+[ext_resource type="AudioStream" uid="uid://dihe72tfhmimy" path="res://Assets/Sound/Music/Shallows.wav" id="14_247s2"]
 [ext_resource type="Texture2D" uid="uid://d0w70hpm12841" path="res://Assets/Sprites/CommanderBite.png" id="15_7otye"]
+[ext_resource type="AudioStream" uid="uid://cthpn4xrl0428" path="res://Assets/Sound/Music/TheLeviathan.wav" id="15_gorbg"]
+[ext_resource type="AudioStream" uid="uid://ci8lnutkqu4yp" path="res://Assets/Sound/Rumble.mp3" id="16_dgacg"]
+[ext_resource type="AudioStream" uid="uid://ceh0synhesbay" path="res://Assets/Sound/Music/Whale.wav" id="17_qjr5a"]
+[ext_resource type="AudioStream" uid="uid://c6b5kiwgprrmq" path="res://Assets/Sound/Music/PopeCrab.wav" id="18_pc5me"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_ye3to"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_2m0jb"]
 [ext_resource type="Script" path="res://Assets/Scenes/malo.gd" id="23_kjnq7"]
@@ -25,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://foeic3g6ehp7" path="res://Garden Eel Pit_var.tscn" id="27_4yd0h"]
 [ext_resource type="PackedScene" uid="uid://cqf0gnysb5fvx" path="res://Assets/Prefabs/aardvark.tscn" id="27_jbyfm"]
 [ext_resource type="PackedScene" uid="uid://cbkjxe8o45c7v" path="res://Assets/Prefabs/needlenose.tscn" id="28_s4lt4"]
-[ext_resource type="PackedScene" path="res://Assets/Scenes/drillable_wall.tscn" id="29_1iibi"]
+[ext_resource type="PackedScene" uid="uid://b7ywdbackf73s" path="res://Assets/Scenes/drillable_wall.tscn" id="29_1iibi"]
 [ext_resource type="PackedScene" uid="uid://bss4600ghnvh8" path="res://Assets/Prefabs/chase_needlenose.tscn" id="29_xbdbo"]
 [ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="30_ny3i0"]
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="31_vmlcy"]
@@ -193,13 +197,15 @@ collision_enabled = false
 
 [node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script", "eel_script")]
 script = ExtResource("10_0gom4")
+songs = Array[Resource]([ExtResource("14_247s2"), ExtResource("15_gorbg"), ExtResource("16_dgacg"), ExtResource("17_qjr5a"), ExtResource("18_pc5me")])
 dialogue_script = NodePath("../DialogueManager")
 nauto_script = NodePath("../Nauto")
 eel_script = NodePath("../LeviathanEel")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
-stream = ExtResource("11_2qxj4")
+stream = ExtResource("14_247s2")
 volume_db = -0.455
+autoplay = true
 max_distance = 137586.0
 panning_strength = 0.0
 
@@ -252,7 +258,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "misc_env", "HP_node", "save_load") instance=ExtResource("21_ye3to")]
-position = Vector2(-1407, -104)
+position = Vector2(7204, 541)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 misc_env = NodePath("../MiscEnv")
@@ -1178,7 +1184,7 @@ position = Vector2(2966, 394)
 HP_layer = NodePath("../UI")
 
 [node name="ShealthPickup2" parent="." node_paths=PackedStringArray("HP_layer") instance=ExtResource("34_gym04")]
-position = Vector2(8547, 145)
+position = Vector2(8556, 303)
 HP_layer = NodePath("../UI")
 
 [node name="TileMapLayer" parent="." instance=ExtResource("35_gfyca")]

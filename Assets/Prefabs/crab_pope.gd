@@ -302,6 +302,8 @@ func _do_move():
 		else:
 			await get_tree().create_timer(cooldown).timeout
 			print ("Next Moveset")
+			hit_box.add_to_group("mech_damage")
+			hit_box.add_to_group("damage")
 			_fight()
 
 func _on_sprite_animation_finished() -> void:
@@ -434,8 +436,7 @@ func _on_sprite_animation_finished() -> void:
 					print ("Return to normal moveset")
 					state = States.IDLE
 					anim_player.play("Idle")
-					hit_box.add_to_group("mech_damage")
-					hit_box.add_to_group("damage")
+					
 					#await get_tree().create_timer(3).timeout
 					_do_move()
 			#if nextMoveset and !isStruggling and !teleporting:

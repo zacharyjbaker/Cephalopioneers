@@ -3,35 +3,35 @@
 [ext_resource type="Script" path="res://shealth_pickup.gd" id="1_4xmyh"]
 [ext_resource type="Texture2D" uid="uid://dwwmtpcgmlrsm" path="res://shealth_pickup_new.png" id="2_e0ekl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_re4er"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0beam"]
 atlas = ExtResource("2_e0ekl")
 region = Rect2(0, 0, 25, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a754d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0vvu"]
 atlas = ExtResource("2_e0ekl")
 region = Rect2(25, 0, 25, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_58k54"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3dc8"]
 atlas = ExtResource("2_e0ekl")
 region = Rect2(0, 35, 25, 35)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cdvcl"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xdf2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_re4er")
+"texture": SubResource("AtlasTexture_0beam")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a754d")
+"texture": SubResource("AtlasTexture_p0vvu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_58k54")
+"texture": SubResource("AtlasTexture_n3dc8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a754d")
+"texture": SubResource("AtlasTexture_p0vvu")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 4.0
 }]
 
@@ -45,8 +45,10 @@ script = ExtResource("1_4xmyh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_cdvcl")
+sprite_frames = SubResource("SpriteFrames_4xdf2")
+animation = &"Idle"
 metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
 "pending_changes": {}
 }
 metadata/_aseprite_wizard_config_ = {
@@ -58,7 +60,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/shealth_pickup_new.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ca662c7a32cfd068e22b66390ca322dc"
+metadata/_aseprite_wizard_source_file_hash_ = "ce7f80df4694ec57928e99fe2af558ae"
 
 [node name="Collider" type="Area2D" parent="."]
 collision_layer = 0

@@ -13,7 +13,10 @@ var has_waypoints = false
 var waypoints
 
 func _ready() -> void:
-	sprite.play("Idle")
+	if upside_down:
+		sprite.play("IdleUpsideDown")
+	else:
+		sprite.play("Idle")
 	if get_child_count() > 0:
 		has_waypoints = true
 		waypoints = $Waypoints

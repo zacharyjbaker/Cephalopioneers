@@ -224,7 +224,7 @@ func _physics_process(delta: float) -> void:
 		#print (position)
 		velocity.y += delta * Global.GRAVITY 
 		move_and_slide()
-		
+
 		if velocity.x > 1:
 			scale.y = abs(scale.y)
 			rotation_degrees = 0
@@ -248,8 +248,9 @@ func _physics_process(delta: float) -> void:
 				health_loss()
 			if velocity.y > 0: # falling transition anim
 				if play_transition_anim == true:
+					#print("falling")
 					fall_anim()
-					play_transition_anim = false		
+					play_transition_anim = false
 			elif velocity.y < 0: # ascending transition anim
 				current_anim = "Ascend"
 				nauto_sprite.play(current_anim)
@@ -350,6 +351,9 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 					#velocity.y += body.velocity.y * 3
 					if body.is_in_group("aardvark") and body.upside_down == true:
 						velocity.y += -(velocity.y * 2 + body.y_knockback)
+						if velocity.y < -580:
+							velocity.y = -580
+							
 				if (body.get_node("HitBox").is_in_group("instant_death") and Global.MODE == "Nauto"):
 					Global.HEALTH = 0
 					health_loss()

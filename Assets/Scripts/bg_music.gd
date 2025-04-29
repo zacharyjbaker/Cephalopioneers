@@ -2,13 +2,13 @@ extends Node2D
 @onready var background_music = $BGMusic
 @onready var music_credit = $BGMusicCanvas/BGMusicCredit
 @onready var timer = $Timer
-
+@export var songs: Array[Resource]
 @export var preset_volume = -0.5
 
 var color = Color("FFFFFF")
-var song_list = ["res://Assets/Sound/Music/Cargo.mp3", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3", "res://Assets/Sound/Music/Whale.mp3", "res://Assets/Sound/Music/BossFight.mp3"]
-var credit_list = ["NOW PLAYING\n\"The Shallows\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", "", "NOW PLAYING\n\"The Whalefall\" by Josh Thies", "NOW PLAYING\n\"Deus Est Cancri\" by Josh Thies"]
-
+#var song_list = ["res://Assets/Sound/Music/Shallows.wav", "res://Assets/Sound/Music/TheLeviathan.wav", "res://Assets/Sound/Rumble.mp3", "res://Assets/Sound/Music/Whale.wav", "res://Assets/Sound/Music/PopeCrab.wav"]
+var song_list = songs
+#var credit_list = ["NOW PLAYING\n\"The Shallows\" by Josh Thies", "NOW PLAYING\n\"The Leviathan\" by Zachary Baker", "", "NOW PLAYING\n\"The Whalefall\" by Josh Thies", "NOW PLAYING\n\"Deus Est Cancri\" by Josh Thies"]
 var isFading = false
 var isVolumeIncrease = false
 var isVolumeDecrease = false
@@ -30,6 +30,7 @@ func _ready() -> void:
 	if is_instance_valid(Global):
 		match Global.SCENE:
 			"TheShallows":
+				#print ("change music to Shallows")
 				change_music(0)
 				if is_instance_valid(eel_script):
 					eel_script.bgmusic_chase.connect(change_music.bind(1))
@@ -97,10 +98,11 @@ func change_music(song_index: int) -> void:
 	isFading = false
 	color.a = 1
 	#timer.start(4)
-	var song = load(song_list[song_index])
+	#var song = load(song_list[song_index])
+	var song = songs[song_index]
 	background_music.stream = song
 	background_music.play()
-	music_credit.text = credit_list[song_index]
+	#music_credit.text = credit_list[song_index]
 	print (song)
 	isFading = true
 	

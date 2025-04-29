@@ -582,7 +582,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "c2b92b5491f68b56925438d7308f5701"
 
 [node name="FrontArm" type="AnimatedSprite2D" parent="."]
 light_mask = 25
-z_index = 2
+z_index = -1
 texture_filter = 1
 position = Vector2(43, 29)
 scale = Vector2(4, 4)

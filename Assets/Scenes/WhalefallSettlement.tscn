@@ -12,8 +12,8 @@
 [ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="10_6mb7k"]
 [ext_resource type="PackedScene" uid="uid://c55yyfmqks0ja" path="res://parallax_background_whalefall.tscn" id="10_carru"]
 [ext_resource type="PackedScene" uid="uid://bacwwvwuc4206" path="res://parallax_background_whalefall_2.tscn" id="11_5kpfi"]
-[ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="11_pgbqo"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="12_rqy8y"]
+[ext_resource type="AudioStream" uid="uid://ceh0synhesbay" path="res://Assets/Sound/Music/Whale.wav" id="13_h6h3r"]
 [ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="18_mjrry"]
 [ext_resource type="PackedScene" uid="uid://ctojvjycd40p0" path="res://Assets/Prefabs/PuzzleLamp.tscn" id="20_eb28t"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
@@ -460,6 +460,79 @@ shader_parameter/skew = 0.0
 script = ExtResource("1_4i3ih")
 save_text = NodePath("SaveGame")
 
+[node name="WhalefallManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player", "env_node", "dialogue_manager", "save_load")]
+script = ExtResource("2_1gigv")
+mech = NodePath("../Mech")
+player = NodePath("../Nauto")
+env_node = NodePath("../WorldEnvironment")
+dialogue_manager = NodePath("../DialogueManager")
+save_load = NodePath("..")
+
+[node name="WaterShader" type="Sprite2D" parent="."]
+light_mask = 16387
+z_index = 99
+material = SubResource("ShaderMaterial_toho5")
+position = Vector2(10653, 377)
+rotation = 3.14159
+scale = Vector2(568.231, 49.296)
+texture = ExtResource("3_doonm")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+light_mask = 515
+position = Vector2(289, 919)
+scale = Vector2(0.975452, 3.5576)
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n7rwt")
+script = ExtResource("5_gcgym")
+default_intensity = 0.0
+
+[node name="Timer" type="Timer" parent="WorldEnvironment"]
+
+[node name="UI" parent="." instance=ExtResource("28_8x1rs")]
+visible = false
+
+[node name="DialogueManager" parent="." instance=ExtResource("8_135n4")]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("10_carru")]
+
+[node name="ParallaxBackground2" parent="." instance=ExtResource("11_5kpfi")]
+
+[node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script")]
+script = ExtResource("10_6mb7k")
+dialogue_script = NodePath("../DialogueManager")
+nauto_script = NodePath("../Nauto")
+
+[node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
+stream = ExtResource("13_h6h3r")
+volume_db = -0.455
+autoplay = true
+max_distance = 137586.0
+panning_strength = 0.0
+
+[node name="BGMusicCanvas" type="CanvasLayer" parent="BackgroundMusicManager"]
+
+[node name="BGMusicCredit" type="RichTextLabel" parent="BackgroundMusicManager/BGMusicCanvas"]
+visible = false
+anchors_preset = -1
+anchor_left = -0.00434028
+anchor_top = -0.0493827
+anchor_right = 0.309896
+anchor_bottom = -0.0493827
+offset_left = 31.3333
+offset_top = 1008.33
+offset_right = 394.333
+offset_bottom = 1355.33
+scale = Vector2(1.28, 1)
+theme_override_fonts/normal_font = ExtResource("12_rqy8y")
+theme_override_font_sizes/normal_font_size = 50
+text = "testing"
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="BackgroundMusicManager"]
+
 [node name="Checkpoint2" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
 position = Vector2(40147, -1030)
 save_load = NodePath("..")
@@ -491,77 +564,6 @@ save_load = NodePath("..")
 [node name="Checkpoint11" parent="." node_paths=PackedStringArray("save_load") instance=ExtResource("2_8f1f3")]
 position = Vector2(34309, -1057)
 save_load = NodePath("..")
-
-[node name="WhalefallManager" type="Node2D" parent="." node_paths=PackedStringArray("mech", "player", "env_node", "dialogue_manager", "save_load")]
-script = ExtResource("2_1gigv")
-mech = NodePath("../Mech")
-player = NodePath("../Nauto")
-env_node = NodePath("../WorldEnvironment")
-dialogue_manager = NodePath("../DialogueManager")
-save_load = NodePath("..")
-
-[node name="WaterShader" type="Sprite2D" parent="."]
-light_mask = 16387
-z_index = 99
-material = SubResource("ShaderMaterial_toho5")
-position = Vector2(10653, 377)
-rotation = 3.14159
-scale = Vector2(568.231, 49.296)
-texture = ExtResource("3_doonm")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-light_mask = 515
-position = Vector2(289, 919)
-scale = Vector2(0.975452, 3.5576)
-color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_n7rwt")
-script = ExtResource("5_gcgym")
-default_intensity = 0.0
-
-[node name="Timer" type="Timer" parent="WorldEnvironment"]
-
-[node name="UI" parent="." instance=ExtResource("28_8x1rs")]
-visible = false
-
-[node name="DialogueManager" parent="." instance=ExtResource("8_135n4")]
-
-[node name="ParallaxBackground" parent="." instance=ExtResource("10_carru")]
-
-[node name="ParallaxBackground2" parent="." instance=ExtResource("11_5kpfi")]
-
-[node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script")]
-script = ExtResource("10_6mb7k")
-dialogue_script = NodePath("../DialogueManager")
-nauto_script = NodePath("../Nauto")
-
-[node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
-stream = ExtResource("11_pgbqo")
-volume_db = -0.455
-max_distance = 137586.0
-panning_strength = 0.0
-
-[node name="BGMusicCanvas" type="CanvasLayer" parent="BackgroundMusicManager"]
-
-[node name="BGMusicCredit" type="RichTextLabel" parent="BackgroundMusicManager/BGMusicCanvas"]
-visible = false
-anchors_preset = -1
-anchor_left = -0.00434028
-anchor_top = -0.0493827
-anchor_right = 0.309896
-anchor_bottom = -0.0493827
-offset_left = 31.3333
-offset_top = 1008.33
-offset_right = 394.333
-offset_bottom = 1355.33
-scale = Vector2(1.28, 1)
-theme_override_fonts/normal_font = ExtResource("12_rqy8y")
-theme_override_font_sizes/normal_font_size = 50
-text = "testing"
-metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="BackgroundMusicManager"]
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
 position = Vector2(23339, 1192)

@@ -284,6 +284,7 @@ shape = SubResource("RectangleShape2D_re3q7")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_nybah")
 animation = &"IdleUpsideDown"
+frame_progress = 0.589092
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
