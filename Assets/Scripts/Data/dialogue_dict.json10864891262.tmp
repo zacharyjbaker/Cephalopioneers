@@ -25,11 +25,11 @@
 	
 	"3" : {
 		"1": "/B/N-n-n-aaa t-t-t-o?",
-		"2": "/B/I-I ca... not rea-read... cation.",
-		"3": "*static*...*static",
+		"2": "/B/I-I ca... not rea-read... cation",
+		"3": "*static*...*static*",
 		"4": "In aby... sal... z-zo-zone...",
-		"5": "Re... member... use... fl-flash... light.",
-		"6": "*static*",
+		"5": "Re... member... use... fl-flash... light",
+		"6": "*static*...*static*",
 		"7": "/END/"
 	},
 	
@@ -47,5 +47,5 @@
 		"11": "/N/WAIT! I don't want to-",
 		"12": "/C/PERISH APOSTATE!",
 		"13": "/ENDCRAB/"
-	}
+	},
 }

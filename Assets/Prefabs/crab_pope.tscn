@@ -1051,7 +1051,7 @@ animations = [{
 size = Vector2(47.3978, 66.7289)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftoax"]
-size = Vector2(44.785, 29.4418)
+size = Vector2(44.785, 21.1765)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwpuw"]
 size = Vector2(63.4369, 42.3073)
@@ -1166,7 +1166,7 @@ shape = SubResource("RectangleShape2D_8icus")
 
 [node name="TempHitBox" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(3.25, -2.625)
+position = Vector2(3.37352, -2.62463)
 rotation = 1.57376
 scale = Vector2(1.63148, -2.11322)
 shape = SubResource("RectangleShape2D_ftoax")
@@ -1180,29 +1180,37 @@ shape = SubResource("RectangleShape2D_fwpuw")
 
 [node name="RoarSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_p3iyg")
+volume_db = 4.0
+max_distance = 9.22337e+18
 
 [node name="BeamsSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_cxr3t")
 volume_db = -6.695
+max_distance = 9.22337e+18
 
 [node name="SlamSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_etrf8")
 volume_db = -1.253
+max_distance = 9.22337e+18
 
 [node name="PortalSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_pbnc5")
 volume_db = -1.972
+max_distance = 9.22337e+18
 
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_8ppp3")
 volume_db = 1.253
+max_distance = 9.22337e+18
 
 [node name="ShatterSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_y84aj")
+max_distance = 9.22337e+18
 
 [node name="MagicSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_b71ii")
-volume_db = -4.386
+volume_db = -7.0
+max_distance = 9.22337e+18
 
 [node name="StaticField" type="CPUParticles2D" parent="."]
 visible = false
@@ -1264,6 +1272,9 @@ scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_raal0")
 color = Color(0.666667, 0.615686, 0.541176, 1)
 
+[node name="ShakeTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]
 [connection signal="animation_finished" from="UpdateSprite" to="." method="_on_sprite_animation_finished"]
@@ -1271,3 +1282,4 @@ color = Color(0.666667, 0.615686, 0.541176, 1)
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]

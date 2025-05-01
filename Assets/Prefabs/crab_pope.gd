@@ -154,7 +154,7 @@ func _physics_process(delta: float) -> void:
 				#magicSFX.play()
 			elif state == States.EEL_BLAST:
 				anim_player.play("ForwardBlast")
-				portalSFX.play()
+				#magicSFX.play()
 				
 			elif state == States.SLAM or state == States.SKULL_SLAM :
 				##print ("SLAM TO JUMP")
@@ -193,6 +193,8 @@ func _physics_process(delta: float) -> void:
 				elif isSkullSlamming == true and is_on_floor():
 					##print ("SkullSmash")
 					anim_player.play("Struggle")
+					Global.SHAKE = true
+					$ShakeTimer.start(0.7)
 					slamSFX.play()
 					state = States.IDLE
 					isSkullSlamming = false
@@ -334,7 +336,7 @@ func _on_sprite_animation_finished() -> void:
 							blast.global_position = waypoint.global_position
 							blast.add_to_group("instanced")
 							get_tree().root.add_child(blast)
-						#beamsSFX.play()
+						beamsSFX.play()
 					States.EEL_BLAST:
 						var eel_blast = eel_blast.instantiate()
 						roarSFX.play()
@@ -406,6 +408,8 @@ func _on_sprite_animation_finished() -> void:
 				elif state == States.STRUGGLE:
 					anim_player.play("Struggle")
 					drillable = true
+					hit_box.remove_from_group("mech_damage")
+					hit_box.remove_from_group("damage")
 					temp_hit_box.remove_from_group("mech_damage")
 					temp_hit_box.remove_from_group("damage")
 					state = States.TELEPORT
@@ -454,3 +458,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		
 func light_lerp() -> void:
 	isLightLerp = true
+
+func _on_shake_timer_timeout() -> void:
+	Global.SHAKE = false

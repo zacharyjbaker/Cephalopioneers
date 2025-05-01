@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=80 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Script" uid="uid://r17t4ugbkw2r" path="res://Assets/Scenes/save_load.gd" id="1_4i3ih"]
 [ext_resource type="Shader" uid="uid://b72cfqtnnje11" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
@@ -14,7 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bacwwvwuc4206" path="res://parallax_background_whalefall_2.tscn" id="11_5kpfi"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="12_rqy8y"]
 [ext_resource type="AudioStream" uid="uid://ceh0synhesbay" path="res://Assets/Sound/Music/Whale.wav" id="13_h6h3r"]
-[ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="18_mjrry"]
+[ext_resource type="AudioStream" uid="uid://dihe72tfhmimy" path="res://Assets/Sound/Music/Shallows.wav" id="13_xmd66"]
+[ext_resource type="AudioStream" uid="uid://cthpn4xrl0428" path="res://Assets/Sound/Music/TheLeviathan.wav" id="14_1of7l"]
+[ext_resource type="AudioStream" uid="uid://ci8lnutkqu4yp" path="res://Assets/Sound/Rumble.mp3" id="15_1of7l"]
+[ext_resource type="AudioStream" uid="uid://c6b5kiwgprrmq" path="res://Assets/Sound/Music/PopeCrab.wav" id="16_mns2n"]
 [ext_resource type="PackedScene" uid="uid://ctojvjycd40p0" path="res://Assets/Prefabs/PuzzleLamp.tscn" id="20_eb28t"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
@@ -59,6 +62,7 @@
 [ext_resource type="PackedScene" uid="uid://brlsqqal6pcva" path="res://save_game_text.tscn" id="59_rkjtm"]
 [ext_resource type="PackedScene" uid="uid://dngpnw4kl20yq" path="res://Assets/Scenes/Tall Plant Lights.tscn" id="59_uggkb"]
 [ext_resource type="PackedScene" uid="uid://bref2e80q5nwl" path="res://Assets/Prefabs/drillable_wall_stone.tscn" id="59_x5y2w"]
+[ext_resource type="PackedScene" uid="uid://c8n1gllcvkilb" path="res://death_pit.tscn" id="62_1of7l"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x3a23"]
 noise_type = 2
@@ -502,15 +506,17 @@ visible = false
 
 [node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script")]
 script = ExtResource("10_6mb7k")
+songs = Array[Resource]([ExtResource("13_xmd66"), ExtResource("14_1of7l"), ExtResource("15_1of7l"), ExtResource("13_h6h3r"), ExtResource("16_mns2n")])
 dialogue_script = NodePath("../DialogueManager")
 nauto_script = NodePath("../Nauto")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("13_h6h3r")
-volume_db = -0.455
+volume_db = 3.0
 autoplay = true
-max_distance = 137586.0
+max_distance = 1e+09
 panning_strength = 0.0
+playback_type = 1
 
 [node name="BGMusicCanvas" type="CanvasLayer" parent="BackgroundMusicManager"]
 
@@ -566,7 +572,7 @@ position = Vector2(34309, -1057)
 save_load = NodePath("..")
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
-position = Vector2(23339, 1192)
+position = Vector2(24366, 1243)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
@@ -580,30 +586,6 @@ HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
 [node name="NPCs" type="Node" parent="."]
-
-[node name="DeathPit" parent="NPCs" instance=ExtResource("18_mjrry")]
-visible = false
-position = Vector2(11827, 1721)
-rotation = -1.57141
-scale = Vector2(2.23857, 6.68068)
-
-[node name="DeathPit2" parent="NPCs" instance=ExtResource("18_mjrry")]
-visible = false
-position = Vector2(16829, 1884)
-rotation = -1.57141
-scale = Vector2(2.23857, 12.1604)
-
-[node name="DeathPit3" parent="NPCs" instance=ExtResource("18_mjrry")]
-visible = false
-position = Vector2(25079, 1475)
-rotation = -1.57141
-scale = Vector2(2.23857, 12.1604)
-
-[node name="DeathPit4" parent="NPCs" instance=ExtResource("18_mjrry")]
-visible = false
-position = Vector2(26410, 1513)
-rotation = -1.57141
-scale = Vector2(2.23857, 12.1604)
 
 [node name="GuardCrab" parent="NPCs" instance=ExtResource("22_pfjnx")]
 z_index = 1
@@ -1565,6 +1547,15 @@ position = Vector2(25849, -406)
 
 [node name="CrabMimicAlt" parent="." instance=ExtResource("57_q43hi")]
 position = Vector2(25527, -1110)
+
+[node name="DeathPit" parent="." instance=ExtResource("62_1of7l")]
+position = Vector2(11331, 1872)
+
+[node name="DeathPit2" parent="." instance=ExtResource("62_1of7l")]
+position = Vector2(16356, 1802)
+
+[node name="DeathPit3" parent="." instance=ExtResource("62_1of7l")]
+position = Vector2(25070, 1686)
 
 [node name="SaveGame" parent="." instance=ExtResource("59_rkjtm")]
 visible = false

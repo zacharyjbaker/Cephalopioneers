@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8n1gllcvkilb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3p57"]
+size = Vector2(2629.25, 83)
+
+[node name="DeathPit" type="CharacterBody2D"]
+collision_layer = 2048
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["death_pit", "instant_death"]]
+position = Vector2(396.375, -25)
+shape = SubResource("RectangleShape2D_n3p57")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

@@ -64,6 +64,7 @@ _data = {
 
 [node name="EelPit" type="CharacterBody2D" node_paths=PackedStringArray("anim_player", "anim_player2", "anim_player3", "anim_player4", "anim_player5", "anim_player6", "anim_player7", "anim_player8", "anim_player9")]
 z_index = -2
+collision_layer = 2049
 script = ExtResource("1_7s1cc")
 anim_player = NodePath("Sprite2D/AnimationPlayer")
 anim_player2 = NodePath("Sprite2D2/AnimationPlayer")
@@ -85,7 +86,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 2.5
 
@@ -97,7 +98,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D2"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 2.0
 
@@ -111,7 +112,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D3"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 3.0
 
@@ -123,7 +124,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D4"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 1.5
 
@@ -135,7 +136,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D5"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 2.75
 
@@ -147,7 +148,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D6"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 2.25
 
@@ -160,7 +161,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D7"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 3.5
 
@@ -173,7 +174,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D8"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 3.2
 
@@ -186,6 +187,6 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D9"]
 libraries = {
-"": SubResource("AnimationLibrary_gumy4")
+&"": SubResource("AnimationLibrary_gumy4")
 }
 speed_scale = 2.5

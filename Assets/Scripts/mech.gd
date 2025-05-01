@@ -444,6 +444,10 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 							body.velocity.x -= 500
 						body.velocity.y -= 300
 						static_field.emitting = true
+					if (body.get_node("HitBox").is_in_group("death_pit") and Global.MODE == "Mech"):
+						Global.HEALTH = 0
+						health_loss()
+						#print (env_node.environm
 				if body.get_node("TempHitBox"):
 					if body.get_node("TempHitBox").is_in_group("mech_damage"):
 						health_loss()
