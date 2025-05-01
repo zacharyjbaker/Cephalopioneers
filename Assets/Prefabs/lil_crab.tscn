@@ -216,6 +216,8 @@ scale = Vector2(4, 4)
 collision_layer = 6272
 collision_mask = 50176
 script = ExtResource("1_btat5")
+charge_speed = 150.0
+charge_max_speed = 125.0
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-1.125, 12.875)

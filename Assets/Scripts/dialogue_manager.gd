@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 		#print (Global.INTERACTABLE)
 		if (Input.is_action_just_pressed("ui_cancel")):
 			_disable_dialogue()
-		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
+		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false) or Global.BOSS_FIGHT_DG == true:
 			dialogue_instance = Global.DIALOGUE_INSTANCE
 			_profiles()
 			nauto_talk.visible = true
@@ -123,8 +123,9 @@ func _physics_process(delta: float) -> void:
 			bg_music_lower_volume.emit()
 			print ("start dialogue")
 
-		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true:
+		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true or Global.BOSS_FIGHT_DG == true:
 			dialogue_instance = Global.DIALOGUE_INSTANCE
+			Global.BOSS_FIGHT_DG = false
 			_profiles()
 			print ("start text scroll")
 			Global.START = false
@@ -149,23 +150,21 @@ func _physics_process(delta: float) -> void:
 				match dialogue_line.get_slice("/", 1):
 					"END":
 						print ("End Dialogue")
+						dialogue_file_path = "---------"
 						_disable_dialogue()
 						Global.DIALOGUE_INSTANCE = 2
 						Global.START = false
 						load_next_dialogue()
-					"END":
-						print ("End Dialogue")
-						_disable_dialogue()
-						#Global.DIALOGUE_INSTANCE = 3
-						#load_next_dialogue()
 					"ENDCRAB":
 						print ("End Dialogue")
+						dialogue_file_path = "---------"
 						_disable_dialogue()
 						Global.BOSS_FIGHT = true
 						bgmusic_fight.emit()
 						Global.SHAKE = false
 					"ENDEEL":
 						print ("End Dialogue")
+						dialogue_file_path = "---------"
 						_disable_dialogue()
 						
 						# Trigger eel cutscene
@@ -195,6 +194,7 @@ func _physics_process(delta: float) -> void:
 						bgmusic_rumble.emit()
 					"C_F":
 						_load_crab()
+						print ("emit light")
 						crab_light.emit()
 					"C_H":
 						_load_hidden()
@@ -229,6 +229,9 @@ func _disable_dialogue() -> void:
 	timer.stop()
 	nauto_talk.visible = false
 	other_talk.visible = false
+	crab_talk.visible = false
+	malo_talk.visible = false
+	bite_talk.visible = false
 	dialogue_in_process = false
 	Global.FREEZE = false
 	
@@ -276,8 +279,9 @@ func _load_crab() -> void:
 	dialogue.add_theme_color_override("default_color", Color("00A36C"))
 	dialogue_font_path = load("res://Assets/Fonts/Crab3.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
-	#dialogue_file_path = "res://Assets/Sound/Dialogue/N" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
-
+	dialogue_file_path = "res://Assets/Sound/Dialogue/C" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
+	print (dialogue_file_path)
+	
 func _load_hidden() -> void:
 	print ("load hidden")
 	other_talk = hidden_talk
@@ -288,4 +292,5 @@ func _load_hidden() -> void:
 	dialogue.add_theme_color_override("default_color", Color("00A36C"))
 	dialogue_font_path = load("res://Assets/Fonts/Crab3.ttf")
 	dialogue.add_theme_font_override("normal_font", dialogue_font_path)
-	#dialogue_file_path = "res://Assets/Sound/Dialogue/N" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
+	dialogue_file_path = "res://Assets/Sound/Dialogue/C" + str(dialogue_instance) + "-" + dialogue_stage + ".wav"
+	print (dialogue_file_path)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=3 uid="uid://0b3xea72rab"]
+[gd_scene load_steps=139 format=3 uid="uid://0b3xea72rab"]
 
 [ext_resource type="Script" uid="uid://42okt7ahdkk5" path="res://Assets/Prefabs/crab_pope.gd" id="1_dquel"]
 [ext_resource type="Texture2D" uid="uid://d3kiot6u44p3n" path="res://Assets/Prefabs/KingCrab.png" id="2_anaf1"]
@@ -8,9 +8,14 @@
 [ext_resource type="AudioStream" uid="uid://27mg170xnn3n" path="res://Assets/Sound/Sfx/CrabPope/PopeShellSlam.wav" id="6_etrf8"]
 [ext_resource type="AudioStream" uid="uid://wm10k1vvg3j0" path="res://Assets/Sound/Sfx/CrabPope/blast2.mp3" id="6_rdmha"]
 [ext_resource type="AudioStream" uid="uid://c3n4fu3eq7tcp" path="res://Assets/Sound/Sfx/CrabPope/PopePortal.wav" id="7_pbnc5"]
+[ext_resource type="AudioStream" uid="uid://bjhlamtfnat0j" path="res://Assets/Sound/Dialogue/C-SLAM.wav" id="8_07aww"]
 [ext_resource type="AudioStream" uid="uid://d0jwmd47j834e" path="res://Assets/Sound/Sfx/CrabPope/PopeCrabJump.wav" id="8_8ppp3"]
+[ext_resource type="AudioStream" uid="uid://crlnquha2ko0b" path="res://Assets/Sound/Dialogue/C-DEATH.wav" id="8_wcamw"]
+[ext_resource type="AudioStream" uid="uid://clqdl55peoxty" path="res://Assets/Sound/Dialogue/C-STRUGGLE.wav" id="9_1npb6"]
 [ext_resource type="AudioStream" uid="uid://bsisd5ijd7iiy" path="res://Assets/Sound/Sfx/CrabPope/small-crack-shatter-sound-zzz000111-1-47921.mp3" id="9_y84aj"]
+[ext_resource type="AudioStream" uid="uid://c7005wodea62o" path="res://Assets/Sound/Dialogue/C-BLAST.wav" id="10_t6eu0"]
 [ext_resource type="AudioStream" uid="uid://c8fgfortx3bv5" path="res://Assets/Sound/Sfx/CrabPope/portal.mp3" id="11_07aww"]
+[ext_resource type="AudioStream" uid="uid://b0mvrlrq6coo6" path="res://Assets/Sound/Dialogue/C-SUMMON.wav" id="11_uwodr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fx0gs"]
 atlas = ExtResource("2_dnyjm")
@@ -1179,6 +1184,31 @@ position = Vector2(17.2013, 21)
 rotation = 1.57376
 scale = Vector2(1.63148, -2.11322)
 shape = SubResource("RectangleShape2D_fwpuw")
+
+[node name="DeathVSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_wcamw")
+volume_db = 7.5
+max_distance = 9.22337e+18
+
+[node name="StruggleVSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_1npb6")
+volume_db = 5.0
+max_distance = 9.22337e+18
+
+[node name="BlastVSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_t6eu0")
+volume_db = 5.0
+max_distance = 9.22337e+18
+
+[node name="SummonVSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_uwodr")
+volume_db = 5.0
+max_distance = 9.22337e+18
+
+[node name="SkullSlamVSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_07aww")
+volume_db = 5.0
+max_distance = 9.22337e+18
 
 [node name="RoarSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_p3iyg")

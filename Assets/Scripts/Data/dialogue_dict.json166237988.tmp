@@ -1,0 +1,51 @@
+{ 
+	"1" : {
+		"1": "/B/Nauto, have you reached the seafloor?",
+		"2": "/N/Just landed.",
+		"3": "/B/Is there any sign of Lieutenant Malo?",
+		"4": "/N/Initial scans have come back negative.",
+		"5": "/N/His C.A.R.A.P.A.C.E. may be malfunctioning and cloaking his beacon.",
+		"6": "/B/Hmm...",
+		"7": "/B/Very well. Conduct manual search routine.",
+		"8": "/B/Report back as soon as you learn anything.",
+		"9": "/END/"
+	},
+	
+	"2" : {
+		"1": "/N/Lieutenant!",
+		"2": "/M/Nauto... ya' got the signal. Excellent work rookie.",
+		"3": "/N/You're hurt lieutenant. What happened to your S.H.E.L.L.?",
+		"4": "/M/THE BEAST took it. I was careless, I thought myself invincible in that suit.",
+		"5": "/M/Listen to me Nauto. Ya' have to get out of 'ere. Back to the Orbital. It'll be back, it's got the scent of my blood.",
+		"6": "/N/No way. Not without you lieutenant. I'll hail Bite and get him to send a med-bot. Just hold o-",
+		"7": "/S/What is that?!",
+		"8": "/M/THE BEAST. THE LEVIATHAN IS HERE. RUUUUUUUUUUUU-",
+		"9": "/ENDEEL/"
+	},
+	
+	"3" : {
+		"1": "/B/N-n-n-aaa t-t-t-o?",
+		"2": "/B/I-I ca... not rea-read... cation.",
+		"3": "*static*...*static",
+		"4": "In aby... sal... z-zo-zone...",
+		"5": "Re... member... use... fl-flash... liiiiiiiggght...",
+		"6": "*static*",
+		"7": "/END/"
+	},
+	
+	"4" : {
+		"1": "/N/Hello? Is anyone there?",
+		"2": "/C_H/Ssskir'ak mi'kur",
+		"3": "/N/*Activating translation matrix*",
+		"4": "/C_H/What... creature... art thou?",
+		"5": "/N/I'm Nauto... I'm looking for a way back to the surface. Listen, the citizens of this place have gone crazy!",
+		"6": "/C_F/Thou'est stand before the scion of deep water, donned in stinking steel-shell.",
+		"7": "/C/Abominable heresy.",
+		"8": "/N/Steel-shell? You mean my suit? Listen, I'm-",
+		"9": "/C/Clearly, thou have come to depose me with heretical armaments! Thine ambitions have grown far beyond thine station.",
+		"10": "/C_S/I shall cast thee down to join thine blasphemous lineage.",
+		"11": "/N/WAIT! I don't want to-",
+		"12": "/C/PERISH APOSTATE!",
+		"13": "/ENDCRAB/"
+	}
+}

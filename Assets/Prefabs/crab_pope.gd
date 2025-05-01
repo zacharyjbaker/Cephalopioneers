@@ -10,6 +10,13 @@ extends CharacterBody2D
 @onready var jumpSFX = $JumpSFX
 @onready var magicSFX = $MagicSFX
 @onready var shatterSFX = $ShatterSFX
+
+@onready var skullslamVSFX = $SkullSlamVSFX
+@onready var deathVSFX = $DeathVSFX
+@onready var blastVSFX = $BlastVSFX
+@onready var summonVSFX = $SummonVSFX
+@onready var struggleVSFX = $StruggleVSFX
+
 @onready var staff_light = $Sprite/StaffLight
 @onready var death_fx = $Death
 @onready var damage_fx = $Damage
@@ -25,6 +32,7 @@ extends CharacterBody2D
 @export var health = 3
 @export var mech : Node2D
 @export var env_node : WorldEnvironment
+@export var dg_manager : Node2D
 var crab_minion = preload("res://Assets/Prefabs/lil_crab.tscn")
 var eye_blast = preload("res://Assets/Prefabs/eye_blast.tscn")
 var eel_blast = preload("res://Assets/Prefabs/eel_blast.tscn")
@@ -69,6 +77,7 @@ var isSkullSlamming = false
 var isSkullSmashAnimPlaying = false
 var isStruggling = false
 var startOnFloor = false
+var dead = false
 var flipped = false
 var resetOrder = false
 var nextMoveset = false
@@ -86,7 +95,7 @@ func _ready() -> void:
 		velocity.y = 400
 		start_pos = global_position
 		start_rot = global_rotation_degrees
-		var dg_manager = get_node("/root/Node2D/DialogueManager")
+		#var dg_manager = get_node("/root/Node2D/DialogueManager")
 		dg_manager.crab_light.connect(light_lerp)
 	
 func _physics_process(delta: float) -> void:
@@ -94,10 +103,12 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(Global):
 		###print (position.y)
 		
-		if health == 0:
+		if health == 0 and dead == false:
+			dead = true
 			Global.FREEZE = true
 			death_fx.emitting = true
 			anim_player.play("Struggle")
+			deathVSFX.play()
 			await get_tree().create_timer(1.8).timeout
 			#self.visible = false
 			Global.FREEZE = false
@@ -152,9 +163,11 @@ func _physics_process(delta: float) -> void:
 				
 			if state == States.BLAST:
 				anim_player.play("Blast")
+				blastVSFX.play()
 				#magicSFX.play()
 			elif state == States.EEL_BLAST:
 				anim_player.play("ForwardBlast")
+				summonVSFX.play()
 				magicSFX.play()
 				
 			elif state == States.SLAM or state == States.SKULL_SLAM :
@@ -194,6 +207,7 @@ func _physics_process(delta: float) -> void:
 				elif isSkullSlamming == true and is_on_floor():
 					##print ("SkullSmash")
 					anim_player.play("Struggle")
+					struggleVSFX.play()
 					Global.SHAKE = true
 					$ShakeTimer.start(0.7)
 					slamSFX.play()
@@ -390,17 +404,20 @@ func _on_sprite_animation_finished() -> void:
 					get_tree().root.add_child(crab_minion_spawn_2)
 				elif state == States.SKULL_SLAM:
 					#print ("Skull Slam Begin")
+
 					velocity.y -= 70
 					isSkullSlamming = true
 					isStruggling = true
 					var current_transform = global_transform
 					if current_path == path1:
+						skullslamVSFX.play()
 						path1.remove_child(path_follow)
 						smash_path.add_child(path_follow)
 						path_follow.add_child(self)
 						current_path = smash_path
 						path_follow.h_offset = 0.0
 					elif current_path == path2:
+						skullslamVSFX.play()
 						path2.remove_child(path_follow)
 						smash_path.add_child(path_follow)
 						path_follow.add_child(self)

@@ -10,6 +10,7 @@ func _ready() -> void:
 	player.get_node("SelfLight").visible = true
 	Global.SCENE = "BossFight"
 	Global.DIALOGUE_INSTANCE = 4
+	Global.BOSS_FIGHT_DG = true
 	print ("BF Ready")
 	print ("GDI", Global.DIALOGUE_INSTANCE)
 

@@ -8,8 +8,8 @@ var is_player_near = false
 var is_pulled = false
 
 func _process(_delta):
-	if is_player_near and Input.is_action_just_pressed("interact") and not is_pulled:
-		#and all_cauldrons_activated():
+	if is_player_near and Input.is_action_just_pressed("interact") and all_cauldrons_activated():
+		#and not is_pulled:
 		open_cathedral()
 	if is_player_near and Input.is_action_just_pressed("interact"):
 		open_cathedral()

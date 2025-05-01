@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://wrhqfwi0wyqf"]
+[gd_scene load_steps=80 format=4 uid="uid://wrhqfwi0wyqf"]
 
 [ext_resource type="Script" uid="uid://r17t4ugbkw2r" path="res://Assets/Scenes/save_load.gd" id="1_4i3ih"]
 [ext_resource type="Shader" uid="uid://b72cfqtnnje11" path="res://Assets/Scripts/Shaders/water.gdshader" id="1_8n6xq"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://c6b5kiwgprrmq" path="res://Assets/Sound/Music/PopeCrab.wav" id="16_mns2n"]
 [ext_resource type="PackedScene" uid="uid://ctojvjycd40p0" path="res://Assets/Prefabs/PuzzleLamp.tscn" id="20_eb28t"]
 [ext_resource type="PackedScene" uid="uid://bxa0nwx5uicwr" path="res://Assets/Prefabs/nauto.tscn" id="21_2t1sa"]
+[ext_resource type="PackedScene" uid="uid://uvgu3lg3knl1" path="res://shealth_pickup.tscn" id="22_1of7l"]
 [ext_resource type="PackedScene" uid="uid://by0icvlejbtja" path="res://Assets/Prefabs/mech.tscn" id="22_joohn"]
 [ext_resource type="PackedScene" uid="uid://gm6hpf1l6li7" path="res://Assets/Prefabs/guard_crab.tscn" id="22_pfjnx"]
 [ext_resource type="PackedScene" uid="uid://b3jgfc12ggl4v" path="res://Assets/Sprites/Whale Fall Environment/Bone Gate.tscn" id="23_3ta5d"]
@@ -579,18 +580,34 @@ position = Vector2(34309, -1057)
 save_load = NodePath("..")
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
-position = Vector2(40740, -1264)
+position = Vector2(26876, 1227)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("22_joohn")]
-position = Vector2(41095, -1183)
+position = Vector2(27238, 1078)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
+
+[node name="ShealthPickup" parent="." node_paths=PackedStringArray("HP_layer") instance=ExtResource("22_1of7l")]
+position = Vector2(14692, 975)
+HP_layer = NodePath("../UI")
+
+[node name="ShealthPickup2" parent="." node_paths=PackedStringArray("HP_layer") instance=ExtResource("22_1of7l")]
+position = Vector2(23639, 620)
+HP_layer = NodePath("../UI")
+
+[node name="ShealthPickup3" parent="." node_paths=PackedStringArray("HP_layer") instance=ExtResource("22_1of7l")]
+position = Vector2(41130, -1034)
+HP_layer = NodePath("../UI")
+
+[node name="ShealthPickup4" parent="." node_paths=PackedStringArray("HP_layer") instance=ExtResource("22_1of7l")]
+position = Vector2(30850, -219)
+HP_layer = NodePath("../UI")
 
 [node name="NPCs" type="Node" parent="."]
 

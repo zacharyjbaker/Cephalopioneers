@@ -2,7 +2,7 @@
 	"1" : {
 		"1": "/B/Nauto, have you reached the seafloor?",
 		"2": "/N/Just landed.",
-		"3": "/B/Is there any sign of Lieutenant Anam?",
+		"3": "/B/Is there any sign of Lieutenant Malo?",
 		"4": "/N/Initial scans have come back negative.",
 		"5": "/N/His C.A.R.A.P.A.C.E. may be malfunctioning and cloaking his beacon.",
 		"6": "/B/Hmm...",
@@ -26,16 +26,16 @@
 	"3" : {
 		"1": "/B/N-n-n-aaa t-t-t-o?",
 		"2": "/B/I-I ca... not rea-read... cation.",
-		"3": "*static*...*static",
-		"4": "In aby... sal... z-zo-zone...",
-		"5": "Re... member... use... fl-flash... light.",
-		"6": "*static*",
+		"3": "/B/*static*...*static*",
+		"4": "/B/In aby... sal... z-zo-zone...",
+		"5": "/B/Re... member... use... fl-flash... liiiiiiiggght...",
+		"6": "/B/*static*",
 		"7": "/END/"
 	},
 	
 	"4" : {
 		"1": "/N/Hello? Is anyone there?",
-		"2": "/C_H/Ssskir'ak arrak'mi'kur",
+		"2": "/C_H/Ssskir'ak mi'kur",
 		"3": "/N/*Activating translation matrix*",
 		"4": "/C_H/What... creature... art thou?",
 		"5": "/N/I'm Nauto... I'm looking for a way back to the surface. Listen, the citizens of this place have gone crazy!",

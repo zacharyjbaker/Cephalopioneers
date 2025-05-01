@@ -239,7 +239,7 @@ curve = SubResource("Curve2D_cs00x")
 position = Vector2(122.555, 34.75)
 rotation = -2.3538
 
-[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player", "mech", "env_node") instance=ExtResource("23_07pr1")]
+[node name="CrabPope" parent="Path1/PathFollow2D" node_paths=PackedStringArray("path1", "path2", "smash_path", "crab_spawnpoints", "blast_spawnpoints", "player", "mech", "env_node", "dg_manager") instance=ExtResource("23_07pr1")]
 position = Vector2(-5.54517, 108.349)
 rotation = 2.35379
 scale = Vector2(1.15164, 1)
@@ -252,6 +252,7 @@ blast_spawnpoints = NodePath("../../../BlastSpawnNode")
 player = NodePath("../../../Mech")
 mech = NodePath("../../../Mech")
 env_node = NodePath("../../../WorldEnvironment")
+dg_manager = NodePath("../../../DialogueManager")
 
 [node name="Path2" type="Path2D" parent="."]
 position = Vector2(1339, 1057)
