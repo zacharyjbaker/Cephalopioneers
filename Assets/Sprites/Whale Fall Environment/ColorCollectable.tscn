@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6sh2h644n12a"]
 
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/color_collectable.gd" id="1_ejuxi"]
+[ext_resource type="Script" uid="uid://t4k5aylcci7p" path="res://Assets/Sprites/Whale Fall Environment/color_collectable.gd" id="1_ejuxi"]
 [ext_resource type="Texture2D" uid="uid://bdrb1p8q3kbrl" path="res://Assets/Sprites/Whale Fall Environment/Chest.png" id="2_das4r"]
 
 [sub_resource type="Animation" id="Animation_q1ve5"]
@@ -35,8 +35,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3r8y"]
 _data = {
-"ChestOpen": SubResource("Animation_q1ve5"),
-"RESET": SubResource("Animation_rkmb4")
+&"ChestOpen": SubResource("Animation_q1ve5"),
+&"RESET": SubResource("Animation_rkmb4")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_umuiv"]

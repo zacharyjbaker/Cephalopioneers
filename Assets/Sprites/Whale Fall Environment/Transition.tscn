@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://4j044bvhaq7v"]
 
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/transition.gd" id="1_2tybg"]
+[ext_resource type="Script" uid="uid://370n5pr75jdt" path="res://Assets/Sprites/Whale Fall Environment/transition.gd" id="1_2tybg"]
 
 [sub_resource type="Animation" id="Animation_772qg"]
 length = 0.001
@@ -51,9 +51,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fbjly"]
 _data = {
-"RESET": SubResource("Animation_772qg"),
-"fade_back": SubResource("Animation_nb8k4"),
-"fade_to_black": SubResource("Animation_msxyk")
+&"RESET": SubResource("Animation_772qg"),
+&"fade_back": SubResource("Animation_nb8k4"),
+&"fade_to_black": SubResource("Animation_msxyk")
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]

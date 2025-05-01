@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://foeic3g6ehp7"]
 
-[ext_resource type="Script" path="res://garden_eel_pit.gd" id="1_8m1ke"]
+[ext_resource type="Script" uid="uid://cnq8hp8k2j6qy" path="res://garden_eel_pit.gd" id="1_8m1ke"]
 [ext_resource type="Texture2D" uid="uid://dbb06wg6x6vrw" path="res://Assets/MapDraft/Garden Eel Draft 1.png" id="2_pk32w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmpie"]
@@ -57,9 +57,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gumy4"]
 _data = {
-"Eel": SubResource("Animation_1xcmb"),
-"Eel_2": SubResource("Animation_f80me"),
-"RESET": SubResource("Animation_hj0un")
+&"Eel": SubResource("Animation_1xcmb"),
+&"Eel_2": SubResource("Animation_f80me"),
+&"RESET": SubResource("Animation_hj0un")
 }
 
 [node name="EelPit" type="CharacterBody2D" node_paths=PackedStringArray("anim_player", "anim_player2", "anim_player3", "anim_player4", "anim_player5", "anim_player6", "anim_player7", "anim_player8", "anim_player9")]

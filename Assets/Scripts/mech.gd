@@ -15,7 +15,9 @@ extends CharacterBody2D
 @onready var boost_particles = $BoostParticles
 @onready var back_boost_light = $BackBoostLight
 @onready var back_boost_particles = $BackBoostParticles
-@onready var interact = $InteractPrompt
+@onready var interact = null
+@onready var interactkb = $InteractPrompt
+@onready var interactcont = $InteractPromptCont
 @onready var blaster_player = $BlasterSFX
 @onready var thruster_player = $ThrusterSFX
 @onready var drill_player = $DrillSFX
@@ -72,6 +74,14 @@ func _ready() -> void:
 		original_rotation = camera.rotation_degrees
 		flashlight.enabled = false
 		flashlight_cone.monitoring = false
+		
+		match Global.CONTROLSET:
+			"kb":
+				interact = interactkb
+			"cont":
+				interact = interactcont
+		
+		interact.visible = true
 		
 		#print ("Current Scene:", get_tree().get_current_scene().get_groups()[0])
 		'''

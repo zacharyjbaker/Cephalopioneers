@@ -36,8 +36,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cub0e"]
 _data = {
-"RESET": SubResource("Animation_d18sl"),
-"move": SubResource("Animation_uiq67")
+&"RESET": SubResource("Animation_d18sl"),
+&"move": SubResource("Animation_uiq67")
 }
 
 [node name="Lighting" type="Node2D"]

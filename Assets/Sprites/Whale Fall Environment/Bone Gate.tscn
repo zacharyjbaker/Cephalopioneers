@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3jgfc12ggl4v"]
 
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/bone_gate_animation.gd" id="1_amb5p"]
+[ext_resource type="Script" uid="uid://bp45hpbaky3ms" path="res://Assets/Sprites/Whale Fall Environment/bone_gate_animation.gd" id="1_amb5p"]
 [ext_resource type="Texture2D" uid="uid://dipr0iptygkh4" path="res://Assets/Sprites/Whale Fall Environment/Bone Gate.png" id="1_qwrns"]
 [ext_resource type="Texture2D" uid="uid://smuxxopy02mu" path="res://Assets/Sprites/Whale Fall Environment/Bone Gate Back.png" id="2_181wk"]
 
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ytvl1"]
 _data = {
-"Gate_algae": SubResource("Animation_nbbvj"),
-"RESET": SubResource("Animation_3h0ej")
+&"Gate_algae": SubResource("Animation_nbbvj"),
+&"RESET": SubResource("Animation_3h0ej")
 }
 
 [node name="BoneGate" type="Node2D"]

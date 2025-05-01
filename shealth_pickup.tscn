@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://uvgu3lg3knl1"]
 
-[ext_resource type="Script" path="res://shealth_pickup.gd" id="1_4xmyh"]
+[ext_resource type="Script" uid="uid://cmc0xheh342df" path="res://shealth_pickup.gd" id="1_4xmyh"]
 [ext_resource type="Texture2D" uid="uid://dwwmtpcgmlrsm" path="res://shealth_pickup_new.png" id="2_e0ekl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0beam"]

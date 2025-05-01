@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bss4600ghnvh8"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/chase_needlenose.gd" id="1_pw7bp"]
+[ext_resource type="Script" uid="uid://c5t1e68eg1nnb" path="res://Assets/Scripts/chase_needlenose.gd" id="1_pw7bp"]
 [ext_resource type="Texture2D" uid="uid://dxlgvvpfew8x1" path="res://Assets/Sprites/FX/StunnedFX.png" id="2_olhu7"]
 [ext_resource type="Texture2D" uid="uid://dfhguj3vropp5" path="res://Assets/Prefabs/Needlenose.png" id="3_a24np"]
 [ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Sprites/FX/mode.png" id="4_b1gv0"]

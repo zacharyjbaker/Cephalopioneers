@@ -109,7 +109,7 @@ func _input(event)-> void:
 			if event.is_action_pressed("ui_up") and is_on_floor():
 				charge_anim()
 			# Shift mode
-			elif (mech.is_on_floor() and event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250):
+			elif (mech.is_on_floor() and event.is_action_pressed("ui_focus_next") and position.distance_to(pilot_pos) < 250 and Global.FREEZE == false):
 				#Global.START = false
 				print ("Shift")
 				shift_mode()

@@ -1,9 +1,9 @@
 [gd_scene load_steps=59 format=3 uid="uid://bxa0nwx5uicwr"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_djhdu"]
+[ext_resource type="Script" uid="uid://k8kfehg2tomv" path="res://Assets/Scripts/nauto.gd" id="1_djhdu"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_cwmej"]
-[ext_resource type="Shader" path="res://Assets/Prefabs/NautoSkin.gdshader" id="2_hmnaa"]
-[ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_kx56x"]
+[ext_resource type="Shader" uid="uid://d3d5nfnltww8" path="res://Assets/Prefabs/NautoSkin.gdshader" id="2_hmnaa"]
+[ext_resource type="Script" uid="uid://dytnvlo7et8oh" path="res://Assets/Scripts/camera_movement.gd" id="3_kx56x"]
 [ext_resource type="Texture2D" uid="uid://c521jun7qucr1" path="res://Assets/Prefabs/NautoWalk (3).png" id="3_nmfqb"]
 [ext_resource type="Texture2D" uid="uid://dlrfbadv04ie1" path="res://Assets/Prefabs/ChargeJumpBar.png" id="4_nudv3"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="5_e1fd8"]

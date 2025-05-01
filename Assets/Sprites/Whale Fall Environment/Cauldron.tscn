@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://lw8xfb3534xn"]
 
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/cauldron.gd" id="1_wmkta"]
+[ext_resource type="Script" uid="uid://bxs4le765iuj6" path="res://Assets/Sprites/Whale Fall Environment/cauldron.gd" id="1_wmkta"]
 [ext_resource type="Texture2D" uid="uid://di5v8cbvk0tmq" path="res://Assets/Sprites/Whale Fall Environment/Cathedral Cauldrons Charge.png" id="1_yv768"]
 [ext_resource type="Texture2D" uid="uid://dv1s47qih8bjn" path="res://Assets/Sprites/Whale Fall Environment/Cathedral Cauldrons Active.png" id="2_0t2ax"]
 
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3tonw"]
 _data = {
-"Charge": SubResource("Animation_pkonn"),
-"RESET": SubResource("Animation_hn5wo")
+&"Charge": SubResource("Animation_pkonn"),
+&"RESET": SubResource("Animation_hn5wo")
 }
 
 [sub_resource type="Animation" id="Animation_t4fj1"]
@@ -75,8 +75,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rmncw"]
 _data = {
-"ActiveLoop": SubResource("Animation_t4fj1"),
-"RESET": SubResource("Animation_bpmh7")
+&"ActiveLoop": SubResource("Animation_t4fj1"),
+&"RESET": SubResource("Animation_bpmh7")
 }
 
 [sub_resource type="Gradient" id="Gradient_gyei4"]

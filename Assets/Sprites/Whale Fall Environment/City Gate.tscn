@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://exflkf1k5ti5"]
 
 [ext_resource type="Texture2D" uid="uid://diufdchkp04gg" path="res://Assets/Sprites/Whale Fall Environment/City Gate Border.png" id="1_sk7k7"]
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/city_gate.gd" id="1_vmg3v"]
+[ext_resource type="Script" uid="uid://byb2wepxi31x7" path="res://Assets/Sprites/Whale Fall Environment/city_gate.gd" id="1_vmg3v"]
 [ext_resource type="Texture2D" uid="uid://4erbe76h0mnv" path="res://Assets/Sprites/Whale Fall Environment/City Gate Door.png" id="2_ugcsr"]
 [ext_resource type="Texture2D" uid="uid://cbyjfi131rgrh" path="res://Assets/Sprites/Whale Fall Environment/City Gate Front Half.png" id="4_yk03t"]
 [ext_resource type="PackedScene" uid="uid://cqytgchq4me5" path="res://Assets/Prefabs/Outskirt Lights.tscn" id="5_ov1xk"]
@@ -67,9 +67,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0pc0"]
 _data = {
-"Door_Move_Up": SubResource("Animation_epp4p"),
-"Door_Open": SubResource("Animation_i25nf"),
-"RESET": SubResource("Animation_4magu")
+&"Door_Move_Up": SubResource("Animation_epp4p"),
+&"Door_Open": SubResource("Animation_i25nf"),
+&"RESET": SubResource("Animation_4magu")
 }
 
 [sub_resource type="Gradient" id="Gradient_wtlmg"]

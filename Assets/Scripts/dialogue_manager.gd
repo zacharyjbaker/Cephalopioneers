@@ -9,7 +9,10 @@ extends Node2D
 @onready var bite_talk =  $DialogueCanvas/BiteTalk
 @onready var crab_talk =  $DialogueCanvas/CrabTalk
 @onready var hidden_talk =  $DialogueCanvas/HiddenTalk
-@onready var f = $DialogueCanvas/F
+@onready var interact = null
+@onready var interactkb  = $DialogueCanvas/F
+@onready var interactcont  = $DialogueCanvas/FCont
+
 @export var dialogue_flag = false
 var first_dialogue = false
 var dialogue_in_process = false
@@ -50,6 +53,13 @@ func _ready() -> void:
 	#load_next_dialogue()
 			
 	#print ("Dict:", DialogueDict)
+	
+	match Global.CONTROLSET:
+		"kb":
+			interact = interactkb
+		"cont":
+			interact = interactcont
+	#interact.visible = true
 	
 func load_next_dialogue():
 	if is_instance_valid(Global):
@@ -101,7 +111,7 @@ func _physics_process(delta: float) -> void:
 			first_dialogue = true
 			dialogueBG.visible = true
 			dialogueBG.set_process(true)
-			f.visible = true
+			interact.visible = true
 			dialogue.visible = true
 			dialogue.set_process(true)
 			bg_music_lower_volume.emit()
@@ -204,7 +214,7 @@ func _on_timer_timeout() -> void:
 func _disable_dialogue() -> void:
 	dialogue_flag = false
 	dialogueBG.visible = false
-	f.visible = false
+	interact.visible = false
 	dialogueBG.set_process(false)
 	#dialogueBG.color="ffffff00"
 	dialogue.visible = false

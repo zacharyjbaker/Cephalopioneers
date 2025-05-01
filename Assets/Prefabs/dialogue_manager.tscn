@@ -1,6 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpyouqxbxr7f5"]
+[gd_scene load_steps=35 format=3 uid="uid://bpyouqxbxr7f5"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="1_0ss0d"]
+[ext_resource type="Script" uid="uid://c676xxe2xk6nt" path="res://Assets/Scripts/dialogue_manager.gd" id="1_0ss0d"]
 [ext_resource type="Texture2D" uid="uid://cjcsbevwuvnnr" path="res://Assets/Prefabs/DialogueBG.png" id="2_hx4tf"]
 [ext_resource type="Texture2D" uid="uid://dhe1ys2huxmqv" path="res://Assets/Sprites/NautoTalk.png" id="3_fti16"]
 [ext_resource type="Texture2D" uid="uid://c4b3x0so1qsc" path="res://Assets/Sprites/CommanderBiteTalk.png" id="4_hlkln"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="6_hrh64"]
 [ext_resource type="Texture2D" uid="uid://bjcusclgdwisc" path="res://Assets/Prefabs/hidden_portrait.png" id="7_aybt2"]
 [ext_resource type="Texture2D" uid="uid://q7nyw2ymwqsp" path="res://Assets/Scenes/F.png" id="8_yqloy"]
+[ext_resource type="Texture2D" uid="uid://csd04bg4bsvgp" path="res://Assets/Prefabs/B.png" id="10_u64ip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpqwc"]
 atlas = ExtResource("2_hx4tf")
@@ -400,5 +401,11 @@ visible = false
 position = Vector2(1317, 426)
 scale = Vector2(4, 4)
 texture = ExtResource("8_yqloy")
+
+[node name="FCont" type="Sprite2D" parent="DialogueCanvas"]
+visible = false
+position = Vector2(1317, 426)
+scale = Vector2(4, 4)
+texture = ExtResource("10_u64ip")
 
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_timer_timeout"]

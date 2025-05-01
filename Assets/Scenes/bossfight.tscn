@@ -1,18 +1,18 @@
 [gd_scene load_steps=33 format=4 uid="uid://d0la6ayh7nyw8"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/save_load.gd" id="1_1ukan"]
+[ext_resource type="Script" uid="uid://r17t4ugbkw2r" path="res://Assets/Scenes/save_load.gd" id="1_1ukan"]
 [ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="1_ktyl6"]
-[ext_resource type="Script" path="res://Assets/Scenes/boss_manager.gd" id="1_p48oh"]
+[ext_resource type="Script" uid="uid://cu1mwkgt53o4o" path="res://Assets/Scenes/boss_manager.gd" id="1_p48oh"]
 [ext_resource type="PackedScene" uid="uid://bpyouqxbxr7f5" path="res://Assets/Prefabs/dialogue_manager.tscn" id="2_uhsb1"]
-[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="3_pgb00"]
+[ext_resource type="Shader" uid="uid://b72cfqtnnje11" path="res://Assets/Scripts/Shaders/water.gdshader" id="3_pgb00"]
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="4_dnxwv"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="5_8x1yd"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="6_oc2sb"]
-[ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="7_xb2wf"]
+[ext_resource type="Script" uid="uid://de2wf83eaqjt0" path="res://Assets/Scripts/world_environment.gd" id="7_xb2wf"]
 [ext_resource type="Texture2D" uid="uid://bpg68bglurdoe" path="res://Assets/Prefabs/Boss_BG.png" id="8_rt8sf"]
 [ext_resource type="Texture2D" uid="uid://cn781vdj4dvcx" path="res://Assets/MapDraft/Layer 1 Resized.png" id="9_88c5l"]
 [ext_resource type="TileSet" uid="uid://8fuoflysuhrr" path="res://Assets/Prefabs/tile.tres" id="10_bpy6m"]
-[ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="11_cdk8d"]
+[ext_resource type="Script" uid="uid://bmcy7u5hncy2l" path="res://Assets/Scripts/bg_music.gd" id="11_cdk8d"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="12_h8pnm"]
 [ext_resource type="FontFile" uid="uid://dcd3r7nnltlwy" path="res://Assets/Fonts/Nauto.ttf" id="13_dx66a"]
 [ext_resource type="AudioStream" uid="uid://dihe72tfhmimy" path="res://Assets/Sound/Music/Shallows.wav" id="14_s74ua"]
@@ -41,9 +41,9 @@ noise = SubResource("FastNoiseLite_x3a23")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_toho5"]
 shader = ExtResource("3_pgb00")
 shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_4hwls")
 shader_parameter/speed = Vector2(0.02, 0.02)
 shader_parameter/wave_strength = 1.5
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_4hwls")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
 gradient = ExtResource("6_oc2sb")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://gm6hpf1l6li7"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/guard_crab.gd" id="1_5wk3r"]
+[ext_resource type="Script" uid="uid://fbi62f772sb4" path="res://Assets/Scenes/guard_crab.gd" id="1_5wk3r"]
 [ext_resource type="Texture2D" uid="uid://dbwnagmv0kj0s" path="res://Assets/Prefabs/CrabGuard.png" id="2_bst8h"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="3_6f6gb"]
 

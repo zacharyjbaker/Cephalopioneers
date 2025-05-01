@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://tjeknmxnmg7n"]
 
-[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/glow.gdshader" id="1_plqvb"]
-[ext_resource type="Script" path="res://Assets/Scripts/projectile.gd" id="2_3d15k"]
+[ext_resource type="Shader" uid="uid://d3qgx4abgw1vm" path="res://Assets/Scripts/Shaders/glow.gdshader" id="1_plqvb"]
+[ext_resource type="Script" uid="uid://dehgnl12wwajw" path="res://Assets/Scripts/projectile.gd" id="2_3d15k"]
 [ext_resource type="Texture2D" uid="uid://c4lbfljl2i38j" path="res://Assets/Sprites/FX/StunBlast.png" id="3_apt6s"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="4_e8xaf"]
 [ext_resource type="Texture2D" uid="uid://dkhfcb17ys4ie" path="res://Assets/Sprites/FX/StunBlastLight1.png" id="5_0clbu"]

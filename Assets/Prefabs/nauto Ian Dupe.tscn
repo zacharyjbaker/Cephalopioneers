@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://bt3lmibga3tx7"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_hmm6j"]
+[ext_resource type="Script" uid="uid://k8kfehg2tomv" path="res://Assets/Scripts/nauto.gd" id="1_hmm6j"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_2317c"]
-[ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_f3pj6"]
+[ext_resource type="Script" uid="uid://dytnvlo7et8oh" path="res://Assets/Scripts/camera_movement.gd" id="3_f3pj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("2_2317c")

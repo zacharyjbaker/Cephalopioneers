@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://clgn2bcvfayy"]
 
-[ext_resource type="Script" path="res://Assets/Prefabs/boulder.gd" id="1_itcnh"]
+[ext_resource type="Script" uid="uid://6gv4l7thu4wc" path="res://Assets/Prefabs/boulder.gd" id="1_itcnh"]
 [ext_resource type="Texture2D" uid="uid://bslvmoibm6qwx" path="res://Assets/Prefabs/Boulder.png" id="1_t0mnw"]
 [ext_resource type="AudioStream" uid="uid://bo6fl5sw8yql0" path="res://Assets/Sound/Sfx/BoulderCrash.wav" id="2_ovvde"]
 [ext_resource type="AudioStream" uid="uid://32xvwmf1long" path="res://Assets/Sound/Sfx/BoulderRolling.wav" id="3_egnu3"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bacwwvwuc4206"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/parallax_switch.gd" id="1_4rtir"]
+[ext_resource type="Script" uid="uid://dq0xrgdu8dkmc" path="res://Assets/Scenes/parallax_switch.gd" id="1_4rtir"]
 [ext_resource type="Texture2D" uid="uid://dnb3qpldd6q3e" path="res://Assets/Sprites/Whale Fall Environment/Whale Fall BG.png" id="2_onbgw"]
 
 [node name="ParallaxBackground2" type="ParallaxBackground"]

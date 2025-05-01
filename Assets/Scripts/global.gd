@@ -17,6 +17,7 @@ var START = true
 var last_active_cauldron: int = -1
 var DIALOGUE_INSTANCE = 1
 var SAVENUM = 0
+var CONTROLSET = "kb"
 
 func reset_globals():
 	HEALTH = 5

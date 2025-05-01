@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://b7ywdbackf73s"]
 
 [ext_resource type="TileSet" uid="uid://8fuoflysuhrr" path="res://Assets/Prefabs/tile.tres" id="1_sdil5"]
-[ext_resource type="Script" path="res://Assets/Scenes/drillable_wall.gd" id="2_5w845"]
+[ext_resource type="Script" uid="uid://q2lx2dcd5dle" path="res://Assets/Scenes/drillable_wall.gd" id="2_5w845"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ece16"]
 size = Vector2(42.5, 64)

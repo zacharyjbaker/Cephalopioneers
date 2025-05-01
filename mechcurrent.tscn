@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4g2ylwhqe6f5"]
 
-[ext_resource type="Script" path="res://mechcurrent.gd" id="1_xa4h5"]
+[ext_resource type="Script" uid="uid://bk5cjrh2pckqc" path="res://mechcurrent.gd" id="1_xa4h5"]
 
 [sub_resource type="Curve" id="Curve_irftu"]
-max_value = 190.35
+_limits = [0.0, 190.35, 0.0, 1.0]
 _data = [Vector2(0, 2.29922), 0.0, 0.0, 0, 0, Vector2(0.992, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3dprh"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 1.02231), 0.0, 0.0, 0, 0, Vector2(0.363158, 0.864098), -0.663108, -0.663108, 0, 0, Vector2(0.613158, 0.290568), -1.58215, -1.58215, 0, 0, Vector2(0.728947, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 

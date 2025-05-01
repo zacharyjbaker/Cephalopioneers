@@ -2,15 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="1_s65cq"]
 [ext_resource type="Texture2D" uid="uid://dnq0inl3de5au" path="res://Assets/Prefabs/EyeBlast.png" id="1_tqeif"]
-[ext_resource type="Script" path="res://Assets/Prefabs/eye_blast.gd" id="1_v667b"]
+[ext_resource type="Script" uid="uid://yamq1oo25w5w" path="res://Assets/Prefabs/eye_blast.gd" id="1_v667b"]
 
 [sub_resource type="Curve" id="Curve_xgx8j"]
-max_value = 190.35
+_limits = [0.0, 190.35, 0.0, 1.0]
 _data = [Vector2(0, 2.29922), 0.0, 0.0, 0, 0, Vector2(0.992, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_pwi54"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 0.979067), 0.0, 0.0, 0, 0, Vector2(1, 0.442347), 0.0, 0.0, 0, 0]
 point_count = 2
 

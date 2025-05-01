@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://nl3b0yogvjc5" path="res://Assets/layers/sand.png" id="1_8ebob"]
 [ext_resource type="Texture2D" uid="uid://bgnaqsdmihmyb" path="res://Assets/Sprites/FishTank copy Copy.png" id="1_hhweg"]
-[ext_resource type="Script" path="res://Assets/Scripts/world_environment.gd" id="1_je0k0"]
-[ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_knko8"]
+[ext_resource type="Script" uid="uid://de2wf83eaqjt0" path="res://Assets/Scripts/world_environment.gd" id="1_je0k0"]
+[ext_resource type="Script" uid="uid://k8kfehg2tomv" path="res://Assets/Scripts/nauto.gd" id="1_knko8"]
 [ext_resource type="Gradient" uid="uid://dvf5jf747vnbo" path="res://Assets/Prefabs/default_glow.tres" id="1_t2yg7"]
 [ext_resource type="Texture2D" uid="uid://bfmv5jyk1itqh" path="res://Assets/layers/foreground-2.png" id="3_d60nt"]
-[ext_resource type="Script" path="res://Assets/Scripts/dialogue_manager.gd" id="3_jnaet"]
+[ext_resource type="Script" uid="uid://c676xxe2xk6nt" path="res://Assets/Scripts/dialogue_manager.gd" id="3_jnaet"]
 [ext_resource type="Texture2D" uid="uid://bf38bgkesnsfb" path="res://Assets/Sprites/Cave.png" id="3_kaij4"]
 [ext_resource type="AudioStream" uid="uid://dmgee1huemoxr" path="res://Assets/Sound/Dialogue/Nauto.wav" id="4_yru17"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="5_kpnd0"]
@@ -16,15 +16,15 @@
 [ext_resource type="Texture2D" uid="uid://dhe1ys2huxmqv" path="res://Assets/Sprites/NautoTalk.png" id="9_wwn3r"]
 [ext_resource type="Texture2D" uid="uid://c4b3x0so1qsc" path="res://Assets/Sprites/CommanderBiteTalk.png" id="10_10abu"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="11_ghj7g"]
-[ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="12_7hfco"]
-[ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="13_ts6wh"]
+[ext_resource type="Script" uid="uid://k714gnk27ogw" path="res://Assets/Scripts/mech.gd" id="12_7hfco"]
+[ext_resource type="Script" uid="uid://dytnvlo7et8oh" path="res://Assets/Scripts/camera_movement.gd" id="13_ts6wh"]
 [ext_resource type="Texture2D" uid="uid://cm6xj4v8nlf34" path="res://Assets/Sprites/MechNoArms.png" id="14_fu636"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="15_2bssb"]
 [ext_resource type="Texture2D" uid="uid://dhhcmm0r0ugoi" path="res://Assets/Sprites/FrontArm_Laser.png" id="15_yyybf"]
 [ext_resource type="PackedScene" uid="uid://cbkjxe8o45c7v" path="res://Assets/Prefabs/needlenose.tscn" id="18_kfckq"]
-[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="20_khmey"]
+[ext_resource type="Shader" uid="uid://b72cfqtnnje11" path="res://Assets/Scripts/Shaders/water.gdshader" id="20_khmey"]
 [ext_resource type="AudioStream" uid="uid://du86qnv3uwgey" path="res://Assets/Sound/Music/Shallow.wav" id="22_pjfeu"]
-[ext_resource type="Script" path="res://Assets/Scripts/bg_music.gd" id="22_qioby"]
+[ext_resource type="Script" uid="uid://bmcy7u5hncy2l" path="res://Assets/Scripts/bg_music.gd" id="22_qioby"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abg6r"]
 gradient = ExtResource("1_t2yg7")
@@ -746,9 +746,9 @@ noise = SubResource("FastNoiseLite_kbyii")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhksr"]
 shader = ExtResource("20_khmey")
 shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 shader_parameter/speed = Vector2(0.03, 0.07)
 shader_parameter/wave_strength = 0.75
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 
 [node name="Node2D" type="Node2D"]
 

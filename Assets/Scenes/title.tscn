@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dk3qnowm4hcr4"]
+[gd_scene load_steps=54 format=3 uid="uid://dk3qnowm4hcr4"]
 
 [ext_resource type="Texture2D" uid="uid://ldraswvjkslg" path="res://Assets/Scenes/Gears.png" id="1_skgcx"]
 [ext_resource type="FontFile" uid="uid://cm1k6m3kleibd" path="res://Assets/Fonts/AA.ttf" id="2_duc7j"]
@@ -7,7 +7,8 @@
 [ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="5_1i63p"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="6_beyrt"]
 [ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="6_gimcx"]
-[ext_resource type="Script" path="res://Assets/Scenes/control.gd" id="7_qww0o"]
+[ext_resource type="Script" uid="uid://pkv2yu88cx11" path="res://Assets/Scenes/control.gd" id="7_qww0o"]
+[ext_resource type="PackedScene" uid="uid://rwbda23lhjk5" path="res://Assets/Prefabs/ui.tscn" id="9_5m81x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35ro2"]
 atlas = ExtResource("1_skgcx")
@@ -316,9 +317,9 @@ noise = SubResource("FastNoiseLite_dqd7r")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lrsru"]
 shader = SubResource("Shader_2e6uk")
 shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_ypiue")
 shader_parameter/speed = Vector2(0.02, 0.02)
 shader_parameter/wave_strength = 1.5
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_ypiue")
 
 [sub_resource type="Animation" id="Animation_rkd1i"]
 length = 0.001
@@ -354,24 +355,25 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rw8ew"]
 _data = {
-"RESET": SubResource("Animation_rkd1i"),
-"light": SubResource("Animation_sfm6g")
+&"RESET": SubResource("Animation_rkd1i"),
+&"light": SubResource("Animation_sfm6g")
 }
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("UI")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_qww0o")
+UI = NodePath("Title/UI")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 1
 layout_mode = 0
 offset_left = 650.0
-offset_top = 535.0
+offset_top = 566.0
 offset_right = 959.0
-offset_bottom = 876.0
+offset_bottom = 907.0
 theme_override_constants/margin_right = -280
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -384,6 +386,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_duc7j")
 theme_override_font_sizes/font_size = 125
 text = "PLAY"
+
+[node name="Switch" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_duc7j")
+theme_override_font_sizes/font_size = 50
+text = "SWITCH CONTROLLER"
 
 [node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -461,11 +469,15 @@ texture_scale = 9.59
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Title/Godrays"]
 libraries = {
-"": SubResource("AnimationLibrary_rw8ew")
+&"": SubResource("AnimationLibrary_rw8ew")
 }
 autoplay = "light"
 speed_scale = 0.8
 
+[node name="UI" parent="Title" instance=ExtResource("9_5m81x")]
+visible = false
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Switch" to="." method="_on_switch_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

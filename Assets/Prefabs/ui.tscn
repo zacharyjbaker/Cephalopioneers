@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://rwbda23lhjk5"]
+[gd_scene load_steps=28 format=3 uid="uid://rwbda23lhjk5"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/ui.gd" id="1_ph2h1"]
-[ext_resource type="Texture2D" uid="uid://dj0uexi41meep" path="res://Assets/Scenes/UI_Bar.png" id="3_auo3r"]
-[ext_resource type="Script" path="res://Assets/Prefabs/hp.gd" id="3_e3v5b"]
+[ext_resource type="Script" uid="uid://biqjomvo6yxru" path="res://Assets/Scenes/ui.gd" id="1_ph2h1"]
+[ext_resource type="Script" uid="uid://t0egi83gi0u2" path="res://Assets/Prefabs/hp.gd" id="3_e3v5b"]
 [ext_resource type="Texture2D" uid="uid://7rptxa1pol5a" path="res://Assets/Prefabs/Shealth_small.png" id="3_e4k8v"]
 [ext_resource type="Texture2D" uid="uid://7sqpcpv2ceo4" path="res://Assets/Prefabs/HealthBar.png" id="4_1hhhc"]
+[ext_resource type="Texture2D" uid="uid://cqowwlrd1i1f" path="res://Assets/Prefabs/UI_Bar.png" id="5_nt4su"]
+[ext_resource type="Texture2D" uid="uid://bils88c5aj34n" path="res://Assets/Prefabs/UI_BarC.png" id="5_r66ok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vi1px"]
 atlas = ExtResource("3_e4k8v")
@@ -141,15 +142,30 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u7iyu"]
-atlas = ExtResource("3_auo3r")
+[sub_resource type="AtlasTexture" id="AtlasTexture_24mw0"]
+atlas = ExtResource("5_nt4su")
 region = Rect2(0, 0, 480, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_c3fix"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nt4su"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u7iyu")
+"texture": SubResource("AtlasTexture_24mw0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wdnj"]
+atlas = ExtResource("5_r66ok")
+region = Rect2(0, 0, 480, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4dlmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wdnj")
 }],
 "loop": true,
 "name": &"default",
@@ -295,10 +311,11 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "85d4fddeb5a3dbec581023ad4db06860"
 
 [node name="BottomBar" type="AnimatedSprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(960, 1016)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_c3fix")
+sprite_frames = SubResource("SpriteFrames_nt4su")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -311,7 +328,26 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/UI_Bar.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "3d58cb47fa627e385ea13383baa41092"
+metadata/_aseprite_wizard_source_file_hash_ = "3b5f916a8d1cb15559482a7835bc0e39"
+
+[node name="BottomBarCont" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 1016)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_4dlmp")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Assets/Sprites/UI_BarC.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "ea6ce7ac07b55cf93add737e970c39dc"
 
 [node name="TopBar" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -331,3 +367,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Assets/Sprites/HealthBar.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "6aafbd7e401c8261589cee112bfed751"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

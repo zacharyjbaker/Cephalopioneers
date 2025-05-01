@@ -5,12 +5,22 @@ extends Area2D
 @onready var animation_player = $Sprite2D/AnimationPlayer
 @onready var Sprite1 = $Sprite2D
 @onready var Plantlight = $BulbLight
-@onready var Sprite2 = $E
+@onready var interact = null
+@onready var interactkb = $F
+@onready var interactcont = $FCont
 var is_player_near = false
 var is_active = false
 
+func _ready() -> void:
+	match Global.CONTROLSET:
+		"kb":
+			interact = interactkb
+		"cont":
+			interact = interactcont
+	#interact.visible = true
+
 func _process(_delta):
-	if is_player_near and Input.is_action_just_pressed("interact") and not is_active:
+	if is_player_near and Input.is_action_just_pressed("ui_accept") and not is_active:
 		activate_lamp()
 
 func activate_lamp():
@@ -23,18 +33,18 @@ func _on_area_entered(area):
 		print("Player entered Lamp area")
 		is_player_near = true
 		if is_active == false:
-			Sprite2.visible = true
+			interact.visible = true
 
 func _on_area_exited(area):
 	if area.is_in_group("player"):
 		print("Player exited Lamp area")
 		is_player_near = false
 		if is_active == false:
-			Sprite2.visible = false
+			interact.visible = false
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	Sprite1.visible = false
-	Sprite2.queue_free()
+	interact.queue_free()
 	Plantlight.visible = false
 	if anim_name == "Collect":
 		# Enable the lamp and activate the cauldron after the animation finishes

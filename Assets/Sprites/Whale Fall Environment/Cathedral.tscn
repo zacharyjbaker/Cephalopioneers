@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhl2xispv6sme"]
 
 [ext_resource type="Texture2D" uid="uid://bsgcilodfwsaf" path="res://Assets/Sprites/Whale Fall Environment/Crab Cathedral.png" id="1_euh0s"]
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/cathedral.gd" id="1_sk0l8"]
+[ext_resource type="Script" uid="uid://5u56tji6fmp3" path="res://Assets/Sprites/Whale Fall Environment/cathedral.gd" id="1_sk0l8"]
 [ext_resource type="Texture2D" uid="uid://7qxr8p8gbgsp" path="res://Assets/F.png" id="3_biauq"]
 
 [sub_resource type="Animation" id="Animation_271oh"]
@@ -36,8 +36,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7lxdi"]
 _data = {
-"CathedralDoor": SubResource("Animation_271oh"),
-"RESET": SubResource("Animation_tdyhl")
+&"CathedralDoor": SubResource("Animation_271oh"),
+&"RESET": SubResource("Animation_tdyhl")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifame"]

@@ -4,6 +4,12 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	$Sprite2D.play("Idle")
+	match Global.CONTROLSET:
+		"kb":
+			interact.play("kb")
+		"cont":
+			interact.play("cont")
+
 
 func _physics_process(delta: float) -> void:
 	#print(position.distance_to(player.position))

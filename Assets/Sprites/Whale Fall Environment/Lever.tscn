@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhaqcrrolyagl"]
 
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/lever.gd" id="1_2efg8"]
+[ext_resource type="Script" uid="uid://vkvmwurldmdb" path="res://Assets/Sprites/Whale Fall Environment/lever.gd" id="1_2efg8"]
 [ext_resource type="Texture2D" uid="uid://c0alj7mlha8rr" path="res://Assets/Sprites/Whale Fall Environment/Lever.png" id="2_33odp"]
-[ext_resource type="Shader" path="res://Assets/Sprites/Whale Fall Environment/Outline.gdshader" id="2_ddko8"]
+[ext_resource type="Shader" uid="uid://bm4co15ka64a6" path="res://Assets/Sprites/Whale Fall Environment/Outline.gdshader" id="2_ddko8"]
 [ext_resource type="AudioStream" uid="uid://dux3wsfudxrt7" path="res://Assets/Sound/Sfx/LeverPull.wav" id="3_edehb"]
 [ext_resource type="AudioStream" uid="uid://mmh6tc8yfm6n" path="res://Assets/Sound/Sfx/DoorRattle.wav" id="4_q7bmp"]
 
@@ -51,8 +51,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p58wb"]
 _data = {
-"Pull": SubResource("Animation_vg8rt"),
-"RESET": SubResource("Animation_ghlye")
+&"Pull": SubResource("Animation_vg8rt"),
+&"RESET": SubResource("Animation_ghlye")
 }
 
 [node name="Area2D" type="Area2D"]

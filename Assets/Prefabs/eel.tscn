@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://cep45148qy5gc"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/eel.gd" id="1_o3qdc"]
+[ext_resource type="Script" uid="uid://dihsn3rjx1x6q" path="res://Assets/Scripts/eel.gd" id="1_o3qdc"]
 [ext_resource type="Texture2D" uid="uid://h6ogk3dmo8lq" path="res://Assets/Prefabs/Eel (1).png" id="2_6ydkt"]
 [ext_resource type="AudioStream" uid="uid://c4yl4ux836lxh" path="res://Assets/Sound/Monster.mp3" id="3_xh035"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="4_m6f3o"]

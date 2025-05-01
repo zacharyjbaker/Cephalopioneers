@@ -1,6 +1,6 @@
 [gd_scene load_steps=134 format=3 uid="uid://0b3xea72rab"]
 
-[ext_resource type="Script" path="res://Assets/Prefabs/crab_pope.gd" id="1_dquel"]
+[ext_resource type="Script" uid="uid://42okt7ahdkk5" path="res://Assets/Prefabs/crab_pope.gd" id="1_dquel"]
 [ext_resource type="Texture2D" uid="uid://d3kiot6u44p3n" path="res://Assets/Prefabs/KingCrab.png" id="2_anaf1"]
 [ext_resource type="Texture2D" uid="uid://dcm20ebn8gabs" path="res://Assets/Prefabs/PopeCrab.png" id="2_dnyjm"]
 [ext_resource type="PackedScene" uid="uid://crkne2iulf2p6" path="res://Assets/Prefabs/point_light_source.tscn" id="2_wo4fu"]

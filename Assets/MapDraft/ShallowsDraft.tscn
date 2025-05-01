@@ -1,14 +1,14 @@
 [gd_scene load_steps=99 format=4 uid="uid://djd21whhd37ja"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/nauto.gd" id="1_nmn2o"]
+[ext_resource type="Script" uid="uid://k8kfehg2tomv" path="res://Assets/Scripts/nauto.gd" id="1_nmn2o"]
 [ext_resource type="Texture2D" uid="uid://bwdhlu3xbydlh" path="res://Assets/Sprites/Nauto/NautoWalk.png" id="2_qx5kl"]
-[ext_resource type="Script" path="res://Assets/Scripts/camera_movement.gd" id="3_17lgf"]
+[ext_resource type="Script" uid="uid://dytnvlo7et8oh" path="res://Assets/Scripts/camera_movement.gd" id="3_17lgf"]
 [ext_resource type="Texture2D" uid="uid://bp3vkhp0joom8" path="res://Assets/MapDraft/Test Tile.png" id="4_8mb8c"]
 [ext_resource type="Texture2D" uid="uid://cgmc32u65kd8v" path="res://Assets/MapDraft/Sand tiles.png" id="5_1y7ys"]
 [ext_resource type="Texture2D" uid="uid://cn781vdj4dvcx" path="res://Assets/MapDraft/Layer 1 Resized.png" id="6_e507u"]
 [ext_resource type="Texture2D" uid="uid://bbo70u5ma3mk5" path="res://Assets/MapDraft/Seaweed 1.png" id="6_k20cg"]
 [ext_resource type="Texture2D" uid="uid://bje7dbtti4rqe" path="res://Assets/MapDraft/Rock 1.png" id="7_5lm8h"]
-[ext_resource type="Script" path="res://Assets/Scripts/mech.gd" id="7_jikdd"]
+[ext_resource type="Script" uid="uid://k714gnk27ogw" path="res://Assets/Scripts/mech.gd" id="7_jikdd"]
 [ext_resource type="Texture2D" uid="uid://ddc63b22fsubo" path="res://Assets/MapDraft/Layer 2 Resized.png" id="7_mems1"]
 [ext_resource type="Texture2D" uid="uid://13faifo8arx2" path="res://Assets/Sprites/BackArm_Drill.png" id="8_cvgk3"]
 [ext_resource type="Texture2D" uid="uid://brprjbno8jvew" path="res://Assets/MapDraft/Rock 2 Coral.png" id="8_mhvyr"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cm6xj4v8nlf34" path="res://Assets/Sprites/MechNoArms.png" id="9_meawy"]
 [ext_resource type="Texture2D" uid="uid://dhhcmm0r0ugoi" path="res://Assets/Sprites/FrontArm_Laser.png" id="10_rplas"]
 [ext_resource type="Texture2D" uid="uid://bsuuq2xp3kxlf" path="res://Assets/MapDraft/Corals 16x16.png" id="10_xa5dw"]
-[ext_resource type="Shader" path="res://Assets/Scripts/Shaders/water.gdshader" id="11_1bym6"]
+[ext_resource type="Shader" uid="uid://b72cfqtnnje11" path="res://Assets/Scripts/Shaders/water.gdshader" id="11_1bym6"]
 [ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="12_2kakq"]
 [ext_resource type="PackedScene" uid="uid://emok1m4t1a3s" path="res://Garden Eel Pit.tscn" id="19_njtyc"]
 [ext_resource type="Texture2D" uid="uid://cuukbt1daq0nl" path="res://Garden Eel Background 1.png" id="20_kyhc0"]
@@ -701,9 +701,9 @@ noise = SubResource("FastNoiseLite_7snqg")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ro2bo"]
 shader = ExtResource("11_1bym6")
 shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 shader_parameter/speed = Vector2(0.03, 0.07)
 shader_parameter/wave_strength = 0.75
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_itsn2")
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(1216, 26)

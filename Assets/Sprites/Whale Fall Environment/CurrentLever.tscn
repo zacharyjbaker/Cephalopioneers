@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cuyojuhdlhc7j"]
 
-[ext_resource type="Script" path="res://Assets/Sprites/Whale Fall Environment/currentlever.gd" id="1_fn77b"]
+[ext_resource type="Script" uid="uid://bdog06mfe38mp" path="res://Assets/Sprites/Whale Fall Environment/currentlever.gd" id="1_fn77b"]
 [ext_resource type="Texture2D" uid="uid://c0alj7mlha8rr" path="res://Assets/Sprites/Whale Fall Environment/Lever.png" id="2_do5td"]
-[ext_resource type="Shader" path="res://Assets/Sprites/Whale Fall Environment/Outline.gdshader" id="2_wemxp"]
+[ext_resource type="Shader" uid="uid://bm4co15ka64a6" path="res://Assets/Sprites/Whale Fall Environment/Outline.gdshader" id="2_wemxp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdqen"]
 size = Vector2(32.875, 31.6875)
@@ -49,8 +49,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p58wb"]
 _data = {
-"Pull": SubResource("Animation_vg8rt"),
-"RESET": SubResource("Animation_ghlye")
+&"Pull": SubResource("Animation_vg8rt"),
+&"RESET": SubResource("Animation_ghlye")
 }
 
 [node name="Area2D" type="Area2D"]
