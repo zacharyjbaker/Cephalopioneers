@@ -250,7 +250,6 @@ smash_path = NodePath("../../../Path3")
 crab_spawnpoints = NodePath("../../../CrabSpawnNode")
 blast_spawnpoints = NodePath("../../../BlastSpawnNode")
 player = NodePath("../../../Mech")
-health = 0
 mech = NodePath("../../../Mech")
 env_node = NodePath("../../../WorldEnvironment")
 dg_manager = NodePath("../../../DialogueManager")
