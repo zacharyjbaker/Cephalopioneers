@@ -12,11 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://bygtc5v0xm2wi" path="res://Assets/Sound/Sfx/JumpCharge.wav" id="9_y4w2g"]
 [ext_resource type="AudioStream" uid="uid://1tfai0b2p8jw" path="res://Assets/Sound/Sfx/NautoJump.wav" id="10_c536x"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3ie5"]
-shader = ExtResource("2_hmnaa")
-shader_parameter/color_tint = Vector4(1, 1, 1, 1)
-shader_parameter/tint_strength = 0.5
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dq56l"]
 atlas = ExtResource("3_nmfqb")
 region = Rect2(0, 54, 18, 18)
@@ -198,6 +193,11 @@ animations = [{
 "name": &"Walk",
 "speed": 30.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3ie5"]
+shader = ExtResource("2_hmnaa")
+shader_parameter/color_tint = Vector4(1, 1, 1, 1)
+shader_parameter/tint_strength = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx3hr"]
 atlas = ExtResource("2_cwmej")
@@ -455,9 +455,8 @@ disabled = true
 
 [node name="Nauto" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-material = SubResource("ShaderMaterial_i3ie5")
 sprite_frames = SubResource("SpriteFrames_dpuya")
-animation = &"BeginFall"
+animation = &"Walk"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": false,
@@ -601,17 +600,17 @@ texture_scale = 1.5
 
 [node name="WalkSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_dxc0m")
-volume_db = -15.602
+volume_db = -10.0
 pitch_scale = 1.4
 
 [node name="ChargeSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_y4w2g")
-volume_db = -6.892
+volume_db = -7.0
 pitch_scale = 1.12
 
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_c536x")
-volume_db = -5.639
+volume_db = -7.0
 
 [node name="Death" type="CPUParticles2D" parent="."]
 position = Vector2(-0.5, 3.75)

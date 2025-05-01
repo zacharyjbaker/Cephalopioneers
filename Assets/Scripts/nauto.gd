@@ -200,6 +200,9 @@ func fall_anim() -> void:
 		nauto_sprite.play(current_anim)
 
 func _physics_process(delta: float) -> void:
+	move_and_slide()
+	velocity.y += delta * (Global.GRAVITY)
+	
 	if is_instance_valid(Global):
 		if state == States.MOVE:
 			mech.velocity.x = -100
@@ -222,8 +225,8 @@ func _physics_process(delta: float) -> void:
 			mech.velocity.x = 0	
 		
 		#print (position)
-		velocity.y += delta * Global.GRAVITY 
-		move_and_slide()
+		
+		
 
 		if velocity.x > 1:
 			scale.y = abs(scale.y)
@@ -246,7 +249,8 @@ func _physics_process(delta: float) -> void:
 				position = Vector2(29000, 1040)
 				#_load_whalefall()
 				health_loss()
-			if velocity.y > 0: # falling transition anim
+			
+			if velocity.y > 0 and !is_on_floor(): # falling transition anim
 				if play_transition_anim == true:
 					#print("falling")
 					fall_anim()
