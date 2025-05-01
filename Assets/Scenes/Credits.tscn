@@ -1,0 +1,281 @@
+[gd_scene load_steps=24 format=3 uid="uid://csaodpcct5bn4"]
+
+[ext_resource type="Script" uid="uid://33o1hb1ffagq" path="res://Assets/Credits/credits.gd" id="1_85bcl"]
+[ext_resource type="FontFile" uid="uid://cm1k6m3kleibd" path="res://Assets/Fonts/AA.ttf" id="2_3qwsj"]
+[ext_resource type="Texture2D" uid="uid://dnxe7a8uqrs3c" path="res://Assets/Scenes/Auto Nautilus Title Screen copy.png" id="3_7j5wt"]
+[ext_resource type="Texture2D" uid="uid://dqxo8hy83q1wb" path="res://Assets/Credits/Credits.png" id="4_miw74"]
+[ext_resource type="Texture2D" uid="uid://d2p617o774j2q" path="res://Assets/Sprites/NautoWalk (3).png" id="5_dmlrd"]
+[ext_resource type="Texture2D" uid="uid://bf2hopcupr884" path="res://Assets/MapDraft/Shallows Final Background.png" id="6_k5jok"]
+[ext_resource type="Gradient" uid="uid://8abxayb05ucj" path="res://Assets/Prefabs/water.tres" id="7_kjprv"]
+[ext_resource type="Texture2D" uid="uid://cswj1w2o3hlqe" path="res://icon.svg" id="8_qviv3"]
+[ext_resource type="Texture2D" uid="uid://cggn1spiwk465" path="res://Assets/God Ray.png" id="9_e64hv"]
+[ext_resource type="AudioStream" uid="uid://c72elhlrfjfi8" path="res://Assets/Sound/Music/Depths.wav" id="10_q77u1"]
+
+[sub_resource type="Animation" id="Animation_xqcya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -267)]
+}
+
+[sub_resource type="Animation" id="Animation_k5rpm"]
+resource_name = "credit_scroll"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -267), Vector2(0, -267), Vector2(0, -2034)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rasuf"]
+_data = {
+&"RESET": SubResource("Animation_xqcya"),
+&"credit_scroll": SubResource("Animation_k5rpm")
+}
+
+[sub_resource type="Animation" id="Animation_22n76"]
+resource_name = "Crouch_loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.75, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(2, 2), Vector2i(1, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_bwenf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrci8"]
+_data = {
+&"Crouch_loop": SubResource("Animation_22n76"),
+&"RESET": SubResource("Animation_bwenf")
+}
+
+[sub_resource type="Shader" id="Shader_2e6uk"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : source_color;
+uniform sampler2D fast_noise : repeat_enable;
+uniform sampler2D screen_content : hint_screen_texture;
+
+uniform vec2 speed = vec2(0.03, 0.07);
+
+uniform float wave_strength = 5;
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	vec2 uv = UV + speed * TIME;
+	vec2 noise = texture(fast_noise, uv).rg * 2.0 - 1.0; // Centered noise (-1 to 1)
+	
+	vec2 wave = vec2(
+	sin((UV.y + TIME * speed.x) * 5.0),
+	cos((UV.x + TIME * speed.y) * 10.0)
+);
+	vec2 distortion = (noise + wave) * (wave_strength * 0.01);
+	COLOR = vec4(color.r, color.g, color.b, 1) + vec4(noise.x, noise.y, 0.8, 1);
+	COLOR *= texture(screen_content, SCREEN_UV + distortion);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dqd7r"]
+noise_type = 2
+frequency = 0.0143
+fractal_type = 2
+fractal_gain = 1.0
+fractal_weighted_strength = 0.85
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ypiue"]
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = ExtResource("7_kjprv")
+noise = SubResource("FastNoiseLite_dqd7r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrsru"]
+shader = SubResource("Shader_2e6uk")
+shader_parameter/color = Color(0.6231, 0.93, 0.883965, 1)
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_ypiue")
+shader_parameter/speed = Vector2(0.02, 0.02)
+shader_parameter/wave_strength = 1.5
+
+[sub_resource type="Animation" id="Animation_rkd1i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(865, 907)]
+}
+
+[sub_resource type="Animation" id="Animation_sfm6g"]
+resource_name = "light"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2449, 907), Vector2(865, 907), Vector2(2449, 907)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rw8ew"]
+_data = {
+&"RESET": SubResource("Animation_rkd1i"),
+&"light": SubResource("Animation_sfm6g")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_85bcl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 15.0
+offset_top = 847.0
+offset_right = 324.0
+offset_bottom = 1188.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3qwsj")
+theme_override_font_sizes/font_size = 75
+text = "BACK"
+
+[node name="Title" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Camera2D" type="Camera2D" parent="Title"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Title"]
+z_index = 2
+position = Vector2(0, -267)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_7j5wt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Title/Sprite2D"]
+position = Vector2(0, 1688)
+texture = ExtResource("4_miw74")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_rasuf")
+}
+autoplay = "credit_scroll"
+
+[node name="Nauto Sprite" type="Sprite2D" parent="Title/Sprite2D"]
+position = Vector2(-14, 3956)
+scale = Vector2(12, 12)
+texture = ExtResource("5_dmlrd")
+hframes = 4
+vframes = 4
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title/Sprite2D/Nauto Sprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_nrci8")
+}
+autoplay = "Crouch_loop"
+
+[node name="Parallax2D" type="Parallax2D" parent="Title"]
+z_index = -1
+repeat_size = Vector2(3264, 0)
+autoscroll = Vector2(-55, 0)
+repeat_times = 2
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Title/Parallax2D"]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(4.25, 4.25)
+texture = ExtResource("6_k5jok")
+
+[node name="WaterShader" type="Sprite2D" parent="Title"]
+material = SubResource("ShaderMaterial_lrsru")
+position = Vector2(14836, 14)
+rotation = 3.14159
+scale = Vector2(366.061, 31.7569)
+texture = ExtResource("8_qviv3")
+
+[node name="Godrays" type="PointLight2D" parent="Title"]
+z_index = 1
+position = Vector2(865, 907)
+scale = Vector2(2, 4)
+skew = 0.408407
+energy = 0.72
+texture = ExtResource("9_e64hv")
+texture_scale = 9.59
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title/Godrays"]
+libraries = {
+&"": SubResource("AnimationLibrary_rw8ew")
+}
+autoplay = "light"
+speed_scale = 0.8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Title"]
+stream = ExtResource("10_q77u1")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

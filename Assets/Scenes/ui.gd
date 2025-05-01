@@ -14,12 +14,13 @@ var delay = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if Global.CONTROLSET == "kb":
-		botbar.visible = true
-		botbarcont.visible = false
-	elif Global.CONTROLSET == "cont":
-		botbar.visible = false
-		botbarcont.visible = true
+	if is_instance_valid(Global):
+		if Global.CONTROLSET == "kb":
+			botbar.visible = true
+			botbarcont.visible = false
+		elif Global.CONTROLSET == "cont":
+			botbar.visible = false
+			botbarcont.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -109,12 +109,14 @@ func _physics_process(delta: float) -> void:
 			death_fx.emitting = true
 			anim_player.play("Struggle")
 			deathVSFX.play()
-			await get_tree().create_timer(1.8).timeout
+			await get_tree().create_timer(1.3).timeout
 			#self.visible = false
 			Global.FREEZE = false
 			#queue_free()
 			env_node.fade_to_black()
 			print ("King Crab Defeated")
+			await get_tree().create_timer(1.5).timeout
+			_load_credits()
 		
 		if dead == true:
 			anim_player.play("Struggle")
@@ -492,3 +494,15 @@ func _on_sprite_sprite_frames_changed() -> void:
 	if anim_player.animation == "Blast":
 		if anim_player.frame == 6:
 			beamsSFX.play()
+			
+func _load_credits() -> void:
+	await get_tree().process_frame
+	var current_scene = get_parent().get_parent().get_parent()
+	for item in get_tree().get_nodes_in_group("instanced"):
+		item.queue_free()
+	var new_scene = ResourceLoader.load("res://Assets/Scenes/Credits.tscn")
+	get_tree().get_root().add_child(new_scene.instantiate())
+	#await get_tree().process_frame
+	#Global.FREEZE = true
+	print ("queue_free")
+	current_scene.queue_free()
