@@ -73,27 +73,30 @@ func load_next_dialogue():
 		dialogue_text_color = "theme_override_colors/default_color"
 		dialogue_font_path = ""
 		
-		if dialogue_instance == 1:
-			print ("dialogue 1")
-			other_talk = bite_talk
+		_profiles()
+
+func _profiles():
+	if dialogue_instance == 1:
+		print ("dialogue 1")
+		other_talk = bite_talk
 		
-		elif dialogue_instance == 2:
-			print ("dialogue 2")
-			other_talk = bite_talk
-			other_talk.visible = false
-			other_talk = malo_talk
-			
-		elif dialogue_instance == 3:
-			print ("dialogue 3")
-			other_talk = malo_talk
-			other_talk.visible = false
-			other_talk = bite_talk
+	elif dialogue_instance == 2:
+		print ("dialogue 2")
+		other_talk = bite_talk
+		other_talk.visible = false
+		other_talk = malo_talk
 		
-		elif dialogue_instance == 4:
-			print ("dialogue 4")
-			other_talk = bite_talk
-			other_talk.visible = false
-			other_talk = hidden_talk
+	elif dialogue_instance == 3:
+		print ("dialogue 3")
+		other_talk = malo_talk
+		other_talk.visible = false
+		other_talk = bite_talk
+	
+	elif dialogue_instance == 4:
+		print ("dialogue 4")
+		other_talk = bite_talk
+		other_talk.visible = false
+		other_talk = hidden_talk
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -102,6 +105,8 @@ func _physics_process(delta: float) -> void:
 		if (Input.is_action_just_pressed("ui_cancel")):
 			_disable_dialogue()
 		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == false and (Global.INTERACTABLE == true or first_dialogue == false):
+			dialogue_instance = Global.DIALOGUE_INSTANCE
+			_profiles()
 			nauto_talk.visible = true
 			other_talk.visible = true
 			dialogue_in_process = false
@@ -119,6 +124,8 @@ func _physics_process(delta: float) -> void:
 			print ("start dialogue")
 
 		if (Input.is_action_just_pressed("ui_accept") or Global.START == true) and dialogue_flag == true:
+			dialogue_instance = Global.DIALOGUE_INSTANCE
+			_profiles()
 			print ("start text scroll")
 			Global.START = false
 			print (other_talk)

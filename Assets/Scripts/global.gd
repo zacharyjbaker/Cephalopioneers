@@ -11,6 +11,7 @@ var FREEZE = false
 var SHAKE = false
 var SHAKE_AMT = 0
 var EEL_CUTSCENE = false
+var CHASE = false
 var BOSS_FIGHT = false
 var DAMAGED = false
 var START = true

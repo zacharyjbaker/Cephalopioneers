@@ -13,6 +13,7 @@ func _ready() -> void:
 	dialogue_manager.get_node("DialogueCanvas").visible = false
 	print ("readying")
 	env_node.fade_in()
+	Global.CHASE = false
 	if Global.BOSS_FIGHT == false:
 		Global.DIALOGUE_INSTANCE = 3
 		Global.SHAKE = false

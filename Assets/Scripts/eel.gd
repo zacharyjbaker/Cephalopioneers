@@ -75,6 +75,7 @@ func break_cutscene():
 
 func cutscene():
 	Global.EEL_CUTSCENE = true
+	Global.CHASE = true
 	if state == States.IDLE:
 		Global.FREEZE = true
 		state = States.CS_DEVOUR

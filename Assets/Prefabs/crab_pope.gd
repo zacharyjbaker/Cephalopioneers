@@ -97,7 +97,8 @@ func _physics_process(delta: float) -> void:
 		if health == 0:
 			Global.FREEZE = true
 			death_fx.emitting = true
-			await get_tree().create_timer(2.0).timeout
+			anim_player.play("Struggle")
+			await get_tree().create_timer(1.8).timeout
 			#self.visible = false
 			Global.FREEZE = false
 			#queue_free()
@@ -154,7 +155,7 @@ func _physics_process(delta: float) -> void:
 				#magicSFX.play()
 			elif state == States.EEL_BLAST:
 				anim_player.play("ForwardBlast")
-				#magicSFX.play()
+				magicSFX.play()
 				
 			elif state == States.SLAM or state == States.SKULL_SLAM :
 				##print ("SLAM TO JUMP")
@@ -199,6 +200,10 @@ func _physics_process(delta: float) -> void:
 					state = States.IDLE
 					isSkullSlamming = false
 					isSkullSmashAnimPlaying = false
+					hit_box.remove_from_group("mech_damage")
+					hit_box.remove_from_group("damage")
+					temp_hit_box.remove_from_group("mech_damage")
+					temp_hit_box.remove_from_group("damage")
 					_do_move()
 				if state == States.SLAM or state == States.SKULL_SLAM and is_on_floor():
 					anim_player.play("Slam")
@@ -304,8 +309,9 @@ func _do_move():
 		else:
 			await get_tree().create_timer(cooldown).timeout
 			print ("Next Moveset")
-			hit_box.add_to_group("mech_damage")
-			hit_box.add_to_group("damage")
+			if state != States.STRUGGLE:
+				hit_box.add_to_group("mech_damage")
+				hit_box.add_to_group("damage")
 			_fight()
 
 func _on_sprite_animation_finished() -> void:
@@ -461,3 +467,8 @@ func light_lerp() -> void:
 
 func _on_shake_timer_timeout() -> void:
 	Global.SHAKE = false
+
+func _on_sprite_sprite_frames_changed() -> void:
+	if anim_player.animation == "Blast":
+		if anim_player.frame == 6:
+			beamsSFX.play()

@@ -40,6 +40,11 @@ func load_game():
 		Global.SAVENUM += 1
 		if Global.SAVENUM == 5:
 			Global.SAVENUM = 0
+		if Global.CHASE == true:
+			print ("reloading during chase")
+			Global.DIALOGUE_INSTANCE -= 1
+			print ("new DI:", Global.DIALOGUE_INSTANCE)
+			Global.CHASE = false
 		self.queue_free()
 	
 	

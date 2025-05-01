@@ -102,7 +102,12 @@ func change_music(song_index: int) -> void:
 	var song = songs[song_index]
 	background_music.stream = song
 	background_music.play()
-	background_music.volume_db = 3.0
+	if song_index == 4:
+		background_music.volume_db = 1.8
+	elif song_index == 1:
+		background_music.volume_db = 1.7
+	else:
+		background_music.volume_db = 3.0
 	#music_credit.text = credit_list[song_index]
 	print (song)
 	isFading = true

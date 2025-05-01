@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 		environment.adjustment_saturation -= 0.25
 	if fade_to_black_bool == true:
 		if environment.adjustment_brightness > 0.04:
-			environment.adjustment_brightness -= 0.04
+			environment.adjustment_brightness -= 0.08
 		else:
 			fade_to_black_bool = false
 			
