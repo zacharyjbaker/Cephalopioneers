@@ -19,13 +19,13 @@ func _process(_delta):
 
 func pull_lever():
 	is_pulled = true
+	LeverSound.play()
 	var sprite = $Sprite2D
 	if sprite.material:
 		print("Material exists, setting enabled=false")
 		sprite.material.set_shader_parameter("onoff", 0)
 	else:
 		print("ERROR: No material found on sprite!")
-	LeverSound.play()
 	if door:
 		var door_node = get_node(door)
 		if door_node.has_method("open_door"):

@@ -104,6 +104,7 @@ visibility_layer = 128
 y_sort_enabled = true
 position = Vector2(32, 16)
 color = Color(0.101961, 1, 1, 1)
+energy = 1.4
 blend_mode = 2
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_kroet")

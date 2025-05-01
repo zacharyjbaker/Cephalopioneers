@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuyojuhdlhc7j"]
+[gd_scene load_steps=10 format=3 uid="uid://cuyojuhdlhc7j"]
 
 [ext_resource type="Script" uid="uid://bdog06mfe38mp" path="res://Assets/Sprites/Whale Fall Environment/currentlever.gd" id="1_fn77b"]
 [ext_resource type="Texture2D" uid="uid://c0alj7mlha8rr" path="res://Assets/Sprites/Whale Fall Environment/Lever.png" id="2_do5td"]
 [ext_resource type="Shader" uid="uid://bm4co15ka64a6" path="res://Assets/Sprites/Whale Fall Environment/Outline.gdshader" id="2_wemxp"]
+[ext_resource type="AudioStream" uid="uid://dux3wsfudxrt7" path="res://Assets/Sound/Sfx/LeverPull.wav" id="4_j1ij6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdqen"]
 size = Vector2(32.875, 31.6875)
@@ -54,7 +55,6 @@ _data = {
 }
 
 [node name="Area2D" type="Area2D"]
-scale = Vector2(4, 4)
 collision_layer = 524288
 collision_mask = 524288
 script = ExtResource("1_fn77b")
@@ -74,9 +74,13 @@ hframes = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
 libraries = {
-"": SubResource("AnimationLibrary_p58wb")
+&"": SubResource("AnimationLibrary_p58wb")
 }
 speed_scale = 0.8
+
+[node name="LeverSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_j1ij6")
+max_distance = 59100.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

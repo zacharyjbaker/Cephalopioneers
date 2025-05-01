@@ -2,12 +2,14 @@ extends Area2D
 
 @onready var animation_player = $Sprite2D/AnimationPlayer
 @onready var Sprite2 = $E
+@onready var DoorSound = $DoorSFX
 @export var save_load : Node2D
 var is_player_near = false
 var is_pulled = false
 
 func _process(_delta):
-	if is_player_near and Input.is_action_just_pressed("interact") and not is_pulled and all_cauldrons_activated():
+	if is_player_near and Input.is_action_just_pressed("interact") and not is_pulled:
+		#and all_cauldrons_activated():
 		open_cathedral()
 	if is_player_near and Input.is_action_just_pressed("interact"):
 		open_cathedral()
@@ -16,6 +18,8 @@ func open_cathedral():
 	is_pulled = true
 	# Play lever animation (if any)
 	animation_player.play("CathedralDoor")
+	DoorSound.play()
+	
 
 func _on_area_entered(area):
 	if area.is_in_group("player"):

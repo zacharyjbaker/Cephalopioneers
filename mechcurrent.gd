@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var body : Node2D
 @export var body2 : Node2D
-@export var push_strength = 500
+@export var push_strength = 300
 @export var enabled_by_default: bool = true
 
 var body_inside = false

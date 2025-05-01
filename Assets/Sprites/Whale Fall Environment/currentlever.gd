@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var booster: NodePath  # Assign the booster instance in the Inspector
+@onready var LeverSound = $LeverSFX
 var is_player_near = false
 var is_pulled = false
 
@@ -15,6 +16,7 @@ func _process(_delta):
 func pull_lever():
 	is_pulled = true
 	$AnimationPlayer.play("Pull")
+	LeverSound.play()
 	
 	var sprite = $Sprite2D
 	if sprite.material:
