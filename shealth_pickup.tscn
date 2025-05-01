@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://uvgu3lg3knl1"]
+[gd_scene load_steps=9 format=3 uid="uid://uvgu3lg3knl1"]
 
 [ext_resource type="Script" uid="uid://cmc0xheh342df" path="res://shealth_pickup.gd" id="1_4xmyh"]
 [ext_resource type="Texture2D" uid="uid://dwwmtpcgmlrsm" path="res://shealth_pickup_new.png" id="2_e0ekl"]
+[ext_resource type="AudioStream" uid="uid://bfcpvhw0reeeh" path="res://Assets/Sound/Sfx/heal.mp3" id="3_r2i1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0beam"]
 atlas = ExtResource("2_e0ekl")
@@ -68,5 +69,8 @@ collision_mask = 6144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 shape = SubResource("CircleShape2D_ywfrw")
+
+[node name="HealSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_r2i1j")
 
 [connection signal="body_entered" from="Collider" to="." method="_on_collider_body_entered"]

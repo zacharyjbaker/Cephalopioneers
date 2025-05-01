@@ -15,6 +15,7 @@ func _physics_process(delta: float) -> void:
 func _on_collider_body_entered(body: Node2D) -> void:
 	if body.name == "Nauto" or body.name == "Mech":
 		if Global.HEALTH < 5:
+			$HealSFX.play()
 			Global.HEALTH = 5
 			for i in HP:
 				print (i.name)

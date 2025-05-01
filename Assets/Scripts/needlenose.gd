@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var view_collider = $ViewCone
 @onready var mode = $Mode
 @onready var stun = $Stun
+@onready var attack_sfx = $AttackSFX
 
 @export var tag = "Needlenose"
 @export var speed = 100
@@ -177,6 +178,7 @@ func _on_timer_timeout() -> void:
 		isActivelyRotating = true
 		mode.visible = false
 		timer.stop()
+		attack_sfx.play()
 	
 	# Aggro recharge
 	elif isAttackCoolingDown == true:

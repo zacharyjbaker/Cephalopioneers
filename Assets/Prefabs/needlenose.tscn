@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cbkjxe8o45c7v"]
+[gd_scene load_steps=19 format=3 uid="uid://cbkjxe8o45c7v"]
 
 [ext_resource type="Script" uid="uid://bkc5stewiwya" path="res://Assets/Scripts/needlenose.gd" id="1_fgl5h"]
 [ext_resource type="Texture2D" uid="uid://dfhguj3vropp5" path="res://Assets/Prefabs/Needlenose.png" id="3_m2df4"]
 [ext_resource type="Texture2D" uid="uid://kyc17ymjpaax" path="res://Assets/Sprites/FX/mode.png" id="3_t17bm"]
 [ext_resource type="Texture2D" uid="uid://dxlgvvpfew8x1" path="res://Assets/Sprites/FX/StunnedFX.png" id="4_mlvr7"]
+[ext_resource type="AudioStream" uid="uid://c3w1ubtxuquc2" path="res://Assets/Sound/Sfx/Attack.wav" id="5_agbbx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ys6mf"]
 atlas = ExtResource("4_mlvr7")
@@ -186,6 +187,9 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Assets/Sprites/FX/mode.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "a0ba8643c03dea4a5c65a46e2b0ed919"
+
+[node name="AttackSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_agbbx")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

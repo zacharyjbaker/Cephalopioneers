@@ -434,7 +434,7 @@ script = ExtResource("13_ux108")
 [node name="Timer" type="Timer" parent="WorldEnvironment"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." instance=ExtResource("14_euttr")]
-scroll_offset = Vector2(-15641.9, -493.989)
+scroll_offset = Vector2(-3258.35, -437.962)
 
 [node name="BackgroundWall" type="TileMapLayer" parent="."]
 visible = false
@@ -448,14 +448,14 @@ collision_enabled = false
 [node name="BackgroundMusicManager" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_script", "nauto_script", "eel_script")]
 script = ExtResource("16_f5rd4")
 songs = Array[Resource]([ExtResource("17_55wx5"), ExtResource("18_gwan8"), ExtResource("19_k1vuh"), ExtResource("20_x2vr4"), ExtResource("21_uebqs")])
-preset_volume = -3.08084
+preset_volume = -3.05216
 dialogue_script = NodePath("../DialogueManager")
 nauto_script = NodePath("../Nauto")
 eel_script = NodePath("../LeviathanEel")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="BackgroundMusicManager"]
 stream = ExtResource("17_55wx5")
-volume_db = -3.13247
+volume_db = -3.1038
 autoplay = true
 max_distance = 137586.0
 panning_strength = 0.0
@@ -474,7 +474,7 @@ offset_top = 1008.33
 offset_right = 394.333
 offset_bottom = 1355.33
 scale = Vector2(1.28, 1)
-theme_override_colors/default_color = Color(1, 1, 1, 0.106006)
+theme_override_colors/default_color = Color(1, 1, 1, 0.0200058)
 theme_override_fonts/normal_font = ExtResource("22_10nno")
 theme_override_font_sizes/normal_font_size = 50
 text = "testing"
@@ -510,11 +510,12 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 
 [node name="Nauto" type="CharacterBody2D" parent="." node_paths=PackedStringArray("mech", "env_node", "misc_env", "HP_node", "save_load") instance=ExtResource("24_5xx82")]
-position = Vector2(16650.9, 1146.98)
+visible = false
+position = Vector2(4258.5, 998.987)
 scale = Vector2(4, 4)
 collision_layer = 4224
 collision_mask = 49152
-velocity = Vector2(406.667, 0)
+velocity = Vector2(480, 0)
 script = ExtResource("25_78iut")
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
@@ -524,10 +525,10 @@ save_load = NodePath("..")
 
 [node name="Mech" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("26_de23c")]
 light_mask = 3
-position = Vector2(16233, 1025.17)
+position = Vector2(4266.35, 1016.06)
 collision_layer = 16384
 collision_mask = 32768
-velocity = Vector2(0, 6.66667)
+velocity = Vector2(240, 6.66667)
 script = ExtResource("27_snnju")
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
@@ -553,7 +554,7 @@ texture_filter = 1
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_rx5v3")
 animation = &"Idle"
-frame_progress = 0.950705
+frame_progress = 0.741097
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "pending_changes": {}
@@ -586,7 +587,7 @@ position = Vector2(0.125, -6.6875)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_bllrb")
 animation = &"kb"
-frame_progress = 0.376766
+frame_progress = 0.352748
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -618,7 +619,7 @@ dg_manager = NodePath("../DialogueManager")
 
 [node name="Aardvark" type="CharacterBody2D" parent="NPCs" groups=["NPC", "aardvark"] instance=ExtResource("38_xu6sl")]
 z_index = -2
-position = Vector2(7620.3, 814)
+position = Vector2(7550.31, 814)
 rotation = -3.14159
 scale = Vector2(-4, 4)
 collision_layer = 6144
@@ -638,7 +639,7 @@ scale = Vector2(4, 4)
 
 [node name="Aardvark2" type="CharacterBody2D" parent="NPCs" groups=["NPC", "aardvark"] instance=ExtResource("38_xu6sl")]
 z_index = -2
-position = Vector2(22549.4, 738)
+position = Vector2(22619.4, 738)
 rotation = -3.14159
 scale = Vector2(4, -4)
 collision_layer = 16512
@@ -657,7 +658,7 @@ scale = Vector2(4, 4)
 
 [node name="Aardvark3" type="CharacterBody2D" parent="NPCs" groups=["NPC", "aardvark"] instance=ExtResource("38_xu6sl")]
 z_index = -2
-position = Vector2(23747.6, 668)
+position = Vector2(23677.6, 668)
 rotation = -3.14159
 scale = Vector2(-4, -4)
 collision_layer = 16512
@@ -675,7 +676,29 @@ position = Vector2(23787, 674)
 scale = Vector2(4, 4)
 
 [node name="Needlenose" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(-360.331, 742.996)
+position = Vector2(-733.835, 562.49)
+rotation = -3.14159
+scale = Vector2(4, -4)
+collision_layer = 6144
+collision_mask = 33792
+motion_mode = 1
+velocity = Vector2(35, -35)
+script = ExtResource("41_yokpa")
+player = NodePath("../../Nauto")
+
+[node name="Needlenose9" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
+position = Vector2(12244.8, 194.334)
+rotation = -3.14159
+scale = Vector2(4, -4)
+collision_layer = 6144
+collision_mask = 33792
+motion_mode = 1
+velocity = Vector2(40, -40)
+script = ExtResource("41_yokpa")
+player = NodePath("../../Nauto")
+
+[node name="Needlenose2" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
+position = Vector2(-920.67, 616.33)
 rotation = -3.14159
 scale = Vector2(4, -4)
 collision_layer = 6144
@@ -685,76 +708,66 @@ velocity = Vector2(40, 40)
 script = ExtResource("41_yokpa")
 player = NodePath("../../Nauto")
 
-[node name="Needlenose2" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(-813.334, 422.329)
-scale = Vector2(4, 4)
-collision_layer = 6144
-collision_mask = 33792
-motion_mode = 1
-velocity = Vector2(-40, -40)
-script = ExtResource("41_yokpa")
-player = NodePath("../../Nauto")
-
 [node name="Needlenose3" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(8583.19, 39.9997)
-scale = Vector2(4, 4)
+position = Vector2(8717.9, 337.592)
+rotation = -3.14159
+scale = Vector2(4, -4)
 collision_layer = 6144
 collision_mask = 33792
 motion_mode = 1
-velocity = Vector2(-40, -40)
+velocity = Vector2(40, -40)
 script = ExtResource("41_yokpa")
 player = NodePath("../../Nauto")
 
 [node name="Needlenose7" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(8218.61, 810.998)
-rotation = -3.14159
-scale = Vector2(4, -4)
+position = Vector2(7884.68, 612.992)
+scale = Vector2(4, 4)
 collision_layer = 6144
 collision_mask = 33792
 motion_mode = 1
-velocity = Vector2(40, -40)
+velocity = Vector2(-40, 40)
 script = ExtResource("41_yokpa")
 player = NodePath("../../Nauto")
 
 [node name="Needlenose8" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(7065.98, 244.336)
+position = Vector2(7324.59, 875.676)
 rotation = -3.14159
 scale = Vector2(4, -4)
 collision_layer = 6144
 collision_mask = 33792
 motion_mode = 1
-velocity = Vector2(40, -40)
+velocity = Vector2(40, 40)
 script = ExtResource("41_yokpa")
 player = NodePath("../../Nauto")
 
 [node name="Needlenose4" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(1809.65, 191.336)
+position = Vector2(1178.35, 529.333)
+scale = Vector2(4, 4)
+collision_layer = 6144
+collision_mask = 33792
+motion_mode = 1
+velocity = Vector2(-40, 40)
+script = ExtResource("41_yokpa")
+player = NodePath("../../Nauto")
+
+[node name="Needlenose5" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
+position = Vector2(2151.3, 294)
 rotation = -3.14159
 scale = Vector2(4, -4)
 collision_layer = 6144
 collision_mask = 33792
 motion_mode = 1
-velocity = Vector2(40, -40)
-script = ExtResource("41_yokpa")
-player = NodePath("../../Nauto")
-
-[node name="Needlenose5" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(2141.3, 282.667)
-scale = Vector2(4, 4)
-collision_layer = 6144
-collision_mask = 33792
-motion_mode = 1
-velocity = Vector2(-40, -40)
+velocity = Vector2(40, 40)
 script = ExtResource("41_yokpa")
 player = NodePath("../../Nauto")
 
 [node name="Needlenose6" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("player") groups=["enemy"] instance=ExtResource("40_ayhpc")]
-position = Vector2(1832.34, 176.333)
+position = Vector2(2001.66, 607.666)
 scale = Vector2(4, 4)
 collision_layer = 6144
 collision_mask = 33792
 motion_mode = 1
-velocity = Vector2(-40, -40)
+velocity = Vector2(-40, 40)
 script = ExtResource("41_yokpa")
 player = NodePath("../../Nauto")
 
@@ -2056,7 +2069,7 @@ script = ExtResource("58_u6fk7")
 HP_layer = NodePath("../UI")
 
 [node name="ShealthPickup2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("HP_layer") instance=ExtResource("57_sdt6b")]
-position = Vector2(8556, 303)
+position = Vector2(8510, 1019)
 scale = Vector2(4, 4)
 collision_layer = 0
 script = ExtResource("58_u6fk7")
