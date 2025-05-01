@@ -115,6 +115,9 @@ func _physics_process(delta: float) -> void:
 			#queue_free()
 			env_node.fade_to_black()
 			print ("King Crab Defeated")
+		
+		if dead == true:
+			anim_player.play("Struggle")
 			
 		if isLightLerp:
 			staff_light.energy = lerp(staff_light.energy, 0.8, 1 * delta)

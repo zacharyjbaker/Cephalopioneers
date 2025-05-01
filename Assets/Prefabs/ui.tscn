@@ -157,15 +157,15 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1wdnj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt4su"]
 atlas = ExtResource("5_r66ok")
 region = Rect2(0, 0, 480, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4dlmp"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_r66ok"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1wdnj")
+"texture": SubResource("AtlasTexture_nt4su")
 }],
 "loop": true,
 "name": &"default",
@@ -334,7 +334,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "3b5f916a8d1cb15559482a7835bc0e39"
 texture_filter = 1
 position = Vector2(960, 1016)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_4dlmp")
+sprite_frames = SubResource("SpriteFrames_r66ok")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -347,7 +347,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Sprites/UI_BarC.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ea6ce7ac07b55cf93add737e970c39dc"
+metadata/_aseprite_wizard_source_file_hash_ = "092b717a2a93987af78c03d21ce2d3e6"
 
 [node name="TopBar" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
