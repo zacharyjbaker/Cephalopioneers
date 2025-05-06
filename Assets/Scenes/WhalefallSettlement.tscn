@@ -482,7 +482,6 @@ scale = Vector2(568.231, 49.296)
 texture = ExtResource("3_doonm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 515
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
@@ -579,14 +578,14 @@ position = Vector2(34309, -1057)
 save_load = NodePath("..")
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
-position = Vector2(41026, -1462)
+position = Vector2(6589, 1244)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("22_joohn")]
-position = Vector2(41030, -1241)
+position = Vector2(6446, 1131)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
