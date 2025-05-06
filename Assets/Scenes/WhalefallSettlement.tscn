@@ -482,6 +482,7 @@ scale = Vector2(568.231, 49.296)
 texture = ExtResource("3_doonm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 515
 position = Vector2(289, 919)
 scale = Vector2(0.975452, 3.5576)
@@ -578,14 +579,14 @@ position = Vector2(34309, -1057)
 save_load = NodePath("..")
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "HP_node", "save_load") instance=ExtResource("21_2t1sa")]
-position = Vector2(6437, 1240)
+position = Vector2(41026, -1462)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
 save_load = NodePath("..")
 
 [node name="Mech" parent="." node_paths=PackedStringArray("player", "env_node", "HP_node", "save_load") instance=ExtResource("22_joohn")]
-position = Vector2(6778, 1130)
+position = Vector2(41030, -1241)
 player = NodePath("../Nauto")
 env_node = NodePath("../WorldEnvironment")
 HP_node = NodePath("../UI")
@@ -1562,8 +1563,9 @@ position = Vector2(10458, 423)
 new_color = Color(1, 0.338801, 0.833987, 1)
 
 [node name="Vent" parent="." node_paths=PackedStringArray("body", "body2") instance=ExtResource("58_q2jjd")]
-position = Vector2(36180, 1562)
+position = Vector2(36275, 1233)
 rotation = 1.5708
+scale = Vector2(2.24, 1.60004)
 body = NodePath("../Nauto")
 body2 = NodePath("../Mech")
 

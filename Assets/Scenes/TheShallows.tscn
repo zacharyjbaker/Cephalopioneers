@@ -258,7 +258,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "4fb7782a8701472568f5570b92d7ee50"
 
 [node name="Nauto" parent="." node_paths=PackedStringArray("mech", "env_node", "misc_env", "HP_node", "save_load") instance=ExtResource("21_ye3to")]
-position = Vector2(-2357, 948)
+position = Vector2(-2359, 927)
 mech = NodePath("../Mech")
 env_node = NodePath("../WorldEnvironment")
 misc_env = NodePath("../MiscEnv")

@@ -17,9 +17,6 @@ size = Vector2(235.628, 700.958)
 
 [node name="Vent" type="CharacterBody2D"]
 z_index = -2
-position = Vector2(-8, -1)
-rotation = 2.35619
-scale = Vector2(3, 2.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_xa4h5")
@@ -49,6 +46,7 @@ collision_mask = 128
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D" groups=["current", "damage"]]
 position = Vector2(-118.611, 308.979)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bmpie")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
